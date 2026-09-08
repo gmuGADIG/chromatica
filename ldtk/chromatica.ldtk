@@ -27,7 +27,7 @@
 	"bgColor": "#40465B",
 	"defaultLevelBgColor": "#696A79",
 	"minifyJson": false,
-	"externalLevels": false,
+	"externalLevels": true,
 	"exportTiled": false,
 	"simplifiedExport": false,
 	"imageExportMode": "None",
@@ -83,9 +83,9 @@
 			"bgPivotY": 0.5,
 			"__smartColor": "#ADADB5",
 			"__bgPos": null,
-			"externalRelPath": null,
+			"externalRelPath": "chromatica/Level_0.ldtkl",
 			"fieldInstances": [],
-			"layerInstances": [],
+			"layerInstances": null,
 			"__neighbours": [{ "levelIid": "3da937c0-96d0-11f1-94f9-ede8231e6eb0", "dir": "e" }]
 		},
 		{
@@ -106,9 +106,9 @@
 			"bgPivotY": 0.5,
 			"__smartColor": "#ADADB5",
 			"__bgPos": null,
-			"externalRelPath": null,
+			"externalRelPath": "chromatica/Level_1.ldtkl",
 			"fieldInstances": [],
-			"layerInstances": [],
+			"layerInstances": null,
 			"__neighbours": [{ "levelIid": "0d8e2780-96d0-11f1-8ae1-af7743620480", "dir": "w" }]
 		}
 	],
