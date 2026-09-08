@@ -26,7 +26,8 @@ folder_colors={
 "res://ldtk/": "yellow",
 "res://player/": "green",
 "res://temp/": "gray",
-"res://world/": "blue"
+"res://ui/": "blue",
+"res://world/": "purple"
 }
 
 [layer_names]

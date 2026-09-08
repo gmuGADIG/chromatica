@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://clra6nv8aoo0u"]
+
+[ext_resource type="Script" uid="uid://d0yf6g6egcckk" path="res://ui/hud/hud.gd" id="1_xmswo"]
+
+[node name="Hud" type="Control" unique_id=916575799]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xmswo")
