@@ -14,14 +14,19 @@ config/name="Chromatica"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://temp/temp_art/icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ldtk-importer/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
 "res://color/": "red",
 "res://enemy/": "orange",
-"res://player/": "yellow",
+"res://ldtk/": "yellow",
+"res://player/": "green",
 "res://temp/": "gray",
-"res://world/": "green"
+"res://world/": "blue"
 }
 
 [layer_names]
