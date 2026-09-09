@@ -2,7 +2,7 @@
 name: Story
 about: A story describes a unit of the player's experience.
 title: "[STORY] "
-labels: documentation
+labels: discipline:art, documentation
 assignees: ''
 
 ---
