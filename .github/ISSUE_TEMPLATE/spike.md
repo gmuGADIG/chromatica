@@ -3,7 +3,7 @@ name: Spike
 about: A spike describes a topic or potential decision that needs to be researched
   or evaluated.
 title: "[SPIKE]"
-labels: assessment
+labels: assessment, discipline:art, documentation
 assignees: ''
 
 ---
