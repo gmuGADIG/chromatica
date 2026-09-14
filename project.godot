@@ -21,15 +21,17 @@ enabled=PackedStringArray("res://addons/ldtk-importer/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://color/": "red",
-"res://ldtk/": "orange",
-"res://player/": "yellow",
+"res://character/": "red",
+"res://character/enemy/": "red",
+"res://character/npc/": "orange",
+"res://character/player/": "yellow",
+"res://color/": "orange",
+"res://ldtk/": "yellow",
 "res://temp/": "gray",
 "res://ui/": "green",
 "res://world/camera/": "red",
 "res://world/decoration/": "orange",
-"res://world/enemy/": "yellow",
-"res://world/npc/": "green",
+"res://world/interactable/": "yellow",
 "res://world/rooms/": "blue"
 }
 
