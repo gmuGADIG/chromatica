@@ -1,8 +1,8 @@
 ---
 name: Programming Team
 about: A task done by programming team
-title: "[PROG]"
-labels: disipline:programming
+title: "[PROG] "
+labels: discipline:programming
 assignees: ''
 
 ---
