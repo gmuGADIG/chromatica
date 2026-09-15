@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://yqtxh6q1evc3"]
 
 [ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="1_1suqd"]
-[ext_resource type="Shader" uid="uid://cwku18rxc63sc" path="res://color/desaturation/desaturation_hsl.gdshader" id="2_g482p"]
+[ext_resource type="Shader" uid="uid://cwku18rxc63sc" path="res://systems/desaturation/desaturation_hsl.gdshader" id="2_g482p"]
 [ext_resource type="Texture2D" uid="uid://4g5nexenk7gw" path="res://temp/temp_art/char.png" id="3_yadb5"]
-[ext_resource type="PackedScene" uid="uid://c0gnoeun33jjj" path="res://color/desaturation/desaturation_component.tscn" id="5_ravht"]
-[ext_resource type="Shader" uid="uid://dfmwo117g4ktt" path="res://color/desaturation/desaturation_ok.gdshader" id="6_f4o15"]
-[ext_resource type="Shader" uid="uid://dibv1qb7atu2y" path="res://color/desaturation/desaturation_hsv.gdshader" id="6_yadb5"]
+[ext_resource type="PackedScene" uid="uid://c0gnoeun33jjj" path="res://systems/desaturation/desaturation_component.tscn" id="5_ravht"]
+[ext_resource type="Shader" uid="uid://dfmwo117g4ktt" path="res://systems/desaturation/desaturation_ok.gdshader" id="6_f4o15"]
+[ext_resource type="Shader" uid="uid://dibv1qb7atu2y" path="res://systems/desaturation/desaturation_hsv.gdshader" id="6_yadb5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3uwp"]
 size = Vector2(1272, 20)
