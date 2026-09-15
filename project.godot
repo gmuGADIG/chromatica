@@ -32,7 +32,8 @@ folder_colors={
 "res://world/camera/": "red",
 "res://world/decoration/": "orange",
 "res://world/interactable/": "yellow",
-"res://world/rooms/": "blue"
+"res://world/rooms/": "blue",
+"res://world/rooms/test_rooms/": "gray"
 }
 
 [layer_names]

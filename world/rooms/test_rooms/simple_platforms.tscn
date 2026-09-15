@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dsfvo7vwn1a0x"]
+
+[ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_tg01w"]
+[ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="2_44v25"]
+
+[node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_tg01w")]
+
+[node name="TestLevel" parent="." index="0" unique_id=129877507 instance=ExtResource("2_44v25")]
+
+[editable path="TestLevel"]
