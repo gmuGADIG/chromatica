@@ -1,0 +1,9 @@
+CharacterID,Dialogue
+Fitzgerald,I am some guy talking about text
+,sometimes I do not explicitly state my character ID
+,Just use the previous ID in that case
+,"If I'm feeling particularly mean, I even put in commas that you need to deal with"
+,"When special characters are involved, the value is wrapped in quotes"
+,"""Fish seven"""
+NONE,"This will be a special character ID for when there is no character portrait, just a dialogue box"
+,"Birch trees be like ""ohoho my bark is peeling"""
