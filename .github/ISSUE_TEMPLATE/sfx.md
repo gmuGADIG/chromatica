@@ -1,7 +1,7 @@
 ---
 name: SFX
 about: Make a SFX for the game
-title: "[SFX] Sound effect"
+title: "[SFX] "
 labels: discipline:sound, sfx
 assignees: ''
 
