@@ -7,10 +7,10 @@ path="res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn
 
 [deps]
 
-files=["res://ldtk/levels/Level_0.scn", "res://ldtk/levels/Level_1.scn", "res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn"]
+files=["res://ldtk/tilesets/tileset_128px.res", "res://ldtk/levels/TestLevel.scn", "res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn"]
 
 source_file="res://ldtk/chromatica.ldtk"
-dest_files=["res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn", "res://ldtk/levels/Level_0.scn", "res://ldtk/levels/Level_1.scn", "res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn"]
+dest_files=["res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn", "res://ldtk/tilesets/tileset_128px.res", "res://ldtk/levels/TestLevel.scn", "res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn"]
 
 [params]
 

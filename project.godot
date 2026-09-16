@@ -14,6 +14,10 @@ config/name="Chromatica"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://temp/temp_art/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://ddn7ru0dhkj34"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ldtk-importer/plugin.cfg")
@@ -21,16 +25,19 @@ enabled=PackedStringArray("res://addons/ldtk-importer/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://color/": "red",
-"res://ldtk/": "orange",
-"res://player/": "yellow",
+"res://character/": "red",
+"res://character/enemy/": "red",
+"res://character/npc/": "orange",
+"res://character/player/": "yellow",
+"res://ldtk/": "yellow",
+"res://systems/": "green",
 "res://temp/": "gray",
-"res://ui/": "green",
+"res://ui/": "teal",
 "res://world/camera/": "red",
 "res://world/decoration/": "orange",
-"res://world/enemy/": "yellow",
-"res://world/npc/": "green",
-"res://world/rooms/": "blue"
+"res://world/interactable/": "yellow",
+"res://world/rooms/": "blue",
+"res://world/rooms/test_rooms/": "gray"
 }
 
 [layer_names]

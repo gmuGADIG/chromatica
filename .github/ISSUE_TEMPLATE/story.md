@@ -1,8 +1,8 @@
 ---
 name: Story
-about: A story describes a unit of the player's experience.
+about: A story describes a unit of work based around the player's experience.
 title: "[STORY] "
-labels: documentation
+labels: documentation, story
 assignees: ''
 
 ---
