@@ -4,3 +4,4 @@
 
 [node name="TestScripts" type="Node2D" unique_id=1414302989]
 script = ExtResource("1_muc1a")
+dialogue_path = "res://system/dialogue/data/test_dialogue.csv"
