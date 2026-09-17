@@ -3,6 +3,8 @@ class_name Hurtbox
 
 @export var health_component : HealthComponent
 # has the variables "maximum_hp" and "hp", this should only touch "hp" var
+# This HealthComponent should be from an Enemy, so that the "hp" of health_component
+# is how much health left the enemy has, or in this case how much it gained.
 
 
 func hit(damage_info: DamageInfo) -> void:
