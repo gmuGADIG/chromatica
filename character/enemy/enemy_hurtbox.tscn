@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://da4ibuuxp6cuk"]
+
+[ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://hurtarea_2d.gd" id="1_l0rlh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(60, 100)
+
+[node name="Area2D" type="Area2D" unique_id=2083781502]
+script = ExtResource("1_l0rlh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1615979896]
+shape = SubResource("RectangleShape2D_yf5fn")
