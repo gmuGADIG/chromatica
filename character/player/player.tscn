@@ -8,15 +8,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
 
-[node name="Player" type="CharacterBody2D" unique_id=1162272003]
+[node name="Player" type="CharacterBody2D" unique_id=1162272003 node_paths=PackedStringArray("horizontalMovement")]
 script = ExtResource("1_oul6g")
+horizontalMovement = NodePath("HorizontalMovement")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
 
-[node name="HorizontalMovement" type="Node" parent="." unique_id=415994900]
+[node name="HorizontalMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player", "playerInput")]
 script = ExtResource("2_gtsfv")
+player = NodePath("..")
+playerInput = NodePath("../InputComponent")
 
 [node name="VerticalMovement" type="Node" parent="." unique_id=1638560969]
 script = ExtResource("2_8eijk")
