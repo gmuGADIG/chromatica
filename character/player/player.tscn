@@ -23,4 +23,3 @@ script = ExtResource("2_8eijk")
 
 [node name="InputComponent" type="Node" parent="." unique_id=1388412803]
 script = ExtResource("4_wu8e1")
-wants_to_jump = null

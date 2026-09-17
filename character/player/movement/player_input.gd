@@ -12,5 +12,5 @@ func _process(delta: float) -> void:
 	pass
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
-		wants_to_jump = true
+		vertical_player_movement.jump()
 		

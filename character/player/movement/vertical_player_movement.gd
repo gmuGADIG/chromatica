@@ -13,10 +13,10 @@ func _physics_process(delta: float) -> void:
 	if not get_parent().is_on_floor():
 		get_parent().velocity.y += gravity * delta
 
-	# Handle jump.
-		get_parent().velocity.y = jump_velocity
-
 	get_parent().move_and_slide()
-	
-	
+
+# Handle jump.	
+func jump() -> void:
+	if get_parent().is_on_floor():
+		get_parent().velocity.y = jump_velocity
 	
