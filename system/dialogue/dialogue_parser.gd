@@ -1,15 +1,13 @@
 extends Object
 class_name CSVParser
 
-"""
-Takes in a path to a CSV file representing dialogue and parses it into an Array[DialogueLine].
-"""
+## Takes in a path to a CSV file representing dialogue and parses it into an Array of [DialogueLine]s.
 static func parse_dialogue(path: String) -> Array[DialogueLine]:
 	# TODO: make better error handling on invalid CSV or dialogue format
 	
 	var file := FileAccess.open(path, FileAccess.READ)
 	var csv := file.get_as_text()
-	var parsed := parse_csv_internal(csv)
+	var parsed := parse_csv(csv)
 	
 	var dialogue_array : Array[DialogueLine] = []
 	var prev_id := "";
@@ -28,7 +26,8 @@ static func parse_dialogue(path: String) -> Array[DialogueLine]:
 		
 	return dialogue_array
 	
-static func parse_csv_internal(csv: String) -> Array[PackedStringArray]:
+## Parses CSV data into an easier to work with format.
+static func parse_csv(csv: String) -> Array[PackedStringArray]:
 	var i := 0
 	var length := len(csv)
 	
