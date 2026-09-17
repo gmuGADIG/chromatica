@@ -2,7 +2,7 @@ extends Object
 class_name CSVParser
 
 """
-Takes in a path to a CSV file representing dialogue and parses it into 
+Takes in a path to a CSV file representing dialogue and parses it into an Array[DialogueLine].
 """
 static func parse_dialogue(path: String) -> Array[DialogueLine]:
 	# TODO: make better error handling on invalid CSV or dialogue format
