@@ -29,4 +29,4 @@ func jump() -> void:
 
 func early_release() -> void:
 	if not released and get_parent().velocity.y < 0:
-		get_parent().velocity.y *= 0.4
+		get_parent().velocity.y *= 0.55
