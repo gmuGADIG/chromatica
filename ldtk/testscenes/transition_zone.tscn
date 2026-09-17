@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cmgsqo0sk8vvv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6eyv"]
+
+[node name="TransitionZone" type="Area2D" unique_id=444725797]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=219989741]
+shape = SubResource("RectangleShape2D_g6eyv")
