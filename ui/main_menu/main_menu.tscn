@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bv1fl583cdk3v"]
 
-[ext_resource type="Script" uid="uid://y43ku3rrs653" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+[ext_resource type="Script" uid="uid://blq3xg816scv6" path="res://ui/main_menu/file_select/file_select.gd" id="1_uhj5c"]
 
 [node name="MainMenu" type="Control" unique_id=1450645728]
 layout_mode = 3
@@ -10,3 +10,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uhj5c")
+
+[node name="Button_Start" type="Button" parent="." unique_id=819665368]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Button_Quit" type="Button" parent="." unique_id=728968968]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="Button_Start" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="Button_Quit" to="." method="_on_button_quit_pressed"]
