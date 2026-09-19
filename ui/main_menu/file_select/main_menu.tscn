@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bv1fl583cdk3v"]
+[gd_scene format=3 uid="uid://bxhux8wqih30x"]
 
-[ext_resource type="Script" uid="uid://blq3xg816scv6" path="res://ui/main_menu/file_select/file_select.gd" id="1_uhj5c"]
+[ext_resource type="Script" uid="uid://blq3xg816scv6" path="res://ui/main_menu/file_select/file_select.gd" id="1_qtr7q"]
 
 [node name="MainMenu" type="Control" unique_id=1450645728]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uhj5c")
+script = ExtResource("1_qtr7q")
 
 [node name="Button_Start" type="Button" parent="." unique_id=819665368]
 layout_mode = 0
