@@ -24,3 +24,5 @@ func update_health(difference: int) -> void:
 	hp += difference
 	if hp <= 0:
 		health_depleted.emit()
+	if hp > maximum_hp:
+		hp = maximum_hp
