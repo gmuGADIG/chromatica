@@ -1,6 +1,6 @@
 extends Node
 
-class_name Health
+class_name HealthComponent
 
 @export var maximum_hp: int
 
