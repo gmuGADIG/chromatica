@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dimkkmdj6mi5x" path="res://character/player/movement/vertical_player_movement.gd" id="2_8eijk"]
 [ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/horizontal_player_movement.gd" id="2_gtsfv"]
 [ext_resource type="Script" uid="uid://wmmd3hss21u" path="res://character/player/movement/player_input.gd" id="4_wu8e1"]
+[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="5_g20gq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -23,3 +24,8 @@ script = ExtResource("2_8eijk")
 
 [node name="InputComponent" type="Node" parent="." unique_id=1388412803]
 script = ExtResource("4_wu8e1")
+
+[node name="Health" type="Node" parent="." unique_id=354530798]
+script = ExtResource("5_g20gq")
+maximum_hp = 100
+metadata/_custom_type_script = "uid://dofc8aut25pg5"
