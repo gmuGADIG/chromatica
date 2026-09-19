@@ -10,7 +10,7 @@ class_name Hurtbox
 func hit(damage_info: DamageInfo) -> void:
 	# DamageInfo has the integer variable "damage"
 	if health_component.hp:
-		health.update_health(damage_info.damage)
+		health_component.update_health(damage_info.damage)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

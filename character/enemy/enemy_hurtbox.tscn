@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://da4ibuuxp6cuk"]
 
-[ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://hurtarea_2d.gd" id="1_l0rlh"]
+[ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://character/enemy/enemy_hurtbox.gd" id="1_l0rlh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
 size = Vector2(60, 100)
