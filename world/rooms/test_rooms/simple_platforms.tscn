@@ -2,9 +2,41 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_tg01w"]
 [ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="2_44v25"]
+[ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="3_ed02e"]
+[ext_resource type="Script" uid="uid://c2l65ubmkg4h5" path="res://world/interactable/interactable_component.gd" id="4_r7hm1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7hm1"]
+radius = 128.0
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_tg01w")]
 
 [node name="TestLevel" parent="." index="0" unique_id=129877507 instance=ExtResource("2_44v25")]
+
+[node name="Player" parent="." index="1" unique_id=1162272003 instance=ExtResource("3_ed02e")]
+position = Vector2(576, 1984)
+
+[node name="Camera2D" type="Camera2D" parent="." index="2" unique_id=1941890598]
+position = Vector2(2368, 1216)
+zoom = Vector2(0.225, 0.225)
+
+[node name="Interactable" type="Area2D" parent="." index="3" unique_id=305747897]
+position = Vector2(1280, 2048)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_r7hm1")
+metadata/_custom_type_script = "uid://c2l65ubmkg4h5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" index="0" unique_id=1770849795]
+shape = SubResource("CircleShape2D_r7hm1")
+
+[node name="Interactable2" type="Area2D" parent="." index="4" unique_id=1632135625]
+position = Vector2(1600, 2048)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_r7hm1")
+metadata/_custom_type_script = "uid://c2l65ubmkg4h5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable2" index="0" unique_id=237462514]
+shape = SubResource("CircleShape2D_r7hm1")
 
 [editable path="TestLevel"]

@@ -1,25 +1,26 @@
 extends Area2D
+class_name PlayerInteractRegion
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Interact"):
-		check_for_interactable()
-		
 func check_for_interactable() -> void:
-	var closest_interactable: Interactable = null
-	var areas = get_overlapping_areas()
-	if areas.size() == 0 or areas == null:
+	var interactables : Array[Interactable]
+	interactables.assign(get_overlapping_areas().filter(func(val): return val is Interactable))
+	
+	if interactables.is_empty():
 		return
-	if areas.size() > 0 :
-		if areas[0] is Interactable:
-			closest_interactable = areas[0]
-	if areas.size() > 1 :
-		for area in areas:
-			if area is not Interactable:
-				continue
-			if(closest_interactable == null):
-				closest_interactable = area
-			if(self.global_position.distance_to(area.global_position) < self.global_position.distance_to(closest_interactable.global_position)):
-				closest_interactable = area
-	if closest_interactable != null:
-		closest_interactable.interact()
+	
+	##Only one interactable
+	if interactables.size() == 1 :
+		interactables[0].interact()
+		return
+	
+	##Multiple interactables
+	var closest_interactable: Interactable = interactables[0]
+	for interactable in interactables:
+		var found_closer_interactable : bool = (
+			self.global_position.distance_to(interactable.global_position) <
+			self.global_position.distance_to(closest_interactable.global_position)
+		)
+		if found_closer_interactable:
+			closest_interactable = interactable
+	
+	closest_interactable.interact()

@@ -25,10 +25,13 @@ script = ExtResource("2_gtsfv")
 [node name="VerticalMovement" type="Node" parent="." unique_id=1638560969]
 script = ExtResource("2_8eijk")
 
-[node name="InputComponent" type="Node" parent="." unique_id=1388412803]
+[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("player_interact_region")]
 script = ExtResource("4_wu8e1")
+player_interact_region = NodePath("../InteractRegion")
 
 [node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("5_g20gq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRegion" unique_id=2042581431]
