@@ -9,6 +9,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
+size = Vector2(133, 261)
+
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
 
@@ -23,9 +26,19 @@ script = ExtResource("2_gtsfv")
 script = ExtResource("2_8eijk")
 player = NodePath("..")
 
-[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("vertical_player_movement")]
+[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("vertical_player_movement", "player_interact_region")]
 script = ExtResource("4_wu8e1")
 vertical_player_movement = NodePath("../VerticalMovement")
+player_interact_region = NodePath("../InteractRegion")
+
+[node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("5_g20gq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRegion" unique_id=2042581431]
+position = Vector2(0, -120.5)
+shape = SubResource("RectangleShape2D_d0bka")
 
 [node name="Health" type="Node" parent="." unique_id=354530798]
 script = ExtResource("5_g20gq")
