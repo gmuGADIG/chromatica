@@ -1,6 +1,5 @@
 extends Node
 class_name  PlayerInput
-@export var wants_to_jump: bool = false
 @export var vertical_player_movement: VerticalPlayerMovement
 
 
@@ -15,9 +14,9 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+	
+	##Jump Inputs
+	if event.is_action_pressed("jump"):
 		vertical_player_movement.jump()
-	
-	
-	if Input.is_action_just_released("ui_accept"):
+	elif event.is_action_released("jump"):
 		vertical_player_movement.early_release()

@@ -1,9 +1,18 @@
 extends Node
 class_name VerticalPlayerMovement
-@export var speed : float = 800.0
+
+##A reference to the player
+@export var player : Player
+@export_group("Jump Parameters")
+##The impulse applied to the player when they jump
 @export var jump_velocity : float = -2500.0
+##The default vertical acceleration of the player, in px/sec
 @export var gravity : float = 4000.0
-var released : bool = false
+##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
+##to give them better control over the player's jump.
+@export_range(0.0,1.0) var early_jump_release_multiplier : float = 0.55
+
+var can_early_jump_release : bool = false
 #@onready var input : PlayerInput = PlayerInput
 
 
@@ -14,19 +23,20 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not get_parent().is_on_floor():
-		get_parent().velocity.y += gravity * delta
+	if not player.is_on_floor():
+		player.velocity.y += gravity * delta
 	
-	get_parent().move_and_slide()
+	player.move_and_slide()
 
 
 # Handle jump.	
 func jump() -> void:
-	if get_parent().is_on_floor():
-		get_parent().velocity.y = jump_velocity
-		released = false
+	if player.is_on_floor():
+		player.velocity.y = jump_velocity
+		can_early_jump_release = true
 
 
 func early_release() -> void:
-	if not released and get_parent().velocity.y < 0:
-		get_parent().velocity.y *= 0.55
+	if can_early_jump_release and player.velocity.y < 0:
+		player.velocity.y *= early_jump_release_multiplier
+		can_early_jump_release = false
