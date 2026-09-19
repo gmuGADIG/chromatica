@@ -1,4 +1,6 @@
 extends Node
+class_name  PlayerInput
+@export var vertical_player_movement: VerticalPlayerMovement
 
 @export var player_interact_region : PlayerInteractRegion
 
@@ -12,5 +14,12 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	
+	##Jump Inputs
+	if event.is_action_pressed("jump"):
+		vertical_player_movement.jump()
+	elif event.is_action_released("jump"):
+		vertical_player_movement.early_release()
+  
+  if event.is_action_pressed("interact"):
 		player_interact_region.check_for_interactable()
