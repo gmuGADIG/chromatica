@@ -31,7 +31,9 @@ player = NodePath("..")
 script = ExtResource("4_wu8e1")
 vertical_player_movement = NodePath("../VerticalMovement")
 player_interact_region = NodePath("../InteractRegion")
-jump_buffer_time = null
+
+[node name="JumpBuffer" type="Timer" parent="InputComponent" unique_id=2434172]
+one_shot = true
 
 [node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
 collision_layer = 2
@@ -46,3 +48,5 @@ shape = SubResource("RectangleShape2D_d0bka")
 script = ExtResource("5_g20gq")
 maximum_hp = 100
 metadata/_custom_type_script = "uid://dofc8aut25pg5"
+
+[connection signal="timeout" from="InputComponent/JumpBuffer" to="InputComponent" method="_on_jump_buffer_timeout"]

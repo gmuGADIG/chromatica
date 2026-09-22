@@ -11,9 +11,9 @@ class_name  PlayerInput
 
 var jump_buffer = false
 
+@onready var jump_buffer_timer : Timer = $JumpBuffer
+
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,10 +29,15 @@ func _input(event: InputEvent) -> void:
 		var jumped : bool = vertical_player_movement.jump()
 		if not jumped:
 			jump_buffer = true
-			get_tree().create_timer(jump_buffer_time).timeout.connect(func() : if jump_buffer: jump_buffer = false)
+			jump_buffer_timer.start(jump_buffer_time)
 	elif event.is_action_released("jump"):
 		vertical_player_movement.early_release()
 	
 	##Interact Inputs
 	if event.is_action_pressed("interact"):
 		player_interact_region.check_for_interactable()
+
+
+func _on_jump_buffer_timeout() -> void:
+	if jump_buffer:
+		jump_buffer = false
