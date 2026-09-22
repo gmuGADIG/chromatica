@@ -13,7 +13,7 @@ class_name VerticalPlayerMovement
 @export_range(0.0,1.0) var early_jump_release_multiplier : float = 0.55
 # Time (seconds) in that a player character may still jump after 
 # pressing the jump button.
-@export var jump_buffer_timer: float = 0.1
+@export var jump_buffer_time: float = 0.1
 
 
 var can_early_jump_release : bool = false
@@ -47,7 +47,7 @@ func jump() -> void:
 	else:
 		# Begin jump buffering if not on floor while pressed.
 		jump_buffer = true
-		get_tree().create_timer(jump_buffer_timer).timeout.connect(_on_jump_buffer_timer_timeout)
+		get_tree().create_timer(jump_buffer_time).timeout.connect(_on_jump_buffer_time_timeout)
 
 
 func early_release() -> void:
@@ -57,5 +57,5 @@ func early_release() -> void:
 
 # Reset jump buffer boolean if 0.1s has passed since press.
 
-func _on_jump_buffer_timer_timeout()->void:
+func _on_jump_buffer_time_timeout()->void:
 	jump_buffer = false 
