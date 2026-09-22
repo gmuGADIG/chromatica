@@ -31,6 +31,7 @@ player = NodePath("..")
 script = ExtResource("4_wu8e1")
 vertical_player_movement = NodePath("../VerticalMovement")
 player_interact_region = NodePath("../InteractRegion")
+jump_buffer_time = null
 
 [node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
 collision_layer = 2
