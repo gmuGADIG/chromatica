@@ -18,6 +18,7 @@ script = ExtResource("1_oul6g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
+debug_color = Color(0.89526504, 0.21086764, 0.40460575, 0.41960785)
 
 [node name="HorizontalMovement" type="Node" parent="." unique_id=415994900]
 script = ExtResource("2_gtsfv")
