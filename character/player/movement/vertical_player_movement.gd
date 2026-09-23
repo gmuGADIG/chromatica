@@ -26,14 +26,20 @@ func _physics_process(delta: float) -> void:
 	if not player.is_on_floor():
 		player.velocity.y += gravity * delta
 	
+	
 	player.move_and_slide()
 
 
+func can_jump() -> bool:
+	return player.is_on_floor()
+
 # Handle jump.	
-func jump() -> void:
-	if player.is_on_floor():
-		player.velocity.y = jump_velocity
-		can_early_jump_release = true
+func jump() -> bool:
+	if not can_jump():
+		return false
+	player.velocity.y = jump_velocity
+	can_early_jump_release = true
+	return true
 
 
 func early_release() -> void:
