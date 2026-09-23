@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bv1fl583cdk3v"]
 
 [ext_resource type="Script" uid="uid://blq3xg816scv6" path="res://ui/main_menu/file_select/file_select.gd" id="1_uhj5c"]
+[ext_resource type="PackedScene" uid="uid://b5k2j04yb2cvu" path="res://ui/main_menu/file_select/file_select.tscn" id="2_mu8pm"]
 
 [node name="MainMenu" type="Control" unique_id=1450645728]
 layout_mode = 3
@@ -11,15 +12,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uhj5c")
 
-[node name="Button_Start" type="Button" parent="." unique_id=819665368]
+[node name="Button_main_start" type="Button" parent="." unique_id=431970254]
+layout_mode = 0
+offset_top = 45.0
+offset_right = 137.0
+offset_bottom = 76.0
+text = "main menu start"
+
+[node name="file_select" parent="." unique_id=990807234 instance=ExtResource("2_mu8pm")]
+visible = false
+layout_mode = 1
+
+[node name="Button_main_quit" type="Button" parent="." unique_id=1033594454]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="Button_Quit" type="Button" parent="." unique_id=728968968]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[connection signal="pressed" from="Button_Start" to="." method="_on_button_start_pressed"]
-[connection signal="pressed" from="Button_Quit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="Button_main_start" to="." method="_on_button_main_start_pressed"]
