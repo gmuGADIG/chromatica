@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bv1fl583cdk3v"]
 
-[ext_resource type="Script" uid="uid://blq3xg816scv6" path="res://ui/main_menu/file_select/file_select.gd" id="1_uhj5c"]
+[ext_resource type="Script" uid="uid://y43ku3rrs653" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
 [ext_resource type="PackedScene" uid="uid://b5k2j04yb2cvu" path="res://ui/main_menu/file_select/file_select.tscn" id="2_mu8pm"]
 
 [node name="MainMenu" type="Control" unique_id=1450645728]
@@ -19,13 +19,16 @@ offset_right = 137.0
 offset_bottom = 76.0
 text = "main menu start"
 
+[node name="Button_main_quit" type="Button" parent="." unique_id=1033594454]
+layout_mode = 0
+offset_top = 79.0
+offset_right = 116.0
+offset_bottom = 110.0
+text = "quit the game"
+
 [node name="file_select" parent="." unique_id=990807234 instance=ExtResource("2_mu8pm")]
 visible = false
 layout_mode = 1
 
-[node name="Button_main_quit" type="Button" parent="." unique_id=1033594454]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
 [connection signal="pressed" from="Button_main_start" to="." method="_on_button_main_start_pressed"]
+[connection signal="pressed" from="Button_main_quit" to="." method="_on_button_main_quit_pressed"]

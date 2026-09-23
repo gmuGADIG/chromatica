@@ -10,6 +10,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
 func _on_button_main_start_pressed() -> void:
 	file_select.show()
+	pass # Replace with function body.
+
+
+func _on_button_main_quit_pressed() -> void:
+	get_tree().quit()
 	pass # Replace with function body.
