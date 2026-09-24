@@ -4,9 +4,13 @@
 [ext_resource type="Script" uid="uid://dimkkmdj6mi5x" path="res://character/player/movement/vertical_player_movement.gd" id="2_8eijk"]
 [ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/horizontal_player_movement.gd" id="2_gtsfv"]
 [ext_resource type="Script" uid="uid://wmmd3hss21u" path="res://character/player/movement/player_input.gd" id="4_wu8e1"]
+[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="5_g20gq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
+size = Vector2(133, 261)
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
@@ -14,6 +18,7 @@ script = ExtResource("1_oul6g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
+debug_color = Color(0.89526504, 0.21086764, 0.40460575, 0.41960785)
 
 [node name="HorizontalMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player")]
 script = ExtResource("2_gtsfv")
@@ -23,9 +28,31 @@ deceleration = 4000.0
 maxVelocity = 600.0
 dampening = 7500.0
 
-[node name="VerticalMovement" type="Node" parent="." unique_id=1638560969]
+[node name="VerticalMovement" type="Node" parent="." unique_id=1638560969 node_paths=PackedStringArray("player")]
 script = ExtResource("2_8eijk")
+player = NodePath("..")
 
 [node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("horizontal_player_movement")]
 script = ExtResource("4_wu8e1")
 horizontal_player_movement = NodePath("../HorizontalMovement")
+vertical_player_movement = NodePath("../VerticalMovement")
+player_interact_region = NodePath("../InteractRegion")
+
+[node name="JumpBuffer" type="Timer" parent="InputComponent" unique_id=2434172]
+one_shot = true
+
+[node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("5_g20gq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRegion" unique_id=2042581431]
+position = Vector2(0, -120.5)
+shape = SubResource("RectangleShape2D_d0bka")
+
+[node name="Health" type="Node" parent="." unique_id=354530798]
+script = ExtResource("5_g20gq")
+maximum_hp = 100
+metadata/_custom_type_script = "uid://dofc8aut25pg5"
+
+[connection signal="timeout" from="InputComponent/JumpBuffer" to="InputComponent" method="_on_jump_buffer_timeout"]

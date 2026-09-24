@@ -9,10 +9,9 @@
 [node name="TestLevel" parent="." index="0" unique_id=129877507 instance=ExtResource("2_44v25")]
 
 [node name="Player" parent="TestLevel" index="0" unique_id=1162272003 instance=ExtResource("3_ed02e")]
-position = Vector2(414, 1956)
 
-[node name="Camera2D" type="Camera2D" parent="." index="1" unique_id=782161539]
-position = Vector2(2426, 1785)
+[node name="Camera2D" type="Camera2D" parent="." index="1" unique_id=40030663]
+position = Vector2(2316, 1237)
 zoom = Vector2(0.25, 0.25)
 
 [editable path="TestLevel"]
