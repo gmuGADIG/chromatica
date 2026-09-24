@@ -5,18 +5,12 @@ class_name  PlayerInput
 @export var vertical_player_movement: VerticalPlayerMovement
 @export var player_interact_region : PlayerInteractRegion
 
-@export_group("Jump Properties")
+@export_group("Jump Buffer")
 ## Time (seconds) in that a player character may still jump after 
 ## pressing the jump button.
 @export var jump_buffer_time: float = 0.1
 @onready var jump_buffer_timer : Timer = $JumpBuffer as Timer
 var jump_buffer = false
-
-## Time (seconds) that the player can jump after
-## falling off a platform.
-@export var coyote_time : float = 0
-@onready var coyote_timer : Timer = $InputComponent/CoyoteTimer as Timer
-var coyote_eligible : bool = false
 
 
 
@@ -57,7 +51,3 @@ func _input(event: InputEvent) -> void:
 func _on_jump_buffer_timeout() -> void:
 	if jump_buffer:
 		jump_buffer = false
-
-func _on_coyote_timer_timeout() -> void:
-	if coyote_eligible:
-		coyote_eligible = false

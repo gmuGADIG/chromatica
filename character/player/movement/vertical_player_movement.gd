@@ -13,25 +13,37 @@ class_name VerticalPlayerMovement
 @export_range(0.0,1.0) var early_jump_release_multiplier : float = 0.55
 
 var can_early_jump_release : bool = false
-#@onready var input : PlayerInput = PlayerInput
+var jumping : bool = false
+var coyote_eligible : bool = false
+@onready var coyote_timer : Timer = $CoyoteTimer as Timer
 
+## Time (seconds) that the player can jump after
+## falling off a platform.
+@export var coyote_time : float = 0.1
+
+#@onready var input : PlayerInput = PlayerInput
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	coyote_timer.wait_time = coyote_time
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not player.is_on_floor():
+		if not jumping and player.velocity.y > 0 and coyote_timer.is_stopped():
+			coyote_eligible = true
+			coyote_timer.start()
 		player.velocity.y += gravity * delta
+	else:
+		jumping = false
 	
 	
 	player.move_and_slide()
 
 
 func can_jump() -> bool:
-	return player.is_on_floor()
+	return player.is_on_floor() or coyote_eligible
 
 # Handle jump.	
 func jump() -> bool:
@@ -39,6 +51,7 @@ func jump() -> bool:
 		return false
 	player.velocity.y = jump_velocity
 	can_early_jump_release = true
+	jumping = true
 	return true
 
 
@@ -46,3 +59,7 @@ func early_release() -> void:
 	if can_early_jump_release and player.velocity.y < 0:
 		player.velocity.y *= early_jump_release_multiplier
 		can_early_jump_release = false
+
+func _on_coyote_timer_timeout() -> void:
+	if coyote_eligible:
+		coyote_eligible = false
