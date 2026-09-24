@@ -28,7 +28,7 @@ var jump_buffer = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if vertical_player_movement.can_jump() && jump_buffer:
 		vertical_player_movement.jump()
 		jump_buffer = false

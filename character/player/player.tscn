@@ -21,8 +21,13 @@ position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
 debug_color = Color(0.89526504, 0.21086764, 0.40460575, 0.41960785)
 
-[node name="HorizontalMovement" type="Node" parent="." unique_id=415994900]
+[node name="HorizontalMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player")]
 script = ExtResource("2_gtsfv")
+player = NodePath("..")
+acceleration = 10000.0
+deceleration = 4000.0
+maxVelocity = 1000.0
+dampening = 11000.0
 
 [node name="VerticalMovement" type="Node" parent="." unique_id=1638560969 node_paths=PackedStringArray("player")]
 script = ExtResource("2_8eijk")
@@ -32,8 +37,9 @@ player = NodePath("..")
 wait_time = 0.1
 one_shot = true
 
-[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("vertical_player_movement")]
+[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("horizontal_player_movement", "vertical_player_movement")]
 script = ExtResource("4_wu8e1")
+horizontal_player_movement = NodePath("../HorizontalMovement")
 vertical_player_movement = NodePath("../VerticalMovement")
 
 [node name="JumpBuffer" type="Timer" parent="InputComponent" unique_id=2434172]
