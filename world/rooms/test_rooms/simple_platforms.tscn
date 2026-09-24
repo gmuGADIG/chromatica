@@ -2,9 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_tg01w"]
 [ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="2_44v25"]
+[ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="3_ed02e"]
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_tg01w")]
 
 [node name="TestLevel" parent="." index="0" unique_id=129877507 instance=ExtResource("2_44v25")]
+
+[node name="Player" parent="TestLevel" index="0" unique_id=1162272003 instance=ExtResource("3_ed02e")]
+
+[node name="Camera2D" type="Camera2D" parent="." index="1" unique_id=40030663]
+position = Vector2(2316, 1237)
+zoom = Vector2(0.25, 0.25)
 
 [editable path="TestLevel"]
