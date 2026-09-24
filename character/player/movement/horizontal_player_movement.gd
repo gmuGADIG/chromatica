@@ -30,4 +30,3 @@ func walk(direction: float, delta : float) -> void:
 
 	#Done so the velocity is properly updated
 	player.velocity = velocity
-	player.move_and_slide()

@@ -6,13 +6,23 @@ class_name  PlayerInput
 @export var player_interact_region : PlayerInteractRegion
 
 @export_group("Jump Buffer")
-# Time (seconds) in that a player character may still jump after 
-# pressing the jump button.
+## Time (seconds) in that a player character may still jump after 
+## pressing the jump button.
 @export var jump_buffer_time: float = 0.1
-
+@onready var jump_buffer_timer : Timer = $JumpBuffer as Timer
 var jump_buffer = false
 
-@onready var jump_buffer_timer : Timer = $JumpBuffer
+
+
+
+#func handle_jump() -> void:
+	## Handle basic jump.
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#player_root.velocity.y = jump_velocity
+	## Handle coyote jump
+	#elif Input.is_action_just_pressed("ui_accept") and velocity.y < 0 and coyote_timer < coyote_time:
+		#player_root.velocity.y = jump_velocity
+	
 
 # Called when the node enters the scene tree for the first time.
 
@@ -26,7 +36,6 @@ func _process(delta: float) -> void:
 	horizontal_player_movement.walk(Input.get_axis("ui_left", "ui_right"), delta)
 
 func _input(event: InputEvent) -> void:
-	
 	##Jump Inputs
 	if event.is_action_pressed("jump"):
 		var jumped : bool = vertical_player_movement.jump()
