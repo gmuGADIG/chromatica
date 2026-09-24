@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://cbux3nfnho5ss"]
 
 [ext_resource type="Script" uid="uid://dgh0sad4a33h4" path="res://ui/settings_menu/settings_menu.gd" id="1_cobfr"]
-[ext_resource type="Script" uid="uid://5et76x41prgm" path="res://ui/settings_menu/master_volume_slider.gd" id="2_424ss"]
-[ext_resource type="Script" uid="uid://caxqiasjohqy" path="res://ui/settings_menu/sfx_volume_slider.gd" id="3_p8urx"]
-[ext_resource type="Script" uid="uid://co6651dkp78a6" path="res://ui/settings_menu/bgm_volume_slider.gd" id="4_gjkyi"]
+[ext_resource type="AudioStream" uid="uid://botdrj0eg1ae" path="res://temp/scream.mp3" id="5_p8urx"]
 
 [node name="SettingsMenu" type="Control" unique_id=1456142874]
 layout_mode = 3
@@ -29,7 +27,7 @@ text = "Master"
 layout_mode = 2
 max_value = 1.0
 step = 0.05
-script = ExtResource("2_424ss")
+value = 1.0
 
 [node name="SFXVolumeLabel" type="Label" parent="VBoxContainer" unique_id=2110771480]
 layout_mode = 2
@@ -39,7 +37,7 @@ text = "SFX"
 layout_mode = 2
 max_value = 1.0
 step = 0.05
-script = ExtResource("3_p8urx")
+value = 1.0
 
 [node name="BGMVolumeLabel" type="Label" parent="VBoxContainer" unique_id=1197516837]
 layout_mode = 2
@@ -49,8 +47,21 @@ text = "BGM"
 layout_mode = 2
 max_value = 1.0
 step = 0.05
-script = ExtResource("4_gjkyi")
+value = 1.0
 
-[connection signal="value_changed" from="VBoxContainer/MasterVolumeSlider" to="." method="_on_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/SFXVolumeSlider" to="." method="_on_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/BGMVolumeSlider" to="." method="_on_value_changed"]
+[node name="Button" type="Button" parent="." unique_id=866340540]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 50.0
+offset_right = 550.0
+offset_bottom = 100.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1381545387]
+stream = ExtResource("5_p8urx")
+autoplay = true
+bus = &"BGM"
+
+[connection signal="value_changed" from="VBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_changed"]
+[connection signal="value_changed" from="VBoxContainer/BGMVolumeSlider" to="." method="_on_bgm_volume_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
