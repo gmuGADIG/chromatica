@@ -6,7 +6,8 @@ static var maximum_hp_player: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Player.Health.maxiumum_hp = maximum_hp_player
+	maximum_hp = maximum_hp_player
+	reset_health()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
