@@ -14,7 +14,7 @@ extends Node
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	var direction: float = playerInput.GetDirection()
-	var velocity : Vector2 = get_parent().velocity
+	var velocity : Vector2 = player.velocity
 	if direction:
 		# Right
 		if direction > 0:
@@ -23,7 +23,7 @@ func _physics_process(delta: float):
 				print("Over accelerating: ", velocity)
 				velocity.x = move_toward(velocity.x, maxVelocity, delta * dampening)
 				print("After Correction: ", velocity.x)
-		# Left
+		# Left 
 		elif direction < 0:
 			velocity.x += direction * (acceleration * delta)
 			if velocity.x < (maxVelocity * -1):
@@ -33,5 +33,5 @@ func _physics_process(delta: float):
 			velocity.x = move_toward(velocity.x, 0, delta * deceleration)
 
 	#Done so the velocity is properly updated
-	get_parent().velocity = velocity
-	get_parent().move_and_slide()
+	player.velocity = velocity
+	player.move_and_slide()
