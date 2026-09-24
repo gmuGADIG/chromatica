@@ -20,7 +20,7 @@ var jump_buffer = false
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		#player_root.velocity.y = jump_velocity
 	## Handle coyote jump
-	#elif Input.is_action_just_pressed("ui_accept") and velocity.y < 0 and coyote_time < 0.1:
+	#elif Input.is_action_just_pressed("ui_accept") and velocity.y < 0 and coyote_timer < coyote_time:
 		#player_root.velocity.y = jump_velocity
 	
 

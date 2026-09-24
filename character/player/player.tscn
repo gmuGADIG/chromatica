@@ -32,10 +32,8 @@ coyote_time = 0.5
 [node name="CoyoteTimer" type="Timer" parent="VerticalMovement" unique_id=944399741]
 ignore_time_scale = true
 
-[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("player_root", "vertical_player_movement")]
+[node name="InputComponent" type="Node" parent="." unique_id=1388412803]
 script = ExtResource("4_wu8e1")
-player_root = NodePath("..")
-vertical_player_movement = NodePath("../VerticalMovement")
 
 [node name="JumpBuffer" type="Timer" parent="InputComponent" unique_id=2434172]
 one_shot = true
