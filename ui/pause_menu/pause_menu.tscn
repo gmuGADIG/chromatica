@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbmwi8rfvkird"]
 
 [ext_resource type="Script" uid="uid://bmvxoeofts7e5" path="res://ui/pause_menu/pause_menu.gd" id="1_mnjdh"]
+[ext_resource type="PackedScene" uid="uid://cbux3nfnho5ss" path="res://ui/settings_menu/settings_menu.tscn" id="2_jbgdu"]
 
 [node name="PauseMenu" type="Control" unique_id=2066635479]
 layout_mode = 3
@@ -10,3 +11,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mnjdh")
+
+[node name="SettingsButton" type="Button" parent="." unique_id=294238706]
+layout_mode = 0
+offset_left = 1000.0
+offset_right = 1100.0
+offset_bottom = 100.0
+
+[node name="SettingsMenu" parent="." unique_id=1456142874 instance=ExtResource("2_jbgdu")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
