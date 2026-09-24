@@ -25,14 +25,14 @@ script = ExtResource("2_gtsfv")
 player = NodePath("..")
 acceleration = 7000.0
 deceleration = 4000.0
-maxVelocity = 600.0
+maxVelocity = 1000.0
 dampening = 7500.0
 
 [node name="VerticalMovement" type="Node" parent="." unique_id=1638560969 node_paths=PackedStringArray("player")]
 script = ExtResource("2_8eijk")
 player = NodePath("..")
 
-[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("horizontal_player_movement")]
+[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("horizontal_player_movement", "vertical_player_movement")]
 script = ExtResource("4_wu8e1")
 horizontal_player_movement = NodePath("../HorizontalMovement")
 vertical_player_movement = NodePath("../VerticalMovement")
