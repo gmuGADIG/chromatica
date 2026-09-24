@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bvryli3jm4n8u"]
+
+[ext_resource type="Script" uid="uid://tt8mjbfakpia" path="res://sprite_2d.gd" id="1_bkhny"]
+[ext_resource type="Texture2D" uid="uid://cag8o7m7mdvgf" path="res://temp/temp_art/themoon.png" id="1_ly4c4"]
+
+[node name="Node2D" type="Node2D" unique_id=1049044112]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1247393963]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ly4c4")
+script = ExtResource("1_bkhny")

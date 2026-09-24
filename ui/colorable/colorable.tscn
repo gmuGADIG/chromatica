@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bvryli3jm4n8u"]
+
+[ext_resource type="Script" uid="uid://dn40i48rl8fj3" path="res://ui/colorable/colorable.gd" id="1_a78cq"]
+[ext_resource type="Texture2D" uid="uid://cj3ugqkgaxm6w" path="res://temp/temp_art/garonic.png" id="2_ly4c4"]
+
+[node name="HBox" type="HBoxContainer" unique_id=1819435004]
+custom_minimum_size = Vector2(50, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("1_a78cq")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1412498520]
+
+[node name="CheckButton" type="CheckButton" parent="." unique_id=4868378]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=613884127]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_ly4c4")
