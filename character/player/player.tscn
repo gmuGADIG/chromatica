@@ -15,17 +15,17 @@ script = ExtResource("1_oul6g")
 position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
 
-[node name="HorizontalMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player", "playerInput")]
+[node name="HorizontalMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player")]
 script = ExtResource("2_gtsfv")
 player = NodePath("..")
-playerInput = NodePath("../InputComponent")
-acceleration = 400.0
+acceleration = 7000.0
+deceleration = 4000.0
 maxVelocity = 600.0
-dampening = 400.0
-deceleration = 200.0
+dampening = 7500.0
 
 [node name="VerticalMovement" type="Node" parent="." unique_id=1638560969]
 script = ExtResource("2_8eijk")
 
-[node name="InputComponent" type="Node" parent="." unique_id=1388412803]
+[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("horizontal_player_movement")]
 script = ExtResource("4_wu8e1")
+horizontal_player_movement = NodePath("../HorizontalMovement")
