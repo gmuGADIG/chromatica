@@ -1,6 +1,7 @@
 extends Node
 class_name  PlayerInput
 
+@export var horizontal_player_movement : HorizonalPlayerMovement
 @export var vertical_player_movement: VerticalPlayerMovement
 @export var player_interact_region : PlayerInteractRegion
 
@@ -21,6 +22,8 @@ func _process(delta: float) -> void:
 	if vertical_player_movement.can_jump() && jump_buffer:
 		vertical_player_movement.jump()
 		jump_buffer = false
+	
+	horizontal_player_movement.walk(Input.get_axis("ui_left", "ui_right"), delta)
 
 func _input(event: InputEvent) -> void:
 	

@@ -25,9 +25,6 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not player.is_on_floor():
 		player.velocity.y += gravity * delta
-	
-	
-	player.move_and_slide()
 
 
 func can_jump() -> bool:
