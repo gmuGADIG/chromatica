@@ -1,6 +1,10 @@
 extends Area2D
 class_name PlayerInteractRegion
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		check_for_interactable()
+
 func check_for_interactable() -> void:
 	var interactables : Array[Interactable]
 	interactables.assign(get_overlapping_areas().filter(func(val): return val is Interactable))

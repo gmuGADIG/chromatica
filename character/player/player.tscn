@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://c8q0684rdd6yr"]
 
 [ext_resource type="Script" uid="uid://b01g8xm68jf3v" path="res://character/player/player.gd" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://dimkkmdj6mi5x" path="res://character/player/movement/vertical_player_movement.gd" id="2_8eijk"]
-[ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/horizontal_player_movement.gd" id="2_gtsfv"]
-[ext_resource type="Script" uid="uid://wmmd3hss21u" path="res://character/player/movement/player_input.gd" id="4_wu8e1"]
-[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="5_g20gq"]
-[ext_resource type="Script" uid="uid://drt58jn726c1u" path="res://character/player/player_health_component.gd" id="6_eu8pa"]
+[ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/player_movement.gd" id="2_gtsfv"]
+[ext_resource type="Texture2D" uid="uid://uu0mo6d1pvx0" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
+[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="6_eu8pa"]
+[ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -21,25 +20,30 @@ position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
 debug_color = Color(0.89526504, 0.21086764, 0.40460575, 0.41960785)
 
-[node name="HorizontalMovement" type="Node" parent="." unique_id=415994900]
+[node name="PlayerMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player")]
 script = ExtResource("2_gtsfv")
-
-[node name="VerticalMovement" type="Node" parent="." unique_id=1638560969 node_paths=PackedStringArray("player")]
-script = ExtResource("2_8eijk")
 player = NodePath("..")
+acceleration = 10000.0
+deceleration = 4000.0
+maxVelocity = 1000.0
+dampening = 11000.0
 
-[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("vertical_player_movement", "player_interact_region")]
-script = ExtResource("4_wu8e1")
-vertical_player_movement = NodePath("../VerticalMovement")
-player_interact_region = NodePath("../InteractRegion")
-
-[node name="JumpBuffer" type="Timer" parent="InputComponent" unique_id=2434172]
+[node name="JumpBuffer" type="Timer" parent="PlayerMovement" unique_id=2434172]
 one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="PlayerMovement" unique_id=944399741]
+wait_time = 0.1
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945416757]
+position = Vector2(0, -120)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_g20gq")
 
 [node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("5_g20gq")
+script = ExtResource("6_noxpy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRegion" unique_id=2042581431]
 position = Vector2(0, -120.5)
@@ -48,5 +52,3 @@ shape = SubResource("RectangleShape2D_d0bka")
 [node name="PlayerHealthComponent" type="Node" parent="." unique_id=1344955130]
 script = ExtResource("6_eu8pa")
 metadata/_custom_type_script = "uid://drt58jn726c1u"
-
-[connection signal="timeout" from="InputComponent/JumpBuffer" to="InputComponent" method="_on_jump_buffer_timeout"]
