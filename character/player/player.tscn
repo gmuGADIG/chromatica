@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b01g8xm68jf3v" path="res://character/player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/player_movement.gd" id="2_gtsfv"]
+[ext_resource type="Script" uid="uid://drt58jn726c1u" path="res://character/player/player_health_component.gd" id="5_eu8pa"]
 [ext_resource type="Texture2D" uid="uid://uu0mo6d1pvx0" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
-[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -32,7 +32,6 @@ dampening = 11000.0
 one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="PlayerMovement" unique_id=944399741]
-wait_time = 0.1
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945416757]
@@ -49,7 +48,6 @@ script = ExtResource("6_noxpy")
 position = Vector2(0, -120.5)
 shape = SubResource("RectangleShape2D_d0bka")
 
-[node name="Health" type="Node" parent="." unique_id=354530798]
-script = ExtResource("6_eu8pa")
-maximum_hp = 100
-metadata/_custom_type_script = "uid://dofc8aut25pg5"
+[node name="PlayerHealthComponent2" type="Node" parent="." unique_id=1017469324]
+script = ExtResource("5_eu8pa")
+metadata/_custom_type_script = "uid://drt58jn726c1u"
