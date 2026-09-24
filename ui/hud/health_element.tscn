@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bsg6vckh36ihg"]
+
+[ext_resource type="Texture2D" uid="uid://cag8o7m7mdvgf" path="res://temp/temp_art/themoon.png" id="1_n6cmy"]
+[ext_resource type="Texture2D" uid="uid://btnomr554nbx1" path="res://temp/temp_art/thesun.png" id="2_4jo8f"]
+
+[node name="HealthElement" type="MarginContainer" unique_id=368387490]
+
+[node name="Empty" type="TextureRect" parent="." unique_id=1298100562]
+layout_mode = 2
+texture = ExtResource("1_n6cmy")
+
+[node name="Full" type="TextureRect" parent="." unique_id=2005138285]
+layout_mode = 2
+texture = ExtResource("2_4jo8f")
