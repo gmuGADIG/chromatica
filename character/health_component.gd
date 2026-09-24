@@ -5,6 +5,9 @@ class_name HealthComponent
 @export var maximum_hp: int
 
 var hp: int
+##Updates maxHP
+signal health_changed(new_health:int)
+
 
 signal health_depleted
 # Called when the node enters the scene tree for the first time.
