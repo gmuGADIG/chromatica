@@ -49,4 +49,11 @@ script = ExtResource("5_g20gq")
 maximum_hp = 100
 metadata/_custom_type_script = "uid://dofc8aut25pg5"
 
+[node name="Label" type="Label" parent="Health" unique_id=885756804 node_paths=PackedStringArray("shortcut_context")]
+offset_left = 471.0
+offset_top = 464.0
+offset_right = 705.0
+offset_bottom = 487.0
+shortcut_context = NodePath("..")
+
 [connection signal="timeout" from="InputComponent/JumpBuffer" to="InputComponent" method="_on_jump_buffer_timeout"]
