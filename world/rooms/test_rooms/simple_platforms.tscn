@@ -21,16 +21,12 @@ position = Vector2(946, 976)
 
 [node name="InteractableRegion" parent="TestLevel" index="2" unique_id=1399024953 instance=ExtResource("4_r7hm1")]
 position = Vector2(2736, 2073)
-collision_layer = 4
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel/InteractableRegion" index="0" unique_id=348637087]
 shape = SubResource("CircleShape2D_wg1qd")
 
 [node name="InteractableRegion2" parent="TestLevel" index="3" unique_id=169912273 instance=ExtResource("4_r7hm1")]
 position = Vector2(2923, 2077)
-collision_layer = 4
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel/InteractableRegion2" index="0" unique_id=1918682467]
 shape = SubResource("CircleShape2D_r4td4")

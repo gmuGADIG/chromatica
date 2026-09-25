@@ -11,6 +11,8 @@ var directory_paths : Array[String] = [
 	"res://world/rooms/test_rooms/",
 ]
 
+var loaded_rooms : Array[RoomBase]
+
 func _run() -> void:
 	var room_cache : RoomCache = RoomCache.new()
 	
@@ -25,7 +27,12 @@ func _run() -> void:
 			if not file.ends_with(".tscn"):
 				continue
 			var room_path : String = dir.get_current_dir() + "/" + file
+			print("File found: "+room_path)
 			var room : RoomBase = load(room_path).instantiate()
 			room_cache.add_room(room.ldtk_room.iid,room_path)
-	
+			loaded_rooms.append(room)
 	ResourceSaver.save(room_cache,EXPORT_PATH)
+	
+	##For some reason queue freeing before saving the resource kills the key & value pairs
+	for room : RoomBase in loaded_rooms:
+		room.queue_free()
