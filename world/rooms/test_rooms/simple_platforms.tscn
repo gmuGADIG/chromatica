@@ -11,7 +11,8 @@ radius = 79.7
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4td4"]
 radius = 84.2
 
-[node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_tg01w")]
+[node name="RoomBase" unique_id=1762502460 node_paths=PackedStringArray("ldtk_room") instance=ExtResource("1_tg01w")]
+ldtk_room = NodePath("TestLevel")
 
 [node name="TestLevel" parent="." index="0" unique_id=129877507 instance=ExtResource("2_44v25")]
 
