@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bsxkykmemp274"]
+
+[ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_aan1j"]
+[ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_wo3lk"]
+
+[node name="RoomBase" unique_id=1762502460 node_paths=PackedStringArray("ldtk_room") instance=ExtResource("1_aan1j")]
+ldtk_room = NodePath("Test2")
+
+[node name="Test2" parent="." index="0" unique_id=1559438627 instance=ExtResource("2_wo3lk")]

@@ -37,12 +37,13 @@ func _generate_room_cache() -> void:
 			var room_path : String = dir.get_current_dir() + "/" + file
 			print_rich("[color=dark_goldenrod]"+time_string.call()+" File found: "+room_path+"[/color]")
 			var room : RoomBase = load(room_path).instantiate()
+			room._ready()
 			room_cache.add_room(room.ldtk_room.iid,room_path)
 			print_rich("[color=goldenrod]"+time_string.call()+" Mapped: "+room.ldtk_room.iid+" -> "+file+"[/color]")
 			loaded_rooms.append(room)
 	var result : Error = ResourceSaver.save(room_cache,EXPORT_PATH)
 	if result == OK:
-		print_rich("[color=lime_green]"+time_string.call()+" Level Generated Successfully![/color]")
+		print_rich("[color=lime_green]"+time_string.call()+" Cache Generated Successfully![/color]")
 	else:
 		print(error_string(result))
 	

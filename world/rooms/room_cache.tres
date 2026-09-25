@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_aigkn")
 id_to_path = Dictionary[String, String]({
-"0422f9d0-96d0-11f1-a239-d7fe97153aa0": "res://world/rooms/test_rooms/simple_platforms.tscn"
+"0422f9d0-96d0-11f1-a239-d7fe97153aa0": "res://world/rooms/test_rooms/simple_platforms.tscn",
+"394a8610-96d0-11f1-93be-9b3cf3013799": "res://world/rooms/test_rooms/test_room_2.tscn"
 })
