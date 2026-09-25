@@ -42,6 +42,7 @@ folder_colors={
 "res://world/decoration/": "orange",
 "res://world/interactable/": "yellow",
 "res://world/rooms/": "blue",
+"res://world/rooms/room_cache/": "teal",
 "res://world/rooms/test_rooms/": "gray"
 }
 
