@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dfqxbpvp7d2kf"]
+
+[ext_resource type="Script" uid="uid://kdtoxxkkk6jq" path="res://world/camera/camera_move.gd" id="1_j3pd7"]
+
+[node name="Camera" type="Node2D" unique_id=765522635]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=553150344]
+process_callback = 0
+script = ExtResource("1_j3pd7")
