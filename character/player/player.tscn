@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/player_movement.gd" id="2_gtsfv"]
 [ext_resource type="Script" uid="uid://drt58jn726c1u" path="res://character/player/player_health_component.gd" id="5_eu8pa"]
 [ext_resource type="Texture2D" uid="uid://uu0mo6d1pvx0" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
+[ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -11,6 +12,9 @@ size = Vector2(96, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
 size = Vector2(133, 261)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eu8pa"]
+size = Vector2(256, 256)
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
@@ -48,6 +52,31 @@ script = ExtResource("6_noxpy")
 position = Vector2(0, -120.5)
 shape = SubResource("RectangleShape2D_d0bka")
 
-[node name="PlayerHealthComponent2" type="Node" parent="." unique_id=1017469324]
+[node name="PlayerHealthComponent" type="Node" parent="." unique_id=1017469324]
 script = ExtResource("5_eu8pa")
 metadata/_custom_type_script = "uid://drt58jn726c1u"
+
+[node name="PlayerBrush" type="Node2D" parent="." unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement")]
+position = Vector2(0, -120)
+script = ExtResource("6_eu8pa")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
+brush_width = 200.0
+metadata/_custom_type_script = "uid://blodtm8lm2wc3"
+
+[node name="SwingBuffer" type="Timer" parent="PlayerBrush" unique_id=391448229]
+one_shot = true
+
+[node name="SwingDuration" type="Timer" parent="PlayerBrush" unique_id=1846409706]
+one_shot = true
+
+[node name="SwingRecovery" type="Timer" parent="PlayerBrush" unique_id=1513721812]
+one_shot = true
+
+[node name="AttackArea" type="Area2D" parent="PlayerBrush" unique_id=2093298999]
+visible = false
+position = Vector2(128, -120)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBrush/AttackArea" unique_id=1393078742]
+shape = SubResource("RectangleShape2D_eu8pa")

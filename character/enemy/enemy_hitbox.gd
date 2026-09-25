@@ -1,5 +1,5 @@
 extends Area2D
-class_name Hurtbox
+class_name EnemyHitbox
 
 @export var health_component : HealthComponent
 # has the variables "maximum_hp" and "hp", this should only touch "hp" var
