@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RoomCache" format=3 uid="uid://bu7pi1sc2lm1g"]
+
+[ext_resource type="Script" uid="uid://b8lak4ejdymv" path="res://world/rooms/room_cache.gd" id="1_aigkn"]
+
+[resource]
+script = ExtResource("1_aigkn")
+id_to_path = Dictionary[String, String]({
+"0422f9d0-96d0-11f1-a239-d7fe97153aa0": "res://world/rooms/test_rooms/simple_platforms.tscn"
+})
