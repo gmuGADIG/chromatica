@@ -30,7 +30,7 @@ class_name PlayerMovement
 
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
-
+var last_horizontal_direction : float
 
 @onready var coyote_timer : Timer = $CoyoteTimer
 @onready var jump_buffer_timer : Timer = $JumpBuffer
@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 		early_release()
 
 func _physics_process(delta: float) -> void:
-	walk(Input.get_axis("ui_left", "ui_right"), delta)
+	walk(Input.get_axis("move_left", "move_right"), delta)
 	
 	##Coyote detection
 	if player.is_on_floor():
@@ -73,6 +73,7 @@ func _physics_process(delta: float) -> void:
 func walk(direction: float, delta : float) -> void:
 	var velocity : Vector2 = player.velocity
 	if direction:
+		last_horizontal_direction = direction
 		# Right
 		if direction > 0:
 			velocity.x += direction * (acceleration * delta)
