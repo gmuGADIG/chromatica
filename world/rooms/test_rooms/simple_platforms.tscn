@@ -18,6 +18,13 @@ radius = 84.2
 [node name="Player" parent="TestLevel" index="0" unique_id=1162272003 instance=ExtResource("3_ed02e")]
 position = Vector2(946, 976)
 
+[node name="Camera" parent="TestLevel/Player" index="6" unique_id=765522635 node_paths=PackedStringArray("ldtk_level")]
+ldtk_level = NodePath("../..")
+stationary_horizontal_offset = null
+slow_camera_speed_horizontal = null
+fast_camera_speed_horizontal = null
+camera_speed_vertical = null
+
 [node name="InteractableRegion" parent="TestLevel" index="2" unique_id=1399024953 instance=ExtResource("4_r7hm1")]
 position = Vector2(2736, 2073)
 
@@ -35,3 +42,4 @@ position = Vector2(2316, 1237)
 zoom = Vector2(0.25, 0.25)
 
 [editable path="TestLevel"]
+[editable path="TestLevel/Player"]

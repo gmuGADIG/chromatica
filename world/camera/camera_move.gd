@@ -1,42 +1,63 @@
 extends Node2D
 
-##Whenever the camera should be offset left (true) or right (false)
-var offsetLeft
-##The position of the player that this camera is attached to
-var playerPos
-##The speed to perform the camera offset
-@export var offsetSpeed = 3
-##The maximum x value to offset by
-@export var maxOffset = 200
-##How smooth the offset should be (higher value means more gentle stop)
-@export var offsetSmoothness = 0.014
-##constant number to prevent the player from peeking past the bounds of a level (also keeps the camera center when an edge is reached)
-@export var peekConstraint = 600
+@export var ldtk_level : LDTKLevel
+@export var player_movement : PlayerMovement
+@export var player : Player
+@export_group("Horizontal")
+@export var stationary_horizontal_offset : float = 200
+@export var slow_camera_speed_horizontal : float = 100
+@export var fast_camera_speed_horizontal : float = 300
+@export_group("Vertical")
+@export var camera_speed_vertical : float = 750
 
-# Called when the node enters the scene tree for the first time.
+var relative_position : Vector2 = Vector2.ZERO
+
+@onready var camera : Camera2D = $Node/Camera2D
+
 func _ready() -> void:
-	offsetLeft = false #assume player is looking right to start (since most levels go left to right)
-	playerPos = Vector2(0,0) #assume player position is origin
-	self.limit_left = -2000 #sample level bounds for the left (will not scroll past this value)
-	self.limit_right = 2000 #sample level bounds for the right (will not scroll past this value)
+	camera.limit_left = ldtk_level.world_position.x
+	camera.limit_top = ldtk_level.world_position.y
+	camera.limit_right = ldtk_level.world_position.x + ldtk_level.size.x
+	camera.limit_bottom = ldtk_level.world_position.y + ldtk_level.size.y
+	camera.global_position = global_position
+	
+func _process(delta: float) -> void:
+	move_x(delta)
+	move_y(delta)
+	#camera.position.x = stationary_horizontal_offset * player_movement.last_horizontal_direction
+	pass
 
-func center(offset: bool) -> void:
-	#get player position
-	playerPos = get_parent().get_parent().position
-	self.offsetLeft = offset #set offsetLeft to direction player last moved
-	if(abs(self.offset.x) < 3): #if we are within 3 units from 0, just snap to 0 for smoothness
-		self.offset.x = 0
-	elif(self.offset.x > 0): #if we are to the right, shift to the left
-		self.offset.x -= offsetSpeed + (self.offset.x * offsetSmoothness)
-	else: #if we are to the left, shift to the right
-		self.offset.x += offsetSpeed - (self.offset.x * offsetSmoothness)
+func move_x(delta : float) -> void:
+	#camera.position.x += 1
+	var input_dir : float = Input.get_axis("move_left","move_right")
+	if input_dir:
+		if (camera.global_position.x - global_position.x) * input_dir > 80	:
+			var diff : float = global_position.x-camera.global_position.x+relative_position.x
+			relative_position.x -= diff
+		else:
+			relative_position.x = move_toward(relative_position.x,0,fast_camera_speed_horizontal*delta)
+	else:
+		var tween_speed : float = slow_camera_speed_horizontal
+		if (camera.global_position.x - global_position.x) * player_movement.last_horizontal_direction < 0:
+			tween_speed = fast_camera_speed_horizontal
+		
+		##Move slowly to one side
+		var target_x : float = stationary_horizontal_offset * player_movement.last_horizontal_direction
+		relative_position.x = move_toward(relative_position.x,target_x,tween_speed*delta)
+	
+	camera.position.x = global_position.x + relative_position.x
 
-func shift() -> void:
-	#only shift left if we are facing left, and we are not looking too far to the left
-	if(offsetLeft and playerPos.x > (self.limit_left + peekConstraint - self.offset.x)):
-		if(maxOffset > abs(self.offset.x)): #also don't shift if we shifted the max distance
-			self.offset.x -= offsetSpeed + (self.offset.x * offsetSmoothness) #shift left, slowing down as we reach the bound
-	#only shift right if we are facing right, and we are not looking too far to the right
-	elif(not offsetLeft and playerPos.x < (self.limit_right - peekConstraint - self.offset.x)): #if we should offset right and we aren't going too far, offset more right
-		if(maxOffset > self.offset.x): #also don't shift if we shifted the max distance
-			self.offset.x += offsetSpeed - (self.offset.x * offsetSmoothness) #shift right, slowing down as we reach the bound
+func move_y(delta : float) -> void:
+	
+	var diff : float = global_position.y-camera.global_position.y+relative_position.y
+	relative_position.y -= diff
+	
+	#var input_dir : float = Input.get_axis("look_up","look_down")
+	#if input_dir:
+	if camera.global_position.y > global_position.y:
+		##Normal Camera Behavior
+		relative_position.y = move_toward(relative_position.y,0,camera_speed_vertical*delta)
+	else:
+		relative_position.y = 0
+	
+	camera.position.y = global_position.y + relative_position.y

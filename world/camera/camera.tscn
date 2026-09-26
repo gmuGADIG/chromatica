@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://dfqxbpvp7d2kf"]
 
 [ext_resource type="Script" uid="uid://kdtoxxkkk6jq" path="res://world/camera/camera_move.gd" id="1_j3pd7"]
+[ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="2_pi78r"]
 
 [node name="Camera" type="Node2D" unique_id=765522635]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=553150344]
-process_callback = 0
 script = ExtResource("1_j3pd7")
+
+[node name="Node" type="Node" parent="." unique_id=346685543]
+
+[node name="Camera2D" type="Camera2D" parent="Node" unique_id=1907824245]
+zoom = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node/Camera2D" unique_id=1075214406]
+texture = ExtResource("2_pi78r")
