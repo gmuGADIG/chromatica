@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://da4ibuuxp6cuk"]
 
-[ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://character/enemy/enemy_hurtbox.gd" id="1_l0rlh"]
+[ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://character/enemy/enemy_hitbox.gd" id="1_l0rlh"]
 
 [node name="EnemyHurtbox" type="Area2D" unique_id=2083781502]
 collision_layer = 8

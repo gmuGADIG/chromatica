@@ -7,6 +7,6 @@ extends Resource
 enum AttackColor {RED,YELLOW,BLUE,ORANGE,GREEN,PURPLE}
 
 
-func _init(AttackDamage,color) -> void:
-	var damage = AttackDamage
+func _init(attack_damage : int , color : AttackColor) -> void:
+	var damage = attack_damage
 	var attack_color = color
