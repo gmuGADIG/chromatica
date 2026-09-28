@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cbmwi8rfvkird"]
 
 [ext_resource type="Script" uid="uid://bmvxoeofts7e5" path="res://ui/pause_menu/pause_menu.gd" id="1_mnjdh"]
+[ext_resource type="PackedScene" uid="uid://cbux3nfnho5ss" path="res://ui/settings_menu/settings_menu.tscn" id="2_jbgdu"]
 
-[node name="PauseMenu" type="Control" unique_id=2066635479]
+[node name="PauseMenu" type="Control" unique_id=2066635479 node_paths=PackedStringArray("settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,3 +11,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mnjdh")
+settings_menu = NodePath("SettingsMenu")
+
+[node name="Panel" type="Panel" parent="." unique_id=1724029640]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = -89.0
+offset_right = 132.5
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1523815233]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -29.0
+offset_right = 53.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=780484646]
+layout_mode = 2
+text = "Game Paused"
+
+[node name="SettingsButton" type="Button" parent="Panel/VBoxContainer" unique_id=294238706]
+layout_mode = 2
+text = "Settings"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=239873639]
+layout_mode = 2
+text = "Resume"
+
+[node name="SettingsMenu" parent="." unique_id=1456142874 instance=ExtResource("2_jbgdu")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
