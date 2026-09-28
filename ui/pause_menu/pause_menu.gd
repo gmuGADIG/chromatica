@@ -1,6 +1,6 @@
 extends Control
 
-@onready var SettingsMenu: Control = $SettingsMenu
+@export var settings_menu: Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,10 +8,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		self.visible=!self.visible
+		settings_menu.hide()
 
 
 func _on_settings_button_pressed() -> void:
-	SettingsMenu.show() #shows the settings menu
-	pass
+	settings_menu.show()
+
+func _on_button_pressed():
+	self.visible=!self.visible
