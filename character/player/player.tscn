@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://uu0mo6d1pvx0" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
 [ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
+[ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -80,3 +81,8 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBrush/AttackArea" unique_id=1393078742]
 shape = SubResource("RectangleShape2D_eu8pa")
+
+[node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
+position = Vector2(0, -120)
+player_movement = NodePath("../PlayerMovement")
+player = NodePath("..")
