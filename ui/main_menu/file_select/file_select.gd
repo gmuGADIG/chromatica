@@ -1,20 +1,19 @@
 extends Control
+class_name FileSelect
 
+signal closed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	hide()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func open() -> void:
+	show()
 
 
 func _on_button_back_pressed() -> void:
-	get_parent().hide()
-	pass # Replace with function body.
+	closed.emit()
 
 func _on_button_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://temp/test_scene.tscn")
+	get_tree().change_scene_to_file("res://world/rooms/test_rooms/simple_platforms.tscn")
 	pass # Replace with function body.
