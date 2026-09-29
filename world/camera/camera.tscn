@@ -3,8 +3,14 @@
 [ext_resource type="Script" uid="uid://kdtoxxkkk6jq" path="res://world/camera/camera_move.gd" id="1_j3pd7"]
 [ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="2_pi78r"]
 
+[sub_resource type="Curve" id="Curve_pi78r"]
+_limits = [500.0, 1000.0, 0.0, 400.0]
+_data = [Vector2(0, 500), 0.0, 0.0, 0, 0, Vector2(133.33333, 1000), 0.0, 0.0, 0, 0, Vector2(247.29344, 1000), 0.0, 0.0, 0, 0, Vector2(400, 500), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [node name="Camera" type="Node2D" unique_id=765522635]
 script = ExtResource("1_j3pd7")
+camera_speed_horizontal = SubResource("Curve_pi78r")
 
 [node name="Node" type="Node" parent="." unique_id=346685543]
 

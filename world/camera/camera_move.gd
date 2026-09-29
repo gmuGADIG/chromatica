@@ -5,11 +5,10 @@ extends Node2D
 @export var player : Player
 @export_group("Horizontal")
 @export var stationary_horizontal_offset : float = 200
-@export var slow_camera_speed_horizontal : float = 100
-@export var fast_camera_speed_horizontal : float = 300
+@export var camera_speed_horizontal : Curve
 @export_group("Vertical")
 @export var camera_speed_vertical : float = 750
-
+		
 var relative_position : Vector2 = Vector2.ZERO
 
 @onready var camera : Camera2D = $Node/Camera2D
@@ -31,18 +30,21 @@ func move_x(delta : float) -> void:
 	#camera.position.x += 1
 	var input_dir : float = Input.get_axis("move_left","move_right")
 	if input_dir:
-		if (camera.global_position.x - global_position.x) * input_dir > 80	:
+		if (camera.global_position.x - global_position.x) * input_dir > 80:
+			## Moving TOWARDS the camera
 			var diff : float = global_position.x-camera.global_position.x+relative_position.x
 			relative_position.x -= diff
 		else:
-			relative_position.x = move_toward(relative_position.x,0,fast_camera_speed_horizontal*delta)
+			## Moving away from the camera
+			var dist : float = absf(relative_position.x)
+			var tween_speed : float = camera_speed_horizontal.sample(dist*2.0)
+			relative_position.x = move_toward(relative_position.x,0,tween_speed*delta)
 	else:
-		var tween_speed : float = slow_camera_speed_horizontal
-		if (camera.global_position.x - global_position.x) * player_movement.last_horizontal_direction < 0:
-			tween_speed = fast_camera_speed_horizontal
-		
-		##Move slowly to one side
+		## Stationary
 		var target_x : float = stationary_horizontal_offset * player_movement.last_horizontal_direction
+		var dist : float = absf(relative_position.x - target_x)
+		print(dist)
+		var tween_speed : float = camera_speed_horizontal.sample(dist)
 		relative_position.x = move_toward(relative_position.x,target_x,tween_speed*delta)
 	
 	camera.position.x = global_position.x + relative_position.x
