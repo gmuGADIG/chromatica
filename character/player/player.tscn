@@ -1,13 +1,21 @@
 [gd_scene format=3 uid="uid://c8q0684rdd6yr"]
 
 [ext_resource type="Script" uid="uid://b01g8xm68jf3v" path="res://character/player/player.gd" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://dimkkmdj6mi5x" path="res://character/player/movement/vertical_player_movement.gd" id="2_8eijk"]
-[ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/horizontal_player_movement.gd" id="2_gtsfv"]
-[ext_resource type="Script" uid="uid://wmmd3hss21u" path="res://character/player/movement/player_input.gd" id="4_wu8e1"]
-[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="5_g20gq"]
+[ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/player_movement.gd" id="2_gtsfv"]
+[ext_resource type="Script" uid="uid://drt58jn726c1u" path="res://character/player/player_health_component.gd" id="5_eu8pa"]
+[ext_resource type="Texture2D" uid="uid://uu0mo6d1pvx0" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
+[ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
+[ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
+[ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
+size = Vector2(133, 261)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eu8pa"]
+size = Vector2(256, 256)
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
@@ -15,19 +23,66 @@ script = ExtResource("1_oul6g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
+debug_color = Color(0.89526504, 0.21086764, 0.40460575, 0.41960785)
 
-[node name="HorizontalMovement" type="Node" parent="." unique_id=415994900]
+[node name="PlayerMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player")]
 script = ExtResource("2_gtsfv")
-
-[node name="VerticalMovement" type="Node" parent="." unique_id=1638560969 node_paths=PackedStringArray("player")]
-script = ExtResource("2_8eijk")
 player = NodePath("..")
+acceleration = 10000.0
+deceleration = 4000.0
+maxVelocity = 1000.0
+dampening = 11000.0
 
-[node name="InputComponent" type="Node" parent="." unique_id=1388412803 node_paths=PackedStringArray("vertical_player_movement")]
-script = ExtResource("4_wu8e1")
-vertical_player_movement = NodePath("../VerticalMovement")
+[node name="JumpBuffer" type="Timer" parent="PlayerMovement" unique_id=2434172]
+one_shot = true
 
-[node name="Health" type="Node" parent="." unique_id=354530798]
-script = ExtResource("5_g20gq")
-maximum_hp = 100
-metadata/_custom_type_script = "uid://dofc8aut25pg5"
+[node name="CoyoteTimer" type="Timer" parent="PlayerMovement" unique_id=944399741]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945416757]
+position = Vector2(0, -120)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_g20gq")
+
+[node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("6_noxpy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRegion" unique_id=2042581431]
+position = Vector2(0, -120.5)
+shape = SubResource("RectangleShape2D_d0bka")
+
+[node name="PlayerHealthComponent" type="Node" parent="." unique_id=1017469324]
+script = ExtResource("5_eu8pa")
+metadata/_custom_type_script = "uid://drt58jn726c1u"
+
+[node name="PlayerBrush" type="Node2D" parent="." unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement")]
+position = Vector2(0, -120)
+script = ExtResource("6_eu8pa")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
+brush_width = 200.0
+metadata/_custom_type_script = "uid://blodtm8lm2wc3"
+
+[node name="SwingBuffer" type="Timer" parent="PlayerBrush" unique_id=391448229]
+one_shot = true
+
+[node name="SwingDuration" type="Timer" parent="PlayerBrush" unique_id=1846409706]
+one_shot = true
+
+[node name="SwingRecovery" type="Timer" parent="PlayerBrush" unique_id=1513721812]
+one_shot = true
+
+[node name="AttackArea" type="Area2D" parent="PlayerBrush" unique_id=2093298999]
+visible = false
+position = Vector2(128, -120)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBrush/AttackArea" unique_id=1393078742]
+shape = SubResource("RectangleShape2D_eu8pa")
+
+[node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
+position = Vector2(0, -120)
+player_movement = NodePath("../PlayerMovement")
+player = NodePath("..")
