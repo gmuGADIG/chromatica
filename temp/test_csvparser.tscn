@@ -21,3 +21,10 @@ offset_right = 882.0
 offset_bottom = 529.0
 visible_characters = 0
 visible_ratio = 0.0
+
+[node name="BackButton" type="Button" parent="." unique_id=1357924346]
+offset_left = 24.0
+offset_top = 531.0
+offset_right = 142.0
+offset_bottom = 612.0
+text = "back to title"
