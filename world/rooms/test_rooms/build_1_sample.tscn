@@ -9,7 +9,5 @@
 position = Vector2(2312, 3754)
 
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
-world_position = Vector2(5248, -1920)
-size = Vector2i(7296, 5248)
 
 [editable path="Player"]

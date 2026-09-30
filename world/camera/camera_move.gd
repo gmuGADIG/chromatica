@@ -12,7 +12,7 @@ extends Node2D
 var relative_position : Vector2 = Vector2.ZERO
 
 @onready var camera : Camera2D = $Node/Camera2D
-@onready var ldtk_level : LDTKLevel = get_tree().get_first_node_in_group("LDTKRoom")
+@onready var ldtk_level : LDTKLevel = get_tree().get_first_node_in_group("LDTKLevel")
 func _ready() -> void:
 	camera.limit_left = ldtk_level.global_position.x
 	camera.limit_top = ldtk_level.global_position.y
