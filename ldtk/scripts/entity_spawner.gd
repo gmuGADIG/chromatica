@@ -14,8 +14,7 @@ func _ready() -> void:
 		elif entity_has_tag(entity, "Room_Transition"):
 			room_transitions.append(entity)
 			
-	print("", enemies.size())
-	print(room_transitions.size())
+	print("Enemies: ", enemies.size(), ", Room Transitions: ", room_transitions.size())
 
 ## Returns whether the given entity has a specified tag.
 func entity_has_tag(entity: Variant, query : String) -> bool:
