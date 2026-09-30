@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var ldtk_level : LDTKLevel
+
 @export var player_movement : PlayerMovement
 @export var player : Player
 @export_group("Horizontal")
@@ -12,12 +12,12 @@ extends Node2D
 var relative_position : Vector2 = Vector2.ZERO
 
 @onready var camera : Camera2D = $Node/Camera2D
-
+@onready var ldtk_level : LDTKLevel = get_tree().get_first_node_in_group("LDTKRoom")
 func _ready() -> void:
-	camera.limit_left = ldtk_level.world_position.x
-	camera.limit_top = ldtk_level.world_position.y
-	camera.limit_right = ldtk_level.world_position.x + ldtk_level.size.x
-	camera.limit_bottom = ldtk_level.world_position.y + ldtk_level.size.y
+	camera.limit_left = ldtk_level.global_position.x
+	camera.limit_top = ldtk_level.global_position.y
+	camera.limit_right = ldtk_level.global_position.x + ldtk_level.size.x
+	camera.limit_bottom = ldtk_level.global_position.y + ldtk_level.size.y
 	camera.global_position = global_position
 	
 func _process(delta: float) -> void:
@@ -43,7 +43,7 @@ func move_x(delta : float) -> void:
 		## Stationary
 		var target_x : float = stationary_horizontal_offset * player_movement.last_horizontal_direction
 		var dist : float = absf(relative_position.x - target_x)
-		print(dist)
+		#print(dist)
 		var tween_speed : float = camera_speed_horizontal.sample(dist)
 		relative_position.x = move_toward(relative_position.x,target_x,tween_speed*delta)
 	
@@ -63,3 +63,4 @@ func move_y(delta : float) -> void:
 		relative_position.y = 0
 	
 	camera.position.y = global_position.y + relative_position.y
+	#print(camera.position)

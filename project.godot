@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Chromatica"
-run/main_scene="uid://dsfvo7vwn1a0x"
+run/main_scene="uid://bv1fl583cdk3v"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://temp/temp_art/icon.svg"
 
@@ -44,6 +44,10 @@ folder_colors={
 "res://world/rooms/": "blue",
 "res://world/rooms/test_rooms/": "gray"
 }
+
+[global_group]
+
+LDTKRoom=""
 
 [input]
 

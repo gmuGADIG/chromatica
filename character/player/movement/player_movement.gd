@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if coyote_eligible and player.velocity.y > 0 and coyote_timer.is_stopped():
 			coyote_eligible = false
-			coyote_timer.start()
+			coyote_timer.start(coyote_time)
 		player.velocity.y += gravity * delta
 	
 	
@@ -105,6 +105,8 @@ func jump() -> bool:
 	player.velocity.y = jump_velocity
 	can_early_jump_release = true
 	coyote_eligible = false
+	coyote_timer.stop()
+	jump_buffer_timer.stop()
 	return true
 
 
