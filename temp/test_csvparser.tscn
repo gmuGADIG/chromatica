@@ -12,7 +12,7 @@ offset_left = 45.0
 offset_top = 36.0
 offset_right = 365.0
 offset_bottom = 59.0
-text = "the following words come from a CSV file and are loaded instantly (but printed line by line because it's Cool):"
+text = "the following words come from a CSV file and are loaded instantly (but printed gradually because it's Cool):"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=522045971]
 offset_left = 281.0
