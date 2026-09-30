@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bnktjvt8vda52"]
+
+[ext_resource type="Script" uid="uid://dauhl2ddt85s5" path="res://character/enemy/enemy.gd" id="1_l7srf"]
+[ext_resource type="Texture2D" uid="uid://cienjtkky5ljt" path="res://temp/temp_art/dead.png" id="2_h3dsv"]
+[ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://character/enemy/enemy_hitbox.gd" id="3_th2e7"]
+[ext_resource type="Script" uid="uid://brijcdg7gxsxe" path="res://systems/desaturation/desaturation_component.gd" id="4_yvg5c"]
+[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="5_c2jqc"]
+[ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="6_7yrdy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
+size = Vector2(89, 162)
+
+[node name="EnemyBase" type="CharacterBody2D" unique_id=43181616 node_paths=PackedStringArray("health_component", "hitbox", "health_bar", "desaturation_component", "colorable_component")]
+script = ExtResource("1_l7srf")
+health_component = NodePath("HealthComponent")
+hitbox = NodePath("EnemyHitbox")
+health_bar = NodePath("ProgressBar")
+desaturation_component = NodePath("DesaturationComponent")
+colorable_component = NodePath("ColorableComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1560740887]
+texture = ExtResource("2_h3dsv")
+
+[node name="EnemyHitbox" type="Area2D" parent="." unique_id=1147118622]
+script = ExtResource("3_th2e7")
+metadata/_custom_type_script = "uid://rbki0mvel4rg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox" unique_id=841445170]
+position = Vector2(-34.5, -5)
+shape = SubResource("RectangleShape2D_d0bka")
+
+[node name="DesaturationComponent" type="Node" parent="." unique_id=2006721530]
+script = ExtResource("4_yvg5c")
+metadata/_custom_type_script = "uid://brijcdg7gxsxe"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1306834510]
+script = ExtResource("5_c2jqc")
+
+[node name="ColorableComponent" type="Node" parent="." unique_id=944276312]
+script = ExtResource("6_7yrdy")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1894704178]
+offset_left = -32.0
+offset_top = -116.0
+offset_right = -28.0
+offset_bottom = -89.0
