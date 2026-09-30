@@ -9,7 +9,20 @@ func _ready() -> void:
 	var room_transitions : Array
 	
 	for entity in entity_layer.entities:
-		if entity.identifier == "BasicEnemy": #TODO: replace this with tag-based separation
+		if entity_has_tag(entity, "Enemy"):
 			enemies.append(entity)
-		elif entity.identifier == "RoomTransition": #TODO: replace this with tag-based separation
+		elif entity_has_tag(entity, "Room_Transition"):
 			room_transitions.append(entity)
+			
+	print("", enemies.size())
+	print(room_transitions.size())
+
+## Returns whether the given entity has a specified tag.
+func entity_has_tag(entity: Variant, query : String) -> bool:
+	if not entity is Dictionary: return false
+	
+	var definition: Dictionary = entity.get("definition", {})
+	if not definition: return false
+	
+	var tags = definition.get("tags", [])
+	return query in tags
