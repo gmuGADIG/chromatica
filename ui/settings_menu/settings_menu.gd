@@ -1,10 +1,16 @@
 extends Control
 
-func _ready() -> void:
-	pass
+class_name SettingsMenu
+
+signal closed
+
+func open() -> void:
+	%BackButton.grab_focus()
+	show()
 
 func _on_button_pressed() -> void:
-	hide() # hides the settings menu
+	closed.emit()
+	hide()
 
 # when the Master volume slider is changed
 func _on_master_volume_changed(value: float) -> void:

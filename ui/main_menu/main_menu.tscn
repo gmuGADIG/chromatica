@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bv1fl583cdk3v"]
 
-[ext_resource type="Script" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+[ext_resource type="Script" uid="uid://cvlemcva41pig" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
 [ext_resource type="PackedScene" uid="uid://b5k2j04yb2cvu" path="res://ui/main_menu/file_select/file_select.tscn" id="2_mu8pm"]
+[ext_resource type="PackedScene" uid="uid://cbux3nfnho5ss" path="res://ui/settings_menu/settings_menu.tscn" id="3_omy8q"]
 
 [node name="MainMenu" type="Control" unique_id=1450645728]
 layout_mode = 3
@@ -20,23 +21,39 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -68.5
-offset_top = -33.0
+offset_top = -50.5
 offset_right = 68.5
-offset_bottom = 33.0
+offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Start" type="Button" parent="MainMenu" unique_id=431970254]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
 text = "main menu start"
+
+[node name="Settings" type="Button" parent="MainMenu" unique_id=1178353407]
+layout_mode = 2
+text = "set the settings"
+
+[node name="DemoButton" type="Button" parent="MainMenu" unique_id=342501744]
+layout_mode = 2
+text = "csv parser demo"
 
 [node name="Quit" type="Button" parent="MainMenu" unique_id=1033594454]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Start")
 text = "quit the game"
 
 [node name="FileSelect" parent="." unique_id=990807234 instance=ExtResource("2_mu8pm")]
 visible = false
 layout_mode = 1
 
+[node name="SettingsMenu" parent="." unique_id=1456142874 instance=ExtResource("3_omy8q")]
+visible = false
+layout_mode = 1
+
+[connection signal="visibility_changed" from="MainMenu" to="." method="_on_main_menu_visibility_changed"]
 [connection signal="pressed" from="MainMenu/Start" to="." method="_on_button_main_start_pressed"]
+[connection signal="pressed" from="MainMenu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/Quit" to="." method="_on_button_main_quit_pressed"]
