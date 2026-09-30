@@ -10,21 +10,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3uwp"]
 size = Vector2(1272, 20)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ravht"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yadb5"]
 shader = ExtResource("6_yadb5")
 shader_parameter/lighten_modifier = 0.0
 shader_parameter/red_scale = 0.0
 shader_parameter/yellow_scale = 0.0
 shader_parameter/blue_scale = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnv8k"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4o15"]
 shader = ExtResource("2_g482p")
 shader_parameter/lighten_modifier = 0.0
 shader_parameter/red_scale = 0.0
 shader_parameter/yellow_scale = 0.0
 shader_parameter/blue_scale = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjxn7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ravht"]
 shader = ExtResource("6_f4o15")
 shader_parameter/lighten_modifier = 0.0
 shader_parameter/red_scale = 0.0
@@ -44,19 +44,19 @@ position = Vector2(557, 280)
 shape = SubResource("RectangleShape2D_o3uwp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=423788677]
-material = SubResource("ShaderMaterial_ravht")
+material = SubResource("ShaderMaterial_yadb5")
 position = Vector2(79.90053, 84.408356)
 scale = Vector2(0.15494832, 0.15494832)
 texture = ExtResource("3_yadb5")
 
 [node name="Sprite2D4" type="Sprite2D" parent="." unique_id=402131315]
-material = SubResource("ShaderMaterial_xnv8k")
+material = SubResource("ShaderMaterial_f4o15")
 position = Vector2(195.90053, 85.408356)
 scale = Vector2(0.15494832, 0.15494832)
 texture = ExtResource("3_yadb5")
 
 [node name="Sprite2D5" type="Sprite2D" parent="." unique_id=1894100370]
-material = SubResource("ShaderMaterial_qjxn7")
+material = SubResource("ShaderMaterial_ravht")
 position = Vector2(319, 83.99999)
 scale = Vector2(0.15494832, 0.15494832)
 texture = ExtResource("3_yadb5")
