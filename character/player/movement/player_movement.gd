@@ -16,7 +16,7 @@ class_name PlayerMovement
 
 @export_group("Jump")
 ##The impulse applied to the p	layer when they jump
-@export var jump_velocity : float = -2500.0
+@export var jump_velocity : float = 2430.0
 ##The default vertical acceleration of the player, in px/sec
 @export var gravity : float = 4000.0
 ##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
@@ -28,7 +28,7 @@ class_name PlayerMovement
 ## falling off a platform.
 @export var coyote_time : float = 0.1
 ## How fast the player will descend from gravity
-@export_range(0.0,3.0) var descending_gravity_multiplier : float = 1.0
+@export_range(0.0,3.0) var descending_gravity_multiplier : float = 1.2
 
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
@@ -107,7 +107,7 @@ func can_jump() -> bool:
 func jump() -> bool:
 	if not can_jump():
 		return false
-	player.velocity.y = jump_velocity
+	player.velocity.y = - jump_velocity
 	can_early_jump_release = true
 	coyote_eligible = false
 	coyote_timer.stop()

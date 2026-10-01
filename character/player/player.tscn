@@ -32,8 +32,6 @@ acceleration = 10000.0
 deceleration = 4000.0
 maxVelocity = 1000.0
 dampening = 11000.0
-jump_velocity = -2250.0
-descending_gravity_multiplier = 1.2
 
 [node name="JumpBuffer" type="Timer" parent="PlayerMovement" unique_id=2434172]
 one_shot = true
