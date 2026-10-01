@@ -27,6 +27,8 @@ class_name PlayerMovement
 ## Time (seconds) that the player can jump after
 ## falling off a platform.
 @export var coyote_time : float = 0.1
+## How fast the player will descend from gravity
+@export_range(0.0,3.0) var descending_gravity_multiplier : float = 1.0
 
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
