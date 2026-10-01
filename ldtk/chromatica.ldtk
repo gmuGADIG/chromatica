@@ -115,7 +115,7 @@
 		{
 			"identifier": "TransitionZone",
 			"uid": 10,
-			"tags": [],
+			"tags": ["AreaTrigger"],
 			"exportToToc": false,
 			"allowOutOfBounds": false,
 			"doc": null,
