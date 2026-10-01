@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		coyote_eligible = false
 		coyote_timer.start(coyote_time)
 	
-  if not player.is_on_floor():
+	if not player.is_on_floor():
 		if player.velocity.y < -1.0:
 			player.velocity.y += gravity * delta
 		else :
