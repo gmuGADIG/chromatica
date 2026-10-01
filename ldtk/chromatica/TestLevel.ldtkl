@@ -147,6 +147,22 @@
 					"fieldInstances": [{ "__identifier": "TargetRoom", "__type": "String", "__value": null, "__tile": null, "defUid": 11, "realEditorValues": [] }],
 					"__worldX": 1080,
 					"__worldY": 1768
+				},
+				{
+					"__identifier": "Entity",
+					"__grid": [220,115],
+					"__pivot": [0.5,1],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D77643",
+					"iid": "113f1c50-96d0-11f1-86a1-2d35c99ab90e",
+					"width": 128,
+					"height": 128,
+					"defUid": 12,
+					"px": [3528,1856],
+					"fieldInstances": [],
+					"__worldX": 3528,
+					"__worldY": 1856
 				}
 			]
 		},
@@ -538,5 +554,5 @@
 			"entityInstances": []
 		}
 	],
-	"__neighbours": [{ "levelIid": "394a8610-96d0-11f1-93be-9b3cf3013799", "dir": "e" }]
+	"__neighbours": []
 }

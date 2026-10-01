@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://cmgsqo0sk8vvv"]
-
-[ext_resource type="Script" uid="uid://cyixy1oqfuk10" path="res://ldtk/scripts/transition_zone.gd" id="1_84goj"]
-
-[node name="TransitionZone" type="Area2D" unique_id=444725797 node_paths=PackedStringArray("collision_shape_2d")]
-script = ExtResource("1_84goj")
-collision_shape_2d = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1442453858]

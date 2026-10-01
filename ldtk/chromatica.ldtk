@@ -11,7 +11,7 @@
 	"iid": "0d8dd960-96d0-11f1-8ae1-b1521fc80acf",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 12,
+	"nextUid": 13,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -184,6 +184,41 @@
 					"tilesetUid": null
 				}
 			]
+		},
+		{
+			"identifier": "Entity",
+			"uid": 12,
+			"tags": [],
+			"exportToToc": false,
+			"allowOutOfBounds": false,
+			"doc": null,
+			"width": 128,
+			"height": 128,
+			"resizableX": false,
+			"resizableY": false,
+			"minWidth": null,
+			"maxWidth": null,
+			"minHeight": null,
+			"maxHeight": null,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": false,
+			"color": "#D77643",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"uiTileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0.5,
+			"pivotY": 1,
+			"fieldDefs": []
 		}
 	], "tilesets": [
 		{
