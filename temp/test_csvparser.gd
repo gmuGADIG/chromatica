@@ -10,15 +10,16 @@ extends Node2D
 @export var label: RichTextLabel
 
 func _ready() -> void:
-	var lines := CSVParser.parse_dialogue(dialogue_path)
-	for l: DialogueLine in lines: 
-		print(l)
+	#var lines := CSVParser.parse_dialogue(dialogue_path)
+	#for l: DialogueLine in lines: 
+	#	print(l)
 		## NOTE that for use in a label, we use ._to_string!!! Errors otherwise.
 		# Godot's builtin to_string() and the DialogueLine class's _to_string() both 
 		# work, but the class's _to_string() is used here for potential future 
 		# flexibility (however unlikely, since it's only good for debug).
-		label.append_text(l._to_string() + "\n")
-		
+		#label.append_text(l._to_string() + "\n")
+	DialogueStarter.start_dialogue("res://systems/dialogue/data/test_dialogue.csv")
+	
 	$BackButton.grab_focus()
 	$BackButton.pressed.connect(_on_back_pressed)
 	# Reveal the text gradually on-screen over 4 seconds

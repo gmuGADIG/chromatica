@@ -19,6 +19,10 @@ config/icon="res://temp/temp_art/icon.svg"
 
 buses/default_bus_layout="uid://ddn7ru0dhkj34"
 
+[autoload]
+
+Dialogue_Player="*uid://c00wh1oryqoaq"
+
 [display]
 
 window/stretch/mode="viewport"

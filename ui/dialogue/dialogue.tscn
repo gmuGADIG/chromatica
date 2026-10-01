@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c00wh1oryqoaq"]
+
+[ext_resource type="Script" uid="uid://dnnqyem7lym70" path="res://ui/dialogue/dialogue_renderer.gd" id="1_8q5o4"]
+
+[node name="Dialogue" type="Control" unique_id=448535468]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8q5o4")
+
+[node name="Dialogue_Box" type="RichTextLabel" parent="." unique_id=968629647]
+layout_mode = 0
+offset_top = 327.0
+offset_right = 1152.0
+offset_bottom = 648.0
+bbcode_enabled = true
