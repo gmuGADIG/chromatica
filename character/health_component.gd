@@ -3,6 +3,7 @@ extends Node
 class_name HealthComponent
 
 @export var maximum_hp: int
+@export var invuln_component: InvulnComponent
 
 var hp: int
 ## Updates maxHP, reserved for the player character.
@@ -14,8 +15,6 @@ signal health_depleted
 func _ready() -> void:
 	reset_health()
 
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -24,6 +23,11 @@ func reset_health() -> void:
 	hp = maximum_hp
 
 func update_health(difference: int) -> void:
+	if(invuln_component != null && difference < 0):
+		if(invuln_component.is_invuln() ):
+			pass
+		else:
+			invuln_component.activate()
 	hp += difference
 	if hp <= 0:
 		health_depleted.emit()
