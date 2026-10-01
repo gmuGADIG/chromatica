@@ -20,6 +20,7 @@ func _ready() -> void:
 		var healthElementInstance = healthElementScene.instantiate()
 		add_child(healthElementInstance)
 		hit_points.append(healthElementInstance)
+		
 	# Connects the heath_changed signal from player_health to the code
 	# On recieving, calls changeHealth with the signal's argument
 	player_health.health_changed.connect(changeHealth)
@@ -32,10 +33,8 @@ func changeHealth(newHealth: int):
 	if newHealth < player_health.hp:
 		for i in range(player_health.hp - newHealth):
 			hit_points[player_health.hp - (i + 1)].revoke()
-		# The hp value is updated after the for loop so that the 
-		# hp value can be used inside the loop
-		player_health.updateHealth(-(player_health.hp - newHealth))
+			
 	elif newHealth > player_health.hp:
 		for i in range(newHealth - player_health.hp):
 			hit_points[player_health.hp + i].grant()
-		player_health.updateHealth(newHealth - player_health.hp)
+		
