@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
+[ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="8_0cf6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -16,6 +17,11 @@ size = Vector2(133, 261)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eu8pa"]
 size = Vector2(256, 256)
+
+[sub_resource type="Curve" id="Curve_0cf6c"]
+_limits = [400.0, 2400.0, 0.0, 1.0]
+_data = [Vector2(0, 2400), 0.0, 0.0, 0, 0, Vector2(0.5638766, 2400), 0.0, 0.0, 0, 0, Vector2(1, 2400), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
@@ -86,3 +92,10 @@ shape = SubResource("RectangleShape2D_eu8pa")
 position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
+
+[node name="DashSlash" type="Node" parent="." unique_id=1797641148 node_paths=PackedStringArray("player", "player_movement")]
+script = ExtResource("8_0cf6c")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
+dash_slash_velocity = SubResource("Curve_0cf6c")
+metadata/_custom_type_script = "uid://damau8bpijlrc"
