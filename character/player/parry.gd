@@ -1,19 +1,34 @@
 extends Node
 
+#@export var invuln_component : InvulnComponent
 @export var parry_duration : float 
 @export var parry_cooldown : float
 
+@onready var cooldown_timer: Timer = %ParryCooldown
+@onready var duration_timer: Timer = %ParryDuration
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	cooldown_timer.wait_time = parry_cooldown
+	duration_timer.wait_time = parry_duration
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
-func pain_guard() -> void:
-	pass
-	# invulnerable for parry_duration
+func _input(event: InputEvent) -> void:
+		if event.is_action_pressed("paint_guard") and cooldown_timer.is_stopped():
+			paint_guard()
+
+func paint_guard() -> void:
+	# activate is the invulnerability function
+	# invuln_component.activate(parry_duration)
+	duration_timer.start()
+	await duration_timer.timeout
+	# Don't start cooldown until parry ends
+	# start cooldown
+	cooldown_timer.start()
+	
+	
 	
