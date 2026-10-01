@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d0yf6g6egcckk" path="res://ui/hud/hud.gd" id="1_xmswo"]
 [ext_resource type="Script" uid="uid://bauu0mwqrhyw8" path="res://ui/hud/player_health_ui.gd" id="2_e0nub"]
 [ext_resource type="PackedScene" uid="uid://bsg6vckh36ihg" path="res://ui/hud/health_element.tscn" id="3_w75iv"]
+[ext_resource type="PackedScene" uid="uid://cbmwi8rfvkird" path="res://ui/pause_menu/pause_menu.tscn" id="4_w75iv"]
 
 [node name="Hud" type="Control" unique_id=916575799]
 layout_mode = 3
@@ -19,3 +20,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_e0nub")
 healthElementScene = ExtResource("3_w75iv")
+
+[node name="PauseMenu" parent="." unique_id=2066635479 instance=ExtResource("4_w75iv")]
+layout_mode = 1
