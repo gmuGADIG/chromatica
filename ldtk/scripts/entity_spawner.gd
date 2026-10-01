@@ -4,6 +4,8 @@ class_name EntitySpawner
 ## The layer from which the entities are spawned.
 @export var entity_layer : LDTKEntityLayer
 
+@onready var enemy_spawner : EnemySpawner = $EnemySpawner
+
 func _ready() -> void:
 	var enemies : Array
 	var room_transitions : Array
@@ -13,8 +15,10 @@ func _ready() -> void:
 			enemies.append(entity)
 		elif entity_has_tag(entity, "Room_Transition"):
 			room_transitions.append(entity)
-			
-	print("Enemies: ", enemies.size(), ", Room Transitions: ", room_transitions.size())
+	
+	#print("Enemies: ", enemies.size(), ", Room Transitions: ", room_transitions.size())
+	
+	enemy_spawner.spawn_enemies(enemies)
 
 ## Returns whether the given entity has a specified tag.
 func entity_has_tag(entity: Variant, query : String) -> bool:
