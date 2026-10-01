@@ -11,7 +11,6 @@ anchor_bottom = 0.15432099
 theme_override_constants/separation = 20
 alignment = 1
 script = ExtResource("1_a78cq")
-colorable_component = Color(1, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Pip" parent="." unique_id=310413221 instance=ExtResource("2_ly4c4")]

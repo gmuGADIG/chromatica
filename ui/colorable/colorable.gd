@@ -1,42 +1,33 @@
 extends HBoxContainer
 
-@export var colorable_component : Color
+@export var colorable_component : Colorable
 
-
-#const colors = 2
-#var current_colors = 0
-#var color_arr : Array[TextureRect] = []
-
-
-#func _draw():
-	#draw_circle(Vector2(position.x,position.y), 30, border, false, 8.0)
-	#self_modulate = colorable_component
+@onready var pips : Array[ColorablePip] = [$Pip, $Pip2]
 
 func _ready() -> void:
+	colorable_component.color_changed.connect(color_updated)
+	colorable_component.combo_triggered.connect(varnished)
 	$Pip.hide()
 	$Pip2.hide()
-	#current_colors = 0
-	#colored()
-	#colorable_component = Color.PINK
-	#colored()
-	#colorable_component = Color.GREEN
-	#colored()
 	pass
-#
-#func colored():
-	#var culah = TextureRect.new()
-	#culah.texture = preload("res://temp/temp_art/thesun.png")
-	#culah.self_modulate = colorable_component
-	#culah.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	#culah.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	##culah.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	#culah.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	#add_child(culah)
-	#
-	#color_arr.append(culah)
-	#if (color_arr.size() > 2):
-		#var orphan = color_arr[0]
-		#remove_child(color_arr.pop_front())
-		#orphan.queue_free()
-	#print("pray to GOD this works")
-	#pass
+
+func color_updated() -> void:
+	if (!pips[0].visible and !pips[1].visible):
+		pips[0].self_modulate = colorable_component.colors[0]
+		pips[0].show()
+	
+	elif (!pips[1].visible):
+		pips[1].self_modulate = colorable_component.colors[1]
+		pips[1].show()
+	
+	else:
+		pips[0].self_modulate = colorable_component.colors[0]
+		pips[1].self_modulate = colorable_component.colors[1]
+	
+	pass
+
+# made this just in case varnish needs to be done on the UI end because the tasklist details
+# show that when varnish is applied, the ui disappears again so the player can apply new colors
+func varnished() -> void:
+	pips[0].hide()
+	pips[1].hide()
