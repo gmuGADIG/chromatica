@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bvmsytqm23rk2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eu8pa"]
+size = Vector2(256, 256)
+
+[node name="AttackArea" type="Area2D" unique_id=379676843]
+visible = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513578250]
+shape = SubResource("RectangleShape2D_eu8pa")
