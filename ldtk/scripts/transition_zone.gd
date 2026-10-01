@@ -1,14 +1,17 @@
+@tool
 class_name TransitionZone
 extends Area2D
 
-@export var collision_shape_2d: CollisionShape2D
+@export var size : Vector2
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var rect : RectangleShape2D = RectangleShape2D.new()
+	rect.size = size
+	$CollisionShape2D.shape = rect
+#@export var collision_shape_2d: CollisionShape2D
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+#func create_shape(size : Vector2) -> void:
+	#var rect : RectangleShape2D = RectangleShape2D.new()
+	#collision_shape_2d.shape = rect
+	#print(collision_shape_2d.shape)
+	#rect.size = size
