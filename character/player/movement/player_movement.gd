@@ -17,6 +17,12 @@ class_name PlayerMovement
 @export_group("Jump")
 ##The impulse applied to the p	layer when they jump
 @export var jump_velocity : float = -2500.0
+##The horizontal impulse applied to the player when they jump 
+##(NOTE: Make sure this value remains negative, or else the player will jump into the wall, 
+##aka not have any horizontal velocity!)
+@export var horizontal_walljump_velocity : float = -2000.0
+##The vertical impulse applied to the player when they walljump
+@export var vertical_walljump_velocity : float = -2500.0
 ##The default vertical acceleration of the player, in px/sec
 @export var gravity : float = 4000.0
 ##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
@@ -41,7 +47,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		var jumped : bool = jump()
 		if not jumped:
-			jump_buffer_timer.start(jump_buffer_time)
+			var walljumped : bool = walljump()
+			if not walljumped:
+				jump_buffer_timer.start(jump_buffer_time)
 	elif event.is_action_released("jump"):
 		early_release()
 
@@ -98,6 +106,12 @@ func walk(direction: float, delta : float) -> void:
 func can_jump() -> bool:
 	return player.is_on_floor() or not coyote_timer.is_stopped()
 
+func can_walljump() -> bool:
+	return player.is_on_floor() or hugging_wall()
+
+func hugging_wall() -> bool: #check for hugging a wall when walljumping
+	return player.get_last_motion().x != 0 and player.get_last_slide_collision() != null and not player.is_on_floor()
+
 # Handle jump.	
 func jump() -> bool:
 	if not can_jump():
@@ -109,6 +123,13 @@ func jump() -> bool:
 	jump_buffer_timer.stop()
 	return true
 
+# Handle walljump.	
+func walljump() -> bool:
+	if not can_walljump():
+		return false
+	player.velocity.y = vertical_walljump_velocity
+	player.velocity.x = horizontal_walljump_velocity * last_horizontal_direction #multiply by last horizontal direction to jump away from wall
+	return true
 
 func early_release() -> void:
 	if can_early_jump_release and player.velocity.y < 0:
