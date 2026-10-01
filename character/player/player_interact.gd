@@ -4,6 +4,9 @@ class_name PlayerInteractRegion
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		check_for_interactable()
+	
+	if event.is_action_pressed("paint_guard"):
+		paint_guard()
 
 func check_for_interactable() -> void:
 	var interactables : Array[Interactable]
