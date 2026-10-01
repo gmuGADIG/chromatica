@@ -59,7 +59,10 @@ func _physics_process(delta: float) -> void:
 		if coyote_eligible and player.velocity.y > 0 and coyote_timer.is_stopped():
 			coyote_eligible = false
 			coyote_timer.start(coyote_time)
-		player.velocity.y += gravity * delta
+		if player.velocity.y < -1.0:
+			player.velocity.y += gravity * delta
+		else :
+			player.velocity.y += gravity * descending_gravity_multiplier * delta
 	
 	
 	player.move_and_slide()
