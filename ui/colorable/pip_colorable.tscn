@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://yf6cjsc6yfbc"]
+
+[ext_resource type="Texture2D" uid="uid://btnomr554nbx1" path="res://temp/temp_art/thesun.png" id="1_01hnf"]
+[ext_resource type="Script" uid="uid://2ntt2wjbirai" path="res://colorable_pip.gd" id="2_1mpwm"]
+
+[node name="Pip" type="TextureRect" unique_id=310413221]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = -1
+anchor_right = 0.08680555
+anchor_bottom = 0.15432099
+texture = ExtResource("1_01hnf")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_1mpwm")
+metadata/_edit_use_anchors_ = true
