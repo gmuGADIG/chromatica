@@ -64,15 +64,6 @@ player_movement = NodePath("../PlayerMovement")
 brush_width = 200.0
 metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
-[node name="SwingBuffer" type="Timer" parent="PlayerBrush" unique_id=391448229]
-one_shot = true
-
-[node name="SwingDuration" type="Timer" parent="PlayerBrush" unique_id=1846409706]
-one_shot = true
-
-[node name="SwingRecovery" type="Timer" parent="PlayerBrush" unique_id=1513721812]
-one_shot = true
-
 [node name="AttackArea" parent="PlayerBrush" unique_id=379676843 instance=ExtResource("7_v2h1c")]
 position = Vector2(128, -120)
 script = ExtResource("8_qh58e")

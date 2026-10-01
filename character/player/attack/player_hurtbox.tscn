@@ -4,8 +4,16 @@
 size = Vector2(256, 256)
 
 [node name="AttackArea" type="Area2D" unique_id=379676843]
-visible = false
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513578250]
 shape = SubResource("RectangleShape2D_eu8pa")
+
+[node name="SwingBuffer" type="Timer" parent="." unique_id=1066112952]
+one_shot = true
+
+[node name="SwingDuration" type="Timer" parent="." unique_id=243478538]
+one_shot = true
+
+[node name="SwingRecovery" type="Timer" parent="." unique_id=1050887330]
+one_shot = true
