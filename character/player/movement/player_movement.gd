@@ -17,12 +17,12 @@ class_name PlayerMovement
 
 @export_group("Jump")
 ##The impulse applied to the p	layer when they jump
-@export var jump_velocity : float = -2500.0
+@export var jump_velocity : float = 2430.0
 ##The vertical & horizontal impulse applied to the player when they walljump
-@export var walljump_velocity : Vector2 = Vector2(1500,2000)
-##The horizontal impulse applied to the player when they jump 
-##(NOTE: Make sure this value remains negative, or else the player will jump into the wall, 
+##(NOTE: Make sure these values remains positive, or else the player will jump into the wall, 
 ##aka not have any horizontal velocity!)
+@export var walljump_velocity : Vector2 = Vector2(1500,2000)
+##The default vertical acceleration of the player, in px/sec
 @export var gravity : float = 4000.0
 ##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
 ##to give them better control over the player's jump.
@@ -32,6 +32,8 @@ class_name PlayerMovement
 ## Time (seconds) that the player can jump after
 ## falling off a platform.
 @export var coyote_time : float = 0.1
+## How fast the player will descend from gravity
+@export_range(0.0,3.0) var descending_gravity_multiplier : float = 1.2
 
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
@@ -76,7 +78,11 @@ func _physics_process(delta: float) -> void:
 		coyote_eligible = false
 		coyote_timer.start(coyote_time)
 	
-	player.velocity.y += gravity * delta
+	if not player.is_on_floor():
+		if player.velocity.y < -1.0:
+			player.velocity.y += gravity * delta
+		else :
+			player.velocity.y += gravity * descending_gravity_multiplier * delta
 	
 	player.move_and_slide()
 	
@@ -128,7 +134,7 @@ func can_walljump() -> bool:
 func jump() -> bool:
 	if not can_jump():
 		return false
-	player.velocity.y = jump_velocity
+	player.velocity.y = - jump_velocity
 	can_early_jump_release = true
 	coyote_eligible = false
 	coyote_timer.stop()
