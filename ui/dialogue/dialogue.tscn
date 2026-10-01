@@ -13,7 +13,23 @@ script = ExtResource("1_8q5o4")
 
 [node name="Dialogue_Box" type="RichTextLabel" parent="." unique_id=968629647]
 layout_mode = 0
-offset_top = 327.0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 19.0
+offset_top = 362.0
+offset_right = 1129.0
+offset_bottom = 623.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/underline_alpha = 100
+theme_override_constants/strikethrough_alpha = 100
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
 bbcode_enabled = true
+fit_content = true
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1702587099]
+z_index = -1
+position = Vector2(0, 327)
+color = Color(0, 0.13149942, 0.13149942, 1)
+polygon = PackedVector2Array(0, 0, 0, 321, 1152, 321, 1152, 0)

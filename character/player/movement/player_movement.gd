@@ -38,32 +38,34 @@ var last_horizontal_direction : float
 
 func _input(event: InputEvent) -> void:
 	##Jump Inputs
-	if event.is_action_pressed("jump"):
-		var jumped : bool = jump()
-		if not jumped:
-			jump_buffer_timer.start(jump_buffer_time)
-	elif event.is_action_released("jump"):
-		early_release()
+	if (!Dialogue_Player.Dialogue_Playing):
+		if event.is_action_pressed("jump"):
+			var jumped : bool = jump()
+			if not jumped:
+				jump_buffer_timer.start(jump_buffer_time)
+		elif event.is_action_released("jump"):
+			early_release()
 
 func _physics_process(delta: float) -> void:
-	walk(Input.get_axis("move_left", "move_right"), delta)
-	
-	##Coyote detection
-	if player.is_on_floor():
-		if not jump_buffer_timer.is_stopped():
-			jump()
-			jump_buffer_timer.stop()
-	else:
-		if coyote_eligible and player.velocity.y > 0 and coyote_timer.is_stopped():
-			coyote_eligible = false
-			coyote_timer.start(coyote_time)
-		player.velocity.y += gravity * delta
-	
-	
-	player.move_and_slide()
-	
-	if player.is_on_floor():
-		coyote_eligible = true
+	if (!Dialogue_Player.Dialogue_Playing):
+		walk(Input.get_axis("move_left", "move_right"), delta)
+		
+		##Coyote detection
+		if player.is_on_floor():
+			if not jump_buffer_timer.is_stopped():
+				jump()
+				jump_buffer_timer.stop()
+		else:
+			if coyote_eligible and player.velocity.y > 0 and coyote_timer.is_stopped():
+				coyote_eligible = false
+				coyote_timer.start(coyote_time)
+			player.velocity.y += gravity * delta
+		
+		
+		player.move_and_slide()
+		
+		if player.is_on_floor():
+			coyote_eligible = true
 
 ##----------------------------------------------------------------------
 ##					HORIZONTAL PLAYER MOVEMENT

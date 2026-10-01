@@ -20,11 +20,11 @@ func _ready() -> void:
 		#label.append_text(l._to_string() + "\n")
 	DialogueStarter.start_dialogue("res://systems/dialogue/data/test_dialogue.csv")
 	
-	$BackButton.grab_focus()
-	$BackButton.pressed.connect(_on_back_pressed)
+	#$BackButton.grab_focus()
+	#$BackButton.pressed.connect(_on_back_pressed)
 	# Reveal the text gradually on-screen over 4 seconds
-	get_tree().create_tween().tween_property(label, "visible_ratio", 1, 4.0)
+	#get_tree().create_tween().tween_property(label, "visible_ratio", 1, 4.0)
 	
-func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
+#func _on_back_pressed() -> void:
+#	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
 	
