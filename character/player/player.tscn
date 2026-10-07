@@ -19,8 +19,8 @@ size = Vector2(133, 261)
 size = Vector2(256, 256)
 
 [sub_resource type="Curve" id="Curve_0cf6c"]
-_limits = [400.0, 2400.0, 0.0, 1.0]
-_data = [Vector2(0, 2400), 0.0, 0.0, 0, 0, Vector2(0.5638766, 2400), 0.0, 0.0, 0, 0, Vector2(1, 2400), 0.0, 0.0, 0, 0]
+_limits = [400.0, 2400.0, 0.0, 0.3]
+_data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.09883721, 2400), 0.0, 0.0, 0, 0, Vector2(0.3, 1389.4736), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
@@ -99,3 +99,6 @@ player = NodePath("..")
 player_movement = NodePath("../PlayerMovement")
 dash_slash_velocity = SubResource("Curve_0cf6c")
 metadata/_custom_type_script = "uid://damau8bpijlrc"
+
+[node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
+one_shot = true
