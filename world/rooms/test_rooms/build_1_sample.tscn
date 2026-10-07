@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://drck2wivyiq88"]
+
+[ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
+[ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
+
+[node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
+
+[node name="Player" parent="." index="0" unique_id=1162272003]
+position = Vector2(2312, 3754)
+
+[node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
+
+[editable path="Player"]

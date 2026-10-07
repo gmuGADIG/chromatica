@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dqp2gfn5pbymu"]
+
+[ext_resource type="Script" uid="uid://4uburbxuvn8" path="res://temp/test_csvparser.gd" id="1_it0lj"]
+
+[node name="TestScripts" type="Node2D" unique_id=1414302989 node_paths=PackedStringArray("label")]
+script = ExtResource("1_it0lj")
+dialogue_path = "res://systems/dialogue/data/test_dialogue.csv"
+label = NodePath("RichTextLabel")
+
+[node name="Label" type="Label" parent="." unique_id=1649803953]
+offset_left = 45.0
+offset_top = 36.0
+offset_right = 365.0
+offset_bottom = 59.0
+text = "the following words come from a CSV file and are loaded instantly (but printed gradually because it's Cool):"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=522045971]
+offset_left = 281.0
+offset_top = 122.0
+offset_right = 882.0
+offset_bottom = 529.0
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="BackButton" type="Button" parent="." unique_id=1357924346]
+offset_left = 24.0
+offset_top = 531.0
+offset_right = 142.0
+offset_bottom = 612.0
+text = "back to title"
