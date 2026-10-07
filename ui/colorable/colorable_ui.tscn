@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bvryli3jm4n8u"]
+
+[ext_resource type="Script" uid="uid://dn40i48rl8fj3" path="res://ui/colorable/colorable_ui.gd" id="1_tuaae"]
+[ext_resource type="PackedScene" uid="uid://yf6cjsc6yfbc" path="res://ui/colorable/colorable_pip.tscn" id="2_ikeg2"]
+
+[node name="ColorableUI" type="HBoxContainer" unique_id=1819435004]
+custom_minimum_size = Vector2(50, 20)
+anchors_preset = -1
+anchor_right = 0.19100001
+anchor_bottom = 0.15400001
+offset_right = -16.032013
+offset_bottom = 0.20799255
+grow_horizontal = 2
+theme_override_constants/separation = 20
+alignment = 1
+script = ExtResource("1_tuaae")
+
+[node name="Pip" parent="." unique_id=310413221 instance=ExtResource("2_ikeg2")]
+layout_mode = 2
+
+[node name="Pip2" parent="." unique_id=1667601090 instance=ExtResource("2_ikeg2")]
+layout_mode = 2

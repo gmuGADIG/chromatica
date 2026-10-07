@@ -6,9 +6,14 @@ signal combo_triggered
 signal color_changed
 var colors : Array[Color] = []
 
+func _ready() -> void:
+	await get_tree().process_frame
+	apply(Color.RED)
+	apply(Color.YELLOW)
+
 func apply(color : Color) -> void:
 	# if the colorable does not have 2 colors, add the color
-	if(colors.size() > 2):
+	if(colors.size() < 2):
 		colors.append(color)
 	else:
 		# move second color to first, set second color as the applied color
