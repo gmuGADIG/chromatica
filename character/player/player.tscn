@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
+[ext_resource type="Script" uid="uid://bm34mqo65sfn2" path="res://character/player/uppercut.gd" id="8_0cf6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -86,3 +87,6 @@ shape = SubResource("RectangleShape2D_eu8pa")
 position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
+
+[node name="Uppercut" type="Node" parent="." unique_id=63487610]
+script = ExtResource("8_0cf6c")

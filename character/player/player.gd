@@ -3,7 +3,8 @@ class_name Player
 
 enum State{
 	NONE,
-	BRUSH_SWING
+	BRUSH_SWING,
+	UPPERCUT
 }
 
 var state : State
