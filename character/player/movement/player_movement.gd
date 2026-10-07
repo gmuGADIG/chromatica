@@ -46,6 +46,8 @@ func _input(event: InputEvent) -> void:
 		early_release()
 
 func _physics_process(delta: float) -> void:
+	if not no_player_state():
+		return
 	walk(Input.get_axis("move_left", "move_right"), delta)
 	
 	##Coyote detection
@@ -114,3 +116,6 @@ func early_release() -> void:
 	if can_early_jump_release and player.velocity.y < 0:
 		player.velocity.y *= early_jump_release_multiplier
 		can_early_jump_release = false
+
+func no_player_state() -> bool:
+	return player.state == player.State.NONE
