@@ -22,12 +22,9 @@ func _input(event: InputEvent) -> void:
 			paint_guard()
 
 func paint_guard() -> void:
-	# activate is the invulnerability function
-	# invuln_component.activate(parry_duration)
+	invuln_component.activate(parry_duration)
 	duration_timer.start()
 	await duration_timer.timeout
-	# Don't start cooldown until parry ends
-	# start cooldown
 	cooldown_timer.start()
 	
 	
