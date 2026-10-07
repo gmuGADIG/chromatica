@@ -44,6 +44,8 @@ var last_horizontal_direction : float
 
 
 func _input(event: InputEvent) -> void:
+	if not no_special_player_state():
+		return
 	##Jump Inputs
 	if event.is_action_pressed("jump"):
 		##Try normal jump
@@ -61,6 +63,8 @@ func _input(event: InputEvent) -> void:
 		early_release()
 
 func _physics_process(delta: float) -> void:
+	if not no_special_player_state():
+		return
 	walk(Input.get_axis("move_left", "move_right"), delta)
 	
 	##Jump Buffering
@@ -154,3 +158,10 @@ func early_release() -> void:
 	if can_early_jump_release and player.velocity.y < 0:
 		player.velocity.y *= early_jump_release_multiplier
 		can_early_jump_release = false
+
+func no_special_player_state() -> bool:
+	match player.state:
+		Player.State.NONE, Player.State.BRUSH_SWING:
+			return true
+		_:
+			return false
