@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
-[ext_resource type="Script" uid="uid://b0f7is5e7h133" path="res://character/invuln_component.gd" id="8_0cf6c"]
+[ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="8_0cf6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -18,6 +18,11 @@ size = Vector2(133, 261)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eu8pa"]
 size = Vector2(256, 256)
 
+[sub_resource type="Curve" id="Curve_0cf6c"]
+_limits = [400.0, 2400.0, 0.0, 0.3]
+_data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.09883721, 2400), 0.0, 0.0, 0, 0, Vector2(0.3, 1389.4736), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
 
@@ -26,13 +31,10 @@ position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
 debug_color = Color(0.89526504, 0.21086764, 0.40460575, 0.41960785)
 
-[node name="PlayerMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player")]
+[node name="PlayerMovement" type="Node" parent="." unique_id=1409911704 node_paths=PackedStringArray("player")]
 script = ExtResource("2_gtsfv")
 player = NodePath("..")
-acceleration = 10000.0
-deceleration = 4000.0
-maxVelocity = 1000.0
-dampening = 11000.0
+metadata/_custom_type_script = "uid://c46qdvbh0fpd7"
 
 [node name="JumpBuffer" type="Timer" parent="PlayerMovement" unique_id=2434172]
 one_shot = true
@@ -93,3 +95,13 @@ script = ExtResource("8_0cf6c")
 metadata/_custom_type_script = "uid://b0f7is5e7h133"
 
 [node name="InvulnTimer" type="Timer" parent="InvulnComponent" unique_id=652236105]
+
+[node name="DashSlash" type="Node" parent="." unique_id=1797641148 node_paths=PackedStringArray("player", "player_movement")]
+script = ExtResource("8_0cf6c")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
+dash_slash_velocity = SubResource("Curve_0cf6c")
+metadata/_custom_type_script = "uid://damau8bpijlrc"
+
+[node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
+one_shot = true
