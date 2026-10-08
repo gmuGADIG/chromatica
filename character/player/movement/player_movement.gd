@@ -13,6 +13,10 @@ class_name PlayerMovement
 @export var maxVelocity : float = 1000.0
 ## How fast player decreases when over max speed
 @export var dampening : float = 11000.0
+## Max Player fall Speed
+@export var maxfallingvelocity : float = 1000.0
+## How fast a player decreases there falling velocity when over max speed
+@export var falldampening: float = 11000.0
 
 
 @export_group("Jump")
@@ -92,6 +96,10 @@ func _physics_process(delta: float) -> void:
 	
 	if player.is_on_floor() or player.is_on_wall_only():
 		coyote_eligible = true
+	
+	## when a player is elegable slows them down from falling to fast
+	if coyote_conditions_met() && player.velocity.y > maxfallingvelocity:
+		fall_speed_capping(delta)
 
 func coyote_conditions_met() -> bool:
 	var air_check : bool = not player.is_on_floor() and not player.is_on_wall()
@@ -165,3 +173,6 @@ func no_special_player_state() -> bool:
 			return true
 		_:
 			return false
+## when called dampens player falling
+func fall_speed_capping(delta:float) -> void:
+		player.velocity.y = move_toward(player.velocity.y, maxfallingvelocity, delta * falldampening)
