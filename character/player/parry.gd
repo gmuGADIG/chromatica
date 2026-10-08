@@ -1,6 +1,7 @@
 extends Node
 
-#@export var invuln_component : InvulnComponent
+
+@export var invuln_component : InvulnComponent
 @export var parry_duration : float 
 @export var parry_cooldown : float
 
@@ -18,8 +19,8 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-		if event.is_action_pressed("paint_guard") and cooldown_timer.is_stopped():
-			paint_guard()
+	if event.is_action_pressed("paint_guard") and cooldown_timer.is_stopped():
+		paint_guard()
 
 func paint_guard() -> void:
 	invuln_component.activate(parry_duration)
