@@ -11,3 +11,4 @@ position = Vector2(2312, 3754)
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
 
 [editable path="Player"]
+[editable path="CanvasLayer/Hud"]
