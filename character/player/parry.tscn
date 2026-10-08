@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bmk7h1whywna8"]
+
+[ext_resource type="Script" uid="uid://c6tjokdv1qejj" path="res://character/player/parry.gd" id="1_upp8s"]
+
+[node name="Parry" type="Node" unique_id=933931754]
+script = ExtResource("1_upp8s")
+
+[node name="ParryCooldown" type="Timer" parent="." unique_id=704094820]
+unique_name_in_owner = true
+
+[node name="ParryDuration" type="Timer" parent="." unique_id=1342045337]
+unique_name_in_owner = true
