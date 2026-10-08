@@ -5,25 +5,34 @@ class_name PlayerMovement
 
 # Player Movmement variables
 @export_group("Horizontal Movement")
+
 ## Rate player accelerates
 @export var acceleration : float
+
 ##Rate player slows down when no left/right key is pressed
 @export var deceleration : float
+
 ## Max Player Speed
 @export var maxVelocity : float
+
 ## How fast player decreases when over max speed
 @export var dampening : float 
 
 @export_group("Jump")
+
 ##The impulse applied to the p	layer when they jump
 @export var jump_velocity : float = -2500.0
+
 ##The default vertical acceleration of the player, in px/sec
 @export var gravity : float = 4000.0
+
 ##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
 ##to give them better control over the player's jump.
 @export_range(0.0,1.0) var early_jump_release_multiplier : float = 0.55
+
 ##Time (in seconds) early the player can buffer a jump
 @export var jump_buffer_time: float = 0.1
+
 ## Time (seconds) that the player can jump after
 ## falling off a platform.
 @export var coyote_time : float = 0.1
@@ -37,6 +46,7 @@ var last_horizontal_direction : float
 
 
 func _input(event: InputEvent) -> void:
+	
 	##Jump Inputs
 	if event.is_action_pressed("jump"):
 		var jumped : bool = jump()
@@ -45,19 +55,24 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("jump"):
 		early_release()
 
+	
+
 func _physics_process(delta: float) -> void:
-	walk(Input.get_axis("move_left", "move_right"), delta)
+	if has_control_of_x_vel():
+		walk(Input.get_axis("move_left", "move_right"), delta)
+		
 	
 	##Coyote detection
-	if player.is_on_floor():
-		if not jump_buffer_timer.is_stopped():
-			jump()
-			jump_buffer_timer.stop()
-	else:
-		if coyote_eligible and player.velocity.y > 0 and coyote_timer.is_stopped():
-			coyote_eligible = false
-			coyote_timer.start(coyote_time)
-		player.velocity.y += gravity * delta
+	if has_control_of_y_vel():
+		if player.is_on_floor():
+			if not jump_buffer_timer.is_stopped():
+				jump()
+				jump_buffer_timer.stop()
+		else:
+			if coyote_eligible and player.velocity.y > 0 and coyote_timer.is_stopped():
+				coyote_eligible = false
+				coyote_timer.start(coyote_time)
+			player.velocity.y += gravity * delta
 	
 	
 	player.move_and_slide()
@@ -71,6 +86,9 @@ func _physics_process(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func walk(direction: float, delta : float) -> void:
+	if not has_control_of_x_vel():
+		return
+	
 	var velocity : Vector2 = player.velocity
 	if direction:
 		last_horizontal_direction = direction
@@ -109,8 +127,16 @@ func jump() -> bool:
 	jump_buffer_timer.stop()
 	return true
 
-
 func early_release() -> void:
 	if can_early_jump_release and player.velocity.y < 0:
 		player.velocity.y *= early_jump_release_multiplier
 		can_early_jump_release = false
+		
+func is_none_state() -> bool:
+	return player.state == Player.State.NONE
+	
+func has_control_of_x_vel() -> bool:
+	return player.state != Player.State.SLAM
+
+func has_control_of_y_vel():
+	return player.state != Player.State.SLAM
