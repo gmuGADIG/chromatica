@@ -1,9 +1,18 @@
 [gd_scene format=3 uid="uid://v312c2564i2o"]
 
 [ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="1_yhsm3"]
+[ext_resource type="PackedScene" uid="uid://clra6nv8aoo0u" path="res://ui/hud/hud.tscn" id="2_lm4yx"]
 
 [node name="RoomBase" type="Node2D" unique_id=1762502460]
 
 [node name="Player" parent="." unique_id=1162272003 instance=ExtResource("1_yhsm3")]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=522952111]
+
+[node name="Hud" parent="CanvasLayer" unique_id=916575799 instance=ExtResource("2_lm4yx")]
+
+[node name="PlayerHealthUI" parent="CanvasLayer/Hud" index="0" unique_id=2034468648 node_paths=PackedStringArray("player_health")]
+player_health = NodePath("../../../Player/PlayerHealthComponent")
+
 [editable path="Player"]
+[editable path="CanvasLayer/Hud"]

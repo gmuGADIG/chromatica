@@ -14,12 +14,6 @@ signal health_depleted
 func _ready() -> void:
 	reset_health()
 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func reset_health() -> void:
 	hp = maximum_hp
 
@@ -29,3 +23,4 @@ func update_health(difference: int) -> void:
 		health_depleted.emit()
 	if hp > maximum_hp:
 		hp = maximum_hp
+	health_changed.emit(hp)
