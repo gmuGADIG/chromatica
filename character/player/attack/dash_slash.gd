@@ -45,6 +45,7 @@ func _physics_process(delta: float) -> void:
 	player.velocity.x = dash_slash_velocity.sample(dash_slash_time) * dash_direction
 	player.velocity.y = 0
 	player.move_and_slide()
+	print(player.state)
 
 func dash_slash() -> void:
 	if is_dashing_slashing() or not can_dash_slash:
