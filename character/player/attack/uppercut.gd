@@ -35,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	player.velocity.y = uppercut_vertical_velocity.sample(uppercut_time) * uppercut_direction
 	player.move_and_slide()
 		
+	#sets player state to none when uppercut movement is completed
 	if uppercut_time >= uppercut_vertical_velocity.max_domain:
 		player.state = Player.State.NONE
 	
