@@ -34,6 +34,7 @@ folder_colors={
 "res://character/enemy/": "red",
 "res://character/npc/": "orange",
 "res://character/player/": "yellow",
+"res://character/projectile/": "green",
 "res://ldtk/": "yellow",
 "res://systems/": "green",
 "res://temp/": "gray",
