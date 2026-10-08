@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="8_0cf6c"]
+[ext_resource type="Script" uid="uid://qsjyr53tj0c1" path="res://character/player/player_pickup.gd" id="10_qh58e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -22,6 +23,9 @@ size = Vector2(256, 256)
 _limits = [400.0, 2400.0, 0.0, 0.3]
 _data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.09883721, 2400), 0.0, 0.0, 0, 0, Vector2(0.3, 1389.4736), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3pmv"]
+size = Vector2(130, 259)
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
@@ -99,3 +103,14 @@ metadata/_custom_type_script = "uid://damau8bpijlrc"
 
 [node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
 one_shot = true
+
+[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("10_qh58e")
+metadata/_custom_type_script = "uid://qsjyr53tj0c1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupRegion" unique_id=1466356474]
+position = Vector2(-2, -119.5)
+shape = SubResource("RectangleShape2D_q3pmv")
+debug_color = Color(0.5186686, 0.54240805, 0.5379915, 0.41960785)
