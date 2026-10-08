@@ -5,7 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
 
 [sub_resource type="Curve" id="Curve_r6k6n"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+_limits = [0.0, 6000.0, 0.0, 1.0]
+_data = [Vector2(0, 3184.6155), 0.0, 2815.3845, 0, 1, Vector2(1, 6000), 2815.3845, 0.0, 1, 0]
 point_count = 2
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
