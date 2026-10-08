@@ -9,10 +9,11 @@ class_name RoomData
 @export var adjacent_rooms : Array[String]
 "
 
-[sub_resource type="Resource" id="Resource_d247u"]
+[sub_resource type="Resource" id="Resource_h2u8b"]
 script = SubResource("GDScript_h2u8b")
-size = Vector2(5248, 3328)
-adjacent_rooms = Array[String](["394a8610-96d0-11f1-93be-9b3cf3013799"])
+world_position = Vector2(5248, -1920)
+size = Vector2(7296, 5248)
+adjacent_rooms = Array[String](["0422f9d0-96d0-11f1-a239-d7fe97153aa0"])
 
 [sub_resource type="Resource" id="Resource_vqip4"]
 script = SubResource("GDScript_h2u8b")
@@ -41,6 +42,6 @@ func add_room(level : LDTKLevel) -> void:
 [resource]
 script = SubResource("GDScript_t1xd1")
 room_data = Dictionary[String, SubResource("GDScript_h2u8b")]({
-"0422f9d0-96d0-11f1-a239-d7fe97153aa0": SubResource("Resource_d247u"),
-"394a8610-96d0-11f1-93be-9b3cf3013799": SubResource("Resource_vqip4")
+"0422f9d0-96d0-11f1-a239-d7fe97153aa0": SubResource("Resource_vqip4"),
+"394a8610-96d0-11f1-93be-9b3cf3013799": SubResource("Resource_h2u8b")
 })

@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://v312c2564i2o"]
 
+[ext_resource type="Script" uid="uid://dqna7jw2p650v" path="res://world/world/world.gd" id="1_i0vah"]
 [ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="1_yhsm3"]
+[ext_resource type="Script" uid="uid://cnwiid7bd5x7u" path="res://world/world/room_data.gd" id="2_csdlw"]
 [ext_resource type="PackedScene" uid="uid://clra6nv8aoo0u" path="res://ui/hud/hud.tscn" id="2_lm4yx"]
+[ext_resource type="Script" uid="uid://b6tixspcch8b5" path="res://world/world/world_cache.gd" id="3_0ist6"]
 [ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="3_gi12a"]
 [ext_resource type="PackedScene" uid="uid://blbd8cixeawwr" path="res://world/interactable/interactable_region.tscn" id="4_w34fv"]
+[ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="8_qnlc3"]
+
+[sub_resource type="Resource" id="Resource_ukolr"]
+script = ExtResource("3_0ist6")
+metadata/_custom_type_script = "uid://b6tixspcch8b5"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_80d8p"]
 radius = 79.7
@@ -11,8 +19,9 @@ radius = 79.7
 [sub_resource type="CircleShape2D" id="CircleShape2D_de260"]
 radius = 84.2
 
-[node name="RoomBase" type="Node2D" unique_id=1762502460]
-position = Vector2(340, 638)
+[node name="World" type="Node2D" unique_id=1762502460]
+script = ExtResource("1_i0vah")
+world_cache = SubResource("Resource_ukolr")
 
 [node name="Player" parent="." unique_id=1162272003 instance=ExtResource("1_yhsm3")]
 
@@ -41,6 +50,9 @@ position = Vector2(2923, 2077)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel/InteractableRegion2" unique_id=234079809]
 shape = SubResource("CircleShape2D_de260")
+
+[node name="Test2" parent="." unique_id=365624718 instance=ExtResource("8_qnlc3")]
+position = Vector2(2160, -3913)
 
 [editable path="Player"]
 [editable path="CanvasLayer/Hud"]
