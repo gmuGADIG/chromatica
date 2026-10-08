@@ -6,17 +6,22 @@ class_name PlayerMovement
 # Player Movmement variables
 @export_group("Horizontal Movement")
 ## Rate player accelerates
-@export var acceleration : float
+@export var acceleration : float = 10000.0
 ##Rate player slows down when no left/right key is pressed
-@export var deceleration : float
+@export var deceleration : float = 4000.0
 ## Max Player Speed
-@export var maxVelocity : float
+@export var maxVelocity : float = 1000.0
 ## How fast player decreases when over max speed
-@export var dampening : float 
+@export var dampening : float = 11000.0
+
 
 @export_group("Jump")
 ##The impulse applied to the p	layer when they jump
-@export var jump_velocity : float = -2500.0
+@export var jump_velocity : float = 2430.0
+##The vertical & horizontal impulse applied to the player when they walljump
+##(NOTE: Make sure these values remains positive, or else the player will jump into the wall, 
+##aka not have any horizontal velocity!)
+@export var walljump_velocity : Vector2 = Vector2(1500,2000)
 ##The default vertical acceleration of the player, in px/sec
 @export var gravity : float = 4000.0
 ##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
@@ -27,6 +32,8 @@ class_name PlayerMovement
 ## Time (seconds) that the player can jump after
 ## falling off a platform.
 @export var coyote_time : float = 0.1
+## How fast the player will descend from gravity
+@export_range(0.0,3.0) var descending_gravity_multiplier : float = 1.2
 
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
@@ -37,33 +44,59 @@ var last_horizontal_direction : float
 
 
 func _input(event: InputEvent) -> void:
+	if not no_special_player_state():
+		return
 	##Jump Inputs
 	if event.is_action_pressed("jump"):
+		##Try normal jump
 		var jumped : bool = jump()
-		if not jumped:
-			jump_buffer_timer.start(jump_buffer_time)
+		if jumped:
+			return
+		
+		##Try Walljump
+		var walljumped : bool = walljump()
+		if walljumped:
+			return
+			
+		jump_buffer_timer.start(jump_buffer_time)
 	elif event.is_action_released("jump"):
 		early_release()
 
 func _physics_process(delta: float) -> void:
+	if not no_special_player_state():
+		return
 	walk(Input.get_axis("move_left", "move_right"), delta)
 	
-	##Coyote detection
-	if player.is_on_floor():
-		if not jump_buffer_timer.is_stopped():
-			jump()
-			jump_buffer_timer.stop()
-	else:
-		if coyote_eligible and player.velocity.y > 0 and coyote_timer.is_stopped():
-			coyote_eligible = false
-			coyote_timer.start(coyote_time)
-		player.velocity.y += gravity * delta
+	##Jump Buffering
+	if not jump_buffer_timer.is_stopped() and can_jump():
+		jump()
+		jump_buffer_timer.stop()
 	
+	##Walljump Buffering
+	if not jump_buffer_timer.is_stopped() and can_walljump():
+		walljump()
+		jump_buffer_timer.stop()
+	
+	##Start Coyote Time
+	if coyote_conditions_met():
+		coyote_eligible = false
+		coyote_timer.start(coyote_time)
+	
+	if not player.is_on_floor():
+		if player.velocity.y < -1.0:
+			player.velocity.y += gravity * delta
+		else :
+			player.velocity.y += gravity * descending_gravity_multiplier * delta
 	
 	player.move_and_slide()
 	
-	if player.is_on_floor():
+	if player.is_on_floor() or player.is_on_wall_only():
 		coyote_eligible = true
+
+func coyote_conditions_met() -> bool:
+	var air_check : bool = not player.is_on_floor() and not player.is_on_wall()
+	var coyote_valid : bool = coyote_eligible and coyote_timer.is_stopped()
+	return air_check and coyote_valid
 
 ##----------------------------------------------------------------------
 ##					HORIZONTAL PLAYER MOVEMENT
@@ -98,19 +131,37 @@ func walk(direction: float, delta : float) -> void:
 func can_jump() -> bool:
 	return player.is_on_floor() or not coyote_timer.is_stopped()
 
+func can_walljump() -> bool:
+	return not player.is_on_floor() and (player.is_on_wall() or not coyote_timer.is_stopped())
+
 # Handle jump.	
 func jump() -> bool:
 	if not can_jump():
 		return false
-	player.velocity.y = jump_velocity
+	player.velocity.y = - jump_velocity
 	can_early_jump_release = true
 	coyote_eligible = false
 	coyote_timer.stop()
 	jump_buffer_timer.stop()
 	return true
 
+# Handle walljump.	
+func walljump() -> bool:
+	if not can_walljump():
+		return false
+	player.velocity.y = - walljump_velocity.y
+	player.velocity.x = - walljump_velocity.x * last_horizontal_direction #multiply by last horizontal direction to jump away from wall
+	can_early_jump_release = true
+	return true
 
 func early_release() -> void:
 	if can_early_jump_release and player.velocity.y < 0:
 		player.velocity.y *= early_jump_release_multiplier
 		can_early_jump_release = false
+
+func no_special_player_state() -> bool:
+	match player.state:
+		Player.State.NONE, Player.State.BRUSH_SWING:
+			return true
+		_:
+			return false

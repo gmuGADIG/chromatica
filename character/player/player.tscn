@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
 [ext_resource type="Script" uid="uid://dxmxyhjlyo0pu" path="res://temp/DamageInfo.gd" id="7_qh58e"]
 [ext_resource type="PackedScene" uid="uid://bvmsytqm23rk2" path="res://character/player/attack/player_hurtbox.tscn" id="7_v2h1c"]
+[ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="8_0cf6c"]
 [ext_resource type="Script" uid="uid://cg00jpsjgo1fo" path="res://character/player/attack/player_hurtbox.gd" id="8_qh58e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -22,6 +23,11 @@ script = ExtResource("7_qh58e")
 damage = 2
 metadata/_custom_type_script = "uid://dxmxyhjlyo0pu"
 
+[sub_resource type="Curve" id="Curve_0cf6c"]
+_limits = [400.0, 2400.0, 0.0, 0.3]
+_data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.09883721, 2400), 0.0, 0.0, 0, 0, Vector2(0.3, 1389.4736), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
 
@@ -30,13 +36,10 @@ position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
 debug_color = Color(0.89526504, 0.21086764, 0.40460575, 0.41960785)
 
-[node name="PlayerMovement" type="Node" parent="." unique_id=415994900 node_paths=PackedStringArray("player")]
+[node name="PlayerMovement" type="Node" parent="." unique_id=1409911704 node_paths=PackedStringArray("player")]
 script = ExtResource("2_gtsfv")
 player = NodePath("..")
-acceleration = 10000.0
-deceleration = 4000.0
-maxVelocity = 1000.0
-dampening = 11000.0
+metadata/_custom_type_script = "uid://c46qdvbh0fpd7"
 
 [node name="JumpBuffer" type="Timer" parent="PlayerMovement" unique_id=2434172]
 one_shot = true
@@ -72,11 +75,22 @@ brush_damage = SubResource("Resource_f4o15")
 hurtbox = NodePath("AttackArea")
 metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
-[node name="AttackArea" parent="PlayerBrush" unique_id=379676843 instance=ExtResource("7_v2h1c")]
+[node name="AttackArea" parent="PlayerBrush" unique_id=379676843 node_paths=PackedStringArray("player") instance=ExtResource("7_v2h1c")]
 position = Vector2(128, -120)
 script = ExtResource("8_qh58e")
+player = NodePath("../..")
 
 [node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
 position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
+
+[node name="DashSlash" type="Node" parent="." unique_id=1797641148 node_paths=PackedStringArray("player", "player_movement")]
+script = ExtResource("8_0cf6c")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
+dash_slash_velocity = SubResource("Curve_0cf6c")
+metadata/_custom_type_script = "uid://damau8bpijlrc"
+
+[node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
+one_shot = true
