@@ -90,6 +90,12 @@ position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
 
+[node name="InvulnComponent" type="Node" parent="." unique_id=1065872139]
+script = ExtResource("8_0cf6c")
+metadata/_custom_type_script = "uid://b0f7is5e7h133"
+
+[node name="InvulnTimer" type="Timer" parent="InvulnComponent" unique_id=652236105]
+
 [node name="DashSlash" type="Node" parent="." unique_id=1797641148 node_paths=PackedStringArray("player", "player_movement")]
 script = ExtResource("8_0cf6c")
 player = NodePath("..")
