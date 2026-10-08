@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
+[ext_resource type="Script" uid="uid://dxmxyhjlyo0pu" path="res://temp/DamageInfo.gd" id="7_qh58e"]
 [ext_resource type="PackedScene" uid="uid://bvmsytqm23rk2" path="res://character/player/attack/player_hurtbox.tscn" id="7_v2h1c"]
 [ext_resource type="Script" uid="uid://cg00jpsjgo1fo" path="res://character/player/attack/player_hurtbox.gd" id="8_qh58e"]
 
@@ -15,6 +16,11 @@ size = Vector2(96, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
 size = Vector2(133, 261)
+
+[sub_resource type="Resource" id="Resource_f4o15"]
+script = ExtResource("7_qh58e")
+damage = 2
+metadata/_custom_type_script = "uid://dxmxyhjlyo0pu"
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
@@ -56,12 +62,14 @@ shape = SubResource("RectangleShape2D_d0bka")
 script = ExtResource("5_eu8pa")
 metadata/_custom_type_script = "uid://drt58jn726c1u"
 
-[node name="PlayerBrush" type="Node2D" parent="." unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement")]
+[node name="PlayerBrush" type="Node2D" parent="." unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement", "hurtbox")]
 position = Vector2(0, -120)
 script = ExtResource("6_eu8pa")
 player = NodePath("..")
 player_movement = NodePath("../PlayerMovement")
 brush_width = 200.0
+brush_damage = SubResource("Resource_f4o15")
+hurtbox = NodePath("AttackArea")
 metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
 [node name="AttackArea" parent="PlayerBrush" unique_id=379676843 instance=ExtResource("7_v2h1c")]
