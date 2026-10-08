@@ -10,10 +10,10 @@ class_name PlayerHurtbox extends Area2D
 ## The time (in seconds) that an attack will register after input
 @export var swing_buffer_time : float = 0.3
 
-@onready var collision_shape : RectangleShape2D = $CollisionShape2D.shape
-@onready var attack_timer : Timer = $SwingDuration
-@onready var buffer_timer : Timer = $SwingBuffer
-@onready var recovery_timer : Timer = $SwingRecovery
+@onready var collision_shape := $CollisionShape2D.shape as RectangleShape2D
+@onready var attack_timer := $SwingDuration as Timer
+@onready var buffer_timer := $SwingBuffer as Timer
+@onready var recovery_timer := $SwingRecovery as Timer
 
 ##Used to avoid double hitting entities & objects within a single swing
 var hit_things : Array[Variant]

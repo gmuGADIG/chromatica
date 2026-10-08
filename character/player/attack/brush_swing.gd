@@ -6,7 +6,7 @@ class_name PlayerBrush
 @export var brush_width : float = 256
 @export var brush_length : float = 256
 
-@export_group("Properties")
+@export_group("Attack Properties")
 @export var brush_damage : DamageInfo
 @export var hurtbox: PlayerHurtbox
 
