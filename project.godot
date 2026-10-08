@@ -41,7 +41,7 @@ folder_colors={
 "res://world/camera/": "red",
 "res://world/decoration/": "orange",
 "res://world/interactable/": "yellow",
-"res://world/world/": "blue"
+"res://world/rooms/": "blue"
 }
 
 [global_group]
