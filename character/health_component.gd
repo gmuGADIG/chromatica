@@ -3,7 +3,7 @@ extends Node
 class_name HealthComponent
 
 @export var maximum_hp: int
-@export var invuln_component: InvulnComponent
+
 
 var hp: int
 ## Updates maxHP, reserved for the player character.
@@ -22,12 +22,19 @@ func _process(delta: float) -> void:
 func reset_health() -> void:
 	hp = maximum_hp
 
-func update_health(difference: int) -> void:
-	if(invuln_component != null && difference < 0):
-		if(invuln_component.is_invuln() ):
-			pass
-		else:
-			invuln_component.activate()
+func hurt(amount : int) -> void:
+	if amount < 0:
+		printerr("Negative value provided. Please use heal(amount) instead")
+	
+	_update_health(-amount)
+
+func heal(amount : int) -> void:
+	if amount < 0:
+		printerr("Negative value provided. Please use hurt(amount) instead")
+	
+	_update_health(amount)
+
+func _update_health(difference: int) -> void:
 	hp += difference
 	if hp <= 0:
 		health_depleted.emit()

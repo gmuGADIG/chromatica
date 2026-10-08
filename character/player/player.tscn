@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
+[ext_resource type="Script" uid="uid://b0f7is5e7h133" path="res://character/invuln_component.gd" id="8_0cf6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -86,3 +87,9 @@ shape = SubResource("RectangleShape2D_eu8pa")
 position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
+
+[node name="InvulnComponent" type="Node" parent="." unique_id=1065872139]
+script = ExtResource("8_0cf6c")
+metadata/_custom_type_script = "uid://b0f7is5e7h133"
+
+[node name="InvulnTimer" type="Timer" parent="InvulnComponent" unique_id=652236105]
