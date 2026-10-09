@@ -8,6 +8,8 @@ class_name Uppercut
 
 @export var uppercut_vertical_velocity : Curve
 
+
+var can_uppercut: bool = true
 #time elapsed in the uppercut.
 var uppercut_time: float = 0
 #A normalized value for the direction the player is uppercutting in
@@ -16,17 +18,22 @@ var uppercut_direction : float
 
 func _input(event : InputEvent) -> void:
 	if event.is_action_pressed("temp_uppercut"):
-		uppercut()
+		if can_uppercut == true:
+			uppercut()
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
+	#sets player state to none when uppercut movement is completed
+	if uppercut_time >= uppercut_vertical_velocity.max_domain:
+		player.state = Player.State.NONE
+		if player.is_on_floor():
+			can_uppercut = true
+			
+			
 	if player.state != Player.State.UPPERCUT:
-		if player.state == Player.State.UPPERCUT and player.is_on_floor():
-			player.state = Player.State.NONE
 		return
-		
 	
 	uppercut_time += delta
 	
@@ -34,10 +41,7 @@ func _physics_process(delta: float) -> void:
 	player.velocity.x = 0
 	player.velocity.y = uppercut_vertical_velocity.sample(uppercut_time) * uppercut_direction
 	player.move_and_slide()
-		
-	#sets player state to none when uppercut movement is completed
-	if uppercut_time >= uppercut_vertical_velocity.max_domain:
-		player.state = Player.State.NONE
+	
 	
 	
 func uppercut():
@@ -46,6 +50,7 @@ func uppercut():
 		
 	uppercut_direction = -1
 	uppercut_time = 0
+	can_uppercut = false
 	
 	player.state = Player.State.UPPERCUT
 
