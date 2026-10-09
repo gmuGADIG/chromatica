@@ -13,7 +13,7 @@ func _ready() -> void:
 			varnish()
 		else:
 			apply(options.pick_random())
-		print(colors)
+		#print(colors)
 
 func apply(new_color : Color) -> void:
 	assert(colors.size() <= 2, "Somehow has too many colors")
