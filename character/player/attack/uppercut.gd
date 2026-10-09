@@ -28,10 +28,11 @@ func _physics_process(delta: float) -> void:
 	#sets player state to none when uppercut movement is completed
 	if uppercut_time >= uppercut_vertical_velocity.max_domain:
 		player.state = Player.State.NONE
+		##allows player to uppercut again if on floor
 		if player.is_on_floor():
 			can_uppercut = true
 			
-			
+	
 	if player.state != Player.State.UPPERCUT:
 		return
 	
@@ -48,6 +49,7 @@ func uppercut():
 	if is_in_uppercut():
 		return
 		
+	
 	uppercut_direction = -1
 	uppercut_time = 0
 	can_uppercut = false
