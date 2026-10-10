@@ -32,6 +32,8 @@ enabled=PackedStringArray("res://addons/ldtk-importer/plugin.cfg")
 folder_colors={
 "res://character/": "red",
 "res://character/enemy/": "red",
+"res://character/enemy/Prototype Enemies/": "teal",
+"res://character/enemy/Prototype Enemies/lunger/": "teal",
 "res://character/npc/": "orange",
 "res://character/player/": "yellow",
 "res://ldtk/": "yellow",

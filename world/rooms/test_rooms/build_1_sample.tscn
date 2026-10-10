@@ -2,13 +2,24 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
+[ext_resource type="PackedScene" uid="uid://dl360ryxy7aw4" path="res://character/enemy/Prototype Enemies/lunger/lunger.tscn" id="3_r6k6n"]
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
 
 [node name="Player" parent="." index="0" unique_id=1162272003]
 position = Vector2(2312, 3754)
 
+[node name="PlayerBrush" parent="Player" index="5" unique_id=1894793710]
+brush_damage = null
+
+[node name="PlayerHitbox" parent="Player" index="8" unique_id=1843909000]
+collision_layer = 17
+collision_mask = 17
+
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
+
+[node name="Lunger" parent="." index="3" unique_id=43181616 instance=ExtResource("3_r6k6n")]
+position = Vector2(3222, 3970)
 
 [editable path="Player"]
 [editable path="CanvasLayer/Hud"]

@@ -23,6 +23,8 @@ texture = ExtResource("2_h3dsv")
 offset = Vector2(28.65, 1.71)
 
 [node name="EnemyHitbox" type="Area2D" parent="." unique_id=1147118622]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("3_th2e7")
 metadata/_custom_type_script = "uid://rbki0mvel4rg"
 
