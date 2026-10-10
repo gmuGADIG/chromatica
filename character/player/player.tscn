@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="8_0cf6c"]
+[ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="9_v2h1c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -23,8 +24,9 @@ _limits = [400.0, 2400.0, 0.0, 0.3]
 _data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.09883721, 2400), 0.0, 0.0, 0, 0, Vector2(0.3, 1389.4736), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Player" type="CharacterBody2D" unique_id=1162272003]
+[node name="Player" type="CharacterBody2D" unique_id=1162272003 node_paths=PackedStringArray("player_hitbox")]
 script = ExtResource("1_oul6g")
+player_hitbox = NodePath("PlayerHitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
@@ -58,6 +60,7 @@ shape = SubResource("RectangleShape2D_d0bka")
 
 [node name="PlayerHealthComponent" type="Node" parent="." unique_id=1017469324]
 script = ExtResource("5_eu8pa")
+maximum_hp = 100
 metadata/_custom_type_script = "uid://drt58jn726c1u"
 
 [node name="PlayerBrush" type="Node2D" parent="." unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement")]
@@ -105,3 +108,7 @@ metadata/_custom_type_script = "uid://damau8bpijlrc"
 
 [node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
 one_shot = true
+
+[node name="PlayerHitbox" parent="." unique_id=1843909000 instance=ExtResource("9_v2h1c")]
+position = Vector2(-11, -120)
+scale = Vector2(3.426957, 11.96)
