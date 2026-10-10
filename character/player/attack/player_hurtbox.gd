@@ -1,7 +1,24 @@
+@tool
 class_name PlayerHurtbox extends Area2D
 
-@export var player : Player
+signal finished
 
+@export var player : Player
+@export var collision_shape : CollisionShape2D
+
+@export_group("Dimensions")
+@export var hurtbox_shape : Vector2 = Vector2(256,256):
+	set(val):
+		hurtbox_shape = val
+		_update_hurtbox_shape()
+@export var offset : Vector2 = Vector2(128,0):
+	set(val):
+		offset = val
+		_update_hurtbox_shape()
+
+@export_group("Timing")
+##The time (in seconds) that the hitbox exists
+@export var swing_duration: float = 0.1
 @export_group("Timing")
 ##The time (in seconds) that the hitbox exists
 @export var swing_duration: float = 0.1
@@ -10,7 +27,13 @@ class_name PlayerHurtbox extends Area2D
 ## The time (in seconds) that an attack will register after input
 @export var swing_buffer_time : float = 0.3
 
-@onready var collision_shape := $CollisionShape2D.shape as RectangleShape2D
+@export_group("Debug")
+@export_enum("Left:180","Right:0","Up:270","Down:90") var attack_direction: int:
+	set(val):
+		attack_direction = val
+		rotation_degrees = val
+
+@onready var rect_shape : RectangleShape2D = $CollisionShape2D.shape
 @onready var attack_timer := $SwingDuration as Timer
 @onready var buffer_timer := $SwingBuffer as Timer
 @onready var recovery_timer := $SwingRecovery as Timer
@@ -25,6 +48,7 @@ signal enemy_hit(enemy: EnemyHitbox)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	hide()
 	area_entered.connect(_on_area_entered)	
 	attack_timer.wait_time = swing_duration
 	recovery_timer.wait_time = swing_recovery
@@ -46,9 +70,23 @@ func start_attack(dir: Vector2) -> void:
 		buffer_timer.start()
 		return
 
+	if dir.is_equal_approx(Vector2.RIGHT):
+		rotation_degrees = 0
+	elif dir.is_equal_approx(Vector2.DOWN):
+		rotation_degrees = 90
+	elif dir.is_equal_approx(Vector2.LEFT):
+		rotation_degrees = 180
+	elif dir.is_equal_approx(Vector2.UP):
+		rotation_degrees = 270
+	else:
+		printerr("Invalid attack direction")
+
 	hit_things.clear()
 	#maybe wepon move
 	position = dir
+	monitoring = true
+	show()
+	attack_timer.start()
 	monitoring = true
 	show()
 	attack_timer.start()
@@ -56,10 +94,14 @@ func start_attack(dir: Vector2) -> void:
 func end_attack() -> void:
 	monitoring = false
 	hide()
+func end_attack() -> void:
+	monitoring = false
+	hide()
+	finished.emit()
 	recovery_timer.start()
 
 func set_size(size: Vector2) -> void:
-	collision_shape.size = size
+	collision_shape.shape.size = size
 
 func _on_area_entered(area: Area2D) -> void:
 	if hit_things.has(area):
@@ -68,3 +110,14 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is EnemyHitbox:
 		enemy_hit.emit(area)
 		hit_things.append(area)
+func _on_area_entered(area: Area2D) -> void:
+	if hit_things.has(area):
+		return
+
+	if area is EnemyHitbox:
+		enemy_hit.emit(area)
+		hit_things.append(area)
+
+func _update_hurtbox_shape() -> void:
+	collision_shape.shape.size = hurtbox_shape
+	collision_shape.position = offset

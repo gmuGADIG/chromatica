@@ -8,6 +8,7 @@ class_name PlayerBrush
 
 @export_group("Attack Properties")
 @export var brush_damage : DamageInfo
+@export var brush_recovery : float = 0.2
 @export var hurtbox: PlayerHurtbox
 
 func _ready() -> void:
@@ -20,6 +21,9 @@ func _input(event: InputEvent):
 		try_swing()
 
 func try_swing() -> void:
+	if player.state != Player.State.NONE:
+		return
+
 	if player.is_on_floor() and Input.is_action_pressed("look_up"):
 		brush_vertical()
 		swing_brush(180*Vector2.UP)
@@ -31,12 +35,14 @@ func try_swing() -> void:
 		var dir : Vector2 = Vector2(player_movement.last_horizontal_direction,0).normalized()
 		swing_brush(100*dir)
 
-func brush_horizontal() -> void:
-	hurtbox.set_size(Vector2(brush_width, brush_length))
-
-func brush_vertical() -> void:
-	hurtbox.set_size(Vector2(brush_length, brush_width))
-
 func swing_brush(dir : Vector2) -> void:
 	player.state = Player.State.BRUSH_SWING
 	hurtbox.start_attack(dir)
+func swing_brush(dir : Vector2) -> void:
+	player.state = Player.State.BRUSH_SWING
+	hurtbox.start_attack(dir)
+	await hurtbox.finished
+	get_tree().create_timer(brush_recovery).timeout.connect(
+		func() -> void:
+			player.state = Player.State.NONE
+	)

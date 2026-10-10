@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://bvmsytqm23rk2" path="res://character/player/attack/player_hurtbox.tscn" id="7_v2h1c"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="8_0cf6c"]
 [ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="9_v2h1c"]
+[ext_resource type="PackedScene" uid="uid://bvmsytqm23rk2" path="res://character/player/attack/player_hurtbox.tscn" id="7_v2h1c"]
+[ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="8_0cf6c"]
+[ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="9_v2h1c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -23,7 +26,6 @@ size = Vector2(133, 261)
 script = ExtResource("7_qh58e")
 damage = 2
 metadata/_custom_type_script = "uid://dxmxyhjlyo0pu"
-
 [sub_resource type="Curve" id="Curve_0cf6c"]
 _limits = [400.0, 2400.0, 0.0, 0.3]
 _data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.09883721, 2400), 0.0, 0.0, 0, 0, Vector2(0.3, 1389.4736), 0.0, 0.0, 0, 0]
@@ -72,13 +74,18 @@ position = Vector2(0, -120)
 script = ExtResource("6_eu8pa")
 player = NodePath("..")
 player_movement = NodePath("../PlayerMovement")
+script = ExtResource("6_eu8pa")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
 brush_width = 200.0
 brush_damage = SubResource("Resource_f4o15")
+hurtbox = NodePath("AttackArea")
 hurtbox = NodePath("AttackArea")
 metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
 [node name="AttackArea" parent="PlayerBrush" unique_id=379676843 node_paths=PackedStringArray("player") instance=ExtResource("7_v2h1c")]
 position = Vector2(128, -120)
+player = NodePath("../..")
 player = NodePath("../..")
 
 [node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
