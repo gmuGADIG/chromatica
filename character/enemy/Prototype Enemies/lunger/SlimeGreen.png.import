@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds6uxu3rkik2x"
-path="res://.godot/imported/SlimeGreen.png-963bfd3d16b8258250cfda3b653ccde8.ctex"
+path="res://.godot/imported/SlimeGreen.png-2f3221c40ef5671ef9b15612a18900b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/enemy/lunger/SlimeGreen.png"
-dest_files=["res://.godot/imported/SlimeGreen.png-963bfd3d16b8258250cfda3b653ccde8.ctex"]
+source_file="res://character/enemy/Prototype Enemies/lunger/SlimeGreen.png"
+dest_files=["res://.godot/imported/SlimeGreen.png-2f3221c40ef5671ef9b15612a18900b0.ctex"]
 
 [params]
 

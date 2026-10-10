@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dl360ryxy7aw4"]
 
 [ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="1_2mvmp"]
-[ext_resource type="Script" uid="uid://c7wwmvfitagrk" path="res://character/enemy/lunger/lunger.gd" id="2_dcpid"]
-[ext_resource type="Texture2D" uid="uid://ds6uxu3rkik2x" path="res://character/enemy/lunger/SlimeGreen.png" id="3_kjlnf"]
-[ext_resource type="Script" uid="uid://cih1pj1joicl6" path="res://character/enemy/lunger/attack_sight_range.gd" id="4_kjlnf"]
+[ext_resource type="Script" uid="uid://c7wwmvfitagrk" path="res://character/enemy/Prototype Enemies/lunger/lunger.gd" id="2_dcpid"]
+[ext_resource type="Texture2D" uid="uid://ds6uxu3rkik2x" path="res://character/enemy/Prototype Enemies/lunger/SlimeGreen.png" id="3_kjlnf"]
+[ext_resource type="Script" uid="uid://cih1pj1joicl6" path="res://character/enemy/Prototype Enemies/lunger/attack_sight_range.gd" id="4_kjlnf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v1lu5"]
 radius = 97.0
