@@ -15,6 +15,7 @@ class_name PlayerMovement
 @export var dampening : float = 11000.0
 
 
+
 @export_group("Jump")
 ##The impulse applied to the p	layer when they jump
 @export var jump_velocity : float = 2430.0
@@ -22,8 +23,6 @@ class_name PlayerMovement
 ##(NOTE: Make sure these values remains positive, or else the player will jump into the wall, 
 ##aka not have any horizontal velocity!)
 @export var walljump_velocity : Vector2 = Vector2(1500,2000)
-##The default vertical acceleration of the player, in px/sec
-@export var gravity : float = 4000.0
 ##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
 ##to give them better control over the player's jump.
 @export_range(0.0,1.0) var early_jump_release_multiplier : float = 0.55
@@ -32,8 +31,16 @@ class_name PlayerMovement
 ## Time (seconds) that the player can jump after
 ## falling off a platform.
 @export var coyote_time : float = 0.1
+
+@export_group("Gravity")
+##The default vertical acceleration of the player, in px/sec
+@export var gravity : float = 4000.0
 ## How fast the player will descend from gravity
 @export_range(0.0,3.0) var descending_gravity_multiplier : float = 1.2
+## Max Player fall Speed
+@export var max_falling_velocity : float = 3000.0
+## How fast a player decreases there falling velocity when over max speed
+@export var fall_dampening: float = 11000.0
 
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
@@ -83,15 +90,15 @@ func _physics_process(delta: float) -> void:
 		coyote_timer.start(coyote_time)
 	
 	if not player.is_on_floor():
-		if player.velocity.y < -1.0:
-			player.velocity.y += gravity * delta
-		else :
-			player.velocity.y += gravity * descending_gravity_multiplier * delta
+		apply_gravity(delta)
 	
 	player.move_and_slide()
+	if not is_zero_approx(player.velocity.y):
+		print(player.velocity.y)
 	
 	if player.is_on_floor() or player.is_on_wall_only():
 		coyote_eligible = true
+
 
 func coyote_conditions_met() -> bool:
 	var air_check : bool = not player.is_on_floor() and not player.is_on_wall()
@@ -127,6 +134,16 @@ func walk(direction: float, delta : float) -> void:
 ##----------------------------------------------------------------------
 ##					VERTICAL PLAYER MOVEMENT
 ##-----------------------------------------------------------------------
+
+func apply_gravity(delta : float) -> void:
+	if player.velocity.y < -1.0:
+		player.velocity.y += gravity * delta
+	else :
+		player.velocity.y += gravity * descending_gravity_multiplier * delta
+	
+	## when a player is elegable slows them down from falling to fast
+	if player.velocity.y > max_falling_velocity:
+		player.velocity.y = move_toward(player.velocity.y, max_falling_velocity, delta * fall_dampening)
 
 func can_jump() -> bool:
 	return player.is_on_floor() or not coyote_timer.is_stopped()
