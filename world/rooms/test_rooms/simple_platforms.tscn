@@ -29,5 +29,12 @@ shape = SubResource("CircleShape2D_r4td4")
 [node name="Player" parent="." index="1" unique_id=1162272003]
 position = Vector2(838, 1425)
 
+[node name="PlayerBrush" parent="Player" index="5" unique_id=1894793710]
+brush_damage = null
+
+[node name="AttackArea" parent="Player/PlayerBrush" index="0" unique_id=379676843]
+script = null
+
 [editable path="TestLevel"]
 [editable path="Player"]
+[editable path="CanvasLayer/Hud"]
