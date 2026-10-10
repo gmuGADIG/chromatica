@@ -7,16 +7,13 @@ signal invuln_changed(new_state : bool)
 @onready var invuln_timer : Timer = $InvulnTimer
 
 func _ready() -> void:
-	invuln_timer.timeout.connect(invuln_changed.emit)
+	invuln_timer.timeout.connect(func() -> void: invuln_changed.emit(false))
 
 func activate(duration : float = -1 ) -> void:
-	invuln_changed.emit()
-	if (duration > 0):
-		_start_timer(duration)
-	else:
-		_start_timer(default_invuln_length)
+	invuln_changed.emit(true)
+	_start_timer(duration if duration > 0 else default_invuln_length)
 
-func _start_timer(duration : float) -> void:
+func _start_timer(duration : float = -1) -> void:
 	if invuln_timer.is_stopped():
 		invuln_timer.start(duration)
 	elif invuln_timer.time_left < duration:

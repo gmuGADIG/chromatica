@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c8q0684rdd6yr"]
 
+[ext_resource type="Script" uid="uid://b0f7is5e7h133" path="res://character/invuln_component.gd" id="1_hr31g"]
 [ext_resource type="Script" uid="uid://b01g8xm68jf3v" path="res://character/player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/player_movement.gd" id="2_gtsfv"]
 [ext_resource type="Script" uid="uid://drt58jn726c1u" path="res://character/player/player_health_component.gd" id="5_eu8pa"]
@@ -10,7 +11,6 @@
 [ext_resource type="Script" uid="uid://dxmxyhjlyo0pu" path="res://temp/DamageInfo.gd" id="7_qh58e"]
 [ext_resource type="PackedScene" uid="uid://bvmsytqm23rk2" path="res://character/player/attack/player_hurtbox.tscn" id="7_v2h1c"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="8_0cf6c"]
-[ext_resource type="Script" uid="uid://cg00jpsjgo1fo" path="res://character/player/attack/player_hurtbox.gd" id="8_qh58e"]
 [ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="9_v2h1c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -29,9 +29,8 @@ _limits = [400.0, 2400.0, 0.0, 0.3]
 _data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.09883721, 2400), 0.0, 0.0, 0, 0, Vector2(0.3, 1389.4736), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Player" type="CharacterBody2D" unique_id=1162272003 node_paths=PackedStringArray("player_hitbox")]
+[node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
-player_hitbox = NodePath("PlayerHitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
@@ -65,7 +64,7 @@ shape = SubResource("RectangleShape2D_d0bka")
 
 [node name="PlayerHealthComponent" type="Node" parent="." unique_id=1017469324]
 script = ExtResource("5_eu8pa")
-maximum_hp = 100
+maximum_hp = 3
 metadata/_custom_type_script = "uid://drt58jn726c1u"
 
 [node name="PlayerBrush" type="Node2D" parent="." unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement", "hurtbox")]
@@ -80,7 +79,6 @@ metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
 [node name="AttackArea" parent="PlayerBrush" unique_id=379676843 node_paths=PackedStringArray("player") instance=ExtResource("7_v2h1c")]
 position = Vector2(128, -120)
-script = ExtResource("8_qh58e")
 player = NodePath("../..")
 
 [node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
@@ -98,6 +96,15 @@ metadata/_custom_type_script = "uid://damau8bpijlrc"
 [node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
 one_shot = true
 
-[node name="PlayerHitbox" parent="." unique_id=1843909000 instance=ExtResource("9_v2h1c")]
+[node name="PlayerHitbox" parent="." unique_id=1843909000 node_paths=PackedStringArray("health_component", "invuln_component") instance=ExtResource("9_v2h1c")]
 position = Vector2(-11, -120)
 scale = Vector2(3.426957, 11.96)
+health_component = NodePath("../PlayerHealthComponent")
+invuln_component = NodePath("../InvulnComponent")
+
+[node name="InvulnComponent" type="Node" parent="." unique_id=581107620]
+script = ExtResource("1_hr31g")
+metadata/_custom_type_script = "uid://b0f7is5e7h133"
+
+[node name="InvulnTimer" type="Timer" parent="InvulnComponent" unique_id=1986705204]
+one_shot = true

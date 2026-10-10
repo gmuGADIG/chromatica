@@ -4,10 +4,14 @@
 [ext_resource type="Script" uid="uid://c7wwmvfitagrk" path="res://character/enemy/Prototype Enemies/lunger/lunger.gd" id="2_dcpid"]
 [ext_resource type="Texture2D" uid="uid://ds6uxu3rkik2x" path="res://character/enemy/Prototype Enemies/lunger/SlimeGreen.png" id="3_kjlnf"]
 [ext_resource type="Script" uid="uid://cih1pj1joicl6" path="res://character/enemy/Prototype Enemies/lunger/attack_sight_range.gd" id="4_kjlnf"]
+[ext_resource type="Script" uid="uid://dtru68xqcltys" path="res://character/enemy/Prototype Enemies/lunger/contact_damage_area.gd" id="5_a6eqf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v1lu5"]
 radius = 97.0
 height = 258.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5khm"]
+size = Vector2(85, 104)
 
 [node name="Lunger" unique_id=43181616 node_paths=PackedStringArray("attack_sight_range") instance=ExtResource("1_2mvmp")]
 collision_layer = 8
@@ -32,3 +36,11 @@ script = ExtResource("4_kjlnf")
 position = Vector2(-110, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_v1lu5")
+
+[node name="EnemyHurtbox" type="Area2D" parent="." index="7" unique_id=1381319823]
+light_mask = 9
+script = ExtResource("5_a6eqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" index="0" unique_id=344523492]
+position = Vector2(18.5, 24)
+shape = SubResource("RectangleShape2D_p5khm")
