@@ -10,18 +10,17 @@
 [ext_resource type="Script" uid="uid://bjewudptgw235" path="res://character/player/attack/uppercut.gd" id="8_0cf6c"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="9_v2h1c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
-size = Vector2(96, 240)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
-size = Vector2(133, 261)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eu8pa"]
 size = Vector2(256, 256)
 
 [sub_resource type="Curve" id="Curve_v1uy5"]
-_limits = [-5000.0, 5000.0, 0.0, 0.5]
-_data = [Vector2(0, 5000), 0.0, 0.0, 0, 0, Vector2(0.3, 2000), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
+_limits = [0.0, 5000.0, 0.0, 0.4]
+_data = [Vector2(0, 5000), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.014634147, 0), 0.0, 0.0, 0, 0, Vector2(0.14634146, 4438.202), 0.0, 0.0, 0, 0, Vector2(0.3512195, 505.61768), 0.0, 0.0, 0, 0, Vector2(0.4, 505.61768), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Curve" id="Curve_v2h1c"]
+_limits = [0.0, 1000.0, 0.0, 0.4]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.095934965, 1000), 0.0, 0.0, 0, 0, Vector2(0.4, 516.85394), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_0cf6c"]
@@ -29,8 +28,62 @@ _limits = [400.0, 2400.0, 0.0, 0.3]
 _data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.09883721, 2400), 0.0, 0.0, 0, 0, Vector2(0.3, 1389.4736), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
+size = Vector2(96, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
+size = Vector2(133, 261)
+
 [node name="Player" type="CharacterBody2D" unique_id=1162272003]
 script = ExtResource("1_oul6g")
+
+[node name="Attacks" type="Node2D" parent="." unique_id=171343013]
+
+[node name="PlayerBrush" type="Node2D" parent="Attacks" unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement")]
+position = Vector2(0, -120)
+script = ExtResource("6_eu8pa")
+player = NodePath("../..")
+player_movement = NodePath("../../PlayerMovement")
+brush_width = 200.0
+metadata/_custom_type_script = "uid://blodtm8lm2wc3"
+
+[node name="SwingBuffer" type="Timer" parent="Attacks/PlayerBrush" unique_id=391448229]
+one_shot = true
+
+[node name="SwingDuration" type="Timer" parent="Attacks/PlayerBrush" unique_id=1846409706]
+one_shot = true
+
+[node name="SwingRecovery" type="Timer" parent="Attacks/PlayerBrush" unique_id=1513721812]
+one_shot = true
+
+[node name="AttackArea" type="Area2D" parent="Attacks/PlayerBrush" unique_id=2093298999]
+visible = false
+position = Vector2(128, -120)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/PlayerBrush/AttackArea" unique_id=1393078742]
+shape = SubResource("RectangleShape2D_eu8pa")
+
+[node name="Uppercut" type="Node" parent="Attacks" unique_id=800545686 node_paths=PackedStringArray("player", "player_movement")]
+script = ExtResource("8_0cf6c")
+player = NodePath("../..")
+player_movement = NodePath("../../PlayerMovement")
+uppercut_vertical_velocity = SubResource("Curve_v1uy5")
+uppercut_horizontal_velocity = SubResource("Curve_v2h1c")
+metadata/_custom_type_script = "uid://bjewudptgw235"
+
+[node name="UppercutCooldown" type="Timer" parent="Attacks/Uppercut" unique_id=1142187932]
+one_shot = true
+
+[node name="DashSlash" type="Node" parent="Attacks" unique_id=1797641148 node_paths=PackedStringArray("player", "player_movement")]
+script = ExtResource("9_v2h1c")
+player = NodePath("../..")
+player_movement = NodePath("../../PlayerMovement")
+dash_slash_velocity = SubResource("Curve_0cf6c")
+metadata/_custom_type_script = "uid://damau8bpijlrc"
+
+[node name="DashSlashCooldown" type="Timer" parent="Attacks/DashSlash" unique_id=1070012377]
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
@@ -66,48 +119,7 @@ shape = SubResource("RectangleShape2D_d0bka")
 script = ExtResource("5_eu8pa")
 metadata/_custom_type_script = "uid://drt58jn726c1u"
 
-[node name="PlayerBrush" type="Node2D" parent="." unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement")]
-position = Vector2(0, -120)
-script = ExtResource("6_eu8pa")
-player = NodePath("..")
-player_movement = NodePath("../PlayerMovement")
-brush_width = 200.0
-metadata/_custom_type_script = "uid://blodtm8lm2wc3"
-
-[node name="SwingBuffer" type="Timer" parent="PlayerBrush" unique_id=391448229]
-one_shot = true
-
-[node name="SwingDuration" type="Timer" parent="PlayerBrush" unique_id=1846409706]
-one_shot = true
-
-[node name="SwingRecovery" type="Timer" parent="PlayerBrush" unique_id=1513721812]
-one_shot = true
-
-[node name="AttackArea" type="Area2D" parent="PlayerBrush" unique_id=2093298999]
-visible = false
-position = Vector2(128, -120)
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBrush/AttackArea" unique_id=1393078742]
-shape = SubResource("RectangleShape2D_eu8pa")
-
 [node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
 position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
-
-[node name="Uppercut" type="Node" parent="." unique_id=63487610 node_paths=PackedStringArray("player", "player_movement")]
-script = ExtResource("8_0cf6c")
-player = NodePath("..")
-player_movement = NodePath("../PlayerMovement")
-uppercut_vertical_velocity = SubResource("Curve_v1uy5")
-
-[node name="DashSlash" type="Node" parent="." unique_id=1797641148 node_paths=PackedStringArray("player", "player_movement")]
-script = ExtResource("9_v2h1c")
-player = NodePath("..")
-player_movement = NodePath("../PlayerMovement")
-dash_slash_velocity = SubResource("Curve_0cf6c")
-metadata/_custom_type_script = "uid://damau8bpijlrc"
-
-[node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
-one_shot = true
