@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bjewudptgw235" path="res://character/player/attack/uppercut.gd" id="8_0cf6c"]
 [ext_resource type="Curve" uid="uid://c467ecjac1cxy" path="res://character/player/attack/dash_slash_horizontal_velocity.tres" id="8_vuhga"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="9_v2h1c"]
+[ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="14_muf2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -98,9 +99,19 @@ shape = SubResource("RectangleShape2D_d0bka")
 
 [node name="PlayerHealthComponent" type="Node" parent="." unique_id=1017469324]
 script = ExtResource("5_eu8pa")
+maximum_hp = 100
 metadata/_custom_type_script = "uid://drt58jn726c1u"
 
 [node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
 position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
+
+[node name="PlayerHitbox" parent="." unique_id=1843909000 node_paths=PackedStringArray("health_component") instance=ExtResource("14_muf2e")]
+health_component = NodePath("../PlayerHealthComponent")
+
+[node name="CollisionShape2D" parent="PlayerHitbox" index="0" unique_id=1891687597]
+position = Vector2(0, -120)
+shape = SubResource("RectangleShape2D_oul6g")
+
+[editable path="PlayerHitbox"]
