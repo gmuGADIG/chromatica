@@ -5,7 +5,8 @@ enum State{
 	NONE,
 	BRUSH_SWING,
 	PARRY,
-	DASH_SLASH
+	UPPERCUT,
+	DASH_SLASH,
 }
 
 var state : State = State.NONE
