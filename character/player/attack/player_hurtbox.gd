@@ -19,24 +19,14 @@ signal finished
 @export_group("Timing")
 ##The time (in seconds) that the hitbox exists
 @export var swing_duration: float = 0.1
-@export_group("Timing")
-##The time (in seconds) that the hitbox exists
-@export var swing_duration: float = 0.1
-##The time (in seconds) that the attack is on cooldown
-@export var swing_recovery: float = 0.3
-## The time (in seconds) that an attack will register after input
-@export var swing_buffer_time : float = 0.3
 
 @export_group("Debug")
 @export_enum("Left:180","Right:0","Up:270","Down:90") var attack_direction: int:
 	set(val):
 		attack_direction = val
 		rotation_degrees = val
-
 @onready var rect_shape : RectangleShape2D = $CollisionShape2D.shape
 @onready var attack_timer := $SwingDuration as Timer
-@onready var buffer_timer := $SwingBuffer as Timer
-@onready var recovery_timer := $SwingRecovery as Timer
 
 ##Used to avoid double hitting entities & objects within a single swing
 var hit_things : Array[Variant]
@@ -51,25 +41,10 @@ func _ready() -> void:
 	hide()
 	area_entered.connect(_on_area_entered)	
 	attack_timer.wait_time = swing_duration
-	recovery_timer.wait_time = swing_recovery
-	buffer_timer.wait_time = swing_buffer_time
 	
 	attack_timer.timeout.connect(end_attack)
-	recovery_timer.timeout.connect(
-		func() -> void: 
-			player.state = Player.State.NONE)
-
-func _process(delta: float) -> void:
-	if not buffer_timer.is_stopped() and player.state == Player.State.NONE:
-		buffer_timer.stop()
-		start_attack(last_attack_dir)
 
 func start_attack(dir: Vector2) -> void:
-	if not player.state == Player.State.NONE:
-		last_attack_dir = dir
-		buffer_timer.start()
-		return
-
 	if dir.is_equal_approx(Vector2.RIGHT):
 		rotation_degrees = 0
 	elif dir.is_equal_approx(Vector2.DOWN):
@@ -80,40 +55,21 @@ func start_attack(dir: Vector2) -> void:
 		rotation_degrees = 270
 	else:
 		printerr("Invalid attack direction")
-
+	
 	hit_things.clear()
-	#maybe wepon move
-	position = dir
-	monitoring = true
-	show()
-	attack_timer.start()
 	monitoring = true
 	show()
 	attack_timer.start()
 
-func end_attack() -> void:
-	monitoring = false
-	hide()
 func end_attack() -> void:
 	monitoring = false
 	hide()
 	finished.emit()
-	recovery_timer.start()
-
-func set_size(size: Vector2) -> void:
-	collision_shape.shape.size = size
 
 func _on_area_entered(area: Area2D) -> void:
 	if hit_things.has(area):
 		return
 	
-	if area is EnemyHitbox:
-		enemy_hit.emit(area)
-		hit_things.append(area)
-func _on_area_entered(area: Area2D) -> void:
-	if hit_things.has(area):
-		return
-
 	if area is EnemyHitbox:
 		enemy_hit.emit(area)
 		hit_things.append(area)
