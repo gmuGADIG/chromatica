@@ -39,6 +39,8 @@ signal enemy_hit(enemy: EnemyHitbox)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide()
+	collision_shape.shape = RectangleShape2D.new()
+	_update_hurtbox_shape()
 	area_entered.connect(_on_area_entered)	
 	attack_timer.wait_time = swing_duration
 	
