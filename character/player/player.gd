@@ -4,7 +4,9 @@ class_name Player
 enum State{
 	NONE,
 	BRUSH_SWING,
+	PARRY,
 	UPPERCUT,
-	DASH_SLASH}
+	DASH_SLASH,
+}
 
 var state : State = State.NONE

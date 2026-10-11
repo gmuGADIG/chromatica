@@ -44,7 +44,6 @@ position = Vector2(0, -120)
 script = ExtResource("6_eu8pa")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
-brush_width = 200.0
 metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
 [node name="SwingBuffer" type="Timer" parent="Attacks/PlayerBrush" unique_id=391448229]
