@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name DashSlash
 @export var player: Player
 @export var player_movement: PlayerMovement

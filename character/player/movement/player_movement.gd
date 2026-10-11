@@ -93,8 +93,6 @@ func _physics_process(delta: float) -> void:
 		apply_gravity(delta)
 	
 	player.move_and_slide()
-	if not is_zero_approx(player.velocity.y):
-		print(player.velocity.y)
 	
 	if player.is_on_floor() or player.is_on_wall_only():
 		coyote_eligible = true

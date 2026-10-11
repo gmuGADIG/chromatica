@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Uppercut
 @export var player : Player
 @export var player_movement : PlayerMovement
@@ -28,7 +28,6 @@ func _input(event : InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	print(uppercut_time)
 	if player.state != Player.State.UPPERCUT:
 		##TODO: Add uppercut cooldown timer
 		if player.is_on_floor() and uppercut_cooldown_timer.is_stopped():
