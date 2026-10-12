@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://07ng8ux7fv5u"]
+
+[ext_resource type="Script" uid="uid://dd43u4xevk6pb" path="res://system/area_triggers/respawn_region/respawn_region.gd" id="1_b54ni"]
+[ext_resource type="PackedScene" uid="uid://cmgsqo0sk8vvv" path="res://system/area_triggers/area_trigger.tscn" id="1_v7pgv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7pgv"]
+size = Vector2(0, 0)
+
+[node name="RespawnRegion" unique_id=444725797 instance=ExtResource("1_v7pgv")]
+script = ExtResource("1_b54ni")
+respawn_point = Vector2(0, 0)
+color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1442453858]
+shape = SubResource("RectangleShape2D_v7pgv")
+debug_color = Color(0, 1, 0, 0)
