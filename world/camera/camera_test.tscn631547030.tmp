@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bygdcnywmioa6"]
+
+[ext_resource type="Texture2D" uid="uid://c862dxgffhsy0" path="res://temp/temp_art/nirby.png" id="1_6ooeh"]
+[ext_resource type="Script" uid="uid://defnlhgawov3a" path="res://world/camera/camera_move_test.gd" id="1_k8m16"]
+[ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="3_xc56x"]
+[ext_resource type="Texture2D" uid="uid://de20a2emaci7s" path="res://temp/temp_art/dappergoomber.png" id="4_qbmqp"]
+[ext_resource type="Texture2D" uid="uid://cj3ugqkgaxm6w" path="res://temp/temp_art/garonic.png" id="5_ft6r5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnkh1"]
+
+[node name="CameraTest" type="Node2D" unique_id=1957149519]
+
+[node name="SampleChar" type="Node2D" parent="." unique_id=36299550]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="SampleChar" unique_id=460078913]
+script = ExtResource("1_k8m16")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SampleChar/CharacterBody2D" unique_id=850742278]
+shape = SubResource("RectangleShape2D_cnkh1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SampleChar/CharacterBody2D" unique_id=1686903871]
+texture = ExtResource("1_6ooeh")
+
+[node name="Camera" parent="SampleChar/CharacterBody2D" unique_id=765522635 instance=ExtResource("3_xc56x")]
+
+[node name="Label" type="Label" parent="." unique_id=880859]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "This is a reference for where the camera is pointing. Isn't it great?"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1110126148]
+position = Vector2(1000, 0)
+texture = ExtResource("4_qbmqp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1077298134]
+position = Vector2(-1000, 0)
+texture = ExtResource("5_ft6r5")
