@@ -8,12 +8,11 @@ const cutscene_trigger_packed = preload("res://system/area_triggers/cutscene_tri
 
 func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 	var entities: Array = entity_layer.entities
-	for entity in entities:
+	for entity: Dictionary in entities:
 		if not entity_has_tag(entity, "AreaTrigger"):
 			continue
 		
 		var identifier : String = entity.definition["identifier"]
-		print(identifier)
 		var area_trigger_packed : PackedScene = (
 				respawn_region_packed if identifier == "RespawnRegion"
 				else cutscene_trigger_packed if identifier == "CutsceneTrigger"
@@ -31,6 +30,7 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 		new_area_trigger.global_position = entity.position
 		new_area_trigger.size = entity.size
 		
+		
 		if new_area_trigger is RespawnRegion:
 			new_area_trigger.respawn_point = entity.fields["RespawnPoint"]
 		elif new_area_trigger is CutsceneTrigger:
@@ -38,7 +38,6 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 		else:
 			printerr("Invalid Area Trigger")
 		
-
 		# Update 'iid' to reference this entity node
 		Util.update_instance_reference(entity.iid, new_area_trigger)
 		

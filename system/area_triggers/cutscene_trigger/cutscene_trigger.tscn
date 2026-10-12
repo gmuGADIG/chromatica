@@ -8,6 +8,7 @@ size = Vector2(0, 0)
 
 [node name="CutsceneTrigger" unique_id=444725797 instance=ExtResource("1_84q7w")]
 script = ExtResource("2_irt56")
+color = Color(1, 1, 0, 1)
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1442453858]
 shape = SubResource("RectangleShape2D_irt56")
