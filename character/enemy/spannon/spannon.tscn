@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dc6a7un1db6hc"]
+
+[ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://b2iqkmv5mxlta" path="res://character/enemy/spannon/spannon.gd" id="2_spannon"]
+[ext_resource type="PackedScene" path="res://character/enemy/spannon/cannonball.tscn" id="3_ball"]
+[ext_resource type="Texture2D" uid="uid://biwocnfjqma4b" path="res://character/enemy/spannon/spannon_body_colorless.png" id="4_nn657"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(89, 162)
+
+[node name="Spannon" unique_id=349525666 node_paths=PackedStringArray("cannon", "muzzle", "ledge_check") instance=ExtResource("1_base")]
+collision_layer = 8
+script = ExtResource("2_spannon")
+cannon = NodePath("Cannon")
+muzzle = NodePath("Cannon/Muzzle")
+cannonball_scene = ExtResource("3_ball")
+aim_delay = 0.8
+fire_interval = 2.0
+aim_turn_speed = 3.0
+aim_tolerance_degrees = 6.0
+sight_mask = 3
+gravity = 4000.0
+max_falling_velocity = 3000.0
+patrol_speed = 100.0
+turn_at_ledges = true
+ledge_check = NodePath("LedgeCheck")
+ledge_check_offset = 60.0
+sight_range = 1100.0
+sight_height = 300.0
+arrive_distance = 20.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=1560740887]
+texture = ExtResource("4_nn657")
+
+[node name="HealthComponent" parent="." index="2" unique_id=1306834510]
+maximum_hp = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5" unique_id=1264044038]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="LedgeCheck" type="RayCast2D" parent="." index="6" unique_id=1266004331]
+position = Vector2(60, 60)
+target_position = Vector2(0, 60)
+
+[node name="Cannon" type="Node2D" parent="." index="7" unique_id=1009810790]
+position = Vector2(0, -10)
+
+[node name="Barrel" type="Polygon2D" parent="Cannon" index="0" unique_id=913724330]
+color = Color(0.2, 0.2, 0.22, 1)
+polygon = PackedVector2Array(0, -14, 90, -10, 90, 10, 0, 14)
+
+[node name="Muzzle" type="Marker2D" parent="Cannon" index="1" unique_id=1505374082]
+position = Vector2(90, 0)

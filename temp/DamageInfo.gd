@@ -7,6 +7,7 @@ extends Resource
 enum AttackColor {RED,YELLOW,BLUE,ORANGE,GREEN,PURPLE}
 
 
-func _init(attack_damage : int , color : AttackColor) -> void:
-	var damage = attack_damage
-	var attack_color = color
+# Defaults let Godot create a blank DamageInfo (e.g. when loading a saved one).
+func _init(attack_damage : int = 0, color : AttackColor = AttackColor.RED) -> void:
+	damage = attack_damage
+	attack_color = color

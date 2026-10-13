@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://drck2wivyiq88"]
+
+[ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
+[ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
+[ext_resource type="PackedScene" path="res://character/enemy/Lunger/lunger.tscn" id="3_f24ca"]
+[ext_resource type="Script" uid="uid://dauhl2ddt85s5" path="res://character/enemy/enemy.gd" id="4_sybq3"]
+[ext_resource type="PackedScene" path="res://character/enemy/spannon/spannon.tscn" id="5_s2o2t"]
+
+[node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
+
+[node name="Player" parent="." index="0" unique_id=1162272003]
+position = Vector2(2312, 3754)
+
+[node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
+
+[node name="Lunger" parent="." index="3" unique_id=1739277168 instance=ExtResource("3_f24ca")]
+position = Vector2(3731, 3936)
+script = ExtResource("4_sybq3")
+
+[node name="Spannon" parent="." index="4" unique_id=1076973959 instance=ExtResource("5_s2o2t")]
+position = Vector2(694, 3940)
+
+[editable path="Player"]
+[editable path="Player/PlayerHitbox"]
+[editable path="CanvasLayer/Hud"]

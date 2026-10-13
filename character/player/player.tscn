@@ -14,6 +14,7 @@
 [ext_resource type="Curve" uid="uid://c467ecjac1cxy" path="res://character/player/attack/dash_slash_horizontal_velocity.tres" id="8_vuhga"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="9_v2h1c"]
 [ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="14_muf2e"]
+[ext_resource type="Script" uid="uid://b0f7is5e7h133" path="res://character/invuln_component.gd" id="15_jo6ux"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -32,6 +33,7 @@ script = ExtResource("6_eu8pa")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
 hurtbox = NodePath("AttackArea")
+brush_damage = 1
 metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
 [node name="SwingBuffer" type="Timer" parent="Attacks/PlayerBrush" unique_id=391448229]
@@ -107,11 +109,19 @@ position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
 
-[node name="PlayerHitbox" parent="." unique_id=1843909000 node_paths=PackedStringArray("health_component") instance=ExtResource("14_muf2e")]
+[node name="PlayerHitbox" parent="." unique_id=1843909000 node_paths=PackedStringArray("health_component", "invuln_component") instance=ExtResource("14_muf2e")]
 health_component = NodePath("../PlayerHealthComponent")
+invuln_component = NodePath("../InvulnComponent")
 
 [node name="CollisionShape2D" parent="PlayerHitbox" index="0" unique_id=1891687597]
 position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
+
+[node name="InvulnComponent" type="Node" parent="." unique_id=831181959]
+script = ExtResource("15_jo6ux")
+metadata/_custom_type_script = "uid://b0f7is5e7h133"
+
+[node name="InvulnTimer" type="Timer" parent="InvulnComponent" unique_id=2105946010]
+one_shot = true
 
 [editable path="PlayerHitbox"]

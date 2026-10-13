@@ -11,6 +11,7 @@ func hit(damage_info : DamageInfo) -> void:
 	if health_component.hp <= 0:
 		return
 	health_component.hurt(damage_info.damage)
+	invuln_component.activate()
 
 func can_take_damage() -> bool:
 	if invuln_component.is_invuln():
