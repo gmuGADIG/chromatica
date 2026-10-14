@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://07ng8ux7fv5u"]
 
-[ext_resource type="Script" uid="uid://dd43u4xevk6pb" path="res://system/area_triggers/respawn_region/respawn_region.gd" id="1_b54ni"]
-[ext_resource type="PackedScene" uid="uid://cmgsqo0sk8vvv" path="res://system/area_triggers/area_trigger.tscn" id="1_v7pgv"]
+[ext_resource type="Script" uid="uid://dd43u4xevk6pb" path="res://systems/area_triggers/respawn_region/respawn_region.gd" id="1_b54ni"]
+[ext_resource type="PackedScene" uid="uid://cmgsqo0sk8vvv" path="res://systems/area_triggers/area_trigger.tscn" id="1_v7pgv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7pgv"]
 size = Vector2(0, 0)

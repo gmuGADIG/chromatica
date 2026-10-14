@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b0f7is5e7h133" path="res://character/invuln_component.gd" id="1_ravht"]
 [ext_resource type="Texture2D" uid="uid://b3vj85ylwera" path="res://ldtk/tilesets/fih.png" id="2_f4o15"]
-[ext_resource type="Shader" path="res://system/desaturation/desaturation_hsl.gdshader" id="2_g482p"]
+[ext_resource type="Shader" uid="uid://cfklcnu76on5v" path="res://systems/desaturation/desaturation_hsl.gdshader" id="2_g482p"]
 [ext_resource type="Texture2D" uid="uid://4g5nexenk7gw" path="res://temp/temp_art/char.png" id="3_yadb5"]
-[ext_resource type="PackedScene" uid="uid://c0gnoeun33jjj" path="res://system/desaturation/desaturation_component.tscn" id="5_ravht"]
-[ext_resource type="Shader" path="res://system/desaturation/desaturation_ok.gdshader" id="6_f4o15"]
-[ext_resource type="Shader" path="res://system/desaturation/desaturation_hsv.gdshader" id="6_yadb5"]
+[ext_resource type="PackedScene" uid="uid://c0gnoeun33jjj" path="res://systems/desaturation/desaturation_component.tscn" id="5_ravht"]
+[ext_resource type="Shader" uid="uid://bd6ckr3hjdnwf" path="res://systems/desaturation/desaturation_ok.gdshader" id="6_f4o15"]
+[ext_resource type="Shader" uid="uid://doi57ygd8jjm2" path="res://systems/desaturation/desaturation_hsv.gdshader" id="6_yadb5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3uwp"]
 size = Vector2(500, 500)

@@ -17,7 +17,7 @@ config/icon="res://temp/temp_art/icon.svg"
 
 [audio]
 
-buses/default_bus_layout="uid://ddn7ru0dhkj34"
+buses/default_bus_layout="uid://b23cycdwm8b8d"
 
 [display]
 
@@ -35,7 +35,7 @@ folder_colors={
 "res://character/npc/": "orange",
 "res://character/player/": "yellow",
 "res://ldtk/": "yellow",
-"res://system/": "orange",
+"res://systems/": "orange",
 "res://temp/": "gray",
 "res://ui/": "teal",
 "res://world/camera/": "red",
