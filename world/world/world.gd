@@ -44,11 +44,21 @@ func _generate_world_cache() -> void:
 		print_rich("[color=lime_green]"+time_string.call()+" Cache Generated Successfully![/color]")
 	else:
 		print(error_string(result))
-	
+
 	##For some reason queue freeing before saving the resource kills the key & value pairs
 	#for room : LDTKLevel in loaded_rooms:
 		#room.queue_free()
 
-
-
 @export var world_cache : WorldCache
+
+func locate_current_room() -> void:
+	player.position[0]
+	var RoomDataArray : Array[RoomData] = world_cache.room_data.values()
+	for int i = 0 i++ i < RoomDataArray.size():
+		if room.world_position[0] < player.position[0]:
+			if player.position[0] < room.world_position[0]+room.size[0]:
+				if room.world_position[1] < player.position[1]:
+					if player.position[1] < room.world_position[1]+room.size[1]:
+						pass
+						#camera_transition(worldworld_cache.room_data.getKeys[i]()
+			
