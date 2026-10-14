@@ -21,7 +21,7 @@ func _input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print("player state = ", player.state, ", slam_timer = ", slam_timer)
+	## print("player state = ", player.state, ", slam_timer = ", slam_timer)
 	
 	if slam_timer_active:
 		slam_timer += delta
@@ -42,9 +42,7 @@ func _process(delta: float) -> void:
 	
 	player.velocity.y = slam_velocity.sample(sample_point)
 	#breakpoint
-	
-	
-	
+
 func slam() -> void:	
 	# Only allow slam ability if the player is in the air and is not already slamming. 
 	if player.is_on_floor() or is_in_slam():
