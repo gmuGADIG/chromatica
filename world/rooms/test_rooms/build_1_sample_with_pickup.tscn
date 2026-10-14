@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_ee4y1"]
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_o2xqh"]
 [ext_resource type="PackedScene" uid="uid://d2xedqxv2bd6p" path="res://pickup/pickup.tscn" id="3_2mo0n"]
-[ext_resource type="PackedScene" uid="uid://buqidcdtqvke" path="res://pickup/health_pickup.tscn" id="4_vmfq5"]
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_ee4y1")]
 
@@ -14,9 +13,6 @@ position = Vector2(2312, 3754)
 
 [node name="Pickup" parent="." index="3" unique_id=1398411176 instance=ExtResource("3_2mo0n")]
 position = Vector2(500, 4000)
-
-[node name="HealthPickup" parent="." index="4" unique_id=1451608901 instance=ExtResource("4_vmfq5")]
-position = Vector2(4000, 4000)
 
 [editable path="Player"]
 [editable path="CanvasLayer/Hud"]
