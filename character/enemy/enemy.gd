@@ -15,6 +15,8 @@ class_name Enemy
 @export var max_velocity : float = 300.0
 ## How fast the enemy sheds speed when going faster than max_velocity (e.g. after a leap)
 @export var damping : float = 6000.0
+## The default vertical acceleration of the enemy, in px/sec
+@export var gravity : float = 4000.0
 
 @export_group("Defeat")
 ## When this enemy runs out of HP it stops being hostile and becomes a friendly NPC.

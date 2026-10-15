@@ -6,7 +6,6 @@ extends Enemy
 ## Children implement _think() (their decision-making each physics frame) and attack().
 
 @export_group("Gravity")
-@export var gravity : float = 4000.0
 @export var max_falling_velocity : float = 3000.0
 
 @export_group("Patrol")
