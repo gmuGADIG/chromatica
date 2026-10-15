@@ -50,15 +50,14 @@ func _generate_world_cache() -> void:
 		#room.queue_free()
 
 @export var world_cache : WorldCache
+@export var current_Room : String
 
 func locate_current_room() -> void:
-	player.position[0]
-	var RoomDataArray : Array[RoomData] = world_cache.room_data.values()
-	for i in range(RoomDataArray.size()):
-		if room.world_position[0] < player.position[0]:
-			if player.position[0] < room.world_position[0]+room.size[0]:
-				if room.world_position[1] < player.position[1]:
-					if player.position[1] < room.world_position[1]+room.size[1]:
-						pass
-						#camera_transition(worldworld_cache.room_data.getKeys[i]()
+	var roomDataArray : Array[RoomData] = world_cache.room_data.values()
+	for i in range(roomDataArray.size()):
+		if roomDataArray[i].world_position[0] < player.position[0]:
+			if player.position[0] < roomDataArray[i].world_position[0]+roomDataArray[i].size[0]:
+				if roomDataArray[i].world_position[1] < player.position[1]:
+					if player.position[1] < roomDataArray[i].world_position[1]+roomDataArray[i].size[1]:
+						current_Room = world_cache.room_data.keys()[i]
 			
