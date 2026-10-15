@@ -5,12 +5,11 @@ class_name PaintGuardComponent
 
 @export var invuln_component : InvulnComponent
 @export var parry_duration : float 
+@export var granted_invuln_time : float
 @export var parry_cooldown : float
 
 @onready var cooldown_timer: Timer = %ParryCooldown
 @onready var duration_timer: Timer = %ParryDuration
-
-@export var is_parrying : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,11 +23,9 @@ func _input(event: InputEvent) -> void:
 		paint_guard()
 
 func paint_guard() -> void:
-	is_parrying=true
 	duration_timer.start()
 	await duration_timer.timeout
-	is_parrying=false
 	cooldown_timer.start()
-	
-	
-	
+
+func is_parrying() -> bool:
+	return not duration_timer.is_stopped()

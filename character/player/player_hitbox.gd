@@ -17,6 +17,7 @@ func can_take_damage() -> bool:
 	if invuln_component.is_invuln():
 		return false
 	##TODO: connect to parry code
-	if paintguard_component.is_parrying:
+	if paintguard_component.is_parrying():
+		invuln_component.activate(paintguard_component.granted_invuln_time)
 		return false
 	return true
