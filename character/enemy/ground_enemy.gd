@@ -1,12 +1,11 @@
 @abstract
 class_name GroundEnemy
-extends Enemy
+extends EnemyBehavior
 ## Base for enemies that walk on the ground. Handles gravity, patrolling,
 ## and the can_see_player() / set_target() / move() / attack() interface.
 ## Children implement _think() (their decision-making each physics frame) and attack().
 
 @export_group("Gravity")
-@export var gravity : float = 4000.0
 @export var max_falling_velocity : float = 3000.0
 
 @export_group("Patrol")
