@@ -154,10 +154,6 @@ func can_walljump() -> bool:
 func jump() -> bool:
 	if not can_jump():
 		return false
-		
-	if not player.is_on_floor():
-		# breakpoint
-		pass
 	
 	player.velocity.y = - jump_velocity
 	can_early_jump_release = true
