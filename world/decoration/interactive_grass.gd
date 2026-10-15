@@ -7,7 +7,7 @@ extends Area2D
 @export var grass_return_animation_speed = 5.0
 
 func _on_body_entered(body: Node2D) -> void:
-	if (body == get_tree().get_first_node_in_group("player")):
+	if body is Player:
 		var direction = global_position.direction_to(body.global_position)
 		var skew : int = -direction.x * skew_value
 		
