@@ -3,6 +3,7 @@ class_name PlayerHitbox
 
 @export var health_component : HealthComponent
 @export var invuln_component : InvulnComponent
+@export var paintguard_component : PaintGuardComponent
 
 # Handles the player taking damage
 func hit(damage_info : DamageInfo) -> void:
@@ -16,5 +17,6 @@ func can_take_damage() -> bool:
 	if invuln_component.is_invuln():
 		return false
 	##TODO: connect to parry code
-	
+	if paintguard_component.is_parrying:
+		return false
 	return true
