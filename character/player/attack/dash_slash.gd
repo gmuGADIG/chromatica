@@ -2,6 +2,8 @@ extends Node2D
 class_name DashSlash
 @export var player: Player
 @export var player_movement: PlayerMovement
+@export var hurtbox: PlayerHurtbox
+
 
 
 
@@ -21,6 +23,8 @@ var dash_direction : float
 
 @onready var dash_slash_cooldown_timer : Timer = $DashSlashCooldown
 
+
+
 func _input(event: InputEvent):
 	if event.is_action_pressed("temp_dash"):
 		dash_slash()
@@ -36,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	if dash_slash_time >= dash_slash_velocity.max_domain:
 		dash_slash_cooldown_timer.start(dash_slash_cooldown)
 		player.state = Player.State.NONE
+		hurtbox.end_attack()
 	
 	player.velocity.x = dash_slash_velocity.sample(dash_slash_time) * dash_direction
 	player.velocity.y = 0
@@ -47,6 +52,10 @@ func dash_slash() -> void:
 	## dashing is true, resets time elapsed.
 	player.state = Player.State.DASH_SLASH
 	dash_direction = 1 if player_movement.last_horizontal_direction > 0 else -1
+	
+	hurtbox.start_attack(Vector2(dash_direction,0).normalized())
+	
+	
 	dash_slash_time = 0
 	can_dash_slash = false
 	
