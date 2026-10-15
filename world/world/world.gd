@@ -3,6 +3,10 @@ extends Node2D
 class_name World
 
 @export var player : Player
+@export var world_cache : WorldCache
+
+var room_boundry : int = 20
+var current_Room : RoomData
 
 ##Updates the association between iids and the level
 @export_tool_button("Update World Cache","Reload") var action : Callable = _generate_world_cache
@@ -49,8 +53,15 @@ func _generate_world_cache() -> void:
 	#for room : LDTKLevel in loaded_rooms:
 		#room.queue_free()
 
-@export var world_cache : WorldCache
-@export var current_Room : String
+func _ready() -> void:
+	locate_current_room()
+
+func _process(delta: float) -> void:
+	if (player.position.x - room_boundry < current_Room.world_position[0] 
+		or player.position.x + room_boundry > current_Room.world_position[0] + current_Room.size[0] 
+		or player.position.y - room_boundry < current_Room.world_position[1] 
+		or player.position.y + room_boundry > current_Room.world_position[1] + current_Room.size[1]): 
+		locate_current_room()
 
 func locate_current_room() -> void:
 	var roomDataArray : Array[RoomData] = world_cache.room_data.values()
@@ -59,5 +70,5 @@ func locate_current_room() -> void:
 			if player.position[0] < roomDataArray[i].world_position[0]+roomDataArray[i].size[0]:
 				if roomDataArray[i].world_position[1] < player.position[1]:
 					if player.position[1] < roomDataArray[i].world_position[1]+roomDataArray[i].size[1]:
-						current_Room = world_cache.room_data.keys()[i]
+						current_Room = world_cache.roomDataArray[i]
 			
