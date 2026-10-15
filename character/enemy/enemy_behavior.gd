@@ -6,6 +6,7 @@ extends Node
 @export var deceleration : float
 @export var max_velocity : float
 @export var dampening : float
+@export var gravity : float
 
 @abstract func can_see_player()
 @abstract func set_target(pos)
