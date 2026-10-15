@@ -1,5 +1,7 @@
 extends Node
-
+class_name RangedAttack
+@export var player: Player
+@export var player_movement: PlayerMovement
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
