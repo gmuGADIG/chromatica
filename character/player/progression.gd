@@ -1,4 +1,4 @@
-class_name ProgressionUnlocks
+class_name Progression
 
 static var DEBUG_UNLOCK_ALL : bool = false
 
@@ -12,7 +12,7 @@ enum Unlockable {
 
 # dictionary that includes all the unlocks and a boolean for if the player has the unlock or not
 # will also need to be updated with all the unlocks in the game
-static var unlocked_items : Dictionary = {
+static var unlocked_items : Dictionary[Unlockable,bool] = {
 	Unlockable.RED_COLOR : false,
 	Unlockable.YELLOW_COLOR : false,
 	Unlockable.BLUE_COLOR : false,
