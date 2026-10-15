@@ -69,9 +69,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("jump"):
 		early_release()
 
-func _physics_process(delta: float) -> void:	
-	print(coyote_timer.time_left, coyote_timer.is_stopped())
-	
+func _physics_process(delta: float) -> void:		
 	if not no_special_player_state():
 		return
 	walk(Input.get_axis("move_left", "move_right"), delta)
