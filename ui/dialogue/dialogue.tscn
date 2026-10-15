@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://c00wh1oryqoaq"]
 
 [ext_resource type="Script" uid="uid://dnnqyem7lym70" path="res://ui/dialogue/dialogue_renderer.gd" id="1_8q5o4"]
+[ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://systems/npc/npc_data.gd" id="2_jy5du"]
+[ext_resource type="Resource" uid="uid://dlaio5jsdr3qo" path="res://temp/fih.tres" id="3_135c7"]
+[ext_resource type="Resource" uid="uid://dbybooi7kwphd" path="res://temp/egg.tres" id="4_vqqoj"]
+[ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://temp/garonic.tres" id="5_mfx2q"]
 
 [node name="Dialogue" type="Control" unique_id=448535468]
 layout_mode = 3
@@ -10,10 +14,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8q5o4")
+npc_id_table = Dictionary[StringName, ExtResource("2_jy5du")]({
+&"egg": ExtResource("4_vqqoj"),
+&"fih": ExtResource("3_135c7"),
+&"garonic": ExtResource("5_mfx2q")
+})
 
 [node name="Dialogue_Box" type="RichTextLabel" parent="." unique_id=968629647]
 layout_mode = 0
-offset_left = 19.0
+offset_left = 300.0
 offset_top = 362.0
 offset_right = 1129.0
 offset_bottom = 623.0
@@ -28,8 +37,30 @@ theme_override_font_sizes/mono_font_size = 30
 bbcode_enabled = true
 fit_content = true
 
+[node name="Dialogue_Portrait" type="Sprite2D" parent="." unique_id=1131092527]
+position = Vector2(150, 490)
+
+[node name="Character_Name" type="RichTextLabel" parent="." unique_id=1979618063]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 330.0
+offset_right = 258.0
+offset_bottom = 402.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/underline_alpha = 100
+theme_override_constants/strikethrough_alpha = 100
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1702587099]
 z_index = -1
 position = Vector2(0, 327)
 color = Color(0, 0.13149942, 0.13149942, 1)
-polygon = PackedVector2Array(0, 0, 0, 321, 1152, 321, 1152, 0)
+polygon = PackedVector2Array(0, 0, 0, 34.492554, 0, 321, 1152, 321, 1152, 0)

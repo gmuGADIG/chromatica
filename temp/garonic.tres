@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://bq5pmf1jk7dun"]
+
+[ext_resource type="Texture2D" uid="uid://bqjsv0pou4lyc" path="res://temp/temp_art/garonic_portrait.png" id="1_bvnlp"]
+[ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://systems/npc/npc_data.gd" id="1_oe0h6"]
+
+[resource]
+script = ExtResource("1_oe0h6")
+world_sprite = ExtResource("1_bvnlp")
+portrait_sprite = ExtResource("1_bvnlp")
+metadata/_custom_type_script = "uid://c3elg5rqdh6gq"
