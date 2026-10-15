@@ -10,18 +10,19 @@ shader = ExtResource("1_3kbeb")
 shader_parameter/skew = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(148, 163)
+size = Vector2(150, 163)
 
 [node name="InteractiveGrass" type="Area2D" unique_id=1966995250]
 script = ExtResource("1_4y3bf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1162147261]
 material = SubResource("ShaderMaterial_g4v7s")
+position = Vector2(0, -91)
 scale = Vector2(5.7, 5.7)
 texture = ExtResource("2_4y3bf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508320937]
-position = Vector2(3, 9.5)
+position = Vector2(0, -81.5)
 shape = SubResource("RectangleShape2D_g4v7s")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
