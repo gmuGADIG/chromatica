@@ -21,8 +21,8 @@ radius = 84.2
 
 [node name="World" type="Node2D" unique_id=1762502460 node_paths=PackedStringArray("player")]
 script = ExtResource("1_i0vah")
-player = NodePath("Player")
 world_cache = SubResource("Resource_ukolr")
+player = NodePath("Player")
 
 [node name="Player" parent="." unique_id=1162272003 instance=ExtResource("1_yhsm3")]
 

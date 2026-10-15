@@ -54,7 +54,7 @@ func _generate_world_cache() -> void:
 func locate_current_room() -> void:
 	player.position[0]
 	var RoomDataArray : Array[RoomData] = world_cache.room_data.values()
-	for int i = 0 i++ i < RoomDataArray.size():
+	for i in range(RoomDataArray.size()):
 		if room.world_position[0] < player.position[0]:
 			if player.position[0] < room.world_position[0]+room.size[0]:
 				if room.world_position[1] < player.position[1]:
