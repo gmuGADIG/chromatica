@@ -24,4 +24,4 @@ static func unlock(unlock : Unlockable) -> void:
 
 # function to check if the player has someting unlocked
 static func is_unlocked(unlock : Unlockable) -> bool:
-	return unlocked_items.get(unlock)
+	return unlocked_items.get(unlock) or DEBUG_UNLOCK_ALL
