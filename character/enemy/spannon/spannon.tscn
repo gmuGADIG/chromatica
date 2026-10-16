@@ -8,26 +8,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
 size = Vector2(89, 162)
 
-[node name="Spannon" unique_id=349525666 node_paths=PackedStringArray("cannon", "muzzle", "ledge_check") instance=ExtResource("1_base")]
+[node name="Spannon" unique_id=349525666 instance=ExtResource("1_base")]
 collision_layer = 8
-script = ExtResource("2_spannon")
-cannon = NodePath("Cannon")
-muzzle = NodePath("Cannon/Muzzle")
-cannonball_scene = ExtResource("3_ball")
-aim_delay = 0.8
-fire_interval = 2.0
-aim_turn_speed = 3.0
-aim_tolerance_degrees = 6.0
-sight_mask = 3
-gravity = 4000.0
-max_falling_velocity = 3000.0
-patrol_speed = 100.0
-turn_at_ledges = true
-ledge_check = NodePath("LedgeCheck")
-ledge_check_offset = 60.0
-sight_range = 1100.0
-sight_height = 300.0
-arrive_distance = 20.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=1560740887]
 texture = ExtResource("4_nn657")
@@ -51,3 +33,22 @@ polygon = PackedVector2Array(0, -14, 90, -10, 90, 10, 0, 14)
 
 [node name="Muzzle" type="Marker2D" parent="Cannon" index="1" unique_id=1505374082]
 position = Vector2(90, 0)
+
+[node name="SpannonBehavior" type="Node" parent="." index="8" node_paths=PackedStringArray("cannon", "muzzle", "ledge_check")]
+script = ExtResource("2_spannon")
+cannon = NodePath("../Cannon")
+muzzle = NodePath("../Cannon/Muzzle")
+cannonball_scene = ExtResource("3_ball")
+aim_delay = 0.8
+fire_interval = 2.0
+aim_turn_speed = 3.0
+aim_tolerance_degrees = 6.0
+sight_mask = 3
+max_falling_velocity = 3000.0
+patrol_speed = 100.0
+turn_at_ledges = true
+ledge_check = NodePath("../LedgeCheck")
+ledge_check_offset = 60.0
+sight_range = 1100.0
+sight_height = 300.0
+arrive_distance = 20.0
