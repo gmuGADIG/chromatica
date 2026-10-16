@@ -48,3 +48,4 @@ offset_top = -122.0
 offset_right = 86.0
 offset_bottom = -95.0
 grow_horizontal = 2
+step = 1.0

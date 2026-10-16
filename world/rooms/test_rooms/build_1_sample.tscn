@@ -7,7 +7,10 @@
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
 
 [node name="Player" parent="." index="0" unique_id=1162272003]
-position = Vector2(2312, 3754)
+position = Vector2(4228, 3159)
+
+[node name="CoyoteTimer" parent="Player/PlayerMovement" parent_id_path=PackedInt32Array(1162272003, 1409911704) index="1" unique_id=944399741]
+process_callback = 0
 
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
 
