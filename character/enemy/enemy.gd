@@ -1,3 +1,4 @@
+
 extends CharacterBody2D
 class_name Enemy
 
@@ -6,17 +7,9 @@ class_name Enemy
 @export var health_bar : ProgressBar
 @export var colorable_component : Colorable
 
-@export_group("Movement")
-## Rate the enemy speeds up (px/sec^2)
-@export var acceleration : float = 3000.0
-## Rate the enemy slows down when it has no movement target (px/sec^2)
-@export var deceleration : float = 4000.0
-## Top walking speed (px/sec)
-@export var max_velocity : float = 300.0
-## How fast the enemy sheds speed when going faster than max_velocity (e.g. after a leap)
-@export var damping : float = 6000.0
-## The default vertical acceleration of the enemy, in px/sec
-@export var gravity : float = 4000.0
+## ----------------------------------------------------
+## Movement group has migrated to @enemy_behavior.gd
+## ----------------------------------------------------
 
 @export_group("Defeat")
 ## When this enemy runs out of HP it stops being hostile and becomes a friendly NPC.

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2a73vcklb1ro"]
 
-[ext_resource type="Script" uid="uid://ofgfoj2wfksy" path="res://sea_slug.gd" id="1_8d7j4"]
+[ext_resource type="Script" uid="uid://bp05yt5s6ornt" path="res://sea_slug.gd" id="1_8d7j4"]
 [ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="2_mxi5c"]
 
 [node name="sea_slug" type="CharacterBody2D" unique_id=363484467]

@@ -1,9 +1,13 @@
 @abstract
 class_name GroundEnemy
 extends EnemyBehavior
-## Base for enemies that walk on the ground. Handles gravity, patrolling,
-## and the can_see_player() / set_target() / move() / attack() interface.
+## Behavior for enemies that walk on the ground. Add as a child of an Enemy.
+## Handles gravity, patrolling, and the can_see_player() / set_target() / move() interface.
 ## Children implement _think() (their decision-making each physics frame) and attack().
+
+	# "body" references the parent extended from EnemyBehavior; 
+	# "Enemy, which contains borrowed variables such as:
+	# "is_friendly", move_and_slide(), get_player(), global_position, is_on_wall(), is_on_floor(), velocity
 
 @export_group("Gravity")
 @export var max_falling_velocity : float = 3000.0
@@ -11,7 +15,7 @@ extends EnemyBehavior
 @export_group("Patrol")
 @export var patrol_speed : float = 150.0
 @export var turn_at_ledges : bool = true
-## Floor-check ray pointing down, placed just in front of the enemy.
+## Floor-check ray pointing down, placed just in front of the enemy. (child of the Enemy)
 @export var ledge_check : RayCast2D
 ## How far in front of the origin the ledge check sits (px)
 @export var ledge_check_offset : float = 60.0
@@ -40,12 +44,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_turn_lock = maxf(_turn_lock - delta, 0.0)
 	apply_gravity(delta)
-	if is_friendly:
-		# No more AI: just settle to a stop.
+
+	if body.is_friendly:
+		# Deactivate the Enemy AI, halt movement
 		accelerate_toward(0.0, delta)
 	else:
 		_think(delta)
-	move_and_slide()
+	body.move_and_slide()
 
 
 ## Decision-making for this enemy. Called every physics frame, after gravity
@@ -59,10 +64,10 @@ func _physics_process(delta: float) -> void:
 ## Default: the player is within sight_range horizontally and sight_height vertically.
 ## TODO: swap for "last platform the player touched is this enemy's platform".
 func can_see_player() -> bool:
-	var player := get_player()
+	var player := body.get_player()
 	if player == null:
 		return false
-	var offset := player.global_position - global_position
+	var offset := player.global_position - body.global_position
 	return absf(offset.x) <= sight_range and absf(offset.y) <= sight_height
 
 
@@ -78,7 +83,7 @@ func move(delta: float) -> void:
 		accelerate_toward(0.0, delta)
 		return
 	var direction := dir_to(target_position.x)
-	if absf(target_position.x - global_position.x) <= arrive_distance:
+	if absf(target_position.x - body.global_position.x) <= arrive_distance:
 		has_target = false
 		accelerate_toward(0.0, delta)
 		return
@@ -87,7 +92,7 @@ func move(delta: float) -> void:
 
 
 func patrol(delta: float) -> void:
-	if _turn_lock <= 0.0 and is_on_floor() and (is_on_wall() or _at_ledge()):
+	if _turn_lock <= 0.0 and body.is_on_floor() and (body.is_on_wall() or _at_ledge()):
 		face(-facing)
 		_turn_lock = 0.25
 	accelerate_toward(facing * patrol_speed, delta)
@@ -103,24 +108,24 @@ func face(direction: int) -> void:
 
 ## -1, 0 or 1: which way a world x position is from this enemy.
 func dir_to(world_x: float) -> int:
-	return int(signf(world_x - global_position.x))
+	return int(signf(world_x - body.global_position.x))
 
 
 func apply_gravity(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y = minf(velocity.y + gravity * delta, max_falling_velocity)
+	if not body.is_on_floor():
+		body.velocity.y = minf(body.velocity.y + gravity * delta, max_falling_velocity)
 
 
 ## Speeds up toward target_speed (px/sec, signed). Pass 0.0 to slow to a stop.
 ## Anything faster than max_velocity is damped down to it first.
 func accelerate_toward(target_speed: float, delta: float) -> void:
 	target_speed = clampf(target_speed, -max_velocity, max_velocity)
-	if absf(velocity.x) > max_velocity:
-		velocity.x = move_toward(velocity.x, signf(velocity.x) * max_velocity, damping * delta)
+	if absf(body.velocity.x) > max_velocity:
+		body.velocity.x = move_toward(body.velocity.x, signf(body.velocity.x) * max_velocity, dampening * delta)
 	elif is_zero_approx(target_speed):
-		velocity.x = move_toward(velocity.x, 0.0, deceleration * delta)
+		body.velocity.x = move_toward(body.velocity.x, 0.0, deceleration * delta)
 	else:
-		velocity.x = move_toward(velocity.x, target_speed, acceleration * delta)
+		body.velocity.x = move_toward(body.velocity.x, target_speed, acceleration * delta)
 
 
 func _at_ledge() -> bool:

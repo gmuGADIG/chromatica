@@ -36,7 +36,7 @@ func _think(delta: float) -> void:
 	_fire_timer = maxf(_fire_timer - delta, 0.0)
 
 	if can_see_player():
-		var target := get_player_center()
+		var target := body.get_player_center()
 		face(dir_to(target.x))
 		accelerate_toward(0.0, delta)
 		var angle := _angle_to(target)
@@ -63,21 +63,21 @@ func attack() -> void:
 
 ## Needs an unobstructed line from the cannon to the player, within sight_range.
 func can_see_player() -> bool:
-	var player := get_player()
+	var player := body.get_player()
 	if player == null:
 		return false
-	var target := get_player_center()
-	var origin := cannon.global_position if cannon else global_position
+	var target := body.get_player_center()
+	var origin := cannon.global_position if cannon else body.global_position
 	if origin.distance_to(target) > sight_range:
 		return false
 
-	var query := PhysicsRayQueryParameters2D.create(origin, target, sight_mask, [get_rid()])
-	var result := get_world_2d().direct_space_state.intersect_ray(query)
+	var query := PhysicsRayQueryParameters2D.create(origin, target, sight_mask, [body.get_rid()])
+	var result := body.get_world_2d().direct_space_state.intersect_ray(query)
 	return result.is_empty() or result["collider"] == player
 
 
 func _angle_to(world_position: Vector2) -> float:
-	var origin := cannon.global_position if cannon else global_position
+	var origin := cannon.global_position if cannon else body.global_position
 	return (world_position - origin).angle()
 
 
