@@ -1,22 +1,14 @@
 [gd_scene format=3 uid="uid://drck2wivyiq88"]
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
-[ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="2_r6k6n"]
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
-
-[sub_resource type="Curve" id="Curve_r6k6n"]
-_limits = [0.0, 6000.0, 0.0, 1.0]
-_data = [Vector2(0, 3041.096), 0.0, 2958.9043, 0, 1, Vector2(1, 6000), 2958.9043, 0.0, 1, 0]
-point_count = 2
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
 
 [node name="Player" parent="." index="0" unique_id=1162272003]
 position = Vector2(2312, 3754)
 
-[node name="Slam" parent="Player" index="7" unique_id=387721158 node_paths=PackedStringArray("player")]
-script = ExtResource("2_r6k6n")
-slam_velocity = SubResource("Curve_r6k6n")
+[node name="Slam" parent="Player" index="7" unique_id=1730958008 node_paths=PackedStringArray("player")]
 player = NodePath("..")
 
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
