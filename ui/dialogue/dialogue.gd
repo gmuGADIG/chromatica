@@ -96,16 +96,16 @@ func _play_line() -> void:
 	in_line = false
 	##Finish Dialogue
 
-func _evaluate_render_speed(char : String) -> float:
-	if char.length() != 1:
+func _evaluate_render_speed(char_to_evaluate : String) -> float:
+	if char_to_evaluate.length() != 1:
 		push_error("Incorrect number of characters")
 	
-	print(char)
+	#print(char)
 	var rate : float = (
-			period_rate if char == "."
-			else comma_rate if char == ","
-			else question_mark_rate if char == "?"
-			else exclamation_mark_rate if char == "!"
+			period_rate if char_to_evaluate == "."
+			else comma_rate if char_to_evaluate == ","
+			else question_mark_rate if char_to_evaluate == "?"
+			else exclamation_mark_rate if char_to_evaluate == "!"
 			else default_rate
 	)
 	

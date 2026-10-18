@@ -83,10 +83,11 @@ dialogue_csv = "res://systems/dialogue/data/build_2_sample_dialogue.csv"
 metadata/_custom_type_script = "uid://dtusglnrw8424"
 
 [node name="Label" type="Label" parent="Interactable" index="4" unique_id=91322117]
-offset_left = -79.0
-offset_top = -472.0
-offset_right = 106.0
-offset_bottom = -319.0
+offset_left = -304.0
+offset_top = -776.0
+offset_right = 319.0
+offset_bottom = -317.0
+theme_override_font_sizes/font_size = 54
 text = "These are NPCs
 You should talk to them
 (Press E)
