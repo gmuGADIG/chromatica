@@ -7,5 +7,5 @@ class_name DialogueStarter
 
 
 ##Takes in a path to a CSV and plays the dialogue inside of it. Returns true once dialogue is fully done, and false if it could not be played.
-func start_dialogue() -> bool:
-	return await(Dialogue_Player.play_dialogue(dialogue))
+func start_dialogue() -> void:
+	Dialogue.play(dialogue)

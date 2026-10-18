@@ -2,6 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
+[ext_resource type="PackedScene" uid="uid://blbd8cixeawwr" path="res://world/interactable/interactable_region.tscn" id="3_8ao42"]
+[ext_resource type="Script" uid="uid://dtusglnrw8424" path="res://systems/dialogue/dialogue_starter.gd" id="4_f24ca"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sybq3"]
+radius = 79.7
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
 
@@ -9,5 +14,18 @@
 position = Vector2(2312, 3754)
 
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
+
+[node name="InteractableRegion" parent="." index="2" unique_id=1399024953 instance=ExtResource("3_8ao42")]
+position = Vector2(2560, 3968)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableRegion" index="0" unique_id=65681811]
+shape = SubResource("CircleShape2D_sybq3")
+
+[node name="DialogueStarter" type="Node" parent="InteractableRegion" index="1" unique_id=1993066787]
+script = ExtResource("4_f24ca")
+dialogue_csv = "res://systems/dialogue/data/build_2_sample_dialogue.csv"
+metadata/_custom_type_script = "uid://dtusglnrw8424"
+
+[connection signal="interacted" from="InteractableRegion" to="InteractableRegion/DialogueStarter" method="start_dialogue"]
 
 [editable path="Player"]

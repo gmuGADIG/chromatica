@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_oe0h6")
+name = "Garf"
 world_sprite = ExtResource("1_bvnlp")
 portrait_sprite = ExtResource("1_bvnlp")
 metadata/_custom_type_script = "uid://c3elg5rqdh6gq"

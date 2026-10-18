@@ -25,7 +25,7 @@ static func parse_dialogue(path: String) -> Array[DialogueLine]:
 		
 		var line := DialogueLine.new(id, text)
 		dialogue_array.push_back(line)
-		
+	
 	return dialogue_array
 	
 ## Parses CSV data into an easier to work with format.

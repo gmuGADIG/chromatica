@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_go437")
+name = "Egg"
 world_sprite = ExtResource("1_fxu18")
 portrait_sprite = ExtResource("1_fxu18")
 metadata/_custom_type_script = "uid://c3elg5rqdh6gq"
