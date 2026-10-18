@@ -8,8 +8,3 @@ static var maximum_hp_player: int = 3
 func _ready() -> void:
 	maximum_hp = maximum_hp_player
 	reset_health()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

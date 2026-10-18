@@ -14,10 +14,10 @@ var relative_position : Vector2 = Vector2.ZERO
 @onready var camera : Camera2D = $Node/Camera2D
 @onready var ldtk_level : LDTKLevel = get_tree().get_first_node_in_group("LDTKLevel")
 func _ready() -> void:
-	camera.limit_left = ldtk_level.global_position.x
-	camera.limit_top = ldtk_level.global_position.y
-	camera.limit_right = ldtk_level.global_position.x + ldtk_level.size.x
-	camera.limit_bottom = ldtk_level.global_position.y + ldtk_level.size.y
+	camera.limit_left = roundi(ldtk_level.global_position.x)
+	camera.limit_top = roundi(ldtk_level.global_position.y)
+	camera.limit_right = roundi(ldtk_level.global_position.x + ldtk_level.size.x)
+	camera.limit_bottom = roundi(ldtk_level.global_position.y + ldtk_level.size.y)
 	camera.global_position = global_position
 	
 func _process(delta: float) -> void:

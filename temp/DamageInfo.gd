@@ -8,5 +8,5 @@ enum AttackColor {RED,YELLOW,BLUE,ORANGE,GREEN,PURPLE}
 
 
 func _init(attack_damage : int , color : AttackColor) -> void:
-	var damage = attack_damage
-	var attack_color = color
+	damage = attack_damage
+	attack_color = color

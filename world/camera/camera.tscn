@@ -18,4 +18,5 @@ camera_speed_horizontal = SubResource("Curve_pi78r")
 zoom = Vector2(0.25, 0.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node/Camera2D" unique_id=1075214406]
+visible = false
 texture = ExtResource("2_pi78r")

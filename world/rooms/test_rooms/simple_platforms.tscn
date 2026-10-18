@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_tg01w"]
 [ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="2_44v25"]
-[ext_resource type="Script" uid="uid://dtusglnrw8424" path="res://systems/dialogue/dialogue_starter.gd" id="4_4k6uh"]
 [ext_resource type="PackedScene" uid="uid://blbd8cixeawwr" path="res://world/interactable/interactable_region.tscn" id="4_r7hm1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wg1qd"]
@@ -21,11 +20,6 @@ position = Vector2(2736, 2073)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel/InteractableRegion" index="0" unique_id=348637087]
 shape = SubResource("CircleShape2D_wg1qd")
 
-[node name="DialogueStarter" type="Node" parent="TestLevel/InteractableRegion" index="1" unique_id=1269222788]
-script = ExtResource("4_4k6uh")
-dialogue_csv = "res://systems/dialogue/data/test_dialogue.csv"
-metadata/_custom_type_script = "uid://dtusglnrw8424"
-
 [node name="InteractableRegion2" parent="TestLevel" index="2" unique_id=169912273 instance=ExtResource("4_r7hm1")]
 position = Vector2(2923, 2077)
 
@@ -35,7 +29,10 @@ shape = SubResource("CircleShape2D_r4td4")
 [node name="Player" parent="." index="1" unique_id=1162272003]
 position = Vector2(838, 1425)
 
-[connection signal="interacted" from="TestLevel/InteractableRegion" to="TestLevel/InteractableRegion/DialogueStarter" method="start_dialogue"]
+[node name="PlayerBrush" parent="Player/Attacks" parent_id_path=PackedInt32Array(1162272003, 171343013) index="0" unique_id=1894793710]
+brush_damage = null
 
 [editable path="TestLevel"]
 [editable path="Player"]
+[editable path="Player/PlayerHitbox"]
+[editable path="CanvasLayer/Hud"]
