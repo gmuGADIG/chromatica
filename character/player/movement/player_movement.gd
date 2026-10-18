@@ -69,7 +69,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("jump"):
 		early_release()
 
-func _physics_process(delta: float) -> void:		
+func _physics_process(delta: float) -> void:
 	if not no_special_player_state():
 		return
 	walk(Input.get_axis("move_left", "move_right"), delta)
@@ -86,7 +86,6 @@ func _physics_process(delta: float) -> void:
 	
 	##Start Coyote Time
 	if coyote_conditions_met():
-		# breakpoint
 		coyote_eligible = false
 		coyote_timer.start(coyote_time)
 	
@@ -95,7 +94,7 @@ func _physics_process(delta: float) -> void:
 	
 	player.move_and_slide()
 	
-	if player.is_on_floor():
+	if player.is_on_floor() or player.is_on_wall_only():
 		coyote_eligible = true
 
 
@@ -149,12 +148,11 @@ func can_jump() -> bool:
 
 func can_walljump() -> bool:
 	return not player.is_on_floor() and (player.is_on_wall() or not coyote_timer.is_stopped())
-	
+
 # Handle jump.	
 func jump() -> bool:
 	if not can_jump():
 		return false
-	
 	player.velocity.y = - jump_velocity
 	can_early_jump_release = true
 	coyote_eligible = false
