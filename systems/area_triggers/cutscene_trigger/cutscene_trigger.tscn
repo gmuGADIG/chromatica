@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b24cnc4qhvf15"]
+
+[ext_resource type="PackedScene" uid="uid://cmgsqo0sk8vvv" path="res://systems/area_triggers/area_trigger.tscn" id="1_84q7w"]
+[ext_resource type="Script" uid="uid://cyb6jlhmfmv7h" path="res://systems/area_triggers/cutscene_trigger/cutscene_trigger.gd" id="2_irt56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irt56"]
+size = Vector2(0, 0)
+
+[node name="CutsceneTrigger" unique_id=444725797 instance=ExtResource("1_84q7w")]
+script = ExtResource("2_irt56")
+color = Color(1, 1, 0, 1)
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1442453858]
+shape = SubResource("RectangleShape2D_irt56")
