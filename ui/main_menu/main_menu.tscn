@@ -36,10 +36,6 @@ text = "main menu start"
 layout_mode = 2
 text = "set the settings"
 
-[node name="DemoButton" type="Button" parent="MainMenu" unique_id=342501744]
-layout_mode = 2
-text = "csv parser demo"
-
 [node name="Quit" type="Button" parent="MainMenu" unique_id=1033594454]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Start")

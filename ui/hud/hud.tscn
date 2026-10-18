@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://clra6nv8aoo0u"]
 
+[ext_resource type="Theme" uid="uid://1de4owo4vojh" path="res://ui/chromatica_theme.tres" id="1_w75iv"]
 [ext_resource type="Script" uid="uid://d0yf6g6egcckk" path="res://ui/hud/hud.gd" id="1_xmswo"]
 [ext_resource type="Script" uid="uid://bauu0mwqrhyw8" path="res://ui/hud/player_health_ui.gd" id="2_e0nub"]
 [ext_resource type="PackedScene" uid="uid://cbmwi8rfvkird" path="res://ui/pause_menu/pause_menu.tscn" id="4_w75iv"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_w75iv")
 script = ExtResource("1_xmswo")
 
 [node name="PlayerHealthUI" type="ProgressBar" parent="." unique_id=1286990881]
@@ -19,7 +21,10 @@ offset_left = 27.0
 offset_top = 28.0
 offset_right = 265.0
 offset_bottom = 57.0
+theme_type_variation = &"HealthBarPlayer"
+max_value = 10.0
 step = 1.0
+value = 6.0
 show_percentage = false
 script = ExtResource("2_e0nub")
 
