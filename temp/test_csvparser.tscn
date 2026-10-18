@@ -4,7 +4,7 @@
 
 [node name="TestScripts" type="Node2D" unique_id=1414302989 node_paths=PackedStringArray("label")]
 script = ExtResource("1_it0lj")
-dialogue_path = "res://systems/dialogue/data/test_dialogue.csv"
+dialogue_path = "res://system/dialogue/data/test_dialogue.csv"
 label = NodePath("RichTextLabel")
 
 [node name="Label" type="Label" parent="." unique_id=1649803953]
