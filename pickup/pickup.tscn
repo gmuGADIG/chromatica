@@ -5,20 +5,23 @@
 [ext_resource type="PackedScene" uid="uid://yrwcb7lcsgpb" path="res://character/player/pickup_region.tscn" id="2_w677d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnkh1"]
-size = Vector2(188, 196)
+size = Vector2(128, 128)
 
 [node name="Pickup" type="Node2D" unique_id=1398411176]
 script = ExtResource("1_meels")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1968873927]
+position = Vector2(23.03817, 8.470573)
+scale = Vector2(0.6801143, 0.6801143)
 texture = ExtResource("1_w677d")
+offset = Vector2(-42.525, -104.11)
 
 [node name="PickupRegion" parent="." unique_id=1069029753 instance=ExtResource("2_w677d")]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRegion" unique_id=1869480466]
-position = Vector2(9, -2)
+position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_cnkh1")
 
 [connection signal="pickedup" from="PickupRegion" to="." method="_on_pickedup"]
