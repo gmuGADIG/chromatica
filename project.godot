@@ -19,6 +19,10 @@ config/icon="res://temp/temp_art/icon.svg"
 
 buses/default_bus_layout="uid://b23cycdwm8b8d"
 
+[autoload]
+
+EventHandler="uid://b3gmulvl2er2i"
+
 [display]
 
 window/stretch/mode="viewport"
