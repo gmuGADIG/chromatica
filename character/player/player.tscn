@@ -89,7 +89,8 @@ position = Vector2(0, -120)
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
 
-[node name="Slam" type="Node" parent="." unique_id=1730958008]
+[node name="Slam" type="Node" parent="." unique_id=1730958008 node_paths=PackedStringArray("player")]
 script = ExtResource("8_0cf6c")
 slam_velocity = ExtResource("9_v2h1c")
+player = NodePath("..")
 metadata/_custom_type_script = "uid://bpcuvwmp3dj8p"
