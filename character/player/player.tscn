@@ -10,15 +10,15 @@
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="Curve" uid="uid://b66kdinwe4puo" path="res://character/player/attack/uppercut_horizontal_velocity.tres" id="6_vuhga"]
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
-
-
-[ext_resource type="Script" uid="uid://qsjyr53tj0c1" path="res://character/player/player_pickup.gd" id="10_qh58e"]
 [ext_resource type="Script" uid="uid://bjewudptgw235" path="res://character/player/attack/uppercut.gd" id="8_0cf6c"]
 [ext_resource type="Curve" uid="uid://c467ecjac1cxy" path="res://character/player/attack/dash_slash_horizontal_velocity.tres" id="8_vuhga"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="9_v2h1c"]
+[ext_resource type="Script" uid="uid://qsjyr53tj0c1" path="res://character/player/player_pickup.gd" id="10_qh58e"]
 [ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="14_muf2e"]
 [ext_resource type="PackedScene" uid="uid://bmk7h1whywna8" path="res://character/player/paint_guard.tscn" id="15_fkbv7"]
 [ext_resource type="PackedScene" uid="uid://c6van22sdy5fy" path="res://character/invuln_component.tscn" id="16_fkbv7"]
+[ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
+[ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -53,6 +53,12 @@ one_shot = true
 
 [node name="AttackArea" parent="Attacks/PlayerBrush" unique_id=379676843 node_paths=PackedStringArray("player") instance=ExtResource("3_qh58e")]
 player = NodePath("../../..")
+
+[node name="Slam" type="Node2D" parent="Attacks" unique_id=823905425 node_paths=PackedStringArray("player")]
+script = ExtResource("18_ywhvj")
+slam_velocity = ExtResource("19_7mvkq")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://bpcuvwmp3dj8p"
 
 [node name="Uppercut" type="Node2D" parent="Attacks" unique_id=1880163021 node_paths=PackedStringArray("player", "player_movement")]
 script = ExtResource("8_0cf6c")
@@ -127,7 +133,6 @@ shape = SubResource("RectangleShape2D_oul6g")
 [node name="Paint Guard" parent="." unique_id=933931754 node_paths=PackedStringArray("invuln_component") instance=ExtResource("15_fkbv7")]
 invuln_component = NodePath("../InvulnComponent")
 
-
 [node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375]
 collision_layer = 16
 collision_mask = 16
@@ -142,4 +147,3 @@ debug_color = Color(0.5186686, 0.54240805, 0.5379915, 0.41960785)
 [node name="InvulnComponent" parent="." unique_id=1152976110 instance=ExtResource("16_fkbv7")]
 
 [editable path="PlayerHitbox"]
-

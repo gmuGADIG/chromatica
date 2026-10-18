@@ -11,8 +11,9 @@
 
 [node name="Hud" parent="CanvasLayer" unique_id=916575799 instance=ExtResource("2_lm4yx")]
 
-[node name="PlayerHealthUI" parent="CanvasLayer/Hud" index="0" unique_id=2034468648 node_paths=PackedStringArray("player_health")]
+[node name="PlayerHealthUI" parent="CanvasLayer/Hud" index="0" unique_id=1286990881 node_paths=PackedStringArray("player_health")]
 player_health = NodePath("../../../Player/PlayerHealthComponent")
 
 [editable path="Player"]
+[editable path="Player/PlayerHitbox"]
 [editable path="CanvasLayer/Hud"]

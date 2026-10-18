@@ -5,6 +5,7 @@ class_name PlayerMovement
 
 # Player Movmement variables
 @export_group("Horizontal Movement")
+
 ## Rate player accelerates
 @export var acceleration : float = 10000.0
 ##Rate player slows down when no left/right key is pressed
@@ -17,17 +18,22 @@ class_name PlayerMovement
 
 
 @export_group("Jump")
+
 ##The impulse applied to the p	layer when they jump
+
 @export var jump_velocity : float = 2430.0
 ##The vertical & horizontal impulse applied to the player when they walljump
 ##(NOTE: Make sure these values remains positive, or else the player will jump into the wall, 
 ##aka not have any horizontal velocity!)
 @export var walljump_velocity : Vector2 = Vector2(1500,2000)
+
 ##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
 ##to give them better control over the player's jump.
 @export_range(0.0,1.0) var early_jump_release_multiplier : float = 0.55
+
 ##Time (in seconds) early the player can buffer a jump
 @export var jump_buffer_time: float = 0.1
+
 ## Time (seconds) that the player can jump after
 ## falling off a platform.
 @export var coyote_time : float = 0.1
@@ -51,8 +57,10 @@ var last_horizontal_direction : float
 
 
 func _input(event: InputEvent) -> void:
+
 	if not no_special_player_state():
 		return
+
 	##Jump Inputs
 	if event.is_action_pressed("jump"):
 		##Try normal jump
@@ -68,6 +76,8 @@ func _input(event: InputEvent) -> void:
 		jump_buffer_timer.start(jump_buffer_time)
 	elif event.is_action_released("jump"):
 		early_release()
+
+	
 
 func _physics_process(delta: float) -> void:
 	if not no_special_player_state():
@@ -159,6 +169,7 @@ func jump() -> bool:
 	coyote_timer.stop()
 	jump_buffer_timer.stop()
 	return true
+
 
 # Handle walljump.	
 func walljump() -> bool:

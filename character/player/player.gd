@@ -4,6 +4,7 @@ class_name Player
 enum State{
 	NONE,
 	BRUSH_SWING,
+	SLAM,
 	PARRY,
 	UPPERCUT,
 	DASH_SLASH,
