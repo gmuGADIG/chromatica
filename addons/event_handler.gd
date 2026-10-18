@@ -4,7 +4,8 @@ var timer: Timer = Timer.new()
 var sfx: AudioStreamPlayer = AudioStreamPlayer.new()
 
 func reset_timer() -> void:
-	timer.start(45.)
+	if timer.is_inside_tree():
+		timer.start(45.)
 
 func _ready() -> void:
 	sfx.stream = preload("splat.ogg")
