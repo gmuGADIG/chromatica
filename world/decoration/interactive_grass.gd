@@ -9,12 +9,12 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		var direction = global_position.direction_to(body.global_position)
-		var skew : int = -direction.x * skew_value
+		var skew_for_shader : int = -direction.x * skew_value
 		
 		var tween = create_tween()
 		tween.tween_property(sprite_2d.material,
 		"shader_parameter/skew", 
-		skew, 
+		skew_for_shader, 
 		grass_bend_animation_speed
 		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		

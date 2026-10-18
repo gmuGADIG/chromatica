@@ -4,6 +4,9 @@
 
 [node name="Paint Guard" type="Node" unique_id=933931754]
 script = ExtResource("1_bdmkh")
+parry_duration = 0.1
+granted_invuln_time = 0.3
+parry_cooldown = 0.5
 
 [node name="ParryCooldown" type="Timer" parent="." unique_id=704094820]
 unique_name_in_owner = true
