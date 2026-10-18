@@ -105,8 +105,8 @@ metadata/_custom_type_script = "uid://damau8bpijlrc"
 one_shot = true
 
 [node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("10_qh58e")
 metadata/_custom_type_script = "uid://qsjyr53tj0c1"
 

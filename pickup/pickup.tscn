@@ -2,26 +2,22 @@
 
 [ext_resource type="Script" uid="uid://cfqd31oui2fvj" path="res://pickup/pickup.gd" id="1_meels"]
 [ext_resource type="Texture2D" uid="uid://ch7ysa1uvvy01" path="res://temp/temp_art/godot-plush.png" id="1_w677d"]
-[ext_resource type="PackedScene" uid="uid://yrwcb7lcsgpb" path="res://character/player/pickup_region.tscn" id="2_w677d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnkh1"]
 size = Vector2(128, 128)
 
-[node name="Pickup" type="Node2D" unique_id=1398411176]
+[node name="Pickup" type="Area2D" unique_id=1498291215 node_paths=PackedStringArray("item_area")]
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("1_meels")
+item_area = NodePath(".")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1869480466]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_cnkh1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1968873927]
 position = Vector2(23.03817, 8.470573)
 scale = Vector2(0.6801143, 0.6801143)
 texture = ExtResource("1_w677d")
 offset = Vector2(-42.525, -104.11)
-
-[node name="PickupRegion" parent="." unique_id=1069029753 instance=ExtResource("2_w677d")]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRegion" unique_id=1869480466]
-position = Vector2(0, -64)
-shape = SubResource("RectangleShape2D_cnkh1")
-
-[connection signal="pickedup" from="PickupRegion" to="." method="_on_pickedup"]
