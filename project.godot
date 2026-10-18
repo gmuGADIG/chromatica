@@ -22,9 +22,6 @@ buses/default_bus_layout="uid://b23cycdwm8b8d"
 [autoload]
 
 EventHandler="uid://b3gmulvl2er2i"
-
-[autoload]
-
 Dialogue="*uid://c00wh1oryqoaq"
 
 [display]
@@ -56,6 +53,15 @@ folder_colors={
 [global_group]
 
 LDTKLevel=""
+
+[importer_defaults]
+
+csv_translation={
+"compress": 1,
+"delimiter": 0,
+"unescape_keys": false,
+"unescape_translations": true
+}
 
 [input]
 
