@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @export var slam_velocity : Curve
 
@@ -16,7 +16,7 @@ func _input(event: InputEvent) -> void:
 		slam()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	if slam_timer_active:
 		slam_timer += delta
@@ -34,7 +34,8 @@ func _process(delta: float) -> void:
 	var sample_point := clampf(slam_timer, 0, slam_velocity.max_domain)
 	
 	player.velocity.y = slam_velocity.sample(sample_point)
-
+	player.move_and_slide()
+	
 func slam() -> void:
 	if player.is_on_floor() or is_in_slam():
 		return

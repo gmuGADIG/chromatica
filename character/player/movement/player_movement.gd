@@ -119,9 +119,6 @@ func coyote_conditions_met() -> bool:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func walk(direction: float, delta : float) -> void:
-	if not has_control_of_x_vel():
-		return
-	
 	var velocity : Vector2 = player.velocity
 	if direction:
 		last_horizontal_direction = direction
@@ -194,4 +191,3 @@ func no_special_player_state() -> bool:
 			return true
 		_:
 			return false
-
