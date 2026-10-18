@@ -1,35 +1,36 @@
-extends Node
+extends CanvasLayer
 
-
+signal next_dialogue
 
 
 #dictionary
 @export var npc_id_table : Dictionary[StringName,NPCData]
+@export var dialogue_box : RichTextLabel
+@export var character_portrait : TextureRect
+@export var character_name_box : RichTextLabel
+@export var text_rate = 0.05 #in seconds
 
-var Render_Text_Instantly
-var Dialogue_Playing #this is to block movement actions.
-signal Next_Dialogue
+
+var dialogue_playing : bool = false#this is to block movement actions.
+var render_text_instantly : bool = false
+
 
 #always hide the scene on first load
 func _ready() -> void:
-	Dialogue_Player.hide()
+	hide()
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		Render_Text_Instantly = true
-		Next_Dialogue.emit()
+		render_text_instantly = true
+		next_dialogue.emit()
 
 ##Plays the dialogue_array, type being [DialogueLine], outputeed from the parser.
 func play_dialogue(dialogue_array) -> bool:
-	Render_Text_Instantly = false
-	var Dialogue_Box = Dialogue_Player.get_child(0) #index is always 0 as its the first node in the Dialogue node
-	var Dialogue_Portrait = Dialogue_Player.get_child(1) #index is always 1 as its the second node in the Dialogue node
-	var Character_Name_Box = Dialogue_Player.get_child(2) #index is always 2 as its the second node in the Dialogue node
-	var text_rate = 0.05 #in seconds
+	dialogue_playing = true
+	render_text_instantly = false
+	show()
 	
-	Dialogue_Player.show()
-	Dialogue_Playing = true
 	
 	##Loop over all dialogue lines in the array (I dont exactly know why minus 1 is required, but it is)
 	for Dialogue_Line in dialogue_array.size() - 1:
@@ -46,31 +47,32 @@ func play_dialogue(dialogue_array) -> bool:
 			var thisNPCData = npc_id_table[Dialogue_Chara_ID]
 			var portrait_texture = thisNPCData["portrait_sprite"]
 
-			Character_Name_Box.set_text(Dialogue_Chara_ID)
-			Dialogue_Portrait.set_texture(portrait_texture)
+			character_name_box.set_text(Dialogue_Chara_ID)
+			character_portrait.set_texture(portrait_texture)
 			
 		else:
-			Character_Name_Box.set_text("")
-			Dialogue_Portrait.set_texture(null) #does this work? IDK!
+			character_name_box.set_text("")
+			character_portrait.set_texture(null) #does this work? IDK!
 		
 		##Make sure that the characters are not visible before loading the text
-		Dialogue_Box.set_visible_characters(0)
-		Dialogue_Box.set_text(Dialogue_Text)
+		dialogue_box.set_visible_characters(0)
+		dialogue_box.set_text(Dialogue_Text)
 		
 		##Make a loop for the length of the chars in the current dialogue line plus one because offsets
 		for char_index in Dialogue_Char_Array.size() + 1:
 			#If the user pressed space to render the current line, show all of the characters and exit the loop.
-			if (Render_Text_Instantly):
-				Dialogue_Box.set_visible_characters(-1)
+			if (render_text_instantly):
+				dialogue_box.set_visible_characters(-1)
 				break
 			#Otherwise, change the visible character count to the current character index wait for text_rate (in seconds)
-			Dialogue_Box.set_visible_characters(char_index)
+			dialogue_box.set_visible_characters(char_index)
 			await get_tree().create_timer(text_rate).timeout
 		
 		#Once a line has been completed, wait for the user to press space to go to the new line, and reset the render state.
-		await Next_Dialogue
-		Render_Text_Instantly = false
+		await next_dialogue
+		render_text_instantly = false
 	
-	Dialogue_Playing = false
-	Dialogue_Player.hide()
+	dialogue_playing = false
+	hide()
+	print("END")
 	return true	

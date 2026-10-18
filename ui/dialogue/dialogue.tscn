@@ -6,22 +6,18 @@
 [ext_resource type="Resource" uid="uid://dbybooi7kwphd" path="res://temp/egg.tres" id="4_vqqoj"]
 [ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://temp/garonic.tres" id="5_mfx2q"]
 
-[node name="Dialogue" type="Control" unique_id=448535468]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Dialogue" type="CanvasLayer" unique_id=1222258479 node_paths=PackedStringArray("dialogue_box", "character_portrait", "character_name_box")]
 script = ExtResource("1_8q5o4")
 npc_id_table = Dictionary[StringName, ExtResource("2_jy5du")]({
 &"egg": ExtResource("4_vqqoj"),
 &"fih": ExtResource("3_135c7"),
 &"garonic": ExtResource("5_mfx2q")
 })
+dialogue_box = NodePath("DialogueBox")
+character_portrait = NodePath("DialoguePortrait")
+character_name_box = NodePath("CharacterName")
 
-[node name="Dialogue_Box" type="RichTextLabel" parent="." unique_id=968629647]
-layout_mode = 0
+[node name="DialogueBox" type="RichTextLabel" parent="." unique_id=968629647]
 offset_left = 300.0
 offset_top = 362.0
 offset_right = 1129.0
@@ -37,11 +33,16 @@ theme_override_font_sizes/mono_font_size = 30
 bbcode_enabled = true
 fit_content = true
 
-[node name="Dialogue_Portrait" type="Sprite2D" parent="." unique_id=1131092527]
-position = Vector2(150, 490)
+[node name="DialoguePortrait" type="TextureRect" parent="." unique_id=1699369484]
+anchors_preset = -1
+anchor_top = 0.49382716
+anchor_right = 0.2777778
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Character_Name" type="RichTextLabel" parent="." unique_id=1979618063]
-layout_mode = 0
+[node name="CharacterName" type="RichTextLabel" parent="." unique_id=1979618063]
 offset_left = 43.0
 offset_top = 330.0
 offset_right = 258.0
@@ -59,8 +60,13 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1702587099]
-z_index = -1
-position = Vector2(0, 327)
-color = Color(0, 0.13149942, 0.13149942, 1)
-polygon = PackedVector2Array(0, 0, 0, 34.492554, 0, 321, 1152, 321, 1152, 0)
+[node name="ColorRect" type="ColorRect" parent="." unique_id=283067308]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_top = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.13333334, 0.13333334, 1)

@@ -3,6 +3,8 @@ class_name CSVParser
 
 ## Takes in a path to a CSV file representing dialogue and parses it into an Array of [DialogueLine]s.
 static func parse_dialogue(path: String) -> Array[DialogueLine]:
+	if path == "":
+		return []
 	# TODO: make better error handling on invalid CSV or dialogue format
 	
 	var file := FileAccess.open(path, FileAccess.READ)
