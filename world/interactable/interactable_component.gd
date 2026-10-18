@@ -11,6 +11,8 @@ func _ready() -> void:
 	collision_mask = 0
 
 func interact() -> void:
+	if Dialogue.is_playing():
+		return
 	interacted.emit()
 	print(name + " interacted with")
 	pass

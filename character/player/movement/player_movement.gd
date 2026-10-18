@@ -62,6 +62,9 @@ func _input(event: InputEvent) -> void:
 		return
 
 	##Jump Inputs
+	if Dialogue.is_playing():
+		return
+	
 	if event.is_action_pressed("jump"):
 		##Try normal jump
 		var jumped : bool = jump()
@@ -80,8 +83,11 @@ func _input(event: InputEvent) -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	if Dialogue.is_playing():
+		return
 	if not no_special_player_state():
 		return
+	
 	walk(Input.get_axis("move_left", "move_right"), delta)
 	
 	##Jump Buffering
