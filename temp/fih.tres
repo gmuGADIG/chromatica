@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ayefr")
-name = "Fihtsgerold"
+name = "Fihtsgerald"
 world_sprite = ExtResource("1_ww0ac")
 portrait_sprite = ExtResource("1_ww0ac")
 metadata/_custom_type_script = "uid://c3elg5rqdh6gq"

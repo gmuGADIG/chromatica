@@ -50,7 +50,7 @@ class_name PlayerMovement
 
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
-var last_horizontal_direction : float
+var last_horizontal_direction : float = 1.0
 
 @onready var coyote_timer : Timer = $CoyoteTimer
 @onready var jump_buffer_timer : Timer = $JumpBuffer
