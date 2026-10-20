@@ -40,8 +40,8 @@ func _generate_world_cache() -> void:
 		loaded_rooms.append(room)
 	
 	world_cache.take_over_path(EXPORT_PATH)
-	var result : Error = ResourceSaver.save(world_cache,EXPORT_PATH,
-		ResourceSaver.FLAG_BUNDLE_RESOURCES
+	var result : Error = ResourceSaver.save(world_cache,EXPORT_PATH
+		#ResourceSaver.FLAG_BUNDLE_RESOURCES
 	)
 	
 	if result == OK:
@@ -56,12 +56,12 @@ func _generate_world_cache() -> void:
 func _ready() -> void:
 	locate_current_room()
 
-func _process(delta: float) -> void:
-	if (player.position.x - room_boundry < current_Room.world_position[0] 
-		or player.position.x + room_boundry > current_Room.world_position[0] + current_Room.size[0] 
-		or player.position.y - room_boundry < current_Room.world_position[1] 
-		or player.position.y + room_boundry > current_Room.world_position[1] + current_Room.size[1]): 
-		locate_current_room()
+#func _process(delta: float) -> void:
+	#if (player.position.x - room_boundry < current_Room.world_position[0] 
+		#or player.position.x + room_boundry > current_Room.world_position[0] + current_Room.size[0] 
+		#or player.position.y - room_boundry < current_Room.world_position[1] 
+		#or player.position.y + room_boundry > current_Room.world_position[1] + current_Room.size[1]): 
+		#locate_current_room()
 
 func locate_current_room() -> void:
 	var roomDataArray : Array[RoomData] = world_cache.room_data.values()
