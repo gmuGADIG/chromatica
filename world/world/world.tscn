@@ -2,20 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dqna7jw2p650v" path="res://world/world/world.gd" id="1_i0vah"]
 [ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="1_yhsm3"]
+[ext_resource type="Resource" uid="uid://bigp7swogixhk" path="res://world/world/world_cache.tres" id="2_1tbfg"]
 [ext_resource type="PackedScene" uid="uid://clra6nv8aoo0u" path="res://ui/hud/hud.tscn" id="2_lm4yx"]
-[ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="3_gi12a"]
-[ext_resource type="PackedScene" uid="uid://blbd8cixeawwr" path="res://world/interactable/interactable_region.tscn" id="4_w34fv"]
-[ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="8_qnlc3"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_80d8p"]
-radius = 79.7
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_de260"]
-radius = 84.2
 
 [node name="World" type="Node2D" unique_id=1762502460 node_paths=PackedStringArray("player")]
 script = ExtResource("1_i0vah")
 player = NodePath("Player")
+world_cache = ExtResource("2_1tbfg")
 
 [node name="Player" parent="." unique_id=1162272003 instance=ExtResource("1_yhsm3")]
 
@@ -30,24 +23,5 @@ visible = false
 [node name="PlayerHealthUI" parent="CanvasLayer/Hud" index="0" unique_id=2034468648 node_paths=PackedStringArray("player_health")]
 player_health = NodePath("../../../Player/PlayerHealthComponent")
 
-[node name="TestLevel" parent="." unique_id=441125367 instance=ExtResource("3_gi12a")]
-position = Vector2(-2653, -2550)
-
-[node name="InteractableRegion" parent="TestLevel" unique_id=1399024953 instance=ExtResource("4_w34fv")]
-position = Vector2(2736, 2073)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel/InteractableRegion" unique_id=1565560289]
-shape = SubResource("CircleShape2D_80d8p")
-
-[node name="InteractableRegion2" parent="TestLevel" unique_id=1559316389 instance=ExtResource("4_w34fv")]
-position = Vector2(2923, 2077)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel/InteractableRegion2" unique_id=234079809]
-shape = SubResource("CircleShape2D_de260")
-
-[node name="Test2" parent="." unique_id=365624718 instance=ExtResource("8_qnlc3")]
-position = Vector2(2160, -3913)
-
 [editable path="Player"]
 [editable path="CanvasLayer/Hud"]
-[editable path="TestLevel"]
