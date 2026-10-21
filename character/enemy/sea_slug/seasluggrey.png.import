@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duahwqhiddt6s"
-path="res://.godot/imported/seaslug.png-02f839d1f32389988949a290d8c5fd0c.ctex"
+uid="uid://dqkn6lkixrwqv"
+path="res://.godot/imported/seasluggrey.png-ab022668869d02aa8c3ba52bc7b78db9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/enemy/seaslug.png"
-dest_files=["res://.godot/imported/seaslug.png-02f839d1f32389988949a290d8c5fd0c.ctex"]
+source_file="res://character/enemy/sea_slug/seasluggrey.png"
+dest_files=["res://.godot/imported/seasluggrey.png-ab022668869d02aa8c3ba52bc7b78db9.ctex"]
 
 [params]
 
