@@ -69,10 +69,9 @@ metadata/_custom_type_script = "uid://damau8bpijlrc"
 one_shot = true
 
 [node name="SlashArea" parent="Attacks/DashSlash" unique_id=508201604 node_paths=PackedStringArray("player") instance=ExtResource("3_qh58e")]
-visible = true
 position = Vector2(0, -120)
 player = NodePath("../../..")
-hurtbox_shape = Vector2(192, 256)
+hurtbox_shape = Vector2(256, 320)
 offset = Vector2(0, 0)
 swing_duration = 0.3
 

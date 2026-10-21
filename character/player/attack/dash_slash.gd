@@ -3,9 +3,15 @@ class_name DashSlash
 @export var player: Player
 @export var player_movement: PlayerMovement
 @export var hurtbox: PlayerHurtbox
+@export_group("Attak Properties")
+@export var dash_damage : int
 
-
-
+## set to RED for now because that's just how brush_swing is, but maybe it
+## shoudln't, not yet.
+func _ready() -> void:
+	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
+		enemy.hit(DamageInfo.new(dash_damage,DamageInfo.AttackColor.RED))
+	)
 
 @export_group("Parameters")
 #seconds before player can dash again
