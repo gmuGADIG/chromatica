@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cg00jpsjgo1fo" path="res://character/player/attack/player_hurtbox.gd" id="1_rcqpp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eu8pa"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcqpp"]
 size = Vector2(256, 256)
 
 [node name="AttackArea" type="Area2D" unique_id=379676843 node_paths=PackedStringArray("collision_shape")]
@@ -13,7 +13,7 @@ collision_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513578250]
 position = Vector2(128, 0)
-shape = SubResource("RectangleShape2D_eu8pa")
+shape = SubResource("RectangleShape2D_rcqpp")
 
 [node name="SwingDuration" type="Timer" parent="." unique_id=243478538]
 wait_time = 0.1

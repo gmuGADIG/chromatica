@@ -71,15 +71,23 @@ metadata/_custom_type_script = "uid://bjewudptgw235"
 [node name="UppercutCooldown" type="Timer" parent="Attacks/Uppercut" unique_id=1142187932]
 one_shot = true
 
-[node name="DashSlash" type="Node2D" parent="Attacks" unique_id=1018780961 node_paths=PackedStringArray("player", "player_movement")]
+[node name="DashSlash" type="Node2D" parent="Attacks" unique_id=1018780961 node_paths=PackedStringArray("player", "player_movement", "hurtbox")]
 script = ExtResource("9_v2h1c")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
+hurtbox = NodePath("SlashArea")
 dash_slash_velocity = ExtResource("8_vuhga")
 metadata/_custom_type_script = "uid://damau8bpijlrc"
 
 [node name="DashSlashCooldown" type="Timer" parent="Attacks/DashSlash" unique_id=1070012377]
 one_shot = true
+
+[node name="SlashArea" parent="Attacks/DashSlash" unique_id=508201604 node_paths=PackedStringArray("player") instance=ExtResource("3_qh58e")]
+position = Vector2(0, -120)
+player = NodePath("../../..")
+hurtbox_shape = Vector2(256, 320)
+offset = Vector2(0, 0)
+swing_duration = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
