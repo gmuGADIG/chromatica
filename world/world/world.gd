@@ -76,11 +76,25 @@ func _process(delta: float) -> void:
 				locate_current_room()
 
 func locate_current_room() -> void:
+	pass
+	
+
+func _process(delta: float) -> void:
+	if(current_Room != null):
+		if (player.position.x - room_boundry < current_Room.world_position[0] 
+			or player.position.x + room_boundry > current_Room.world_position[0] + current_Room.size[0] 
+			or player.position.y - room_boundry < current_Room.world_position[1] 
+			or player.position.y + room_boundry > current_Room.world_position[1] + current_Room.size[1]): 
+				locate_current_room()
+
+func locate_current_room() -> RoomData:
 	var roomDataArray : Array[RoomData] = world_cache.room_data.values()
 	for i in range(roomDataArray.size()):
 		if roomDataArray[i].world_position[0] < player.position[0]:
 			if player.position[0] < roomDataArray[i].world_position[0]+roomDataArray[i].size[0]:
 				if roomDataArray[i].world_position[1] < player.position[1]:
 					if player.position[1] < roomDataArray[i].world_position[1]+roomDataArray[i].size[1]:
-						current_room = world_cache.roomDataArray[i]
+						current_Room = world_cache.roomDataArray[i]
+						return current_Room;
+	return null
 			
