@@ -2,5 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bwaavhkj00svs" path="res://character/paintable hitbox/paintable_object_hitbox.gd" id="1_c86qg"]
 
-[node name="Node2D" type="Area2D" unique_id=1627833281]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+
+[node name="PaintObjectHitbox" type="Area2D" unique_id=1627833281]
 script = ExtResource("1_c86qg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=821112229]
+shape = SubResource("RectangleShape2D_g4v7s")
