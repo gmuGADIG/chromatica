@@ -87,6 +87,7 @@ func _physics_process(delta: float) -> void:
 		apply_gravity(delta)
 
 	if Dialogue.is_playing():
+		player.move_and_slide()
 		return
 	if not no_special_player_state():
 		return
