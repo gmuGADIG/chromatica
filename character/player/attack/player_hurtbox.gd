@@ -5,6 +5,7 @@ signal finished
 
 @export var player : Player
 @export var collision_shape : CollisionShape2D
+@export var attack_timer : Timer
 
 @export_group("Dimensions")
 @export var hurtbox_shape : Vector2 = Vector2(256,256):
@@ -26,7 +27,7 @@ signal finished
 		attack_direction = val
 		rotation_degrees = val
 @onready var rect_shape : RectangleShape2D = $CollisionShape2D.shape
-@onready var attack_timer := $SwingDuration as Timer
+#@onready var attack_timer := $SwingDuration as Timer
 
 ##Used to avoid double hitting entities & objects within a single swing
 var hit_things : Array[Variant]
