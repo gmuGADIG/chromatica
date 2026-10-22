@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b8okns63frmwt" path="res://character/enemy/lunger/lunger.tscn" id="3_f24ca"]
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="5_f24ca"]
 [ext_resource type="PackedScene" uid="uid://dc6a7un1db6hc" path="res://character/enemy/spannon/spannon.tscn" id="5_s2o2t"]
+[ext_resource type="PackedScene" uid="uid://ddobnglwxykhn" path="res://character/enemy/scorpion/scorpion.tscn" id="6_sybq3"]
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
 
@@ -21,6 +22,9 @@ position = Vector2(694, 3940)
 
 [node name="CarpenterBee" parent="." index="5" unique_id=1811544662 instance=ExtResource("5_f24ca")]
 position = Vector2(3295, 3635)
+
+[node name="Scorpion" parent="." index="6" unique_id=1987485568 instance=ExtResource("6_sybq3")]
+position = Vector2(2944, 3946)
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]
