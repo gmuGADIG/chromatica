@@ -1,6 +1,6 @@
 @abstract
 class_name EnemyBehavior
-extends Node
+extends CharacterBody2D
 ## This is the "brains" of an enemy
 ## Adds a child of an Ememy; it drives the enemy's body
 
