@@ -33,7 +33,9 @@ extends CharacterBody2D
 
 @export var colorable_component : Colorable
 
-@export var sight_ray : RayCast2D
+@export var player_ray : RayCast2D
+
+@export var wall_ray : RayCast2D
 
 @export var platform_ray : RayCast2D
 
