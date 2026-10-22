@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="1_7gwe3"]
 [ext_resource type="PackedScene" uid="uid://clra6nv8aoo0u" path="res://ui/hud/hud.tscn" id="2_o4fss"]
-[ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="3_8giql"]
+[ext_resource type="PackedScene" uid="uid://c5wxt430iemfy" path="res://ldtk/levels/TestLevel.scn" id="3_8giql"]
 [ext_resource type="PackedScene" uid="uid://blbd8cixeawwr" path="res://world/interactable/interactable_region.tscn" id="4_dlsf4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_80d8p"]
