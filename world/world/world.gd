@@ -60,8 +60,11 @@ func _generate_world_cache() -> void:
 @export var world_cache : WorldCache
 
 func _ready() -> void:
-	locate_current_room()
-	load_rooms()
+	world_cache = load("res://world/world/world_cache.tres")
+	#print(world_cache.room_data)
+	#locate_current_room()
+	#load_rooms()
+	pass
 	
 func load_rooms() -> void:
 #	var room_to_load = load(current_room.room_path)
@@ -70,24 +73,24 @@ func load_rooms() -> void:
 	pass
 	
 	
-func _process(delta: float) -> void:
-	if(current_room != null):
-		if (player.position.x - room_boundry < current_room.world_position[0] 
-			or player.position.x + room_boundry > current_room.world_position[0] + current_room.size[0] 
-			or player.position.y - room_boundry < current_room.world_position[1] 
-			or player.position.y + room_boundry > current_room.world_position[1] + current_room.size[1]): 
-				locate_current_room()
-
-func locate_current_room() -> RoomData:
-	var roomDataArray : Array[RoomData] = world_cache.room_data.values()
-	print(world_cache.room_data)
-	for i in range(roomDataArray.size()):
-		print(roomDataArray[i].world_position[0])
-		if roomDataArray[i].world_position[0] < player.position[0]:
-			if player.position[0] < roomDataArray[i].world_position[0]+roomDataArray[i].size[0]:
-				if roomDataArray[i].world_position[1] < player.position[1]:
-					if player.position[1] < roomDataArray[i].world_position[1]+roomDataArray[i].size[1]:
-						current_room = world_cache.roomDataArray[i]
-						return current_room;
-	return null
-			
+#func _process(delta: float) -> void:
+	#if(current_room != null):
+		#if (player.position.x - room_boundry < current_room.world_position[0] 
+			#or player.position.x + room_boundry > current_room.world_position[0] + current_room.size[0] 
+			#or player.position.y - room_boundry < current_room.world_position[1] 
+			#or player.position.y + room_boundry > current_room.world_position[1] + current_room.size[1]): 
+				#locate_current_room()
+#
+#func locate_current_room() -> RoomData:
+	#var roomDataArray : Array[RoomData] = world_cache.room_data.values()
+	#print(world_cache.room_data)
+	#for i in range(roomDataArray.size()):
+		#print(roomDataArray[i].world_position[0])
+		#if roomDataArray[i].world_position[0] < player.position[0]:
+			#if player.position[0] < roomDataArray[i].world_position[0]+roomDataArray[i].size[0]:
+				#if roomDataArray[i].world_position[1] < player.position[1]:
+					#if player.position[1] < roomDataArray[i].world_position[1]+roomDataArray[i].size[1]:
+						#current_room = world_cache.roomDataArray[i]
+						#return current_room;
+	#return null
+			#

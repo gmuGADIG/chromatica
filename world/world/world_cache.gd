@@ -14,3 +14,4 @@ func add_room(level : LDTKLevel, room_path : String) -> void:
 	for key in level.neighbours:
 		new_room.adjacent_rooms.append(key["levelIid"])
 	room_data.set(level.iid,new_room)
+	pass
