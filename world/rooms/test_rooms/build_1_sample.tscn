@@ -21,6 +21,9 @@ size = Vector2(512, 320)
 [node name="Player" parent="." index="0" unique_id=1162272003]
 position = Vector2(2312, 3754)
 
+[node name="InteractRegion" parent="Player" index="4" unique_id=1706310371 node_paths=PackedStringArray("player")]
+player = NodePath("..")
+
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
 
 [node name="InteractiveGrass" parent="." index="3" unique_id=1966995250 instance=ExtResource("3_r6k6n")]
