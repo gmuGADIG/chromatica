@@ -22,6 +22,9 @@ func _ready() -> void:
 		printerr("Domains between two uppercut velocities different")
 
 func _input(event : InputEvent) -> void:
+	if Dialogue.is_playing():
+		return
+	
 	if event.is_action_pressed("temp_uppercut"):
 		uppercut()
 
