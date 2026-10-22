@@ -83,35 +83,37 @@ func _input(event: InputEvent) -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	var not_in_dialogue = not Dialogue.is_playing()
+	
 	if not player.is_on_floor():
 		apply_gravity(delta)
-
-	if Dialogue.is_playing():
-		player.move_and_slide()
-		return
+		
 	if not no_special_player_state():
 		return
 	
-	walk(Input.get_axis("move_left", "move_right"), delta)
+	var input_value := Input.get_axis("move_left", "move_right")
+	var actual_movement: float = input_value if not_in_dialogue else 0
 	
+	walk(input_value, delta)
+
 	##Jump Buffering
-	if not jump_buffer_timer.is_stopped() and can_jump():
+	if not jump_buffer_timer.is_stopped() and can_jump() and not_in_dialogue:
 		jump()
 		jump_buffer_timer.stop()
 	
 	##Walljump Buffering
-	if not jump_buffer_timer.is_stopped() and can_walljump():
+	if not jump_buffer_timer.is_stopped() and can_walljump() and not_in_dialogue:
 		walljump()
 		jump_buffer_timer.stop()
 	
 	##Start Coyote Time
-	if coyote_conditions_met():
+	if coyote_conditions_met() and not_in_dialogue:
 		coyote_eligible = false
 		coyote_timer.start(coyote_time)
 
 	player.move_and_slide()
 	
-	if player.is_on_floor() or player.is_on_wall_only():
+	if player.is_on_floor() or player.is_on_wall_only() and not_in_dialogue:
 		coyote_eligible = true
 
 
