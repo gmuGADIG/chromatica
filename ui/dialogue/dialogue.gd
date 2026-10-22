@@ -22,9 +22,10 @@ var in_line : bool = false
 var fast_render : bool = false
 
 
-#always hide the scene on first load
+#always hide the scene on first load (and all subsequent loads)
 func _ready() -> void:
 	hide()
+	get_tree().scene_changed.connect(finish)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
@@ -34,9 +35,7 @@ func _input(event: InputEvent) -> void:
 		if in_line:
 			fast_render = true
 		elif current_line >= active_dialogue.size():
-			active_dialogue = []
-			hide()
-			dialogue_finished.emit()
+			finish()
 		else:
 			_play_line()
 
@@ -55,7 +54,11 @@ func play(dialogue_array : Array[DialogueLine]) -> void:
 	fast_render = false
 	show()
 	_play_line()
-	
+
+func finish() -> void:
+	active_dialogue = []
+	hide()
+	dialogue_finished.emit()
 
 func _play_line() -> void:
 	in_line = true
