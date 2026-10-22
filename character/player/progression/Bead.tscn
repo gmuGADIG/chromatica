@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b6dp1felegnsy"]
+
+[ext_resource type="Script" uid="uid://btl8er6ekebfv" path="res://character/player/progression/bead.gd" id="1_fx6at"]
+[ext_resource type="Texture2D" uid="uid://dos8qf1ypg8oo" path="res://temp/temp_art/color.png" id="2_1hhu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
+size = Vector2(801, 799)
+
+[node name="Bead" type="Node" unique_id=2142502491]
+script = ExtResource("1_fx6at")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2036371572]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1966265945]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_d0bka")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=593767167]
+texture = ExtResource("2_1hhu1")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
