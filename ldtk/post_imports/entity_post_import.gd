@@ -3,8 +3,8 @@
 ## Entity Post Import, which will read entities from LDTK and translate them to Godot nodes
 
 const Util = preload("res://addons/ldtk-importer/src/util/util.gd")
-const respawn_region_packed = preload("res://system/area_triggers/respawn_region/respawn_region.tscn")
-const cutscene_trigger_packed = preload("res://system/area_triggers/cutscene_trigger/cutscene_trigger.tscn")
+const respawn_region_packed = preload("res://systems/area_triggers/respawn_region/respawn_region.tscn")
+const cutscene_trigger_packed = preload("res://systems/area_triggers/cutscene_trigger/cutscene_trigger.tscn")
 
 func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 	var entities: Array = entity_layer.entities
