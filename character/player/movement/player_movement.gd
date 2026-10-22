@@ -89,10 +89,11 @@ func _physics_process(delta: float) -> void:
 		apply_gravity(delta)
 		
 	if not no_special_player_state():
+		coyote_eligible = false
 		return
 	
 	var input_value := Input.get_axis("move_left", "move_right")
-	var actual_movement: float = input_value if not_in_dialogue else 0
+	var actual_movement: float = input_value if not_in_dialogue else 0.
 	
 	walk(actual_movement, delta)
 
@@ -113,9 +114,8 @@ func _physics_process(delta: float) -> void:
 
 	player.move_and_slide()
 	
-	if player.is_on_floor() or player.is_on_wall_only() and not_in_dialogue:
+	if (player.is_on_floor() or player.is_on_wall_only()) and not_in_dialogue:
 		coyote_eligible = true
-
 
 func coyote_conditions_met() -> bool:
 	var air_check : bool = not player.is_on_floor() and not player.is_on_wall()
