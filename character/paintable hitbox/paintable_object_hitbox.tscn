@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://cu184ke66xu5q"]
 
+[ext_resource type="Script" uid="uid://bwaavhkj00svs" path="res://character/paintable hitbox/paintable_object_hitbox.gd" id="1_c86qg"]
+
 [node name="Node2D" type="Area2D" unique_id=1627833281]
+script = ExtResource("1_c86qg")
