@@ -36,6 +36,8 @@ func _generate_world_cache() -> void:
 		print_rich("[color=dark_goldenrod]"+time_string.call()+" File found: "+room_path+"[/color]")
 		var room : LDTKLevel = load(room_path).instantiate()
 		room._ready()
+		print(room)
+		print(room_path)
 		world_cache.add_room(room,room_path)
 		print_rich("[color=goldenrod]"+time_string.call()+" Mapped "+room.iid+"[/color]")
 		loaded_rooms.append(room)
@@ -62,9 +64,10 @@ func _ready() -> void:
 	load_rooms()
 	
 func load_rooms() -> void:
-	var room_to_load = load(current_room.room_path)
-	var room = room_to_load.instantiate()
-	add_child(room)
+#	var room_to_load = load(current_room.room_path)
+#	var room = room_to_load.instantiate()
+#	add_child(room)
+	pass
 	
 	
 func _process(delta: float) -> void:
@@ -75,26 +78,16 @@ func _process(delta: float) -> void:
 			or player.position.y + room_boundry > current_room.world_position[1] + current_room.size[1]): 
 				locate_current_room()
 
-func locate_current_room() -> void:
-	pass
-	
-
-func _process(delta: float) -> void:
-	if(current_Room != null):
-		if (player.position.x - room_boundry < current_Room.world_position[0] 
-			or player.position.x + room_boundry > current_Room.world_position[0] + current_Room.size[0] 
-			or player.position.y - room_boundry < current_Room.world_position[1] 
-			or player.position.y + room_boundry > current_Room.world_position[1] + current_Room.size[1]): 
-				locate_current_room()
-
 func locate_current_room() -> RoomData:
 	var roomDataArray : Array[RoomData] = world_cache.room_data.values()
+	print(world_cache.room_data)
 	for i in range(roomDataArray.size()):
+		print(roomDataArray[i].world_position[0])
 		if roomDataArray[i].world_position[0] < player.position[0]:
 			if player.position[0] < roomDataArray[i].world_position[0]+roomDataArray[i].size[0]:
 				if roomDataArray[i].world_position[1] < player.position[1]:
 					if player.position[1] < roomDataArray[i].world_position[1]+roomDataArray[i].size[1]:
-						current_Room = world_cache.roomDataArray[i]
-						return current_Room;
+						current_room = world_cache.roomDataArray[i]
+						return current_room;
 	return null
 			
