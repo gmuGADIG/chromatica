@@ -21,8 +21,19 @@ extends Node
 ## Downward acceleration (px/sec^2)
 @export var gravity : float = 4000.0
 
-##The Enemy this behavior controls (parent node)
-var body : Enemy
+@export_group("Combat")
+
+@export var health_component : HealthComponent
+
+@export var hitbox : EnemyHitbox
+
+@export var health_bar : ProgressBar
+
+@export var colorable_component : Colorable
+
+@export var sight_ray : RayCast2D
+
+@export var platform_ray : RayCast2D
 
 @abstract func can_see_player() -> bool
 @abstract func set_target(pos: Vector2) -> void
@@ -32,10 +43,7 @@ var body : Enemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	body = get_parent() as Enemy
-	if body == null:
-		push_error("%s must be a direct child of an Enemy." % name)
-		set_physics_process(false)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
