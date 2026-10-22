@@ -94,7 +94,7 @@ func _physics_process(delta: float) -> void:
 	var input_value := Input.get_axis("move_left", "move_right")
 	var actual_movement: float = input_value if not_in_dialogue else 0
 	
-	walk(input_value, delta)
+	walk(actual_movement, delta)
 
 	##Jump Buffering
 	if not jump_buffer_timer.is_stopped() and can_jump() and not_in_dialogue:
