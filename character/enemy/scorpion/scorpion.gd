@@ -3,6 +3,7 @@ class_name Scorpion
 
 enum State { PATROL, CHASE, WINDUP, STING, RECOVER }
 
+var state : State = State.PATROL
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,18 +12,16 @@ func _ready() -> void:
 func _think(delta: float) -> void:
 	match state:
 		State.PATROL:
-			
+			patrol(1)
 		State.CHASE:
 			pass
 		State.WINDUP:
 			pass
 		State.STING:
-			pass
+			attack()
 		State.RECOVER:
 			pass
 
 ## The enemy's attack. Called by the enemy's own logic when it decides to attack.:
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func attack():
 	pass
