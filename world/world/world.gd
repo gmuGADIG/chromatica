@@ -5,7 +5,7 @@ class_name World
 @export var player : Player
 
 var room_boundry : int = 20
-var current_Room : RoomData
+var current_room : RoomData
 
 ##Updates the association between iids and the level
 @export_category("World Cache")
@@ -58,13 +58,21 @@ func _generate_world_cache() -> void:
 @export var world_cache : WorldCache
 
 func _ready() -> void:
-	world_cache = ResourceLoader.load("res://world/world/world_cache.tres")
+	locate_current_room()
+	load_rooms()
+	
+func load_rooms() -> void:
+	var room_to_load = load(current_room.room_path)
+	var room = room_to_load.instantiate()
+	add_child(room)
+	
+	
 func _process(delta: float) -> void:
-	if(current_Room != null):
-		if (player.position.x - room_boundry < current_Room.world_position[0] 
-			or player.position.x + room_boundry > current_Room.world_position[0] + current_Room.size[0] 
-			or player.position.y - room_boundry < current_Room.world_position[1] 
-			or player.position.y + room_boundry > current_Room.world_position[1] + current_Room.size[1]): 
+	if(current_room != null):
+		if (player.position.x - room_boundry < current_room.world_position[0] 
+			or player.position.x + room_boundry > current_room.world_position[0] + current_room.size[0] 
+			or player.position.y - room_boundry < current_room.world_position[1] 
+			or player.position.y + room_boundry > current_room.world_position[1] + current_room.size[1]): 
 				locate_current_room()
 
 func locate_current_room() -> void:
@@ -74,5 +82,5 @@ func locate_current_room() -> void:
 			if player.position[0] < roomDataArray[i].world_position[0]+roomDataArray[i].size[0]:
 				if roomDataArray[i].world_position[1] < player.position[1]:
 					if player.position[1] < roomDataArray[i].world_position[1]+roomDataArray[i].size[1]:
-						current_Room = world_cache.roomDataArray[i]
+						current_room = world_cache.roomDataArray[i]
 			
