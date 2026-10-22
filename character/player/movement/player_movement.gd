@@ -83,6 +83,9 @@ func _input(event: InputEvent) -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	if not player.is_on_floor():
+		apply_gravity(delta)
+
 	if Dialogue.is_playing():
 		return
 	if not no_special_player_state():
@@ -104,10 +107,7 @@ func _physics_process(delta: float) -> void:
 	if coyote_conditions_met():
 		coyote_eligible = false
 		coyote_timer.start(coyote_time)
-	
-	if not player.is_on_floor():
-		apply_gravity(delta)
-	
+
 	player.move_and_slide()
 	
 	if player.is_on_floor() or player.is_on_wall_only():

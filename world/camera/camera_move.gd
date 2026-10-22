@@ -24,9 +24,11 @@ func _process(delta: float) -> void:
 	move_x(delta)
 	move_y(delta)
 	#camera.position.x = stationary_horizontal_offset * player_movement.last_horizontal_direction
-	pass
 
 func move_x(delta : float) -> void:
+	if Dialogue.is_playing():
+		return
+
 	#camera.position.x += 1
 	var input_dir : float = Input.get_axis("move_left","move_right")
 	if input_dir:
