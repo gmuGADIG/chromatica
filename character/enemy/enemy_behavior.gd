@@ -23,6 +23,8 @@ extends Node
 
 @export_group("Combat")
 
+@export var is_friendly : bool
+
 @export var health_component : HealthComponent
 
 @export var hitbox : EnemyHitbox
