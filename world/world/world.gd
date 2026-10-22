@@ -4,9 +4,6 @@ class_name World
 
 @export var player : Player
 
-var room_boundry : int = 20
-var current_room : RoomData
-
 ##Updates the association between iids and the level
 @export_category("World Cache")
 @export_tool_button("Update World Cache","Reload") var action : Callable = _generate_world_cache
@@ -59,38 +56,98 @@ func _generate_world_cache() -> void:
 	EditorInterface.reload_scene_from_path.call_deferred(scene_file_path)
 @export var world_cache : WorldCache
 
+var current_room_iid : String
+		
+
+var loaded_rooms : Dictionary[String,LDTKLevel]
+
 func _ready() -> void:
 	world_cache = load("res://world/world/world_cache.tres")
-	#print(world_cache.room_data)
-	#locate_current_room()
-	#load_rooms()
-	pass
+	if Engine.is_editor_hint():
+		#for room_iid : String in world_cache.room_data.keys():
+			#load_room(room_iid)
+		pass
+	else:
+		var iid : String = locate_room(player.global_position,true)
+		set_current_room(iid)
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	if current_room_iid == "":
+		printerr("no room loaded")
+		return
 	
-func load_rooms() -> void:
-#	var room_to_load = load(current_room.room_path)
-#	var room = room_to_load.instantiate()
-#	add_child(room)
-	pass
+	if not in_room_bounds(current_room_iid,player.global_position):
+		set_current_room(locate_room(player.global_position,false))
+
+func set_current_room(iid : String) -> void:
+	current_room_iid = iid
+	var next_iid_set : Array[String] = [iid]
+	#print("curr ", iid)
+	load_room(iid)
 	
+	for neighbor : String in world_cache.room_data[iid].adjacent_rooms:
+		#print("nay ", neighbor)
+		next_iid_set.append(neighbor)
+		load_room(neighbor)
+	var to_remove : Array[String] = loaded_rooms.keys().filter(
+		func(item : String) -> bool:
+			return not next_iid_set.has(item)
+	)
 	
-#func _process(delta: float) -> void:
-	#if(current_room != null):
-		#if (player.position.x - room_boundry < current_room.world_position[0] 
-			#or player.position.x + room_boundry > current_room.world_position[0] + current_room.size[0] 
-			#or player.position.y - room_boundry < current_room.world_position[1] 
-			#or player.position.y + room_boundry > current_room.world_position[1] + current_room.size[1]): 
-				#locate_current_room()
-#
-#func locate_current_room() -> RoomData:
-	#var roomDataArray : Array[RoomData] = world_cache.room_data.values()
-	#print(world_cache.room_data)
-	#for i in range(roomDataArray.size()):
-		#print(roomDataArray[i].world_position[0])
-		#if roomDataArray[i].world_position[0] < player.position[0]:
-			#if player.position[0] < roomDataArray[i].world_position[0]+roomDataArray[i].size[0]:
-				#if roomDataArray[i].world_position[1] < player.position[1]:
-					#if player.position[1] < roomDataArray[i].world_position[1]+roomDataArray[i].size[1]:
-						#current_room = world_cache.roomDataArray[i]
-						#return current_room;
-	#return null
-			#
+	for removed_iid : String in to_remove:
+		unload_room(removed_iid)
+	
+
+func load_room(iid : String) -> LDTKLevel:
+	if loaded_rooms.has(iid):
+		return null
+	
+	var room_data : RoomData = world_cache.room_data[iid]
+	var new_room : LDTKLevel = load(room_data.room_path).instantiate()
+	add_child(new_room)
+	new_room.global_position = new_room.world_position
+	loaded_rooms.set(iid,new_room)
+	
+	return new_room
+
+func in_room_bounds(room_iid : String, pos : Vector2) -> bool:
+	var current_room : RoomData = world_cache.room_data[room_iid]
+	if pos.x < current_room.world_position.x:
+		return false
+	if pos.y < current_room.world_position.y:
+		return false
+	if pos.x > current_room.world_position.x + current_room.size.x:
+		return false
+	if pos.y > current_room.world_position.y + current_room.size.y:
+		return false
+	
+	return true
+
+func unload_room(iid : String) -> void:
+	assert(loaded_rooms.has(iid))
+	assert(iid != current_room_iid)
+	
+	var room : LDTKLevel = loaded_rooms[iid]
+	loaded_rooms.erase(iid)
+	room.queue_free()
+
+func locate_room(pos : Vector2, include_unloaded : bool) -> String:
+	var iid_list : Array[String] = (
+			world_cache.room_data.keys() if include_unloaded
+			else loaded_rooms.keys()
+	)
+	for iid : String in iid_list:
+		var room_data : RoomData = world_cache.room_data[iid]
+		if pos.x < room_data.world_position.x:
+			continue
+		if pos.y < room_data.world_position.y:
+			continue
+		if pos.x > room_data.world_position.x + room_data.size.x:
+			continue
+		if pos.y > room_data.world_position.y + room_data.size.y:
+			continue
+		
+		return iid
+	return ""

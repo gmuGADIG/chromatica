@@ -93,6 +93,3 @@ metadata/_custom_type_script = "uid://damau8bpijlrc"
 
 [node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
 one_shot = true
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1119734255]
-zoom = Vector2(0.23, 0.23)

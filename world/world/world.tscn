@@ -11,6 +11,7 @@ player = NodePath("Player")
 world_cache = ExtResource("2_1tbfg")
 
 [node name="Player" parent="." unique_id=1162272003 instance=ExtResource("1_yhsm3")]
+position = Vector2(2038, 1585)
 
 [node name="CollisionShape2D" parent="Player/InteractRegion" parent_id_path=PackedInt32Array(1162272003, 1706310371) index="0" unique_id=2042581431]
 position = Vector2(-4, -120)
@@ -22,6 +23,10 @@ visible = false
 
 [node name="PlayerHealthUI" parent="CanvasLayer/Hud" index="0" unique_id=2034468648 node_paths=PackedStringArray("player_health")]
 player_health = NodePath("../../../Player/PlayerHealthComponent")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1408860890]
+position = Vector2(26199, 2263)
+zoom = Vector2(0.02, 0.02)
 
 [editable path="Player"]
 [editable path="CanvasLayer/Hud"]
