@@ -1,11 +1,8 @@
-[gd_scene format=3 uid="uid://c0gnoeun33jjj"]
+[gd_scene format=3 uid="uid://bj0le6ghuysk0"]
 
-[ext_resource type="Script" uid="uid://brijcdg7gxsxe" path="res://systems/desaturation/desaturation_component.gd" id="1_s5o00"]
-[ext_resource type="Shader" uid="uid://dibv1qb7atu2y" path="res://systems/desaturation/desaturation_hsv.gdshader" id="2_7sq3u"]
+[ext_resource type="Script" uid="uid://h27x1irfaemo" path="res://systems/desaturation/desaturation_component.gd" id="1_sv1b5"]
+[ext_resource type="Shader" uid="uid://dibv1qb7atu2y" path="res://systems/desaturation/desaturation_hsv.gdshader" id="2_gr0x4"]
 
 [node name="DesaturationComponent" type="Node" unique_id=2088411467]
-script = ExtResource("1_s5o00")
-shader = ExtResource("2_7sq3u")
-red_scale = 0.5
-blue_scale = 0.5
-metadata/_custom_type_script = "uid://brijcdg7gxsxe"
+script = ExtResource("1_sv1b5")
+shader = ExtResource("2_gr0x4")

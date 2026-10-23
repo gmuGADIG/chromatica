@@ -10,8 +10,6 @@ func _ready() -> void:
 	settings_menu.closed.connect(_on_settings_closed)
 	open()
 	
-	#this demo button is temp and just exists to flex stuff in build showcases
-	$MainMenu/DemoButton.pressed.connect(_on_demobutton_pressed)
 
 func open():
 	$MainMenu/Start.grab_focus()

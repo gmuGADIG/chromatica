@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://buqidcdtqvke"]
+
+[ext_resource type="Texture2D" uid="uid://dos8qf1ypg8oo" path="res://temp/temp_art/color.png" id="2_5yp5i"]
+[ext_resource type="PackedScene" uid="uid://yrwcb7lcsgpb" path="res://character/player/pickup_region.tscn" id="3_xogp3"]
+
+[sub_resource type="GDScript" id="GDScript_0d1em"]
+script/source = "extends \"res://pickup/pickup.gd\"
+
+
+func _on_pickedup(player) -> void:
+	self.get_children()
+	super._on_pickedup(player)
+	print(\"I CAST HEALING SPELL\")
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnkh1"]
+size = Vector2(188, 196)
+
+[node name="HealthPickup" type="Node2D" unique_id=1398411176]
+script = SubResource("GDScript_0d1em")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1968873927]
+position = Vector2(15, 5)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_5yp5i")
+
+[node name="PickupRegion" parent="." unique_id=1069029753 instance=ExtResource("3_xogp3")]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRegion" unique_id=1869480466]
+position = Vector2(9, -2)
+shape = SubResource("RectangleShape2D_cnkh1")
+
+[connection signal="pickedup" from="PickupRegion" to="." method="_on_pickedup"]

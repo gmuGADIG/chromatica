@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://dlaio5jsdr3qo"]
+
+[ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://systems/npc/npc_data.gd" id="1_ayefr"]
+[ext_resource type="Texture2D" uid="uid://cvvmr8lckgp41" path="res://temp/temp_art/fih_portrait.png" id="1_ww0ac"]
+
+[resource]
+script = ExtResource("1_ayefr")
+name = "Fihtsgerald"
+world_sprite = ExtResource("1_ww0ac")
+portrait_sprite = ExtResource("1_ww0ac")
+metadata/_custom_type_script = "uid://c3elg5rqdh6gq"
