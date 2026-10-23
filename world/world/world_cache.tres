@@ -3,6 +3,19 @@
 [ext_resource type="Script" uid="uid://cnwiid7bd5x7u" path="res://world/world/room_data.gd" id="1_d247u"]
 [ext_resource type="Script" uid="uid://b6tixspcch8b5" path="res://world/world/world_cache.gd" id="2_t1xd1"]
 
+[sub_resource type="Resource" id="Resource_octpm"]
+script = ExtResource("1_d247u")
+room_path = "res://ldtk/levels/TestLevel.scn"
+size = Vector2(5248, 3328)
+adjacent_rooms = Array[String](["394a8610-96d0-11f1-93be-9b3cf3013799"])
+
+[sub_resource type="Resource" id="Resource_gxgx4"]
+script = ExtResource("1_d247u")
+room_path = "res://ldtk/levels/Test2.scn"
+world_position = Vector2(5248, -1920)
+size = Vector2(7296, 5248)
+adjacent_rooms = Array[String](["0422f9d0-96d0-11f1-a239-d7fe97153aa0", "5d7667b0-bde0-11f1-b683-bb88aaf7424a"])
+
 [sub_resource type="Resource" id="Resource_d247u"]
 script = ExtResource("1_d247u")
 room_path = "res://ldtk/levels/Level_2.scn"
@@ -37,19 +50,6 @@ room_path = "res://ldtk/levels/Level_6.scn"
 world_position = Vector2(20224, 1024)
 size = Vector2(1920, 2304)
 adjacent_rooms = Array[String](["7aff49a0-bde0-11f1-b683-15996a95df01"])
-
-[sub_resource type="Resource" id="Resource_gxgx4"]
-script = ExtResource("1_d247u")
-room_path = "res://ldtk/levels/Test2.scn"
-world_position = Vector2(5248, -1920)
-size = Vector2(7296, 5248)
-adjacent_rooms = Array[String](["0422f9d0-96d0-11f1-a239-d7fe97153aa0", "5d7667b0-bde0-11f1-b683-bb88aaf7424a"])
-
-[sub_resource type="Resource" id="Resource_octpm"]
-script = ExtResource("1_d247u")
-room_path = "res://ldtk/levels/TestLevel.scn"
-size = Vector2(5248, 3328)
-adjacent_rooms = Array[String](["394a8610-96d0-11f1-93be-9b3cf3013799"])
 
 [resource]
 script = ExtResource("2_t1xd1")

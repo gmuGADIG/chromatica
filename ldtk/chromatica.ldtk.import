@@ -7,10 +7,10 @@ path="res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn
 
 [deps]
 
-files=["res://ldtk/tilesets/tileset_128px.res", "res://ldtk/levels/TestLevel.scn", "res://ldtk/levels/Test2.scn", "res://ldtk/levels/Level_2.scn", "res://ldtk/levels/Level_3.scn", "res://ldtk/levels/Level_4.scn", "res://ldtk/levels/Level_5.scn", "res://ldtk/levels/Level_6.scn", "res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn"]
+files=["res://ldtk/tilesets/tileset_128px.res", "res://ldtk/levels/World/TestLevel.scn", "res://ldtk/levels/World/Test2.scn", "res://ldtk/levels/World/Level_2.scn", "res://ldtk/levels/World/Level_3.scn", "res://ldtk/levels/World/Level_4.scn", "res://ldtk/levels/World/Level_5.scn", "res://ldtk/levels/World/Level_6.scn", "res://ldtk/levels/World2/World2Level0.scn", "res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn"]
 
 source_file="res://ldtk/chromatica.ldtk"
-dest_files=["res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn", "res://ldtk/tilesets/tileset_128px.res", "res://ldtk/levels/TestLevel.scn", "res://ldtk/levels/Test2.scn", "res://ldtk/levels/Level_2.scn", "res://ldtk/levels/Level_3.scn", "res://ldtk/levels/Level_4.scn", "res://ldtk/levels/Level_5.scn", "res://ldtk/levels/Level_6.scn", "res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn"]
+dest_files=["res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn", "res://ldtk/tilesets/tileset_128px.res", "res://ldtk/levels/World/TestLevel.scn", "res://ldtk/levels/World/Test2.scn", "res://ldtk/levels/World/Level_2.scn", "res://ldtk/levels/World/Level_3.scn", "res://ldtk/levels/World/Level_4.scn", "res://ldtk/levels/World/Level_5.scn", "res://ldtk/levels/World/Level_6.scn", "res://ldtk/levels/World2/World2Level0.scn", "res://.godot/imported/chromatica.ldtk-0d8429f99acdf479f323c67a8f5df6e3.scn"]
 
 [params]
 
@@ -34,4 +34,4 @@ level_post_import="uid://bnpsgqpo6cr6i"
 world_post_import=""
 Debug=""
 force_tileset_reimport=false
-verbose_output=false
+verbose_output=true
