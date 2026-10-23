@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dnnqyem7lym70" path="res://ui/dialogue/dialogue.gd" id="1_8q5o4"]
 [ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://systems/npc/npc_data.gd" id="2_jy5du"]
-[ext_resource type="Resource" uid="uid://dlaio5jsdr3qo" path="res://temp/fih.tres" id="3_135c7"]
-[ext_resource type="Resource" uid="uid://dbybooi7kwphd" path="res://temp/egg.tres" id="4_vqqoj"]
-[ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://temp/garonic.tres" id="5_mfx2q"]
+[ext_resource type="Resource" uid="uid://dlaio5jsdr3qo" path="res://character/npc/npcdatas/fih.tres" id="3_135c7"]
+[ext_resource type="Resource" uid="uid://dbybooi7kwphd" path="res://character/npc/npcdatas/egg.tres" id="4_vqqoj"]
+[ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcdatas/garonic.tres" id="5_mfx2q"]
 
 [node name="Dialogue" type="CanvasLayer" unique_id=1222258479 node_paths=PackedStringArray("dialogue_box", "character_portrait", "character_name_box")]
 script = ExtResource("1_8q5o4")

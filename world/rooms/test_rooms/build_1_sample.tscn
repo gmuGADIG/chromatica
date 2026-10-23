@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://drck2wivyiq88"]
+[gd_scene format=3 uid="uid://oe6xv1xehtcm"]
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
