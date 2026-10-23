@@ -3,7 +3,7 @@ extends Node2D
 class_name World
 
 @export var player : Player
-
+@export var region_folder_name : String = "TestWorld"
 ##Updates the association between iids and the level
 @export_category("World Cache")
 @export_tool_button("Update World Cache","Reload") var action : Callable = _generate_world_cache
@@ -20,9 +20,9 @@ func _generate_world_cache() -> void:
 	var loaded_rooms : Array[LDTKLevel]
 	var world_cache : WorldCache = WorldCache.new()
 	
-	var dir : DirAccess = DirAccess.open(IMPORT_PATH)
+	var dir : DirAccess = DirAccess.open(IMPORT_PATH+region_folder_name)
 	if dir == null:
-		printerr("Could not open folder")
+		printerr("Could not open folder ",IMPORT_PATH+region_folder_name)
 		return
 		
 	dir.list_dir_begin()
@@ -64,8 +64,8 @@ var loaded_rooms : Dictionary[String,LDTKLevel]
 func _ready() -> void:
 	world_cache = load("res://world/world/world_cache.tres")
 	if Engine.is_editor_hint():
-		#for room_iid : String in world_cache.room_data.keys():
-			#load_room(room_iid)
+		for room_iid : String in world_cache.room_data.keys():
+			load_room(room_iid)
 		pass
 	else:
 		var iid : String = locate_room(player.global_position,true)
