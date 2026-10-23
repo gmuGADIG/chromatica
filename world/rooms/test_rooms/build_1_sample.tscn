@@ -21,6 +21,9 @@ size = Vector2(512, 320)
 [node name="Player" parent="." index="0" unique_id=1162272003]
 position = Vector2(2312, 3754)
 
+[node name="InteractRegion" parent="Player" index="4" unique_id=1706310371 node_paths=PackedStringArray("player")]
+player = NodePath("..")
+
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
 
 [node name="InteractiveGrass" parent="." index="3" unique_id=1966995250 instance=ExtResource("3_r6k6n")]
@@ -36,7 +39,7 @@ position = Vector2(3968, 4096)
 position = Vector2(5312, 2560)
 
 [node name="Interactable2" type="Area2D" parent="." index="7" unique_id=1182530038]
-position = Vector2(3332, 2998)
+position = Vector2(2690, 1822.0001)
 scale = Vector2(0.595, 0.595)
 collision_layer = 4
 collision_mask = 0
