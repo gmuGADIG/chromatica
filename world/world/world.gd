@@ -3,9 +3,9 @@ extends Node2D
 class_name World
 
 @export var player : Player
-@export var region_folder_name : String = "TestWorld"
 ##Updates the association between iids and the level
 @export_category("World Cache")
+@export var region_folder_name : String = "TestWorld"
 @export_tool_button("Update World Cache","Reload") var action : Callable = _generate_world_cache
 func _generate_world_cache() -> void:
 	world_cache = null
