@@ -18,7 +18,7 @@ position = Vector2(2038, 1585)
 position = Vector2(-4, -120)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1408860890]
-zoom = Vector2(0.05, 0.05)
+zoom = Vector2(0.25, 0.25)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=522952111]
 visible = false
