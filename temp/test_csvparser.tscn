@@ -14,13 +14,6 @@ offset_bottom = 137.0
 text = "This conversation was loaded instantly out of a CSV file that a Dialogue Starter pointed to, then sliced up neatly into lines by a CSV Parser, and finally displayed piece by piece by a Dialogue Player!"
 autowrap_mode = 2
 
-[node name="BackButton" type="Button" parent="." unique_id=1357924346]
-offset_left = 24.0
-offset_top = 531.0
-offset_right = 142.0
-offset_bottom = 612.0
-text = "back to title"
-
 [node name="DialogueStarter" type="Node" parent="." unique_id=733558402]
 script = ExtResource("2_timjj")
 dialogue_csv = "res://systems/dialogue/data/test_dialogue.csv"
