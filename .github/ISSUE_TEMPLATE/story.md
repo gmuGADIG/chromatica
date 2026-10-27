@@ -9,4 +9,4 @@ assignees: ''
 
 **Story:** As a [player], I want X so that Y.
 
-**Requirements (optional):**
+**Acceptance Criteria:**
