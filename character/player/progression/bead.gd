@@ -1,5 +1,5 @@
 class_name Bead
-extends Node
+extends Node2D
 
 enum BeadType {
 	HIT_POINTS,
@@ -15,8 +15,7 @@ enum BeadType {
 signal collected_bead
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area is PlayerHitbox:
-		ProgressionSystem.add_bead(type)
-		collected_bead.emit()
-		queue_free()
+func _on_interactable_interacted() -> void:
+	Progression.add_bead(type)
+	collected_bead.emit()
+	queue_free()

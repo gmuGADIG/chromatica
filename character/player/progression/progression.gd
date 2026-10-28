@@ -1,3 +1,5 @@
+extends Node
+
 static var DEBUG_UNLOCK_ALL : bool = false
 
 # enum that contains all possible unlocks
@@ -25,7 +27,7 @@ var beads_collected : Dictionary[Bead.BeadType,int] = {
 	Bead.BeadType.PARRY_TIME : 0,
 }
 
-signal collected_bead(bead : Bead.BeadType, total : int)
+signal collected_bead(bead : Bead.BeadType, new_amount : int)
 
 # function to unlock an unlockable by setting its boolean to true
 func unlock(unlock : Unlockable) -> void:

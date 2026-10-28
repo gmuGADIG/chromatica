@@ -13,7 +13,7 @@ class_name PaintGuardComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ProgressionSystem.collected_bead.connect(on_bead_collect)
+	Progression.collected_bead.connect(on_bead_collect)
 	cooldown_timer.wait_time = parry_cooldown
 	duration_timer.wait_time = parry_duration
 

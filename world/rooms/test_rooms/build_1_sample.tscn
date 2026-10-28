@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cj3ugqkgaxm6w" path="res://temp/temp_art/garonic.png" id="7_if1ro"]
 [ext_resource type="Texture2D" uid="uid://b3vj85ylwera" path="res://ldtk/tilesets/fih.png" id="7_s2o2t"]
 [ext_resource type="Script" uid="uid://dtusglnrw8424" path="res://systems/dialogue/dialogue_starter.gd" id="8_g7r13"]
+[ext_resource type="PackedScene" uid="uid://b6dp1felegnsy" path="res://character/player/progression/Bead.tscn" id="10_omnyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2aiy"]
 size = Vector2(379.83203, 252.10059)
@@ -95,6 +96,9 @@ You should talk to them
 |
 V"
 horizontal_alignment = 1
+
+[node name="Area2D" parent="." index="9" unique_id=1880795408 instance=ExtResource("10_omnyp")]
+position = Vector2(1602, 3802)
 
 [connection signal="interacted" from="Interactable2" to="Interactable2/DialogueStarter" method="start_dialogue"]
 [connection signal="interacted" from="Interactable" to="Interactable/DialogueStarter" method="start_dialogue"]
