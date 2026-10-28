@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bp05yt5s6ornt" path="res://character/enemy/sea_slug/sea_slug.gd" id="1_touxu"]
 [ext_resource type="Texture2D" uid="uid://duahwqhiddt6s" path="res://character/enemy/sea_slug/seaslug.png" id="2_jjds8"]
+[ext_resource type="PackedScene" uid="uid://6erb3cxoiw1s" path="res://character/enemy/sea_slug/sea_slug_attacks/goop_projectile.tscn" id="2_stnha"]
 [ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://character/enemy/enemy_hitbox.gd" id="3_stnha"]
 [ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="4_m7cot"]
 [ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="5_k14xt"]
@@ -9,6 +10,7 @@
 
 [node name="sea_slug" type="CharacterBody2D" unique_id=363484467 node_paths=PackedStringArray("health_component", "hitbox", "health_bar", "colorable_component")]
 script = ExtResource("1_touxu")
+projectile = ExtResource("2_stnha")
 health_component = NodePath("HealthComponent")
 hitbox = NodePath("EnemyHitbox")
 health_bar = NodePath("ProgressBar")
@@ -50,6 +52,7 @@ offset_transform_enabled = true
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1024250355]
 
 [node name="can_see_Player_ray" type="RayCast2D" parent="." unique_id=367979340]
+collision_mask = 3
 
 [node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1835149980]
 script = ExtResource("6_r7h1t")

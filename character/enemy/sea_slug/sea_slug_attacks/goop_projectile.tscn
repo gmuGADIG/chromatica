@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://6erb3cxoiw1s"]
+
+[ext_resource type="Script" uid="uid://c7gm0hsj4chvk" path="res://character/enemy/sea_slug/sea_slug_attacks/goop_projectile.gd" id="1_kglvt"]
+[ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="2_yumcp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2w68d"]
+size = Vector2(127, 128)
+
+[node name="goop_projectile" type="Node2D" unique_id=536991635]
+script = ExtResource("1_kglvt")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1817077839]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=930708941]
+texture = ExtResource("2_yumcp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493918061]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_2w68d")
