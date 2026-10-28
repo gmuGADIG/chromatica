@@ -21,7 +21,6 @@ shape = SubResource("RectangleShape2D_cnkh1")
 
 [node name="DialogueStarter" type="Node" parent="InteractableRegion" unique_id=1458743451]
 script = ExtResource("4_3wu02")
-dialogue_csv = "res://systems/dialogue/data/test_dialogue.csv"
 metadata/_custom_type_script = "uid://dtusglnrw8424"
 
 [connection signal="interacted" from="InteractableRegion" to="InteractableRegion/DialogueStarter" method="_on_interactable_region_interacted"]

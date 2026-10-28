@@ -87,6 +87,10 @@ func set_current_room(iid : String) -> void:
 	#print("curr ", iid)
 	load_room(iid)
 	
+	if not world_cache.room_data.has(current_room_iid):
+		printerr("Player is out of bounds!")
+		return
+	
 	for neighbor : String in world_cache.room_data[iid].adjacent_rooms:
 		#print("nay ", neighbor)
 		next_iid_set.append(neighbor)
@@ -102,6 +106,10 @@ func set_current_room(iid : String) -> void:
 
 func load_room(iid : String) -> LDTKLevel:
 	if loaded_rooms.has(iid):
+		return null
+	
+	if not world_cache.room_data.has(iid):
+		printerr("Tried entering a non-real room")
 		return null
 	
 	var room_data : RoomData = world_cache.room_data[iid]

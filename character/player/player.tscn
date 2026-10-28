@@ -101,10 +101,11 @@ position = Vector2(0, -120)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_g20gq")
 
-[node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
+[node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371 node_paths=PackedStringArray("player")]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("6_noxpy")
+player = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRegion" unique_id=2042581431]
 position = Vector2(0, -120.5)
