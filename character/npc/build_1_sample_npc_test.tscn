@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://drck2wivyiq88"]
+[gd_scene format=3 uid="uid://blrovkcs48bq7"]
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d2xedqxv2bd6p" path="res://pickup/pickup.tscn" id="4_8ao42"]
 [ext_resource type="Resource" uid="uid://dbybooi7kwphd" path="res://character/npc/npcdatas/egg.tres" id="7_a1fwn"]
 [ext_resource type="Resource" uid="uid://dlaio5jsdr3qo" path="res://character/npc/npcdatas/fih.tres" id="7_qv82b"]
-[ext_resource type="PackedScene" uid="uid://xrs22a6c2pj3" path="res://character/npc/npcbase.tscn" id="10_82yhp"]
+[ext_resource type="PackedScene" uid="uid://xrs22a6c2pj3" path="res://character/npc/npc.tscn" id="10_82yhp"]
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
 
@@ -27,12 +27,12 @@ position = Vector2(3968, 4096)
 [node name="Pickup" parent="." index="6" unique_id=1498291215 instance=ExtResource("4_8ao42")]
 position = Vector2(5312, 2560)
 
-[node name="Npcbase" parent="." index="7" unique_id=1970945136 instance=ExtResource("10_82yhp")]
+[node name="Npc" parent="." index="7" unique_id=1970945136 instance=ExtResource("10_82yhp")]
 position = Vector2(2750, 4000)
 npc_data = ExtResource("7_a1fwn")
 dialogue_csv = "res://systems/dialogue/data/garf.csv"
 
-[node name="Label" type="Label" parent="Npcbase" index="1" unique_id=1248264369]
+[node name="Label" type="Label" parent="Npc" index="1" unique_id=1248264369]
 offset_left = -100.0
 offset_top = -500.0
 offset_right = 98.0
@@ -42,7 +42,7 @@ text = "This is a NEW NPC!
 You should talk to them...
 (still press E to do so)"
 
-[node name="Npcbase2" parent="." index="8" unique_id=449651306 instance=ExtResource("10_82yhp")]
+[node name="Npc2" parent="." index="8" unique_id=449651306 instance=ExtResource("10_82yhp")]
 position = Vector2(4500, 3100)
 npc_data = ExtResource("7_qv82b")
 dialogue_csv = "res://systems/dialogue/data/test_dialogue.csv"
