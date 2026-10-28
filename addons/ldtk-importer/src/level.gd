@@ -58,9 +58,8 @@ static func build_levels(
 
 		if (Util.options.level_post_import):
 			level = PostImport.run_level_post_import(level, Util.options.level_post_import)
-
+		
 		levels.append(level)
-
 	Util.timer_finish("Built %s Levels" % levels.size(), 1)
 	return levels
 
