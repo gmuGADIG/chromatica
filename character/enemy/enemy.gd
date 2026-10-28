@@ -2,10 +2,45 @@
 extends CharacterBody2D
 class_name Enemy
 
+## Emitted once, when the enemy runs out of HP and stops being hostile.
+signal became_friendly
+
+
+@export_group("Movement")
+
+## Rate the enemy speeds up (px/sec^2)
+@export var acceleration : float = 3000.0
+
+## Rate the enemy slows down when it has no movement target (px/sec^2)
+@export var deceleration : float = 4000.0
+
+## Top running speed (px/sec)
+@export var max_velocity : float = 300.0
+
+## How fast the enemy sheds speed when going faster than max_velocity (e.g. after a leap)
+@export var dampening : float = 6000.0
+
+## Downward acceleration (px/sec^2)
+@export var gravity : float = 4000.0
+
+
+@export_group("Combat")
+
+@export var is_friendly : bool
+
 @export var health_component : HealthComponent
+
 @export var hitbox : EnemyHitbox
+
 @export var health_bar : ProgressBar
+
 @export var colorable_component : Colorable
+
+@export var player_ray : RayCast2D
+
+@export var wall_ray : RayCast2D
+
+@export var platform_ray : RayCast2D
 
 ## ----------------------------------------------------
 ## Movement group has migrated to @enemy_behavior.gd
@@ -21,10 +56,8 @@ class_name Enemy
 ## Offset from the player's origin (their feet) to the point enemies aim at
 @export var player_center_offset : Vector2 = Vector2(0, -120)
 
-## Emitted once, when the enemy runs out of HP and stops being hostile.
-signal became_friendly
 
-var is_friendly : bool = false
+
 
 @onready var player : Player = get_tree().get_first_node_in_group("player")
 
@@ -32,11 +65,8 @@ var is_friendly : bool = false
 func _ready() -> void:
 	if player == null:
 		printerr("No player found!")
-	
-	# The hitbox deals damage to this enemy's health, so give it the reference
-	# if the scene didn't already.
-	if hitbox and hitbox.health_component == null:
-		hitbox.health_component = health_component
+	if health_component == null:
+		printerr("No Health component!")
 	
 	health_component.health_depleted.connect(become_friendly)
 
@@ -78,6 +108,20 @@ func become_friendly() -> void:
 
 func _swap_to_friendly_scene() -> void:
 	var friend := friendly_scene.instantiate() as Node2D
-	get_parent().add_child(friend)
+	add_sibling(friend)
 	friend.global_position = global_position
 	queue_free()
+
+
+func can_see_player() -> bool:
+	printerr("Method Not Implemented!")
+	return false
+
+func set_target(pos: Vector2) -> void:
+	printerr("Method Not Implemented!")
+
+func move(delta: float) -> void:
+	printerr("Method Not Implemented!")
+
+func attack() -> void:
+	printerr("Not Implemented!")

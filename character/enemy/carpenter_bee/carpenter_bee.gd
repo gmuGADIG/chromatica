@@ -42,7 +42,7 @@ var _home_set : bool = false
 
 func _think(delta: float) -> void:
 	if not _home_set:
-		_home = body.global_position
+		_home = global_position
 		_home_set = true
 
 	match state:
@@ -63,10 +63,10 @@ func _think(delta: float) -> void:
 					has_target = false
 					_enter(State.IDLE, 0.0)
 					return
-			var hover_point := body.get_player_center() + hover_offset
+			var hover_point := get_player_center() + hover_offset
 			set_target(hover_point)
 			move(delta)
-			if can_see_player() and body.global_position.distance_to(hover_point) <= dive_distance:
+			if can_see_player() and global_position.distance_to(hover_point) <= dive_distance:
 				_enter(State.WINDUP, windup_time)
 		State.WINDUP:
 			accelerate_toward(Vector2.ZERO, delta)
@@ -76,7 +76,7 @@ func _think(delta: float) -> void:
 		State.DASH:
 			# Holds its dive velocity; ends on time or on hitting something.
 			_timer -= delta
-			if _timer <= 0.0 or body.is_on_floor() or body.is_on_wall() or body.is_on_ceiling():
+			if _timer <= 0.0 or is_on_floor() or is_on_wall() or is_on_ceiling():
 				_enter(State.RECOVER, recover_time)
 		State.RECOVER:
 			accelerate_toward(Vector2.ZERO, delta)
@@ -87,10 +87,10 @@ func _think(delta: float) -> void:
 
 ## Dives at where the player is right now.
 func attack() -> void:
-	var direction := body.get_player_center() - body.global_position
+	var direction := get_player_center() - global_position
 	if direction.is_zero_approx():
 		direction = Vector2.DOWN
-	body.velocity = direction.normalized() * dash_speed
+	velocity = direction.normalized() * dash_speed
 	_enter(State.DASH, dash_time)
 
 

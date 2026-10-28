@@ -2,10 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
-[ext_resource type="PackedScene" uid="uid://b8okns63frmwt" path="res://character/enemy/lunger/lunger.tscn" id="3_f24ca"]
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="5_f24ca"]
-[ext_resource type="PackedScene" uid="uid://dc6a7un1db6hc" path="res://character/enemy/spannon/spannon.tscn" id="5_s2o2t"]
-[ext_resource type="PackedScene" uid="uid://ddobnglwxykhn" path="res://character/enemy/scorpion/scorpion.tscn" id="6_sybq3"]
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
 
@@ -14,17 +11,22 @@ position = Vector2(2312, 3754)
 
 [node name="Test2" parent="." index="1" unique_id=202335903 instance=ExtResource("2_v1uy5")]
 
-[node name="Lunger" parent="." index="3" unique_id=1739277168 instance=ExtResource("3_f24ca")]
-position = Vector2(3731, 3936)
-
-[node name="Spannon" parent="." index="4" unique_id=1076973959 instance=ExtResource("5_s2o2t")]
-position = Vector2(694, 3940)
-
-[node name="CarpenterBee" parent="." index="5" unique_id=1811544662 instance=ExtResource("5_f24ca")]
-position = Vector2(3295, 3635)
-
-[node name="Scorpion" parent="." index="6" unique_id=1987485568 instance=ExtResource("6_sybq3")]
-position = Vector2(2944, 3946)
+[node name="CarpenterBee" parent="." index="3" unique_id=1811544662 instance=ExtResource("5_f24ca")]
+position = Vector2(3187, 3717)
+home_radius = 250.0
+idle_speed = 120.0
+wander_interval = 2.0
+hover_offset = Vector2(0, -350)
+dive_distance = 150.0
+lose_sight_time = 2.0
+windup_time = 0.6
+dash_speed = 1300.0
+dash_time = 0.5
+recover_time = 1.0
+sight_range = 900.0
+sight_mask = 3
+arrive_distance = 20.0
+slow_radius = 200.0
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]

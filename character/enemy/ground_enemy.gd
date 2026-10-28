@@ -1,6 +1,6 @@
 @abstract
 class_name GroundEnemy
-extends EnemyBehavior
+extends Enemy
 ## Behavior for enemies that walk on the ground. Add as a child of an Enemy.
 ## Handles gravity, patrolling, and the can_see_player() / set_target() / move() interface.
 ## Children implement _think() (their decision-making each physics frame) and attack().
