@@ -4,7 +4,6 @@ class_name HealthComponent
 
 @export var maximum_hp: int
 
-
 var hp: int
 ## Updates maxHP, reserved for the player character.
 signal health_changed(new_health:int)
