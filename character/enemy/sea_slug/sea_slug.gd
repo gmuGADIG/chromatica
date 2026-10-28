@@ -80,11 +80,6 @@ func shoot_goop() -> void:
 #prepare all default values here
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#REMOVED
-	#body = get_parent() as Enemy
-	#if body == null:
-		#push_error("%s must be a direct child of an Enemy." % name)
-		#set_physics_process(false)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -11,16 +11,34 @@ size = Vector2(89, 162)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
 size = Vector2(89, 162)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j75h3"]
+size = Vector2(89, 162)
+
 [node name="Lunger" unique_id=510680222 instance=ExtResource("1_base")]
 collision_layer = 8
+script = ExtResource("2_lunger")
+windup_time = 0.5
+recover_time = 0.9
+leap_height = 300.0
+max_leap_speed = 1400.0
+max_falling_velocity = 3000.0
+patrol_speed = 150.0
+turn_at_ledges = true
+ledge_check_offset = 60.0
+sight_range = 800.0
+sight_height = 300.0
+arrive_distance = 20.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=1560740887]
 texture = ExtResource("3_kjlnf")
 
+[node name="EnemyHitbox" parent="." index="1" unique_id=1147118622 node_paths=PackedStringArray("health_component")]
+health_component = NodePath("../HealthComponent")
+
 [node name="HealthComponent" parent="." index="2" unique_id=1306834510]
 maximum_hp = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5" unique_id=963840586]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="5" unique_id=963840586]
 shape = SubResource("RectangleShape2D_body")
 
 [node name="LedgeCheck" type="RayCast2D" parent="." index="6" unique_id=2086757851]
@@ -36,17 +54,5 @@ script = ExtResource("3_hurtbox")
 shape = SubResource("RectangleShape2D_hurt")
 debug_color = Color(0.9, 0.2, 0.2, 0.3)
 
-[node name="LungerBehavior" type="Node" parent="." index="8" node_paths=PackedStringArray("ledge_check")]
-script = ExtResource("2_lunger")
-windup_time = 0.5
-recover_time = 0.9
-leap_height = 300.0
-max_leap_speed = 1400.0
-max_falling_velocity = 3000.0
-patrol_speed = 150.0
-turn_at_ledges = true
-ledge_check = NodePath("../LedgeCheck")
-ledge_check_offset = 60.0
-sight_range = 650.0
-sight_height = 300.0
-arrive_distance = 20.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="8" unique_id=1601469347]
+shape = SubResource("RectangleShape2D_j75h3")

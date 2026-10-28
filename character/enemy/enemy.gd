@@ -2,10 +2,45 @@
 extends CharacterBody2D
 class_name Enemy
 
+## Emitted once, when the enemy runs out of HP and stops being hostile.
+signal became_friendly
+
+
+@export_group("Movement")
+
+## Rate the enemy speeds up (px/sec^2)
+@export var acceleration : float = 3000.0
+
+## Rate the enemy slows down when it has no movement target (px/sec^2)
+@export var deceleration : float = 4000.0
+
+## Top running speed (px/sec)
+@export var max_velocity : float = 300.0
+
+## How fast the enemy sheds speed when going faster than max_velocity (e.g. after a leap)
+@export var dampening : float = 6000.0
+
+## Downward acceleration (px/sec^2)
+@export var gravity : float = 4000.0
+
+
+@export_group("Combat")
+
+@export var is_friendly : bool
+
 @export var health_component : HealthComponent
+
 @export var hitbox : EnemyHitbox
+
 @export var health_bar : ProgressBar
+
 @export var colorable_component : Colorable
+
+@export var player_ray : RayCast2D
+
+@export var wall_ray : RayCast2D
+
+@export var platform_ray : RayCast2D
 
 ## ----------------------------------------------------
 ## Movement group has migrated to @enemy_behavior.gd
@@ -21,53 +56,26 @@ class_name Enemy
 ## Offset from the player's origin (their feet) to the point enemies aim at
 @export var player_center_offset : Vector2 = Vector2(0, -120)
 
-## Emitted once, when the enemy runs out of HP and stops being hostile.
-signal became_friendly
 
-var is_friendly : bool = false
 
-var _player : Player
-var _next_player_search_msec : int = 0
+
+@onready var player : Player = get_tree().get_first_node_in_group("player")
 
 
 func _ready() -> void:
-	# The hitbox deals damage to this enemy's health, so give it the reference
-	# if the scene didn't already.
-	if hitbox and hitbox.health_component == null:
-		hitbox.health_component = health_component
-
-	if health_component:
-		health_component.health_depleted.connect(_on_health_depleted)
-		health_component.health_changed.connect(_on_health_changed)
-		if health_bar:
-			health_bar.max_value = health_component.maximum_hp
-			health_bar.value = health_component.hp
+	if player == null:
+		printerr("No player found!")
+	if health_component == null:
+		printerr("No Health component!")
+	
+	health_component.health_depleted.connect(become_friendly)
 
 
 ## Returns the player, or null if there isn't one in the scene.
 ## Looks in the "player" group first, then falls back to searching the scene
 ## (throttled, so a scene without a player doesn't get scanned every frame).
 func get_player() -> Player:
-	if is_instance_valid(_player):
-		return _player
-	if Time.get_ticks_msec() < _next_player_search_msec:
-		return null
-
-	var found := get_tree().get_first_node_in_group("player") as Player
-	if found == null and get_tree().current_scene:
-		var matches := get_tree().current_scene.find_children("*", "Player", true, false)
-		if not matches.is_empty():
-			found = matches[0] as Player
-
-	if found == null:
-		_next_player_search_msec = Time.get_ticks_msec() + 500
-		return null
-
-	_player = found
-	# The player's body shares a physics layer with the world for now,
-	# so make sure enemies never get blocked by it.
-	add_collision_exception_with(_player)
-	return _player
+	return player
 
 
 ## World position of the point enemies aim at / check line of sight to.
@@ -100,15 +108,20 @@ func become_friendly() -> void:
 
 func _swap_to_friendly_scene() -> void:
 	var friend := friendly_scene.instantiate() as Node2D
-	get_parent().add_child(friend)
+	add_sibling(friend)
 	friend.global_position = global_position
 	queue_free()
 
 
-func _on_health_changed(new_health: int) -> void:
-	if health_bar:
-		health_bar.value = new_health
+func can_see_player() -> bool:
+	printerr("Method Not Implemented!")
+	return false
 
+func set_target(pos: Vector2) -> void:
+	printerr("Method Not Implemented!")
 
-func _on_health_depleted() -> void:
-	become_friendly()
+func move(delta: float) -> void:
+	printerr("Method Not Implemented!")
+
+func attack() -> void:
+	printerr("Not Implemented!")

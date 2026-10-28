@@ -7,14 +7,29 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
 size = Vector2(88, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(80, 56)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
 size = Vector2(84, 60)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(80, 56)
+
 [node name="CarpenterBee" unique_id=1811544662 instance=ExtResource("1_base")]
 collision_layer = 8
+script = ExtResource("2_bee")
+home_radius = 250.0
+idle_speed = 120.0
+wander_interval = 2.0
+hover_offset = Vector2(0, -350)
+dive_distance = 150.0
+lose_sight_time = 2.0
+windup_time = 0.6
+dash_speed = 1300.0
+dash_time = 0.5
+recover_time = 1.0
+sight_range = 900.0
+sight_mask = 3
+arrive_distance = 20.0
+slow_radius = 200.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=1560740887]
 visible = false
@@ -25,14 +40,11 @@ shape = SubResource("RectangleShape2D_hitbox")
 [node name="HealthComponent" parent="." index="2" unique_id=1306834510]
 maximum_hp = 2
 
-[node name="ProgressBar" parent="." index="4" unique_id=1894704178]
+[node name="HealthBar" parent="." index="4" unique_id=1894704178]
 offset_top = -76.0
 offset_bottom = -49.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5" unique_id=1709390411]
-shape = SubResource("RectangleShape2D_body")
-
-[node name="BodyPlaceholder" type="Node2D" parent="." index="6" unique_id=492864224]
+[node name="BodyPlaceholder" type="Node2D" parent="." index="5" unique_id=492864224]
 
 [node name="Body" type="Polygon2D" parent="BodyPlaceholder" index="0" unique_id=1764494983]
 color = Color(0.95, 0.75, 0.1, 1)
@@ -46,7 +58,7 @@ polygon = PackedVector2Array(-4, -16, -34, -52, 6, -34)
 color = Color(0.8, 0.9, 1, 0.7)
 polygon = PackedVector2Array(4, -16, 34, -52, -6, -34)
 
-[node name="ContactHurtbox" type="Area2D" parent="." index="7" unique_id=922764289]
+[node name="ContactHurtbox" type="Area2D" parent="." index="6" unique_id=922764289]
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("3_hurtbox")
@@ -55,5 +67,5 @@ script = ExtResource("3_hurtbox")
 shape = SubResource("RectangleShape2D_hurt")
 debug_color = Color(0.9, 0.2, 0.2, 0.3)
 
-[node name="CarpenterBeeBehavior" type="Node" parent="." index="8" unique_id=1109611603]
-script = ExtResource("2_bee")
+[node name="CollisionShape2D" parent="." index="7" unique_id=1367315384]
+shape = SubResource("RectangleShape2D_body")

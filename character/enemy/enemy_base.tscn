@@ -5,15 +5,19 @@
 [ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://character/enemy/enemy_hitbox.gd" id="3_th2e7"]
 [ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="5_c2jqc"]
 [ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="6_7yrdy"]
+[ext_resource type="Script" uid="uid://c0xl5sayceyek" path="res://character/enemy/enemy_healtbar.gd" id="6_l7srf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
+size = Vector2(89, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7srf"]
 size = Vector2(89, 162)
 
 [node name="EnemyBase" type="CharacterBody2D" unique_id=43181616 node_paths=PackedStringArray("health_component", "hitbox", "health_bar", "colorable_component")]
 script = ExtResource("1_l7srf")
 health_component = NodePath("HealthComponent")
 hitbox = NodePath("EnemyHitbox")
-health_bar = NodePath("ProgressBar")
+health_bar = NodePath("HealthBar")
 colorable_component = NodePath("ColorableComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1560740887]
@@ -33,7 +37,7 @@ script = ExtResource("5_c2jqc")
 [node name="ColorableComponent" type="Node" parent="." unique_id=944276312]
 script = ExtResource("6_7yrdy")
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1894704178]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1894704178 node_paths=PackedStringArray("health_component")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -42,3 +46,8 @@ offset_top = -122.0
 offset_right = 86.0
 offset_bottom = -95.0
 grow_horizontal = 2
+script = ExtResource("6_l7srf")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1367315384]
+shape = SubResource("RectangleShape2D_l7srf")
