@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bo23fe7m071yf"]
+
+[ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/world/world.tscn" id="1_yd5ur"]
+
+[node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
+
+[editable path="Player"]
+[editable path="Player/PlayerHitbox"]
+[editable path="CanvasLayer/Hud"]
