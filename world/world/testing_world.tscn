@@ -6,7 +6,7 @@
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
 
-[node name="Npc" parent="." index="9" unique_id=1970945136 instance=ExtResource("2_dthq0")]
+[node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
 position = Vector2(2824, 2720)
 npc_data = ExtResource("3_hjby2")
 dialogue_csv = "res://systems/dialogue/data/garf.csv"
