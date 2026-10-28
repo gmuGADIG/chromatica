@@ -1,12 +1,8 @@
-extends EnemyBehavior
+extends Enemy
+class_name SeaSlug
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-#values taken from other compoenents in this gameobject:
-@export var health_component : HealthComponent
-@export var hitbox : EnemyHitbox
-@export var health_bar : ProgressBar
-@export var colorable_component : Colorable
 @onready var vision_ray: RayCast2D = $can_see_Player_ray
 #values taken from player/platform gameobject
 var collider
@@ -44,10 +40,7 @@ func attack() -> void:
 #prepare all default values here
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	body = get_parent() as Enemy
-	if body == null:
-		push_error("%s must be a direct child of an Enemy." % name)
-		set_physics_process(false)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
