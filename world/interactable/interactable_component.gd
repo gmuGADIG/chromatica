@@ -12,7 +12,8 @@ func _ready() -> void:
 
 func interact() -> void:
 	if Dialogue.is_playing():
-		return
+		return	
+	
 	interacted.emit()
 	print(name + " interacted with")
 	pass
