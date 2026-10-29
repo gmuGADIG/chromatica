@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_tg01w"]
 [ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="2_44v25"]
+[ext_resource type="PackedScene" uid="uid://b2a73vcklb1ro" path="res://character/enemy/sea_slug/sea_slug.tscn" id="4_4k6uh"]
 [ext_resource type="PackedScene" uid="uid://blbd8cixeawwr" path="res://world/interactable/interactable_region.tscn" id="4_r7hm1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wg1qd"]
@@ -31,6 +32,9 @@ position = Vector2(838, 1425)
 
 [node name="PlayerBrush" parent="Player/Attacks" parent_id_path=PackedInt32Array(1162272003, 171343013) index="0" unique_id=1894793710]
 brush_damage = null
+
+[node name="sea_slug" parent="." index="3" unique_id=363484467 instance=ExtResource("4_4k6uh")]
+position = Vector2(1351, 2145)
 
 [editable path="TestLevel"]
 [editable path="Player"]
