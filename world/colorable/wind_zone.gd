@@ -29,7 +29,6 @@ func yellow_gust() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	find_player()
-	player = body as Player
 			
 	var self_pos := self.global_position
 	var player_pos = player.global_position
