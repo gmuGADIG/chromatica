@@ -82,6 +82,7 @@ func _process(delta: float) -> void:
 		set_current_room(locate_room(player.global_position,false))
 
 func set_current_room(iid : String) -> void:
+	ScreenTransition.play_room_transition(0.5)
 	current_room_iid = iid
 	var next_iid_set : Array[String] = [iid]
 	#print("curr ", iid)
