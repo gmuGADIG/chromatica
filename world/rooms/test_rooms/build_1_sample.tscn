@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
 [ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
+[ext_resource type="PackedScene" uid="uid://b2a73vcklb1ro" path="res://character/enemy/sea_slug/sea_slug.tscn" id="4_8ao42"]
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="5_f24ca"]
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
@@ -13,20 +14,9 @@ position = Vector2(2312, 3754)
 
 [node name="CarpenterBee" parent="." index="3" unique_id=1811544662 instance=ExtResource("5_f24ca")]
 position = Vector2(3187, 3717)
-home_radius = 250.0
-idle_speed = 120.0
-wander_interval = 2.0
-hover_offset = Vector2(0, -350)
-dive_distance = 150.0
-lose_sight_time = 2.0
-windup_time = 0.6
-dash_speed = 1300.0
-dash_time = 0.5
-recover_time = 1.0
-sight_range = 900.0
-sight_mask = 3
-arrive_distance = 20.0
-slow_radius = 200.0
+
+[node name="sea_slug" parent="." index="4" unique_id=363484467 instance=ExtResource("4_8ao42")]
+position = Vector2(3494, 1889)
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]

@@ -1,13 +1,13 @@
-extends EnemyBehavior
+extends Enemy
 #static typing- use this as an example:
 #@expot var speed : float
 #for all variable which can be played with
-@export var speed :float
-@export var jump_velocity :float
 @export var projectile : PackedScene 
 @export var attack_cooldown : float = 1.5
 
 var time_since_last_attack: float = 0.0
+
+@onready var shoot_point: Marker2D = $shoot_point
 #values taken from other compoenents in this gameobject:
 #now inherited from enemy_behavior
 #@export var health_component : HealthComponent
@@ -53,6 +53,7 @@ func move(delta: float) -> void:
 func attack() -> void:
 	# Check if the cooldown timer has expired
 	if time_since_last_attack >= attack_cooldown:
+		print("attack")
 		shoot_goop()
 		
 		# Reset the timer back to 0 after attacking
@@ -67,13 +68,17 @@ func floor_slime() -> void:
 
 func shoot_goop() -> void:
 	if not projectile:
-		push_warning("Projectile scene not assigned on sea slug!")
+		push_warning("Projectile scene not assigned on sea slug")
 		return
 		
 	var cur_projectile = projectile.instantiate()
 	get_tree().current_scene.add_child(cur_projectile)
+	
+	
 	# Position the projectile at the enemy's location
-	#cur_projectile.global_position = global_position #does not work
+	cur_projectile.global_position = shoot_point.global_position
+	#cur_projectile.global_position = global_position
+	cur_projectile.global_rotation = global_rotation
 	return
 	
 #Godot functions:
@@ -89,13 +94,12 @@ func _process(delta: float) -> void:
 
 #same as _process, but best used for physics 
 func _physics_process(delta: float) -> void:
-	
+	# 1. Always let time accumulate smoothly every frame
 	time_since_last_attack += delta
 	
-	# Continuously check if the player is in sight and attack if true
+	# 2. If we see the player, try to attack (attack() handles checking the cooldown timer)
 	if can_see_player():
 		attack()
-		
 #ex: (collisions/movement tied to physics)
 #func _physics_process(delta: float) -> void:
 	## Add the gravity.

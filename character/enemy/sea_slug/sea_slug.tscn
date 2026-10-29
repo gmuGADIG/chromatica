@@ -8,9 +8,13 @@
 [ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="5_k14xt"]
 [ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="6_r7h1t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjds8"]
+size = Vector2(56, 50)
+
 [node name="sea_slug" type="CharacterBody2D" unique_id=363484467 node_paths=PackedStringArray("health_component", "hitbox", "health_bar", "colorable_component")]
 script = ExtResource("1_touxu")
 projectile = ExtResource("2_stnha")
+attack_cooldown = 0.1
 health_component = NodePath("HealthComponent")
 hitbox = NodePath("EnemyHitbox")
 health_bar = NodePath("ProgressBar")
@@ -20,10 +24,9 @@ colorable_component = NodePath("Colorable")
 scale = Vector2(0.42578122, 0.42578122)
 texture = ExtResource("2_jjds8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=269550963]
-
-[node name="EnemyHitbox" type="Area2D" parent="." unique_id=1472033292]
+[node name="EnemyHitbox" type="Area2D" parent="." unique_id=1472033292 node_paths=PackedStringArray("health_component")]
 script = ExtResource("3_stnha")
+health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://rbki0mvel4rg"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=954751097]
@@ -51,9 +54,17 @@ offset_transform_enabled = true
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1024250355]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=269550963]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_jjds8")
+
 [node name="can_see_Player_ray" type="RayCast2D" parent="." unique_id=367979340]
+target_position = Vector2(-1000, 0)
 collision_mask = 3
 
 [node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1835149980]
 script = ExtResource("6_r7h1t")
 metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="shoot_point" type="Marker2D" parent="." unique_id=1079436082]
+position = Vector2(86, -15)

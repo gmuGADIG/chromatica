@@ -4,16 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="2_yumcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2w68d"]
-size = Vector2(127, 128)
+size = Vector2(130, 127)
 
-[node name="goop_projectile" type="Node2D" unique_id=536991635]
+[node name="goop_projectile" type="Area2D" unique_id=429620497]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_kglvt")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1817077839]
+projectile_speed = 600.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=930708941]
 texture = ExtResource("2_yumcp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493918061]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_2w68d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
