@@ -6,3 +6,4 @@
 script = ExtResource("1_ydpab")
 
 [node name="YellowColorTimer" type="Timer" parent="." unique_id=1008190146]
+autostart = true
