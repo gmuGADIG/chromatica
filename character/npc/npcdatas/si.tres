@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://c30lblje3aniq"]
+
+[ext_resource type="Texture2D" uid="uid://eec6r10juyo1" path="res://Art/NPCs/Si_Portrait.png" id="1_0jheu"]
+[ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://systems/npc/npc_data.gd" id="1_bf1tw"]
+[ext_resource type="Texture2D" uid="uid://msf5urh1a7sf" path="res://Art/NPCs/Si_Overworld.png" id="3_thhhr"]
+
+[resource]
+script = ExtResource("1_bf1tw")
+name = "Si"
+world_sprite = ExtResource("3_thhhr")
+portrait_sprite = ExtResource("1_0jheu")
+metadata/_custom_type_script = "uid://c3elg5rqdh6gq"
