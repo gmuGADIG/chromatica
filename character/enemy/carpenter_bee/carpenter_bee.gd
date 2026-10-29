@@ -22,6 +22,8 @@ enum State { IDLE, CHASE, WINDUP, DASH, RECOVER }
 ## Seconds without seeing the player before it gives up and goes back to idle
 @export var lose_sight_time : float = 2.0
 
+#
+# REWORK THIS GROUP TO SUIT PROJECTILE ATTACK
 @export_group("Dash")
 ## Seconds spent hovering still before the dive (the player's chance to react)
 @export var windup_time : float = 0.6
@@ -74,6 +76,9 @@ func _think(delta: float) -> void:
 			if _timer <= 0.0:
 				attack()
 		State.DASH:
+			# Switch State Name to "Shoot", use "Spannon's" projectile concept
+			# Also replace the sprite with "a fucking aspid"
+			
 			# Holds its dive velocity; ends on time or on hitting something.
 			_timer -= delta
 			if _timer <= 0.0 or is_on_floor() or is_on_wall() or is_on_ceiling():
@@ -90,8 +95,8 @@ func attack() -> void:
 	var direction := get_player_center() - global_position
 	if direction.is_zero_approx():
 		direction = Vector2.DOWN
-	velocity = direction.normalized() * dash_speed
-	_enter(State.DASH, dash_time)
+	velocity = direction.normalized() * dash_speed # Rework for Cannon Prog
+	_enter(State.DASH, dash_time) # Rework for Cannon Prog
 
 
 func _pick_wander_point() -> void:
