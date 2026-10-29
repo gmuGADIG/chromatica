@@ -31,7 +31,7 @@ shape = SubResource("RectangleShape2D_d0bka")
 
 [node name="DesaturationComponent" type="Node" parent="." unique_id=2006721530]
 script = ExtResource("4_yvg5c")
-metadata/_custom_type_script = "uid://brijcdg7gxsxe"
+color_space = null
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1306834510]
 script = ExtResource("5_c2jqc")
