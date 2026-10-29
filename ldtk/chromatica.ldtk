@@ -1735,7 +1735,7 @@
 				"__neighbours": [ { "levelIid": "7732ff60-bde0-11f1-b683-bff43657f71b", "dir": "w" }, { "levelIid": "7ce23a70-bde0-11f1-b683-f19e4ce3b01e", "dir": "e" } ]
 			},
 			{
-				"identifier": "Level_8",
+				"identifier": "Level_7",
 				"iid": "7ce23a70-bde0-11f1-b683-f19e4ce3b01e",
 				"uid": 15,
 				"worldX": 20224,
@@ -1752,7 +1752,7 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "chromatica/Level_8.ldtkl",
+				"externalRelPath": "chromatica/Level_7.ldtkl",
 				"fieldInstances": [],
 				"layerInstances": null,
 				"__neighbours": [{ "levelIid": "7aff49a0-bde0-11f1-b683-15996a95df01", "dir": "w" }]
@@ -1810,7 +1810,7 @@
 		] },
 		{ "iid": "ea1878b0-bde0-11f1-a54d-cda11acc4979", "identifier": "YellowDomain", "defaultLevelWidth": 256, "defaultLevelHeight": 256, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
 			{
-				"identifier": "Level_7",
+				"identifier": "The_Gate",
 				"iid": "ea1878b1-bde0-11f1-a54d-6b0017a59a3b",
 				"uid": 19,
 				"worldX": 0,
@@ -1820,14 +1820,14 @@
 				"pxHei": 256,
 				"__bgColor": "#696A79",
 				"bgColor": null,
-				"useAutoIdentifier": true,
+				"useAutoIdentifier": false,
 				"bgRelPath": null,
 				"bgPos": null,
 				"bgPivotX": 0.5,
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "chromatica/Level_7.ldtkl",
+				"externalRelPath": "chromatica/The_Gate.ldtkl",
 				"fieldInstances": [],
 				"layerInstances": null,
 				"__neighbours": []
