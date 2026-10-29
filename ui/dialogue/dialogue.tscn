@@ -5,13 +5,15 @@
 [ext_resource type="Resource" uid="uid://dlaio5jsdr3qo" path="res://character/npc/npcdatas/fih.tres" id="3_135c7"]
 [ext_resource type="Resource" uid="uid://dbybooi7kwphd" path="res://character/npc/npcdatas/egg.tres" id="4_vqqoj"]
 [ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcdatas/garonic.tres" id="5_mfx2q"]
+[ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcdatas/ren.tres" id="6_135c7"]
 
 [node name="Dialogue" type="CanvasLayer" unique_id=1222258479 node_paths=PackedStringArray("dialogue_box", "character_portrait", "character_name_box")]
 script = ExtResource("1_8q5o4")
 npc_id_table = Dictionary[StringName, ExtResource("2_jy5du")]({
 &"egg": ExtResource("4_vqqoj"),
 &"fih": ExtResource("3_135c7"),
-&"garonic": ExtResource("5_mfx2q")
+&"garonic": ExtResource("5_mfx2q"),
+&"ren": ExtResource("6_135c7")
 })
 dialogue_box = NodePath("Control/ColorRect/MarginContainer/DialogueBox")
 character_portrait = NodePath("Control/Portrait/DialoguePortrait")
