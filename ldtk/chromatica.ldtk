@@ -11,7 +11,7 @@
 	"iid": "0d8dd960-96d0-11f1-8ae1-b1521fc80acf",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 16,
+	"nextUid": 36000,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": null,
@@ -1758,7 +1758,7 @@
 				"__neighbours": [{ "levelIid": "7aff49a0-bde0-11f1-b683-15996a95df01", "dir": "w" }]
 			}
 		] },
-		{ "iid": "404fc600-bde0-11f1-9762-b3b3c8911d1b", "identifier": "RedDomain", "defaultLevelWidth": 256, "defaultLevelHeight": 256, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
+		{ "iid": "404fc600-bde0-11f1-9762-b3b3c8911d1b", "identifier": "RedDomain", "defaultLevelWidth": 3072, "defaultLevelHeight": 1792, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
 			{
 				"identifier": "Level_0",
 				"iid": "404fed10-bde0-11f1-9762-37b682ce597f",
@@ -1766,8 +1766,8 @@
 				"worldX": 0,
 				"worldY": 0,
 				"worldDepth": 0,
-				"pxWid": 256,
-				"pxHei": 256,
+				"pxWid": 3072,
+				"pxHei": 1792,
 				"__bgColor": "#696A79",
 				"bgColor": null,
 				"useAutoIdentifier": true,
