@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://xrs22a6c2pj3"]
+
+[ext_resource type="Script" uid="uid://c6tqbsrrx2yu" path="res://character/npc/npc.gd" id="1_drvh7"]
+[ext_resource type="Texture2D" uid="uid://btnomr554nbx1" path="res://temp/temp_art/thesun.png" id="2_a5o0n"]
+[ext_resource type="PackedScene" uid="uid://blbd8cixeawwr" path="res://world/interactable/interactable_region.tscn" id="3_vnrdn"]
+[ext_resource type="Script" uid="uid://dtusglnrw8424" path="res://systems/dialogue/dialogue_starter.gd" id="4_3wu02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnkh1"]
+
+[node name="Npc" type="Node2D" unique_id=1970945136]
+script = ExtResource("1_drvh7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=97777577]
+texture = ExtResource("2_a5o0n")
+
+[node name="InteractableRegion" parent="." unique_id=1399024953 instance=ExtResource("3_vnrdn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableRegion" unique_id=1390514498]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_cnkh1")
+
+[node name="DialogueStarter" type="Node" parent="InteractableRegion" unique_id=1458743451]
+script = ExtResource("4_3wu02")
+metadata/_custom_type_script = "uid://dtusglnrw8424"
+
+[connection signal="interacted" from="InteractableRegion" to="InteractableRegion/DialogueStarter" method="_on_interactable_region_interacted"]

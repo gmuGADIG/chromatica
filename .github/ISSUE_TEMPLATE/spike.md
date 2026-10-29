@@ -1,9 +1,9 @@
 ---
 name: Spike
-about: A spike describes a topic or potential decision that needs to be researched
-  or evaluated.
+about: A spike is an investigation. It describes a topic or potential decision that
+  needs to be researched or evaluated.
 title: "[SPIKE]"
-labels: discipline:art, documentation
+labels: documentation, spike
 assignees: ''
 
 ---

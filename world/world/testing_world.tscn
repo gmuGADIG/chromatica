@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bo23fe7m071yf"]
+
+[ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/world/world.tscn" id="1_yd5ur"]
+[ext_resource type="PackedScene" uid="uid://xrs22a6c2pj3" path="res://character/npc/npc.tscn" id="2_dthq0"]
+[ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcdatas/garonic.tres" id="3_hjby2"]
+
+[node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
+
+[node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
+position = Vector2(2824, 2720)
+npc_data = ExtResource("3_hjby2")
+dialogue_csv = "res://systems/dialogue/data/garf.csv"
+
+[editable path="Player"]
+[editable path="Player/PlayerHitbox"]
+[editable path="CanvasLayer/Hud"]
