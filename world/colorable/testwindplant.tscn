@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dek1tfudltcw5"]
+
+[ext_resource type="PackedScene" uid="uid://c6vfh1ttiolw1" path="res://world/colorable/WindZone.tscn" id="1_pgy3b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ujnp"]
+
+[node name="Testwindplant" type="Node2D" unique_id=947602030]
+
+[node name="WindZone" parent="." unique_id=619087343 instance=ExtResource("1_pgy3b")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone" unique_id=1917397387]
+shape = SubResource("RectangleShape2D_6ujnp")
