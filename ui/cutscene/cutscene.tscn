@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://x7nt104h6q11"]
+
+[ext_resource type="Script" uid="uid://dybvtp218u5b1" path="res://ui/cutscene/cutscene.gd" id="1_x2dku"]
+
+[node name="Cutscene" type="Control" unique_id=290731757]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_x2dku")
+cutscene_frames = Array[Texture2D]([null, null])
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=105614026]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
