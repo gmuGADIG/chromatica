@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dek1tfudltcw5"]
 
 [ext_resource type="PackedScene" uid="uid://c6vfh1ttiolw1" path="res://world/colorable/WindZone.tscn" id="1_pgy3b"]
+[ext_resource type="Texture2D" uid="uid://cj3ugqkgaxm6w" path="res://temp/temp_art/garonic.png" id="2_m75h1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ujnp"]
 
@@ -10,3 +11,6 @@
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone" unique_id=1917397387]
 shape = SubResource("RectangleShape2D_6ujnp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=300639226]
+texture = ExtResource("2_m75h1")
