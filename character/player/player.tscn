@@ -57,6 +57,7 @@ player = NodePath("../../..")
 script = ExtResource("18_ywhvj")
 slam_velocity = ExtResource("19_7mvkq")
 player = NodePath("../..")
+slam_control_resist = 0.2
 metadata/_custom_type_script = "uid://bpcuvwmp3dj8p"
 
 [node name="Uppercut" type="Node2D" parent="Attacks" unique_id=1880163021 node_paths=PackedStringArray("player", "player_movement")]
