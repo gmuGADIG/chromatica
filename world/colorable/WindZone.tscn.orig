@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c6vfh1ttiolw1"]
+
+<<<<<<< HEAD
+[node name="WindZone" type="Area2D" unique_id=619087343]
+=======
+[ext_resource type="Script" uid="uid://m6kpmqkqmcc6" path="res://world/colorable/wind_zone.gd" id="1_ydpab"]
+
+[node name="WindZone" type="Area2D" unique_id=619087343]
+script = ExtResource("1_ydpab")
+>>>>>>> 8573854226946f6374f6038e30ce198d659bfde2
