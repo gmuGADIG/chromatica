@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/world/world.tscn" id="1_yd5ur"]
 [ext_resource type="PackedScene" uid="uid://xrs22a6c2pj3" path="res://character/npc/npc.tscn" id="2_dthq0"]
-[ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcdatas/garonic.tres" id="3_hjby2"]
-[ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcdatas/ren.tres" id="5_p5yow"]
+[ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcs/temp/garonic.tres" id="3_hjby2"]
+[ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcs/ren/ren.tres" id="5_p5yow"]
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d26yr3aats7x6"
-path="res://.godot/imported/Spoof_Portrait.png-13b227809be7ccaf9b6ee505282a4c77.ctex"
+uid="uid://bmliaewtf34fh"
+path="res://.godot/imported/Ren_Overworld.png-2a0ee9dce3ffbf3dafdd970599c3b453.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/NPCs/Spoof_Portrait.png"
-dest_files=["res://.godot/imported/Spoof_Portrait.png-13b227809be7ccaf9b6ee505282a4c77.ctex"]
+source_file="res://character/npc/npcs/ren/Ren_Overworld.png"
+dest_files=["res://.godot/imported/Ren_Overworld.png-2a0ee9dce3ffbf3dafdd970599c3b453.ctex"]
 
 [params]
 

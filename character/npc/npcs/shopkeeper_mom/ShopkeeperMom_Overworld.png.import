@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://msf5urh1a7sf"
-path="res://.godot/imported/Si_Overworld.png-17545b4f0c9f07bb3b72e1dd0fdc15e3.ctex"
+uid="uid://by7ixncd2buyu"
+path="res://.godot/imported/ShopkeeperMom_Overworld.png-b25f96779913f3455906e591986b5cb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/NPCs/Si_Overworld.png"
-dest_files=["res://.godot/imported/Si_Overworld.png-17545b4f0c9f07bb3b72e1dd0fdc15e3.ctex"]
+source_file="res://character/npc/npcs/shopkeeper_mom/ShopkeeperMom_Overworld.png"
+dest_files=["res://.godot/imported/ShopkeeperMom_Overworld.png-b25f96779913f3455906e591986b5cb3.ctex"]
 
 [params]
 

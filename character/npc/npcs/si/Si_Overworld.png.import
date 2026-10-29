@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2rdv4f7gwhdo"
-path="res://.godot/imported/Ren_Portrait.png-e07eb69e5f0806706990039f54ee3b86.ctex"
+uid="uid://msf5urh1a7sf"
+path="res://.godot/imported/Si_Overworld.png-be966fb5a56a6e7d13d1b910a3266c59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/NPCs/Ren_Portrait.png"
-dest_files=["res://.godot/imported/Ren_Portrait.png-e07eb69e5f0806706990039f54ee3b86.ctex"]
+source_file="res://character/npc/npcs/si/Si_Overworld.png"
+dest_files=["res://.godot/imported/Si_Overworld.png-be966fb5a56a6e7d13d1b910a3266c59.ctex"]
 
 [params]
 

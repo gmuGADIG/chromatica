@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6wa0onx0qktd"
-path="res://.godot/imported/Faunist_Portrait.png-a47dee91db3b4fb17110612e5f0b2a6e.ctex"
+uid="uid://eec6r10juyo1"
+path="res://.godot/imported/Si_Portrait.png-34736c0b676cb490f15708417d2b21a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/NPCs/Faunist_Portrait.png"
-dest_files=["res://.godot/imported/Faunist_Portrait.png-a47dee91db3b4fb17110612e5f0b2a6e.ctex"]
+source_file="res://character/npc/npcs/si/Si_Portrait.png"
+dest_files=["res://.godot/imported/Si_Portrait.png-34736c0b676cb490f15708417d2b21a4.ctex"]
 
 [params]
 

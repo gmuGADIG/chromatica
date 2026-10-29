@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpxaj1bgqlp4x"
-path="res://.godot/imported/Spoof_Overworld.png-9fd5d1076c727b7b877f545cd236a7b8.ctex"
+uid="uid://dh7sk1ptb1bbi"
+path="res://.godot/imported/Faunist_Overworld.png-8a583708a5041120aab37532020467a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/NPCs/Spoof_Overworld.png"
-dest_files=["res://.godot/imported/Spoof_Overworld.png-9fd5d1076c727b7b877f545cd236a7b8.ctex"]
+source_file="res://character/npc/npcs/faunist/Faunist_Overworld.png"
+dest_files=["res://.godot/imported/Faunist_Overworld.png-8a583708a5041120aab37532020467a6.ctex"]
 
 [params]
 

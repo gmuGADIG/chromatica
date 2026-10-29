@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b78dmv8v0tytu"
-path="res://.godot/imported/ShopkeeperMom_Portrait.png-f5f082b70acc3130053ec7035b9606de.ctex"
+uid="uid://b6wa0onx0qktd"
+path="res://.godot/imported/Faunist_Portrait.png-95e8e2db614926851181f19eff1af5f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/NPCs/ShopkeeperMom_Portrait.png"
-dest_files=["res://.godot/imported/ShopkeeperMom_Portrait.png-f5f082b70acc3130053ec7035b9606de.ctex"]
+source_file="res://character/npc/npcs/faunist/Faunist_Portrait.png"
+dest_files=["res://.godot/imported/Faunist_Portrait.png-95e8e2db614926851181f19eff1af5f1.ctex"]
 
 [params]
 
