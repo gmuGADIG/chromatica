@@ -22,13 +22,20 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	for body: Node2D in get_overlapping_bodies():
 		if body.is_in_group("player"):
+			
+			# Type safety
+			var player := body as Player
+			
+			var self_pos := self.global_position
+			var player_pos = player.global_position
+			var dir_to_player := self_pos.direction_to(player_pos).normalized()
+			
 			match current_state:
-				ColorStates.RED:
-					# Change player velocity
-					pass
+				ColorStates.RED:			
+					player.velocity += force * dir_to_player
+					
 				ColorStates.BLUE:
-					# Change player velocity some more
-					pass
+					player.velocity -= force * dir_to_player
 				_:
 					# How did we get here
 					pass
