@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://blrovkcs48bq7"]
 
-[ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_nd5f6"]
-[ext_resource type="PackedScene" uid="uid://dpav2ag5h2i1j" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
+[ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/world/world.tscn" id="1_nd5f6"]
+[ext_resource type="PackedScene" path="res://ldtk/levels/Test2.scn" id="2_v1uy5"]
 [ext_resource type="PackedScene" uid="uid://c54yei7bw6a1a" path="res://world/decoration/interactive_grass.tscn" id="3_r6k6n"]
 [ext_resource type="PackedScene" uid="uid://d2xedqxv2bd6p" path="res://pickup/pickup.tscn" id="4_8ao42"]
-[ext_resource type="Resource" uid="uid://dbybooi7kwphd" path="res://character/npc/npcdatas/egg.tres" id="7_a1fwn"]
-[ext_resource type="Resource" uid="uid://dlaio5jsdr3qo" path="res://character/npc/npcdatas/fih.tres" id="7_qv82b"]
+[ext_resource type="Resource" uid="uid://dbybooi7kwphd" path="res://character/npc/npcs/temp/egg.tres" id="7_a1fwn"]
+[ext_resource type="Resource" uid="uid://dlaio5jsdr3qo" path="res://character/npc/npcs/temp/fih.tres" id="7_qv82b"]
 [ext_resource type="PackedScene" uid="uid://xrs22a6c2pj3" path="res://character/npc/npc.tscn" id="10_82yhp"]
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_nd5f6")]
