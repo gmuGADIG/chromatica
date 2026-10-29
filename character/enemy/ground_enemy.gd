@@ -15,8 +15,6 @@ extends Enemy
 @export_group("Patrol")
 @export var patrol_speed : float = 150.0
 @export var turn_at_ledges : bool = true
-## Floor-check ray pointing down, placed just in front of the enemy. (child of the Enemy)
-@export var ledge_check : RayCast2D
 ## How far in front of the origin the ledge check sits (px)
 @export var ledge_check_offset : float = 60.0
 
@@ -109,8 +107,8 @@ func face(direction: int) -> void:
 	if direction == 0:
 		return
 	facing = 1 if direction > 0 else -1
-	if ledge_check:
-		ledge_check.position.x = facing * ledge_check_offset
+	if platform_ray:
+		platform_ray.position.x = facing * ledge_check_offset
 
 
 ## -1, 0 or 1: which way a world x position is from this enemy.
@@ -136,4 +134,4 @@ func accelerate_toward(target_speed: float, delta: float) -> void:
 
 
 func _at_ledge() -> bool:
-	return turn_at_ledges and ledge_check != null and not ledge_check.is_colliding()
+	return turn_at_ledges and platform_ray != null and not platform_ray.is_colliding()

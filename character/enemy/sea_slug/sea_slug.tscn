@@ -8,8 +8,14 @@
 [ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="5_k14xt"]
 [ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="6_r7h1t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lntlq"]
+size = Vector2(74, 58)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjds8"]
 size = Vector2(56, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvlh5"]
+size = Vector2(74, 58)
 
 [node name="sea_slug" type="CharacterBody2D" unique_id=363484467 node_paths=PackedStringArray("health_component", "hitbox", "health_bar", "colorable_component")]
 script = ExtResource("1_touxu")
@@ -28,6 +34,11 @@ texture = ExtResource("2_jjds8")
 script = ExtResource("3_stnha")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://rbki0mvel4rg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox" unique_id=384525253]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_lntlq")
+debug_color = Color(7.2196127e-07, 0.63870955, 0.3762973, 0.41960785)
 
 [node name="HealthComponent" type="Node" parent="." unique_id=954751097]
 script = ExtResource("4_m7cot")
@@ -65,6 +76,11 @@ collision_mask = 3
 [node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1835149980]
 script = ExtResource("6_r7h1t")
 metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=913332128]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_qvlh5")
+debug_color = Color(0.9999997, 0.0026498865, 0.058746867, 0.41960785)
 
 [node name="shoot_point" type="Marker2D" parent="." unique_id=1079436082]
 position = Vector2(86, -15)

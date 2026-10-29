@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bj373v81oui6a"]
+
+[ext_resource type="Texture2D" uid="uid://b6gh0a8e06qpf" path="res://temp/temp_art/tee-eff-two-soljer.png" id="1_d3o8t"]
+[ext_resource type="Script" uid="uid://rbki0mvel4rg" path="res://character/enemy/enemy_hitbox.gd" id="2_7kahm"]
+[ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="3_v8xar"]
+[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="4_si6nt"]
+[ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="5_n3qce"]
+
+[node name="PhalanxBees" type="CharacterBody2D" unique_id=345693683]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1276540189]
+texture = ExtResource("1_d3o8t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=281085109]
+
+[node name="EnemyHitbox" type="Area2D" parent="." unique_id=1328128278]
+script = ExtResource("2_7kahm")
+metadata/_custom_type_script = "uid://rbki0mvel4rg"
+
+[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1106056135]
+script = ExtResource("3_v8xar")
+metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=720499404]
+script = ExtResource("4_si6nt")
+metadata/_custom_type_script = "uid://dofc8aut25pg5"
+
+[node name="Colorable" type="Node" parent="." unique_id=453321657]
+script = ExtResource("5_n3qce")
+metadata/_custom_type_script = "uid://diph7secwmb53"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1122797218]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1788694467]
+
+[node name="Front_Player_Ray" type="RayCast2D" parent="." unique_id=1803257407]
+target_position = Vector2(-1000, 0)
+
+[node name="Wall_Ray" type="RayCast2D" parent="." unique_id=1152990036]
+
+[node name="Platform_Ray" type="RayCast2D" parent="." unique_id=1413236378]
+
+[node name="Back_Player_Ray" type="RayCast2D" parent="." unique_id=766749892]
