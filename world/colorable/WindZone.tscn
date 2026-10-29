@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c6vfh1ttiolw1"]
 
-
 [ext_resource type="Script" uid="uid://m6kpmqkqmcc6" path="res://world/colorable/wind_zone.gd" id="1_ydpab"]
 
 [node name="WindZone" type="Area2D" unique_id=619087343]
 script = ExtResource("1_ydpab")
+
+[node name="YellowColorTimer" type="Timer" parent="." unique_id=1008190146]
