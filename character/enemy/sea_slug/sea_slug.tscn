@@ -59,7 +59,7 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_jjds8")
 
 [node name="can_see_Player_ray" type="RayCast2D" parent="." unique_id=367979340]
-target_position = Vector2(-1000, 0)
+target_position = Vector2(1000, 0)
 collision_mask = 3
 
 [node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1835149980]
