@@ -4,7 +4,7 @@ class_name CarpenterBee
 ## hovers above them, winds up, then dives straight at where they were.
 ## (The Enemy it is attached to hurts the player on contact through its ContactHurtbox.)
 
-enum State { IDLE, CHASE, WINDUP, DASH, RECOVER }
+enum State { IDLE, APPROACH, SHOOT }
 
 @export_group("Idle")
 ## How far from its home point the bee drifts while idle (px)
@@ -14,39 +14,41 @@ enum State { IDLE, CHASE, WINDUP, DASH, RECOVER }
 ## Seconds between picking new drift points
 @export var wander_interval : float = 2.0
 
-@export_group("Chase")
-## Where the bee positions itself relative to the player before diving (px)
-@export var hover_offset : Vector2 = Vector2(0.0, -350.0)
-## How close to that spot the bee must get before it dives (px)
-@export var dive_distance : float = 150.0
-## Seconds without seeing the player before it gives up and goes back to idle
-@export var lose_sight_time : float = 2.0
+@export_group("Approach")
+## The "ideal location", relative to the player's center. x is how far to the side
+## (it mirrors to whichever side the bee is on), y is height (negative = above).
+@export var ideal_offset : Vector2 = Vector2(350.0, -250.0)
+## Seconds spent approaching before it shoots
+@export var shoot_interval : float = 2.0
+## Seconds without sight of the player before it gives up and goes back to idle.
+## (A small grace period, so a flickering line of sight doesn't make it twitch between states.)
+@export var lose_sight_time : float = 1.0
 
-#
-# REWORK THIS GROUP TO SUIT PROJECTILE ATTACK
-@export_group("Dash")
-## Seconds spent hovering still before the dive (the player's chance to react)
-@export var windup_time : float = 0.6
-@export var dash_speed : float = 1300.0
-## Longest a dive can last (it also ends early when the bee hits something)
-@export var dash_time : float = 0.5
-## Seconds spent slowing down after a dive
-@export var recover_time : float = 1.0
+@export_group("Shoot")
+## Scene spawned when shooting. Needs a launch(direction: Vector2) method (see Cannonball).
+@export var projectile_scene : PackedScene
+## Where projectiles spawn. Uses the bee's center if empty.
+@export var muzzle : Marker2D
+## Seconds the bee hangs still before firing (the player's tell)
+@export var aim_time : float = 0.4
 
 var state : State = State.IDLE
 
 var _timer : float = 0.0
 var _wander_timer : float = 0.0
 var _lost_sight_time : float = 0.0
+var _side : int = 1
 var _home : Vector2 = Vector2.ZERO
 var _home_set : bool = false
 
+func _ready() -> void:
+	super()
+	_home = global_position
+	if projectile_scene == null:
+		push_warning("No Projectile for '%s' " % name)
+	
 
 func _think(delta: float) -> void:
-	if not _home_set:
-		_home = global_position
-		_home_set = true
-
 	match state:
 		State.IDLE:
 			_wander_timer -= delta
@@ -55,8 +57,8 @@ func _think(delta: float) -> void:
 			fly_toward_target(idle_speed, delta)
 			if can_see_player():
 				_lost_sight_time = 0.0
-				_enter(State.CHASE, 0.0)
-		State.CHASE:
+				_start_approach()
+		State.APPROACH:
 			if can_see_player():
 				_lost_sight_time = 0.0
 			else:
@@ -65,39 +67,40 @@ func _think(delta: float) -> void:
 					has_target = false
 					_enter(State.IDLE, 0.0)
 					return
-			var hover_point := get_player_center() + hover_offset
-			set_target(hover_point)
+			set_target(_ideal_location())
 			move(delta)
-			if can_see_player() and global_position.distance_to(hover_point) <= dive_distance:
-				_enter(State.WINDUP, windup_time)
-		State.WINDUP:
+			_timer -= delta# only shoot with a clear view of the player
+			if _timer <= 0.0 and can_see_player():
+				_enter(State.SHOOT, aim_time)
+		State.SHOOT:
 			accelerate_toward(Vector2.ZERO, delta)
 			_timer -= delta
 			if _timer <= 0.0:
 				attack()
-		State.DASH:
-			# Switch State Name to "Shoot", use "Spannon's" projectile concept
-			# Also replace the sprite with "a fucking aspid"
-			
-			# Holds its dive velocity; ends on time or on hitting something.
-			_timer -= delta
-			if _timer <= 0.0 or is_on_floor() or is_on_wall() or is_on_ceiling():
-				_enter(State.RECOVER, recover_time)
-		State.RECOVER:
-			accelerate_toward(Vector2.ZERO, delta)
-			_timer -= delta
-			if _timer <= 0.0:
-				_enter(State.CHASE, 0.0)
+				_enter(State.APPROACH, shoot_interval)
 
 
-## Dives at where the player is right now.
+## Fires one projectile at the player's current position.
 func attack() -> void:
-	var direction := get_player_center() - global_position
-	if direction.is_zero_approx():
-		direction = Vector2.DOWN
-	velocity = direction.normalized() * dash_speed # Rework for Cannon Prog
-	_enter(State.DASH, dash_time) # Rework for Cannon Prog
+	if projectile_scene == null:
+		return
+	var origin := muzzle.global_position if muzzle else global_position
+	var projectile := projectile_scene.instantiate() as Cannonball
+	add_sibling(projectile)
+	projectile.global_position = origin
+	projectile.launch(get_player_center() - origin)
 
+## The spot the bee tries to hold: off to one side of the player and above them.
+func _ideal_location() -> Vector2:
+	return get_player_center() + Vector2(_side * ideal_offset.x, ideal_offset.y)
+
+func _start_approach() -> void:
+	# Stay on the side of the player it's already on, so it doesn't cross through them.
+	_side = int(signf(global_position.x - get_player_center().x))
+	if _side == 0:
+		_side = 1
+	_lost_sight_time = 0.0
+	_enter(State.APPROACH, shoot_interval)
 
 func _pick_wander_point() -> void:
 	var offset := Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * home_radius
