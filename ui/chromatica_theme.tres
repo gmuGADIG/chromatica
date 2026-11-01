@@ -1,3 +1,32 @@
 [gd_resource type="Theme" format=3 uid="uid://1de4owo4vojh"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imuuq"]
+bg_color = Color(0.6, 0.25800002, 0.25800002, 1)
+skew = Vector2(0.3, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwc50"]
+bg_color = Color(0.25800002, 0.6, 0.32640004, 1)
+skew = Vector2(0.3, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [resource]
+HealthBarPlayer/base_type = &"ProgressBar"
+HealthBarPlayer/styles/background = SubResource("StyleBoxFlat_imuuq")
+HealthBarPlayer/styles/fill = SubResource("StyleBoxFlat_kwc50")

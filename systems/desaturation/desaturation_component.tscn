@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bj0le6ghuysk0"]
+
+[ext_resource type="Script" uid="uid://h27x1irfaemo" path="res://systems/desaturation/desaturation_component.gd" id="1_sv1b5"]
+[ext_resource type="Shader" uid="uid://dibv1qb7atu2y" path="res://systems/desaturation/desaturation_hsv.gdshader" id="2_gr0x4"]
+
+[node name="DesaturationComponent" type="Node" unique_id=2088411467]
+script = ExtResource("1_sv1b5")
+shader = ExtResource("2_gr0x4")

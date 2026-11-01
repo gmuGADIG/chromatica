@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cmgsqo0sk8vvv"]
+
+[ext_resource type="Script" uid="uid://cyixy1oqfuk10" path="res://systems/area_triggers/area_trigger.gd" id="1_ifl1s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_847n3"]
+size = Vector2(0, 0)
+
+[node name="RespawnRegion" type="Area2D" unique_id=444725797]
+script = ExtResource("1_ifl1s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1442453858]
+shape = SubResource("RectangleShape2D_847n3")

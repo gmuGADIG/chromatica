@@ -26,12 +26,20 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 22
 
-[node name="Start" type="Button" parent="HBoxContainer" unique_id=797776018]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=270391618]
 layout_mode = 2
+text = "This will be the file select screen"
+
+[node name="Start" type="Button" parent="HBoxContainer" unique_id=797776018]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 text = "Start"
 
 [node name="Back" type="Button" parent="HBoxContainer" unique_id=1619766175]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Back"
 
 [connection signal="pressed" from="HBoxContainer/Start" to="." method="_on_button_start_pressed"]
