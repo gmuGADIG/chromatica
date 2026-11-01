@@ -1,0 +1,69 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="1_base"]
+[ext_resource type="Script" path="res://character/enemy/swooper/swooper.gd" id="2_swooper"]
+[ext_resource type="Script" path="res://character/enemy/enemy_hurtbox.gd" id="3_hurt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(88, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(80, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_contact"]
+size = Vector2(90, 70)
+
+[node name="Swooper" instance=ExtResource("1_base") node_paths=PackedStringArray("health_component", "hitbox", "health_bar", "colorable_component", "visual", "contact_hurtbox")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_swooper")
+visual = NodePath("Visual")
+contact_hurtbox = NodePath("ContactHurtbox")
+health_component = NodePath("HealthComponent")
+hitbox = NodePath("EnemyHitbox")
+health_bar = NodePath("HealthBar")
+colorable_component = NodePath("ColorableComponent")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1560740887]
+visible = false
+
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0" unique_id=841445170]
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="HealthComponent" parent="." index="2" unique_id=1306834510]
+maximum_hp = 3
+
+[node name="HealthBar" parent="." index="4" unique_id=1894704178]
+offset_top = -76.0
+offset_bottom = -49.0
+
+[node name="CollisionShape2D" parent="." index="5" unique_id=1367315384]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Visual" type="Node2D" parent="." index="6"]
+
+[node name="Body" type="Polygon2D" parent="Visual"]
+color = Color(0.22, 0.12, 0.3, 1)
+polygon = PackedVector2Array(30, 0, 26, 10, 15, 17, 0, 20, -15, 17, -26, 10, -30, 0, -26, -10, -15, -17, 0, -20, 15, -17, 26, -10)
+
+[node name="WingLeft" type="Polygon2D" parent="Visual"]
+color = Color(0.3, 0.17, 0.4, 1)
+polygon = PackedVector2Array(-8, -8, -85, -40, -70, 6, -14, 10)
+
+[node name="WingRight" type="Polygon2D" parent="Visual"]
+color = Color(0.3, 0.17, 0.4, 1)
+polygon = PackedVector2Array(8, -8, 85, -40, 70, 6, 14, 10)
+
+[node name="Eye" type="Polygon2D" parent="Visual"]
+color = Color(1, 0.8, 0.2, 1)
+polygon = PackedVector2Array(14, -6, 22, -4, 14, 0)
+
+[node name="ContactHurtbox" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("3_hurt")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHurtbox"]
+shape = SubResource("RectangleShape2D_contact")
+disabled = true
