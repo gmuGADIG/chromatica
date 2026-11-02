@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biwocnfjqma4b"
-path="res://.godot/imported/spannon_body_colorless.png-4ee2f4a7027b51e4f77ecccf1c846f8d.ctex"
+uid="uid://b4q0w3to5hphq"
+path="res://.godot/imported/paint_glob.png-1d5247011127f2dece22ad738eb122a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/enemy/spannon/spannon_body_colorless.png"
-dest_files=["res://.godot/imported/spannon_body_colorless.png-4ee2f4a7027b51e4f77ecccf1c846f8d.ctex"]
+source_file="res://character/enemy/carpenter_bee/paint_glob.png"
+dest_files=["res://.godot/imported/paint_glob.png-1d5247011127f2dece22ad738eb122a7.ctex"]
 
 [params]
 

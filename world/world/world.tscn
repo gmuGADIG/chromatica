@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://bigp7swogixhk" path="res://world/world/world_cache.tres" id="2_1tbfg"]
 [ext_resource type="PackedScene" uid="uid://clra6nv8aoo0u" path="res://ui/hud/hud.tscn" id="2_lm4yx"]
 [ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="5_rk7fn"]
+[ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="6_j28bi"]
 
 [node name="World" type="Node2D" unique_id=1762502460 node_paths=PackedStringArray("player")]
 script = ExtResource("1_i0vah")
@@ -30,6 +31,9 @@ player_health = NodePath("../../../Player/PlayerHealthComponent")
 
 [node name="EnemyBase" parent="." unique_id=43181616 instance=ExtResource("5_rk7fn")]
 position = Vector2(3296, 2816)
+
+[node name="CarpenterBee" parent="." unique_id=187673967 instance=ExtResource("6_j28bi")]
+position = Vector2(3584, 2240)
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]

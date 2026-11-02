@@ -32,7 +32,10 @@ enum State { IDLE, APPROACH, SHOOT }
 ## Seconds the bee hangs still before firing (the player's tell)
 @export var aim_time : float = 0.4
 
-var state : State = State.IDLE
+var state : State = State.IDLE:
+	set(val):
+		state = val
+		print(state)
 
 var _timer : float = 0.0
 var _wander_timer : float = 0.0
@@ -51,7 +54,6 @@ func _ready() -> void:
 func _think(delta: float) -> void:
 	match state:
 		State.IDLE:
-			_wander_timer -= delta
 			if _wander_timer <= 0.0:
 				_pick_wander_point()
 			fly_toward_target(idle_speed, delta)
@@ -85,10 +87,10 @@ func attack() -> void:
 	if projectile_scene == null:
 		return
 	var origin := muzzle.global_position if muzzle else global_position
-	var projectile := projectile_scene.instantiate() as Cannonball
+	var projectile : GlobProjectile = projectile_scene.instantiate()
 	add_sibling(projectile)
 	projectile.global_position = origin
-	projectile.launch(get_player_center() - origin)
+	projectile.launch(origin.direction_to(get_player_center()))
 
 ## The spot the bee tries to hold: off to one side of the player and above them.
 func _ideal_location() -> Vector2:
@@ -111,3 +113,5 @@ func _pick_wander_point() -> void:
 func _enter(new_state: State, duration: float) -> void:
 	state = new_state
 	_timer = duration
+	if state == State.IDLE:
+		_wander_timer = 0.0
