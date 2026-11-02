@@ -6,7 +6,7 @@ class_name HealthBar
 func _ready() -> void:
 	health_component.health_changed.connect(_on_health_changed)
 	max_value = health_component.maximum_hp
-	value = health_component.hp
+	value = 0
 
 func _on_health_changed(new_health: int) -> void:
-	value = new_health
+	value = health_component.maximum_hp - new_health

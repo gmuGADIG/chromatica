@@ -63,7 +63,6 @@ func attack() -> void:
 
 ## Needs an unobstructed line from the cannon to the player, within sight_range.
 func can_see_player() -> bool:
-	var player := get_player()
 	if player == null:
 		return false
 	var target := get_player_center()

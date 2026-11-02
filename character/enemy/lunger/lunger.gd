@@ -29,7 +29,6 @@ func _think(delta: float) -> void:
 				_enter(State.WINDUP, windup_time)
 		State.WINDUP:
 			accelerate_toward(0.0, delta)
-			var player := get_player()
 			if player:
 				face(dir_to(player.global_position.x))
 			_timer -= delta
@@ -49,7 +48,6 @@ func _think(delta: float) -> void:
 ## Launches along an arc that lands on the player's current position.
 func attack() -> void:
 	var offset := get_player_center() - global_position
-	var player := get_player()
 	if player == null:
 		offset = Vector2(facing * 300.0, 0.0)
 

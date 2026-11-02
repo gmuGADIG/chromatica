@@ -37,7 +37,6 @@ func _physics_process(delta: float) -> void:
 
 ## The player is close enough AND nothing solid is between this enemy and them.
 func can_see_player() -> bool:
-	var player := get_player()
 	if player == null:
 		return false
 	var target := get_player_center()
