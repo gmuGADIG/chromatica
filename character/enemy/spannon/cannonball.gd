@@ -4,7 +4,7 @@ class_name Cannonball
 
 @export var speed : float = 1400.0
 @export var damage : int = 1
-@export var attack_color : DamageInfo.AttackColor = DamageInfo.AttackColor.RED
+@export var attack_color : Paint.Hue = Paint.Hue.RED
 ## Seconds before it despawns on its own
 @export var lifetime : float = 4.0
 

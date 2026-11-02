@@ -5,7 +5,7 @@ class_name EnemyHurtbox
 ## Place on collision layer 0; the mask must include the layer the PlayerHitbox is on.
 
 @export var damage : int = 1
-@export var attack_color : DamageInfo.AttackColor = DamageInfo.AttackColor.RED
+@export var attack_color : Paint.Hue = Paint.Hue.RED
 ## Seconds before this hurtbox can damage the player again
 @export var rehit_delay : float = 1.0
 
@@ -32,7 +32,7 @@ func disable() -> void:
 
 
 ## Damages the player if [param area] is the player's hitbox. Returns true if it was.
-static func try_damage_player(area: Area2D, amount: int, color: DamageInfo.AttackColor) -> bool:
+static func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
 	# Areas on the same layer as the PlayerHitbox (other enemies' hitboxes, etc.)
 	# also show up, so only accept ones that belong to the Player.
 	if not (area.get_parent() is Player) or not area.has_method("hit"):

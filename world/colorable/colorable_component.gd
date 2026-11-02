@@ -4,7 +4,7 @@ class_name Colorable
 @export var color_target : Node2D
 signal combo_triggered
 signal color_changed
-var colors : Array[DamageInfo.AttackColor] = []
+var colors : Array[Paint.Hue] = []
 
 #func _ready() -> void:
 	#var options : Array[Color] = [Color.RED,Color.YELLOW,Color.BLUE]
@@ -15,7 +15,7 @@ var colors : Array[DamageInfo.AttackColor] = []
 			#apply(options.pick_random())
 		#print(colors)
 
-func apply(new_color : DamageInfo.AttackColor) -> void:
+func apply(new_color : Paint.Hue) -> void:
 	assert(colors.size() <= 2, "Somehow has too many colors")
 	# if the colorable has 2 colors, remove oldest
 	if(colors.size() == 2):

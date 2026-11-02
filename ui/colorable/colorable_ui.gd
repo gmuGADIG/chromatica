@@ -16,28 +16,11 @@ func color_updated() -> void:
 	
 	for i in pips.size():
 		if i < num_colors:
-			pips[i].modulate = get_color_from_attackcolors(colorable_component.colors[i])
+			pips[i].modulate = Paint.get_color(colorable_component.colors[i])
 			pips[i].show()
 		else:
 			pips[i].hide()
 
-func get_color_from_attackcolors(color: DamageInfo.AttackColor) -> Color:
-	match color:
-		DamageInfo.AttackColor.RED:
-			return Color.RED
-		DamageInfo.AttackColor.YELLOW:
-			return Color.YELLOW
-		DamageInfo.AttackColor.BLUE:
-			return Color.BLUE
-		DamageInfo.AttackColor.ORANGE:
-			return Color.ORANGE
-		DamageInfo.AttackColor.GREEN:
-			return Color.GREEN
-		DamageInfo.AttackColor.PURPLE:
-			return Color.PURPLE
-		_:
-			printerr("DamageInfo Attack Color unknown!")
-			return Color.WHITE
 
 # made this just in case varnish needs to be done on the UI end because the tasklist details
 # show that when varnish is applied, the ui disappears again so the player can apply new colors
