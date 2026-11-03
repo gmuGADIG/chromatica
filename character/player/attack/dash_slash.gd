@@ -3,7 +3,7 @@ class_name DashSlash
 @export var player: Player
 @export var player_movement: PlayerMovement
 @export var hurtbox: PlayerHurtbox
-@export_group("Attak Properties")
+@export_group("Attack Properties")
 @export var dash_damage : int
 
 ## set to RED for now because that's just how brush_swing is, but maybe it
