@@ -111,10 +111,10 @@ func can_see_player() -> bool:
 	printerr("Method Not Implemented!")
 	return false
 
-func set_target(pos: Vector2) -> void:
+func set_target(_pos: Vector2) -> void:
 	printerr("Method Not Implemented!")
 
-func move(delta: float) -> void:
+func move(_delta: float) -> void:
 	printerr("Method Not Implemented!")
 
 func attack() -> void:

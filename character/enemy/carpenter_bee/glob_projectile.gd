@@ -25,9 +25,10 @@ func launch(direction: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	global_position += _velocity * delta
 
-func _on_enemy_hurtbox_body_entered(body: Node2D) -> void:
+func _on_enemy_hurtbox_body_entered(_body: Node2D) -> void:
 	_velocity = Vector2.ZERO
-	hurtbox.monitoring = false
+	#hurtbox.monitoring = false
+	hurtbox.set_deferred("monitoring", false)
 	sprite.hide()
 	var player : Player = get_tree().get_first_node_in_group("player")
 	var dir : Vector2 = player.global_position.direction_to(global_position)
