@@ -28,7 +28,7 @@ size = Vector2(133, 261)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3pmv"]
 size = Vector2(130, 259)
 
-[node name="Player" type="CharacterBody2D" unique_id=1162272003]
+[node name="Player" type="CharacterBody2D" unique_id=1162272003 groups=["player"]]
 script = ExtResource("1_oul6g")
 
 [node name="Attacks" type="Node2D" parent="." unique_id=171343013]
@@ -39,6 +39,7 @@ script = ExtResource("6_eu8pa")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
 hurtbox = NodePath("AttackArea")
+brush_damage = 1
 metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
 [node name="SwingBuffer" type="Timer" parent="Attacks/PlayerBrush" unique_id=391448229]

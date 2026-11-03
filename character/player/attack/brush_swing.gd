@@ -9,7 +9,7 @@ class_name PlayerBrush
 
 func _ready() -> void:
 	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
-		enemy.hit(DamageInfo.new(brush_damage,DamageInfo.AttackColor.RED))
+		enemy.hit(DamageInfo.new(brush_damage,Paint.Hue.RED))
 	)
 
 func _input(event: InputEvent):
