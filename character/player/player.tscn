@@ -76,6 +76,7 @@ script = ExtResource("9_v2h1c")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
 hurtbox = NodePath("SlashArea")
+dash_damage = 2
 dash_slash_velocity = ExtResource("8_vuhga")
 metadata/_custom_type_script = "uid://damau8bpijlrc"
 

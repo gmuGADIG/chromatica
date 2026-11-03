@@ -35,7 +35,7 @@ enum State { IDLE, APPROACH, SHOOT }
 var state : State = State.IDLE:
 	set(val):
 		state = val
-		print(state)
+		#print(state)
 
 var _timer : float = 0.0
 var _wander_timer : float = 0.0

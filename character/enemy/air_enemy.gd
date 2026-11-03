@@ -66,7 +66,7 @@ func fly_toward_target(speed: float, delta: float) -> void:
 		accelerate_toward(Vector2.ZERO, delta)
 		return
 	var dir := global_position.direction_to(target_position)
-	print(dir)
+	#print(dir)
 	var distance := target_position.distance_to(global_position)
 	if distance <= arrive_distance:
 		has_target = false
