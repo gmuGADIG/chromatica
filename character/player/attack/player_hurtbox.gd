@@ -3,6 +3,8 @@ class_name PlayerHurtbox extends Area2D
 
 signal finished
 
+const MASK : int = 1<<3
+
 @export var player : Player
 @export var collision_shape : CollisionShape2D
 @export var attack_timer : Timer
@@ -43,6 +45,8 @@ signal enemy_hit(enemy: EnemyHitbox)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	collision_mask = MASK
+	collision_layer = 0
 	hide()
 	collision_shape.shape = RectangleShape2D.new()
 	_update_hurtbox_shape()
@@ -78,6 +82,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	if area is EnemyHitbox:
+		print("HURT")
 		enemy_hit.emit(area)
 		hit_things.append(area)
 

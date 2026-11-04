@@ -10,11 +10,11 @@
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
 [ext_resource type="Curve" uid="uid://b66kdinwe4puo" path="res://character/player/attack/uppercut_horizontal_velocity.tres" id="6_vuhga"]
 [ext_resource type="Script" uid="uid://cg00jpsjgo1fo" path="res://character/player/attack/player_hurtbox.gd" id="7_jo6ux"]
-[ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
 [ext_resource type="Script" uid="uid://bjewudptgw235" path="res://character/player/attack/uppercut.gd" id="8_0cf6c"]
 [ext_resource type="Curve" uid="uid://c467ecjac1cxy" path="res://character/player/attack/dash_slash_horizontal_velocity.tres" id="8_vuhga"]
 [ext_resource type="Script" uid="uid://b2hybtygkkyei" path="res://character/player/attack/ranged_attack.gd" id="9_qh58e"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="9_v2h1c"]
+[ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="10_aph6w"]
 [ext_resource type="PackedScene" uid="uid://dgt3m6jyjwv6x" path="res://character/projectile/projectile.tscn" id="10_hr31g"]
 [ext_resource type="Script" uid="uid://qsjyr53tj0c1" path="res://character/player/player_pickup.gd" id="10_qh58e"]
 [ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="14_muf2e"]
@@ -23,7 +23,7 @@
 [ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
 [ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo6ux"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5sw3"]
 size = Vector2(164, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -60,8 +60,15 @@ one_shot = true
 one_shot = true
 
 [node name="AttackArea" parent="Attacks/PlayerBrush" unique_id=379676843 node_paths=PackedStringArray("player", "attack_timer") instance=ExtResource("3_qh58e")]
+collision_layer = 0
+collision_mask = 8
 player = NodePath("../../..")
 attack_timer = NodePath("../SwingDuration")
+
+[node name="Sprite2D" type="Sprite2D" parent="Attacks/PlayerBrush/AttackArea" unique_id=380613026]
+position = Vector2(112, -8)
+scale = Vector2(2.2251666, 1.8783448)
+texture = ExtResource("10_aph6w")
 
 [node name="Slam" type="Node2D" parent="Attacks" unique_id=823905425 node_paths=PackedStringArray("player")]
 script = ExtResource("18_ywhvj")
@@ -74,6 +81,7 @@ metadata/_custom_type_script = "uid://bpcuvwmp3dj8p"
 script = ExtResource("8_0cf6c")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
+damage = 1
 uppercut_vertical_velocity = ExtResource("5_lqp71")
 uppercut_horizontal_velocity = ExtResource("6_vuhga")
 metadata/_custom_type_script = "uid://bjewudptgw235"
@@ -83,7 +91,10 @@ wait_time = 0.4
 one_shot = true
 
 [node name="PlayerHurtbox" type="Area2D" parent="Attacks/Uppercut" unique_id=2122688073 node_paths=PackedStringArray("player", "collision_shape", "attack_timer")]
+visible = false
 position = Vector2(0, -248)
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("7_jo6ux")
 player = NodePath("../../..")
 collision_shape = NodePath("CollisionShape2D")
@@ -95,9 +106,14 @@ metadata/_custom_type_script = "uid://cg00jpsjgo1fo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=1886765406]
 position = Vector2(110, 0)
-shape = SubResource("RectangleShape2D_jo6ux")
+shape = SubResource("RectangleShape2D_a5sw3")
 
-[node name="DashSlash" type="Node2D" parent="Attacks" unique_id=1018780961 node_paths=PackedStringArray("player", "player_movement")]
+[node name="Sprite2D" type="Sprite2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=643035562]
+position = Vector2(112, -8)
+scale = Vector2(1.3085072, 2.158197)
+texture = ExtResource("10_aph6w")
+
+[node name="DashSlash" type="Node2D" parent="Attacks" unique_id=1018780961 node_paths=PackedStringArray("player", "player_movement", "hurtbox")]
 script = ExtResource("9_v2h1c")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
@@ -109,12 +125,18 @@ metadata/_custom_type_script = "uid://damau8bpijlrc"
 [node name="DashSlashCooldown" type="Timer" parent="Attacks/DashSlash" unique_id=1070012377]
 one_shot = true
 
-[node name="SlashArea" parent="Attacks/DashSlash" unique_id=508201604 node_paths=PackedStringArray("player") instance=ExtResource("3_qh58e")]
+[node name="SlashArea" parent="Attacks/DashSlash" unique_id=508201604 node_paths=PackedStringArray("player", "attack_timer") instance=ExtResource("3_qh58e")]
 position = Vector2(0, -120)
+collision_layer = 0
+collision_mask = 8
 player = NodePath("../../..")
+attack_timer = NodePath("../SlashTimer")
 hurtbox_shape = Vector2(140, 270)
 offset = Vector2(0, 0)
 swing_duration = 0.3
+
+[node name="SlashTimer" type="Timer" parent="Attacks/DashSlash" unique_id=505257000]
+wait_time = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)

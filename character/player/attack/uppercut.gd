@@ -6,6 +6,7 @@ class_name Uppercut
 
 @export_group("Parameters")
 @export_range(0.05,10.0) var uppercut_cooldown : float = 0.1
+@export var damage : int
 @export var uppercut_vertical_velocity : Curve
 @export var uppercut_horizontal_velocity : Curve
 
@@ -21,6 +22,10 @@ var uppercut_direction : float
 func _ready() -> void:
 	if not is_equal_approx(uppercut_horizontal_velocity.max_domain,uppercut_vertical_velocity.max_domain):
 		printerr("Domains between two uppercut velocities different")
+	
+	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
+		enemy.hit(DamageInfo.new(damage,Paint.Hue.RED))
+	)
 
 func _input(event : InputEvent) -> void:
 	if Dialogue.is_playing():
