@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bmk7h1whywna8"]
+
+[ext_resource type="Script" uid="uid://c6tjokdv1qejj" path="res://character/player/paint_guard.gd" id="1_bdmkh"]
+
+[node name="Paint Guard" type="Node" unique_id=933931754]
+script = ExtResource("1_bdmkh")
+parry_duration = 0.1
+granted_invuln_time = 0.3
+parry_cooldown = 0.5
+
+[node name="ParryCooldown" type="Timer" parent="." unique_id=704094820]
+unique_name_in_owner = true
+
+[node name="ParryDuration" type="Timer" parent="." unique_id=1342045337]
+unique_name_in_owner = true

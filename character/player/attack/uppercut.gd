@@ -23,12 +23,19 @@ func _ready() -> void:
 		printerr("Domains between two uppercut velocities different")
 
 func _input(event : InputEvent) -> void:
+	if Dialogue.is_playing():
+		return
+	
 	if event.is_action_pressed("temp_uppercut"):
 		uppercut()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if player.is_on_ceiling():
+		player.state = Player.State.NONE	
+		return
+	
 	if player.state != Player.State.UPPERCUT:
 		##TODO: Add uppercut cooldown timer
 		if player.is_on_floor() and uppercut_cooldown_timer.is_stopped():

@@ -13,8 +13,15 @@
 [ext_resource type="PackedScene" uid="uid://dfqxbpvp7d2kf" path="res://world/camera/camera.tscn" id="7_noxpy"]
 [ext_resource type="Script" uid="uid://bjewudptgw235" path="res://character/player/attack/uppercut.gd" id="8_0cf6c"]
 [ext_resource type="Curve" uid="uid://c467ecjac1cxy" path="res://character/player/attack/dash_slash_horizontal_velocity.tres" id="8_vuhga"]
+[ext_resource type="Script" uid="uid://b2hybtygkkyei" path="res://character/player/attack/ranged_attack.gd" id="9_qh58e"]
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="9_v2h1c"]
+[ext_resource type="PackedScene" uid="uid://dgt3m6jyjwv6x" path="res://character/projectile/projectile.tscn" id="10_hr31g"]
+[ext_resource type="Script" uid="uid://qsjyr53tj0c1" path="res://character/player/player_pickup.gd" id="10_qh58e"]
 [ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="14_muf2e"]
+[ext_resource type="PackedScene" uid="uid://bmk7h1whywna8" path="res://character/player/paint_guard.tscn" id="15_fkbv7"]
+[ext_resource type="PackedScene" uid="uid://c6van22sdy5fy" path="res://character/invuln_component.tscn" id="16_fkbv7"]
+[ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
+[ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo6ux"]
 size = Vector2(164, 256)
@@ -25,7 +32,10 @@ size = Vector2(96, 240)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
 size = Vector2(133, 261)
 
-[node name="Player" type="CharacterBody2D" unique_id=1162272003]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3pmv"]
+size = Vector2(130, 259)
+
+[node name="Player" type="CharacterBody2D" unique_id=1162272003 groups=["player"]]
 script = ExtResource("1_oul6g")
 
 [node name="Attacks" type="Node2D" parent="." unique_id=171343013]
@@ -36,6 +46,7 @@ script = ExtResource("6_eu8pa")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
 hurtbox = NodePath("AttackArea")
+brush_damage = 1
 metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 
 [node name="SwingBuffer" type="Timer" parent="Attacks/PlayerBrush" unique_id=391448229]
@@ -51,6 +62,13 @@ one_shot = true
 [node name="AttackArea" parent="Attacks/PlayerBrush" unique_id=379676843 node_paths=PackedStringArray("player", "attack_timer") instance=ExtResource("3_qh58e")]
 player = NodePath("../../..")
 attack_timer = NodePath("../SwingDuration")
+
+[node name="Slam" type="Node2D" parent="Attacks" unique_id=823905425 node_paths=PackedStringArray("player")]
+script = ExtResource("18_ywhvj")
+slam_velocity = ExtResource("19_7mvkq")
+player = NodePath("../..")
+slam_control_resist = 0.2
+metadata/_custom_type_script = "uid://bpcuvwmp3dj8p"
 
 [node name="Uppercut" type="Node2D" parent="Attacks" unique_id=1880163021 node_paths=PackedStringArray("player", "player_movement")]
 script = ExtResource("8_0cf6c")
@@ -83,11 +101,20 @@ shape = SubResource("RectangleShape2D_jo6ux")
 script = ExtResource("9_v2h1c")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
+hurtbox = NodePath("SlashArea")
+dash_damage = 2
 dash_slash_velocity = ExtResource("8_vuhga")
 metadata/_custom_type_script = "uid://damau8bpijlrc"
 
 [node name="DashSlashCooldown" type="Timer" parent="Attacks/DashSlash" unique_id=1070012377]
 one_shot = true
+
+[node name="SlashArea" parent="Attacks/DashSlash" unique_id=508201604 node_paths=PackedStringArray("player") instance=ExtResource("3_qh58e")]
+position = Vector2(0, -120)
+player = NodePath("../../..")
+hurtbox_shape = Vector2(140, 270)
+offset = Vector2(0, 0)
+swing_duration = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
@@ -110,10 +137,11 @@ position = Vector2(0, -120)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_g20gq")
 
-[node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371]
+[node name="InteractRegion" type="Area2D" parent="." unique_id=1706310371 node_paths=PackedStringArray("player")]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("6_noxpy")
+player = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRegion" unique_id=2042581431]
 position = Vector2(0, -120.5)
@@ -124,16 +152,38 @@ script = ExtResource("5_eu8pa")
 maximum_hp = 100
 metadata/_custom_type_script = "uid://drt58jn726c1u"
 
-[node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
-position = Vector2(0, -120)
-player_movement = NodePath("../PlayerMovement")
-player = NodePath("..")
-
-[node name="PlayerHitbox" parent="." unique_id=1843909000 node_paths=PackedStringArray("health_component") instance=ExtResource("14_muf2e")]
+[node name="PlayerHitbox" parent="." unique_id=1843909000 node_paths=PackedStringArray("health_component", "invuln_component", "paintguard_component") instance=ExtResource("14_muf2e")]
 health_component = NodePath("../PlayerHealthComponent")
+invuln_component = NodePath("../InvulnComponent")
+paintguard_component = NodePath("../Paint Guard")
 
 [node name="CollisionShape2D" parent="PlayerHitbox" index="0" unique_id=1891687597]
 position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_oul6g")
+
+[node name="Paint Guard" parent="." unique_id=933931754 node_paths=PackedStringArray("invuln_component") instance=ExtResource("15_fkbv7")]
+invuln_component = NodePath("../InvulnComponent")
+
+[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_qh58e")
+metadata/_custom_type_script = "uid://qsjyr53tj0c1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupRegion" unique_id=1466356474]
+position = Vector2(-2, -119.5)
+shape = SubResource("RectangleShape2D_q3pmv")
+debug_color = Color(0.5186686, 0.54240805, 0.5379915, 0.41960785)
+
+[node name="InvulnComponent" parent="." unique_id=1152976110 instance=ExtResource("16_fkbv7")]
+
+[node name="RangedAttack" type="Node2D" parent="." unique_id=1394425795 node_paths=PackedStringArray("player", "player_movement")]
+position = Vector2(0, -120)
+script = ExtResource("9_qh58e")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
+projectile_packed = ExtResource("10_hr31g")
+launch_speed = 2000.0
+metadata/_custom_type_script = "uid://b2hybtygkkyei"
 
 [editable path="PlayerHitbox"]

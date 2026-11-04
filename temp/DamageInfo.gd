@@ -3,10 +3,9 @@ extends Resource
 
 
 @export var damage : int
-@export var attack_color : AttackColor
-enum AttackColor {RED,YELLOW,BLUE,ORANGE,GREEN,PURPLE}
+@export var attack_color : Paint.Hue
 
 
-func _init(attack_damage : int , color : AttackColor) -> void:
-	var damage = attack_damage
-	var attack_color = color
+func _init(attack_damage : int , color : Paint.Hue) -> void:
+	damage = attack_damage
+	attack_color = color

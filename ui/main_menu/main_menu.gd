@@ -10,8 +10,6 @@ func _ready() -> void:
 	settings_menu.closed.connect(_on_settings_closed)
 	open()
 	
-	#this demo button is temp and just exists to flex stuff in build showcases
-	$MainMenu/DemoButton.pressed.connect(_on_demobutton_pressed)
 
 func open():
 	$MainMenu/Start.grab_focus()
@@ -40,7 +38,3 @@ func _on_settings_pressed():
 func _on_main_menu_visibility_changed():
 	if not is_node_ready(): return
 	if main_menu.visible: $MainMenu/Start.grab_focus()
-
-# TODO this is just there to have somewhere to demo the CSV parser!
-func _on_demobutton_pressed() -> void:
-	get_tree().change_scene_to_file("res://temp/test_csvparser.tscn")
