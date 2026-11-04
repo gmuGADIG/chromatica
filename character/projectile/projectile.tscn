@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dgt3m6jyjwv6x"]
+
+[ext_resource type="Script" uid="uid://du3rkokrfmoxa" path="res://character/projectile/projectile.gd" id="1_vkau0"]
+[ext_resource type="Texture2D" uid="uid://btnomr554nbx1" path="res://temp/temp_art/thesun.png" id="2_tukyk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmie6"]
+radius = 60.06
+
+[node name="Projectile" type="Area2D" unique_id=1967011123]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_vkau0")
+projectile_gravity = 1500.0
+
+[node name="Thesun" type="Sprite2D" parent="." unique_id=431560889]
+scale = Vector2(0.64, 0.7862069)
+texture = ExtResource("2_tukyk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=383585569]
+shape = SubResource("CircleShape2D_bmie6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
