@@ -16,6 +16,7 @@ var uppercut_time: float = 0
 var uppercut_direction : float
 
 @onready var uppercut_cooldown_timer : Timer = $UppercutCooldown
+@onready var hurtbox : PlayerHurtbox = $PlayerHurtbox
 
 func _ready() -> void:
 	if not is_equal_approx(uppercut_horizontal_velocity.max_domain,uppercut_vertical_velocity.max_domain):
@@ -52,8 +53,14 @@ func uppercut():
 	if is_in_uppercut() or not can_uppercut or player.state != Player.State.NONE:
 		return
 	
+	if player_movement.last_horizontal_direction > 0:
+		uppercut_direction = 1
+		hurtbox.start_attack(Vector2.RIGHT)
+	else:
+		uppercut_direction = -1
+		hurtbox.start_attack(Vector2.LEFT)
 	
-	uppercut_direction = 1 if player_movement.last_horizontal_direction > 0 else -1
+	
 	uppercut_time = 0
 	can_uppercut = false
 	

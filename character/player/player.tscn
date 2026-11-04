@@ -16,8 +16,8 @@
 [ext_resource type="Script" uid="uid://damau8bpijlrc" path="res://character/player/attack/dash_slash.gd" id="9_v2h1c"]
 [ext_resource type="PackedScene" uid="uid://ikyxjcknmcih" path="res://character/player/player_hitbox.tscn" id="14_muf2e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj3ep"]
-size = Vector2(269, 513)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo6ux"]
+size = Vector2(164, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(96, 240)
@@ -31,7 +31,6 @@ script = ExtResource("1_oul6g")
 [node name="Attacks" type="Node2D" parent="." unique_id=171343013]
 
 [node name="PlayerBrush" type="Node2D" parent="Attacks" unique_id=1894793710 node_paths=PackedStringArray("player", "player_movement", "hurtbox")]
-visible = false
 position = Vector2(0, -120)
 script = ExtResource("6_eu8pa")
 player = NodePath("../..")
@@ -43,6 +42,7 @@ metadata/_custom_type_script = "uid://blodtm8lm2wc3"
 one_shot = true
 
 [node name="SwingDuration" type="Timer" parent="Attacks/PlayerBrush" unique_id=1846409706]
+wait_time = 0.1
 one_shot = true
 
 [node name="SwingRecovery" type="Timer" parent="Attacks/PlayerBrush" unique_id=1513721812]
@@ -53,7 +53,6 @@ player = NodePath("../../..")
 attack_timer = NodePath("../SwingDuration")
 
 [node name="Uppercut" type="Node2D" parent="Attacks" unique_id=1880163021 node_paths=PackedStringArray("player", "player_movement")]
-visible = false
 script = ExtResource("8_0cf6c")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
@@ -62,18 +61,23 @@ uppercut_horizontal_velocity = ExtResource("6_vuhga")
 metadata/_custom_type_script = "uid://bjewudptgw235"
 
 [node name="UppercutCooldown" type="Timer" parent="Attacks/Uppercut" unique_id=1142187932]
+wait_time = 0.4
 one_shot = true
 
 [node name="PlayerHurtbox" type="Area2D" parent="Attacks/Uppercut" unique_id=2122688073 node_paths=PackedStringArray("player", "collision_shape", "attack_timer")]
+position = Vector2(0, -248)
 script = ExtResource("7_jo6ux")
 player = NodePath("../../..")
 collision_shape = NodePath("CollisionShape2D")
 attack_timer = NodePath("../UppercutCooldown")
+hurtbox_shape = Vector2(164, 256)
+offset = Vector2(110, 0)
+swing_duration = 0.4
 metadata/_custom_type_script = "uid://cg00jpsjgo1fo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=1886765406]
-position = Vector2(55, -228)
-shape = SubResource("RectangleShape2D_yj3ep")
+position = Vector2(110, 0)
+shape = SubResource("RectangleShape2D_jo6ux")
 
 [node name="DashSlash" type="Node2D" parent="Attacks" unique_id=1018780961 node_paths=PackedStringArray("player", "player_movement")]
 script = ExtResource("9_v2h1c")

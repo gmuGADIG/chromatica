@@ -11,10 +11,14 @@ signal finished
 @export var hurtbox_shape : Vector2 = Vector2(256,256):
 	set(val):
 		hurtbox_shape = val
+		if not Engine.is_editor_hint():
+			await ready
 		_update_hurtbox_shape()
 @export var offset : Vector2 = Vector2(128,0):
 	set(val):
 		offset = val
+		if not Engine.is_editor_hint():
+			await ready
 		_update_hurtbox_shape()
 
 @export_group("Timing")
@@ -62,7 +66,7 @@ func start_attack(dir: Vector2) -> void:
 	hit_things.clear()
 	monitoring = true
 	show()
-	attack_timer.start()
+	attack_timer.start(swing_duration)
 
 func end_attack() -> void:
 	monitoring = false
