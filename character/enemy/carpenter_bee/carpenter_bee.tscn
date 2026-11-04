@@ -22,20 +22,19 @@ lose_sight_time = 1.0
 projectile_scene = ExtResource("3_1dx5a")
 muzzle = NodePath("Muzzle")
 aim_time = 0.4
-sight_range = 1300.0
+sight_range = 900.0
 sight_mask = 3
 vision_raycast = NodePath("VisionRaycast")
 arrive_distance = 20.0
 slow_radius = 200.0
-acceleration = 600.0
-deceleration = 500.0
-max_velocity = 500.0
 
 [node name="Sprite2D" parent="." index="1" unique_id=1560740887]
 visible = false
 
 [node name="EnemyHitbox" parent="." index="2" unique_id=1147118622]
 position = Vector2(0, 0)
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" parent="EnemyHitbox" index="0" unique_id=841445170]
 shape = SubResource("RectangleShape2D_hitbox")
