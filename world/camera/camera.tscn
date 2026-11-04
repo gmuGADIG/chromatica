@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://kdtoxxkkk6jq" path="res://world/camera/camera_move.gd" id="1_j3pd7"]
 [ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="2_pi78r"]
+[ext_resource type="Script" uid="uid://bckklf0t8wrgv" path="res://world/camera/ScreenTransition.gd" id="3_gvhi7"]
 
 [sub_resource type="Curve" id="Curve_pi78r"]
 _limits = [500.0, 1000.0, 0.0, 400.0]
@@ -20,3 +21,12 @@ zoom = Vector2(0.25, 0.25)
 [node name="Sprite2D" type="Sprite2D" parent="Node/Camera2D" unique_id=1075214406]
 visible = false
 texture = ExtResource("2_pi78r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=418158960]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=667821643]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_gvhi7")
