@@ -15,6 +15,6 @@ func _process(delta: float) -> void:
 	
 func _on_body_entered(area):
 	if area is EnemyHitbox:
-		area.hit(DamageInfo.new(projectile_damage, DamageInfo.AttackColor.RED))
+		area.hit(DamageInfo.new(projectile_damage, Paint.Hue.RED))
 	queue_free()
 	
