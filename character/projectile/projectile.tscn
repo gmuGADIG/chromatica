@@ -10,6 +10,7 @@ radius = 60.06
 collision_layer = 0
 collision_mask = 9
 script = ExtResource("1_vkau0")
+projectile_gravity = 1500.0
 
 [node name="Thesun" type="Sprite2D" parent="." unique_id=431560889]
 scale = Vector2(0.64, 0.7862069)
@@ -18,4 +19,5 @@ texture = ExtResource("2_tukyk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=383585569]
 shape = SubResource("CircleShape2D_bmie6")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

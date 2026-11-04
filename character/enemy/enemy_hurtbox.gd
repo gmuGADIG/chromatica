@@ -18,11 +18,12 @@ func _physics_process(delta: float) -> void:
 	_cooldown = maxf(_cooldown - delta, 0.0)
 	if _cooldown > 0.0:
 		return
-	for area in get_overlapping_areas():
-		if try_damage_player(area, damage, attack_color):
-			_cooldown = rehit_delay
-			hit_player.emit()
-			return
+	if monitoring:
+		for area in get_overlapping_areas():
+			if try_damage_player(area, damage, attack_color):
+				_cooldown = rehit_delay
+				hit_player.emit()
+				return
 
 
 ## Stops this hurtbox from ever damaging the player again.

@@ -4,7 +4,7 @@ class_name RangedAttack
 @export var player_movement: PlayerMovement
 @export var projectile_packed : PackedScene
 @export var launch_speed : float = 100.0
-
+@export var launch_arc_compensation: float = 4.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -41,6 +41,7 @@ func do_shoot() -> bool:
 		# aims bullet horizontally only
 		direction = Vector2(player_movement.last_horizontal_direction, 0).normalized()
 	
-	new_projectile.velocity = direction * launch_speed
+	
+	new_projectile.velocity = direction * launch_speed + Vector2(0, -new_projectile.projectile_gravity / launch_arc_compensation)
 	
 	return true
