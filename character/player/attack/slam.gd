@@ -10,6 +10,17 @@ var slam_timer: float = 0
 # Controls whether the slam timer is active
 var slam_timer_active: bool = false
 
+@export_group("Horizontal Influence")
+## Rate player accelerates
+@export var acceleration : float = 10000.0
+##Rate player slows down when no left/right key is pressed
+@export var deceleration : float = 4000.0
+## Max Horizontal influence speed
+@export var maxVelocity : float = 800.0
+## How fast player decreases when over max speed
+@export var dampening : float = 11000.0
+## Multiplier reducing acceleration & deceleration. QA Testers change this!
+@export var slam_control_resist: float = .5
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("temp_slam"):
@@ -34,6 +45,25 @@ func _physics_process(delta: float) -> void:
 	var sample_point := clampf(slam_timer, 0, slam_velocity.max_domain)
 	
 	player.velocity.y = slam_velocity.sample(sample_point)
+	
+	#Horizontal Influencing (literally stolen from player_movement lmaooo)
+	var horizontal_influcence := Input.get_axis("move_left", "move_right")
+		# Right
+	if horizontal_influcence > 0:
+		player.velocity.x += horizontal_influcence * (acceleration * delta * slam_control_resist)
+		if player.velocity.x > maxVelocity:
+			player.velocity.x = move_toward(player.velocity.x, maxVelocity, delta * dampening)
+		# Left 
+	elif horizontal_influcence < 0:
+		player.velocity.x += horizontal_influcence * (acceleration * delta * slam_control_resist)
+		if player.velocity.x < (maxVelocity * -1):
+			player.velocity.x = move_toward(player.velocity.x, maxVelocity * -1, delta * dampening)
+	# No Input
+	else:
+			player.velocity.x = move_toward(player.velocity.x, 0, delta * deceleration * slam_control_resist)
+		
+		
+		
 	player.move_and_slide()
 	
 func slam() -> void:
