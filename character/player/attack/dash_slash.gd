@@ -1,13 +1,21 @@
-extends Node
+extends Node2D
 class_name DashSlash
 @export var player: Player
 @export var player_movement: PlayerMovement
+@export var hurtbox: PlayerHurtbox
+@export_group("Attack Properties")
+@export var dash_damage : int
 
-
+## set to RED for now because that's just how brush_swing is, but maybe it
+## shoudln't, not yet.
+func _ready() -> void:
+	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
+		enemy.hit(DamageInfo.new(dash_damage,Paint.Hue.RED))
+	)
 
 @export_group("Parameters")
 #seconds before player can dash again
-@export var dash_slash_cooldown: float = 0
+@export_range(0.05,10.0) var dash_slash_cooldown: float = 0.1
 
 #curve that defines velocity of slash based on seconds.
 @export var dash_slash_velocity: Curve
@@ -21,13 +29,14 @@ var dash_direction : float
 
 @onready var dash_slash_cooldown_timer : Timer = $DashSlashCooldown
 
-func _ready() -> void:
-	pass
+
 
 func _input(event: InputEvent):
+	if Dialogue.is_playing():
+		return
+	
 	if event.is_action_pressed("temp_dash"):
 		dash_slash()
-	pass
 
 func _physics_process(delta: float) -> void:
 	if player.state != Player.State.DASH_SLASH:
@@ -38,23 +47,28 @@ func _physics_process(delta: float) -> void:
 	
 	dash_slash_time += delta
 	if dash_slash_time >= dash_slash_velocity.max_domain:
-		if dash_slash_cooldown > 0.05: ##Timers have a soft minimum
-			dash_slash_cooldown_timer.start(dash_slash_cooldown)
+		dash_slash_cooldown_timer.start(dash_slash_cooldown)
 		player.state = Player.State.NONE
+		hurtbox.end_attack()
 	
 	player.velocity.x = dash_slash_velocity.sample(dash_slash_time) * dash_direction
 	player.velocity.y = 0
 	player.move_and_slide()
 
 func dash_slash() -> void:
-	if is_dashing_slashing() or not can_dash_slash:
+	if is_dashing_slashing() or not can_dash_slash or player.state != Player.State.NONE:
 		return
 	## dashing is true, resets time elapsed.
+	player.state = Player.State.DASH_SLASH
 	dash_direction = 1 if player_movement.last_horizontal_direction > 0 else -1
+	
+	hurtbox.start_attack(Vector2(dash_direction,0).normalized())
+	
+	
 	dash_slash_time = 0
 	can_dash_slash = false
-	player.state = Player.State.DASH_SLASH
-
+	
+	
 func is_dashing_slashing() -> bool:
 	return player.state == player.State.DASH_SLASH
 	
