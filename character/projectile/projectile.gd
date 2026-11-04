@@ -10,8 +10,8 @@ class_name PlayerProjectile
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	velocity.y += projectile_gravity * delta
 	position += velocity * delta
-	velocity.y += gravity * delta
 	
 func _on_body_entered(area):
 	if area is EnemyHitbox:

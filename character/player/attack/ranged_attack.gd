@@ -1,6 +1,7 @@
 extends Node2D
 class_name RangedAttack
 @export var player : Player
+@export var player_movement: PlayerMovement
 @export var projectile_packed : PackedScene
 @export var launch_speed : float = 100.0
 
@@ -10,7 +11,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 #buffer, implement later
@@ -31,7 +32,15 @@ func do_shoot() -> bool:
 	var new_projectile : PlayerProjectile = projectile_packed.instantiate()
 	player.add_sibling(new_projectile)
 	new_projectile.global_position = global_position
-	var direction : Vector2 = get_local_mouse_position().normalized()
+	
+	# uncomment the following line to aim bullet with mouse
+	#var direction : Vector2 = get_local_mouse_position().normalized()
+	
+	var direction: Vector2 = Input.get_vector("move_left", "move_right", "look_up", "look_down").normalized()
+	if direction==Vector2.ZERO:
+		# aims bullet horizontally only
+		direction = Vector2(player_movement.last_horizontal_direction, 0).normalized()
+	
 	new_projectile.velocity = direction * launch_speed
 	
 	return true

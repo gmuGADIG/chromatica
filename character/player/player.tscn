@@ -103,10 +103,11 @@ metadata/_custom_type_script = "uid://damau8bpijlrc"
 [node name="DashSlashCooldown" type="Timer" parent="DashSlash" unique_id=1070012377]
 one_shot = true
 
-[node name="RangedAttack" type="Node2D" parent="." unique_id=1394425795 node_paths=PackedStringArray("player")]
+[node name="RangedAttack" type="Node2D" parent="." unique_id=1394425795 node_paths=PackedStringArray("player", "player_movement")]
 position = Vector2(0, -120)
 script = ExtResource("9_qh58e")
 player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
 projectile_packed = ExtResource("10_hr31g")
-launch_speed = 1000.0
+launch_speed = 2000.0
 metadata/_custom_type_script = "uid://b2hybtygkkyei"
