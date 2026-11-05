@@ -6,6 +6,7 @@ class_name Uppercut
 
 @export_group("Parameters")
 @export_range(0.05,10.0) var uppercut_cooldown : float = 0.1
+@export var damage : int
 @export var uppercut_vertical_velocity : Curve
 @export var uppercut_horizontal_velocity : Curve
 
@@ -16,18 +17,30 @@ var uppercut_time: float = 0
 var uppercut_direction : float
 
 @onready var uppercut_cooldown_timer : Timer = $UppercutCooldown
+@onready var hurtbox : PlayerHurtbox = $PlayerHurtbox
 
 func _ready() -> void:
 	if not is_equal_approx(uppercut_horizontal_velocity.max_domain,uppercut_vertical_velocity.max_domain):
 		printerr("Domains between two uppercut velocities different")
+	
+	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
+		enemy.hit(DamageInfo.new(damage,Paint.Hue.RED))
+	)
 
 func _input(event : InputEvent) -> void:
+	if Dialogue.is_playing():
+		return
+	
 	if event.is_action_pressed("temp_uppercut"):
 		uppercut()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if player.is_on_ceiling():
+		player.state = Player.State.NONE	
+		return
+	
 	if player.state != Player.State.UPPERCUT:
 		##TODO: Add uppercut cooldown timer
 		if player.is_on_floor() and uppercut_cooldown_timer.is_stopped():
@@ -52,8 +65,14 @@ func uppercut():
 	if is_in_uppercut() or not can_uppercut or player.state != Player.State.NONE:
 		return
 	
+	if player_movement.last_horizontal_direction > 0:
+		uppercut_direction = 1
+		hurtbox.start_attack(Vector2.RIGHT)
+	else:
+		uppercut_direction = -1
+		hurtbox.start_attack(Vector2.LEFT)
 	
-	uppercut_direction = 1 if player_movement.last_horizontal_direction > 0 else -1
+	
 	uppercut_time = 0
 	can_uppercut = false
 	

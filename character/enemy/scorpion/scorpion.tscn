@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ddobnglwxykhn"]
+
+[ext_resource type="Script" uid="uid://b7x7upo8274o1" path="res://character/enemy/scorpion/scorpion.gd" id="1_45qut"]
+[ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="1_w3c18"]
+[ext_resource type="PackedScene" uid="uid://da4ibuuxp6cuk" path="res://character/enemy/enemy_hitbox.tscn" id="2_45qut"]
+[ext_resource type="Script" uid="uid://dofc8aut25pg5" path="res://character/health_component.gd" id="3_hrgqw"]
+[ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="4_87psx"]
+
+[node name="Scorpion" type="CharacterBody2D" unique_id=1987485568]
+script = ExtResource("1_45qut")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=39887267]
+texture = ExtResource("1_w3c18")
+
+[node name="EnemyHurtbox" parent="." unique_id=2083781502 instance=ExtResource("2_45qut")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=931759703]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=561231973]
+script = ExtResource("3_hrgqw")
+metadata/_custom_type_script = "uid://dofc8aut25pg5"
+
+[node name="ColorableComponent" type="Node" parent="." unique_id=303825006]
+script = ExtResource("4_87psx")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1907244195]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.0
+offset_top = -122.0
+offset_right = 86.0
+offset_bottom = -95.0
+grow_horizontal = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=60296547]
+target_position = Vector2(100, 0)

@@ -211,7 +211,22 @@ func _import(
 			var levels := Level.build_levels(world_instance, definitions, base_dir, external_levels)
 			var world_node := World.create_world(world_instance_name, world_instance_iid, levels, base_dir)
 			world_nodes.append(world_node)
+			
+			if (Util.options.pack_levels):
+				var levels_path := base_dir + 'levels/'+world_instance_name+'/'
+				var directory = DirAccess.open(base_dir)
+				if not directory.dir_exists(levels_path):
+					directory.make_dir(levels_path)
 
+				# Resolve Refs + Cleanup Resolvers. We don't want to save 'NodePathResolver' in the Level scene.
+				#if (Util.options.verbose_output): Util.print("block", "References")
+				if (Util.options.verbose_output): Util.print("block", "Save Levels")
+				Util.handle_references()
+				
+				var packed_levels = save_levels(levels, levels_path, gen_files)
+				print("PACKING ",levels)
+				if (Util.options.verbose_output): Util.print("block", "Save World")
+				
 		world = World.create_multi_world(world_name, world_iid, world_nodes)
 	else:
 		if Util.options.verbose_output: Util.print("block", "Levels")
