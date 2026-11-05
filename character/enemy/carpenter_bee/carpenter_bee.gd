@@ -96,6 +96,7 @@ func _think(delta: float) -> void:
 			#print(_timer)
 
 			###This will never trigger because _timer is always negative due to subtracting.
+			# T the _timer is reset through the _enter function
 			if (_timer <= 0.11 and _timer >= 0.09):
 				#print("A1")
 				attack()
@@ -126,11 +127,10 @@ func _ideal_location() -> Vector2:
 func _start_approach() -> void:
 	# Stay on the side of the player it's already on, so it doesn't cross through them.
 	_side = int(signf(global_position.x - get_player_center().x))
-	print("dist to player: ", global_position.distance_to(get_player_center()),
-	"  dist ideal->player: ", _ideal_location().distance_to(get_player_center()))
 	if _side == 0:
 		_side = 1
 	### Set lost sight time to zero again(?), then start approach state
+	# T You're right, I don't think this _lost_sight_time beneath this is needed.
 	_lost_sight_time = 0.0
 	_enter(State.APPROACH, shoot_interval)
 
