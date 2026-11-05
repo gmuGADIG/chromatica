@@ -23,30 +23,28 @@ func _ready() -> void:
 	yellow_timer.timeout.connect(yellow_gust)
 
 func yellow_gust() -> void:
-	find_player()
-	player.velocity += Vector2.from_angle(randf_range(0, 2 * PI)) * force
+	if not find_player(): return
+	player.velocity += Vector2.RIGHT * force
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	find_player()
-			
-	var self_pos := self.global_position
-	var player_pos = player.global_position
-	var dir_to_player := self_pos.direction_to(player_pos).normalized()
-			
+	if not find_player(): return
+	
 	match current_state:
-		ColorStates.RED:			
-			player.velocity += force * dir_to_player
+		ColorStates.RED:
+			player.velocity += force * Vector2.RIGHT
 		
 		ColorStates.BLUE:
-			player.velocity -= force * dir_to_player
+			player.velocity -= force * Vector2.RIGHT
 		_:
 			# How did we get here
 			pass
 
-func find_player() -> void:
+func find_player() -> bool:
 	if not player:
 		for body: Node2D in get_overlapping_bodies():
 			if body.is_in_group("player"):
 				player = body as Player
-				break
+				return true
+		return false
+	return player != null
