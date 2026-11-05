@@ -26,8 +26,6 @@ signal became_friendly
 
 @export_group("Combat")
 
-@export var is_friendly : bool
-
 @export var health_component : HealthComponent
 
 @export var hitbox : EnemyHitbox
@@ -81,10 +79,6 @@ func get_player_center() -> Vector2:
 ## Called when HP runs out. Nobody dies: the enemy turns friendly.
 ## Override to add animation, dialogue, etc. (call super() to keep the base behavior).
 func become_friendly() -> void:
-	if is_friendly:
-		return
-	is_friendly = true
-
 	# Stop being a target and stop being a threat.
 	if hitbox:
 		hitbox.set_deferred("monitorable", false)

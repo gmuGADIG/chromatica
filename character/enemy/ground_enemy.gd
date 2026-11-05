@@ -15,9 +15,7 @@ extends Enemy
 @export_group("Patrol")
 @export var patrol_speed : float = 150.0
 @export var turn_at_ledges : bool = true
-## Floor-check ray pointing down, placed just in front of the enemy. (child of the Enemy)
-@export var ledge_check : RayCast2D
-## How far in front of the origin the ledge check sits (px)
+## How far in front of the origin the platform_ray sits (px)
 @export var ledge_check_offset : float = 60.0
 
 @export_group("Sight")
@@ -28,8 +26,6 @@ extends Enemy
 ## How close to a target x (set_target) counts as having arrived
 @export var arrive_distance : float = 20.0
 
-## 1 = facing right, -1 = facing left
-var facing : int = 1
 var has_target : bool = false
 var target_position : Vector2 = Vector2.ZERO
 
@@ -38,18 +34,13 @@ var _turn_lock : float = 0.0
 
 func _ready() -> void:
 	super()
-	face(facing)
+	face(1)
 
 
 func _physics_process(delta: float) -> void:
 	_turn_lock = maxf(_turn_lock - delta, 0.0)
 	apply_gravity(delta)
-
-	if is_friendly:
-		# Deactivate the Enemy AI, halt movement
-		accelerate_toward(0.0, delta)
-	else:
-		_think(delta)
+	_think(delta)
 	move_and_slide()
 
 
@@ -65,17 +56,10 @@ func _physics_process(delta: float) -> void:
 ## TODO: swap for "last platform the player touched is this enemy's platform".
 func can_see_player() -> bool:
 	#aggroed enemies should always see player
-	if !is_friendly:
-		return true
 	var collision = player_ray.get_collider()
 	if collision is Player:
-		return true	
+		return true
 	return false
-	#var player := body.get_player()
-	#if player == null:
-		#return false
-	#var offset := player.global_position - body.global_position
-	#return absf(offset.x) <= sight_range and absf(offset.y) <= sight_height
 
 
 ## Location to walk to. move() walks there.
@@ -95,22 +79,28 @@ func move(delta: float) -> void:
 		accelerate_toward(0.0, delta)
 		return
 	face(direction)
-	accelerate_toward(facing * max_velocity, delta)
+	accelerate_toward(get_facing_direction() * max_velocity, delta)
 
 
 func patrol(delta: float) -> void:
 	if _turn_lock <= 0.0 and is_on_floor() and (is_on_wall() or _at_ledge()):
-		face(-facing)
+		face(-get_facing_direction())
 		_turn_lock = 0.25
-	accelerate_toward(facing * patrol_speed, delta)
+	accelerate_toward(get_facing_direction() * patrol_speed, delta)
 
-
+## Only call with 1 (face right) or -1 (face left)
+## Usually called with face(-(get_facing_direction())) to flip the raycasts
 func face(direction: int) -> void:
 	if direction == 0:
 		return
-	facing = 1 if direction > 0 else -1
-	if ledge_check:
-		ledge_check.position.x = facing * ledge_check_offset
+	var shouldFlip : int = direction * get_facing_direction()
+	if (shouldFlip == -1): 
+		if platform_ray:
+			platform_ray.position.x = direction * ledge_check_offset
+		if wall_ray:
+			wall_ray.position.x *= -1
+		if platform_ray:
+			player_ray.position.x *= -1
 
 
 ## -1, 0 or 1: which way a world x position is from this enemy.
@@ -122,6 +112,10 @@ func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y = minf(velocity.y + gravity * delta, max_falling_velocity)
 
+func get_facing_direction() -> int:
+	if velocity.x < 0: 
+		return -1
+	return 1
 
 ## Speeds up toward target_speed (px/sec, signed). Pass 0.0 to slow to a stop.
 ## Anything faster than max_velocity is damped down to it first.
@@ -136,4 +130,4 @@ func accelerate_toward(target_speed: float, delta: float) -> void:
 
 
 func _at_ledge() -> bool:
-	return turn_at_ledges and ledge_check != null and not ledge_check.is_colliding()
+	return turn_at_ledges and platform_ray != null and not platform_ray.is_colliding()
