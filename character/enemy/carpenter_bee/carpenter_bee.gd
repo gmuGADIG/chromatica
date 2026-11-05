@@ -50,6 +50,8 @@ func _ready() -> void:
 	if projectile_scene == null:
 		push_warning("No Projectile for '%s' " % name)
 	
+### commented up by Crafty trying to figure out the code
+
 
 func _think(delta: float) -> void:
 	match state:
@@ -57,14 +59,23 @@ func _think(delta: float) -> void:
 			if _wander_timer <= 0.0:
 				_pick_wander_point()
 			fly_toward_target(idle_speed, delta)
+			###If we can see the player at this point, start the approach, set lost sight time to zero
+			# T If the player enters the sight range, lose-sight timer is reset
+			# There is nothing else done to the lose_sight timer because the state is switched to "APPROACH"
 			if can_see_player():
 				_lost_sight_time = 0.0
 				_start_approach()
 		State.APPROACH:
+			###Check for the third(?) time that we can see the player, even though this is on the same tick?
+			# T lose-sight timer is reset here as well, because this if statement corresponds to a different state
 			if can_see_player():
 				_lost_sight_time = 0.0
 			else:
+				###This is set to zero regardless when calling _start_approach(), += adds to existing value, so it works(?)
+				# If the player is out of the bee's sight, the lose sight timer activates
 				_lost_sight_time += delta
+				###Somehow if lost sight time/delta is less than lose_sight_time, the function will not return and continue moving.
+				# If the lose sight timer reaches the lose sight time, it gives up the pursuit
 				if _lost_sight_time >= lose_sight_time:
 					has_target = false
 					_enter(State.IDLE, 0.0)
@@ -72,15 +83,23 @@ func _think(delta: float) -> void:
 			set_target(_ideal_location())
 			move(delta)
 			_timer -= delta # only shoot with a clear view of the player
+
+			###Because of the -=, and not =, this will gradually make _timer smaller and smaller as its not reset. Also, timer will always be less than 0 because deltatime should never report 0?, can see player check is self explanatory, it should be here.
+			# T This is a countdown. Yes, I should've designed both timers to go int ehs ame direction
 			if _timer <= 0.0 and can_see_player():
 				_enter(State.SHOOT, aim_time)
 		State.SHOOT:
 			accelerate_toward(Vector2.ZERO, delta)
 			_timer -= delta
+			###If at 60fps, delta will be around 0.16, 30 fps update rate is 0.33ms, unless the game's engine rate isnt tied or w/e, not sure?
+			###But because _timer is never reset, it will always be negative, and the -= makes it even more negative, on the same tick(?)
 			#print(_timer)
+
+			###This will never trigger because _timer is always negative due to subtracting.
 			if (_timer <= 0.11 and _timer >= 0.09):
 				#print("A1")
 				attack()
+			###This will always trigger.
 			elif _timer <= 0.0:
 				#print("A2")
 				attack()
@@ -99,13 +118,19 @@ func attack() -> void:
 
 ## The spot the bee tries to hold: off to one side of the player and above them.
 func _ideal_location() -> Vector2:
-	return get_player_center() + Vector2(_side * ideal_offset.x, ideal_offset.y)
+	var player_pos := get_player_center()
+	var dx := minf(absf(global_position.x - player_pos.x), ideal_offset.x)*0.75
+	var dy := minf(absf(global_position.y - player_pos.y), ideal_offset.y)*0.75
+	return player_pos + Vector2(_side * dx, dy)
 
 func _start_approach() -> void:
 	# Stay on the side of the player it's already on, so it doesn't cross through them.
 	_side = int(signf(global_position.x - get_player_center().x))
+	print("dist to player: ", global_position.distance_to(get_player_center()),
+	"  dist ideal->player: ", _ideal_location().distance_to(get_player_center()))
 	if _side == 0:
 		_side = 1
+	### Set lost sight time to zero again(?), then start approach state
 	_lost_sight_time = 0.0
 	_enter(State.APPROACH, shoot_interval)
 
