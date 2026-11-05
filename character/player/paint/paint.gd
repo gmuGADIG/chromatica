@@ -4,6 +4,7 @@ extends Object
 # Hue enum with all primary and secondary colors
 enum Hue
 {
+	NONE,
 	RED,
 	YELLOW,
 	BLUE,

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://dbybooi7kwphd"]
 
 [ext_resource type="Texture2D" uid="uid://duah1d8aosqby" path="res://temp/temp_art/egg_portrait.png" id="1_fxu18"]
-[ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://systems/npc/npc_data.gd" id="1_go437"]
+[ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://character/npc/npc_data.gd" id="1_go437"]
 
 [resource]
 script = ExtResource("1_go437")
