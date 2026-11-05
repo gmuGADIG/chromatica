@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cjkxgjg0o0fnu"]
+
+[ext_resource type="Script" uid="uid://dgx38k0ta3ngc" path="res://character/enemy/carpenter_bee/glob_projectile.gd" id="1_40ash"]
+[ext_resource type="Texture2D" uid="uid://b4q0w3to5hphq" path="res://character/enemy/carpenter_bee/paint_glob.png" id="2_n3xsf"]
+[ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="3_vxexb"]
+[ext_resource type="Texture2D" uid="uid://btnomr554nbx1" path="res://temp/temp_art/thesun.png" id="4_8loof"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ball"]
+radius = 20.0
+
+[sub_resource type="Gradient" id="Gradient_x5xo8"]
+offsets = PackedFloat32Array(0, 0.70658684, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Glob" type="Node2D" unique_id=2102901548]
+script = ExtResource("1_40ash")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=441239835]
+self_modulate = Color(1.753959, 1.4446489, 0, 1)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("2_n3xsf")
+
+[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=396690872]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("3_vxexb")
+metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=530448440]
+shape = SubResource("CircleShape2D_ball")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1193378462]
+emitting = false
+amount = 15
+texture = ExtResource("4_8loof")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color_ramp = SubResource("Gradient_x5xo8")
+
+[connection signal="body_entered" from="EnemyHurtbox" to="." method="_on_enemy_hurtbox_body_entered"]

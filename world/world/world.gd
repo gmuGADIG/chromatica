@@ -2,6 +2,8 @@
 extends Node2D
 class_name World
 
+signal room_changed
+
 @export var player : Player
 ##Updates the association between iids and the level
 @export_category("World Cache")
@@ -69,7 +71,7 @@ func _ready() -> void:
 		pass
 	else:
 		var iid : String = locate_room(player.global_position,true)
-		set_current_room(iid)
+		set_current_room(iid,true)
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -81,11 +83,18 @@ func _process(delta: float) -> void:
 	if not in_room_bounds(current_room_iid,player.global_position):
 		set_current_room(locate_room(player.global_position,false))
 
-func set_current_room(iid : String) -> void:
+func get_current_room() -> LDTKLevel:
+	return loaded_rooms[current_room_iid]
+
+func set_current_room(iid : String, instant : bool = false) -> void:
+	if not instant:
+		ScreenTransition.play()
+		await ScreenTransition.screen_switched
 	current_room_iid = iid
 	var next_iid_set : Array[String] = [iid]
 	#print("curr ", iid)
 	load_room(iid)
+	room_changed.emit()
 	
 	if not world_cache.room_data.has(current_room_iid):
 		printerr("Player is out of bounds!")
