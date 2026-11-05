@@ -71,13 +71,18 @@ func _think(delta: float) -> void:
 					return
 			set_target(_ideal_location())
 			move(delta)
-			_timer -= delta# only shoot with a clear view of the player
+			_timer -= delta # only shoot with a clear view of the player
 			if _timer <= 0.0 and can_see_player():
 				_enter(State.SHOOT, aim_time)
 		State.SHOOT:
 			accelerate_toward(Vector2.ZERO, delta)
 			_timer -= delta
-			if _timer <= 0.0:
+			#print(_timer)
+			if (_timer <= 0.11 and _timer >= 0.09):
+				#print("A1")
+				attack()
+			elif _timer <= 0.0:
+				#print("A2")
 				attack()
 				_enter(State.APPROACH, shoot_interval)
 
