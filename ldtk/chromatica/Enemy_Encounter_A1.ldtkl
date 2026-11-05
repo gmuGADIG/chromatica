@@ -51,7 +51,24 @@
 			"seed": 6216088,
 			"overrideTilesetUid": null,
 			"gridTiles": [],
-			"entityInstances": []
+			"entityInstances": [
+				{
+					"__identifier": "RespawnRegion",
+					"__grid": [128,84],
+					"__pivot": [0.5,1],
+					"__tags": ["AreaTrigger"],
+					"__tile": null,
+					"__smartColor": "#63C74D",
+					"iid": "faa9c5f0-bde0-11f1-a8a6-dfe67c3629c1",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [2056,1360],
+					"fieldInstances": [{ "__identifier": "RespawnPoint", "__type": "Point", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] }],
+					"__worldX": 2568,
+					"__worldY": -1200
+				}
+			]
 		},
 		{
 			"__identifier": "Walls",
