@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c6van22sdy5fy"]
+
+[ext_resource type="Script" uid="uid://b0f7is5e7h133" path="res://character/invuln_component.gd" id="1_mo7f3"]
+
+[node name="InvulnComponent" type="Node" unique_id=1152976110]
+script = ExtResource("1_mo7f3")
+
+[node name="InvulnTimer" type="Timer" parent="." unique_id=1924245120]
+one_shot = true

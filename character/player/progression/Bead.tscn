@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b6dp1felegnsy"]
+
+[ext_resource type="Script" uid="uid://btl8er6ekebfv" path="res://character/player/progression/bead.gd" id="1_fx6at"]
+[ext_resource type="Texture2D" uid="uid://dos8qf1ypg8oo" path="res://temp/temp_art/color.png" id="2_1hhu1"]
+[ext_resource type="Script" uid="uid://c2l65ubmkg4h5" path="res://world/interactable/interactable_component.gd" id="3_2jxdj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr23w"]
+size = Vector2(240, 256)
+
+[node name="Area2D" type="Node2D" unique_id=1880795408]
+script = ExtResource("1_fx6at")
+
+[node name="Interactable" type="Area2D" parent="." unique_id=1720156902]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_2jxdj")
+metadata/_custom_type_script = "uid://c2l65ubmkg4h5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1736183264]
+shape = SubResource("RectangleShape2D_nr23w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=593767167]
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("2_1hhu1")
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

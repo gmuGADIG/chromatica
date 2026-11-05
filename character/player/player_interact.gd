@@ -1,6 +1,8 @@
 extends Area2D
 class_name PlayerInteractRegion
 
+@export var player: Player
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		check_for_interactable()
@@ -9,6 +11,10 @@ func _input(event: InputEvent) -> void:
 func check_for_interactable() -> void:
 	var interactables : Array[Interactable]
 	interactables.assign(get_overlapping_areas().filter(func(val): return val is Interactable))
+	
+	# This is there to ensure that the player can only interact with things if on the ground.
+	if not player.is_on_floor():
+		return
 	
 	if interactables.is_empty():
 		return

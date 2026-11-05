@@ -71,16 +71,8 @@ func _ready() -> void:
 	health_component.health_depleted.connect(become_friendly)
 
 
-## Returns the player, or null if there isn't one in the scene.
-## Looks in the "player" group first, then falls back to searching the scene
-## (throttled, so a scene without a player doesn't get scanned every frame).
-func get_player() -> Player:
-	return player
-
-
 ## World position of the point enemies aim at / check line of sight to.
 func get_player_center() -> Vector2:
-	var player := get_player()
 	if player == null:
 		return global_position
 	return player.global_position + player_center_offset
@@ -104,6 +96,8 @@ func become_friendly() -> void:
 	became_friendly.emit()
 	if friendly_scene:
 		_swap_to_friendly_scene.call_deferred()
+	else:
+		queue_free()
 
 
 func _swap_to_friendly_scene() -> void:
@@ -117,10 +111,10 @@ func can_see_player() -> bool:
 	printerr("Method Not Implemented!")
 	return false
 
-func set_target(pos: Vector2) -> void:
+func set_target(_pos: Vector2) -> void:
 	printerr("Method Not Implemented!")
 
-func move(delta: float) -> void:
+func move(_delta: float) -> void:
 	printerr("Method Not Implemented!")
 
 func attack() -> void:

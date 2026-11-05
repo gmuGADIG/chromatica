@@ -5,6 +5,7 @@ class_name PlayerMovement
 
 # Player Movmement variables
 @export_group("Horizontal Movement")
+
 ## Rate player accelerates
 @export var acceleration : float = 10000.0
 ##Rate player slows down when no left/right key is pressed
@@ -17,17 +18,22 @@ class_name PlayerMovement
 
 
 @export_group("Jump")
+
 ##The impulse applied to the p	layer when they jump
+
 @export var jump_velocity : float = 2430.0
 ##The vertical & horizontal impulse applied to the player when they walljump
 ##(NOTE: Make sure these values remains positive, or else the player will jump into the wall, 
 ##aka not have any horizontal velocity!)
 @export var walljump_velocity : Vector2 = Vector2(1500,2000)
+
 ##If the player lets go of jump while still ascending, their vertical velocity will be multiplied by this number
 ##to give them better control over the player's jump.
 @export_range(0.0,1.0) var early_jump_release_multiplier : float = 0.55
+
 ##Time (in seconds) early the player can buffer a jump
 @export var jump_buffer_time: float = 0.1
+
 ## Time (seconds) that the player can jump after
 ## falling off a platform.
 @export var coyote_time : float = 0.1
@@ -44,16 +50,21 @@ class_name PlayerMovement
 
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
-var last_horizontal_direction : float
+var last_horizontal_direction : float = 1.0
 
 @onready var coyote_timer : Timer = $CoyoteTimer
 @onready var jump_buffer_timer : Timer = $JumpBuffer
 
 
 func _input(event: InputEvent) -> void:
+
 	if not no_special_player_state():
 		return
+
 	##Jump Inputs
+	if Dialogue.is_playing():
+		return
+	
 	if event.is_action_pressed("jump"):
 		##Try normal jump
 		var jumped : bool = jump()
@@ -69,34 +80,42 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("jump"):
 		early_release()
 
-func _physics_process(delta: float) -> void:
-	if not no_special_player_state():
-		return
-	walk(Input.get_axis("move_left", "move_right"), delta)
 	
+
+func _physics_process(delta: float) -> void:
+	var not_in_dialogue = not Dialogue.is_playing()
+	
+	if not player.is_on_floor():
+		apply_gravity(delta)
+		
+	if not no_special_player_state():
+		coyote_eligible = false
+		return
+	
+	var input_value := Input.get_axis("move_left", "move_right")
+	var actual_movement: float = input_value if not_in_dialogue else 0.
+	
+	walk(actual_movement, delta)
+
 	##Jump Buffering
-	if not jump_buffer_timer.is_stopped() and can_jump():
+	if not jump_buffer_timer.is_stopped() and can_jump() and not_in_dialogue:
 		jump()
 		jump_buffer_timer.stop()
 	
 	##Walljump Buffering
-	if not jump_buffer_timer.is_stopped() and can_walljump():
+	if not jump_buffer_timer.is_stopped() and can_walljump() and not_in_dialogue:
 		walljump()
 		jump_buffer_timer.stop()
 	
 	##Start Coyote Time
-	if coyote_conditions_met():
+	if coyote_conditions_met() and not_in_dialogue:
 		coyote_eligible = false
 		coyote_timer.start(coyote_time)
-	
-	if not player.is_on_floor():
-		apply_gravity(delta)
-	
+
 	player.move_and_slide()
 	
-	if player.is_on_floor() or player.is_on_wall_only():
+	if (player.is_on_floor() or player.is_on_wall_only()) and not_in_dialogue:
 		coyote_eligible = true
-
 
 func coyote_conditions_met() -> bool:
 	var air_check : bool = not player.is_on_floor() and not player.is_on_wall()
@@ -159,6 +178,7 @@ func jump() -> bool:
 	coyote_timer.stop()
 	jump_buffer_timer.stop()
 	return true
+
 
 # Handle walljump.	
 func walljump() -> bool:

@@ -11,6 +11,7 @@ extends Enemy
 ## Physics layers that block line of sight. Include the player's layer
 ## (it's checked for explicitly, so it doesn't count as blocking).
 @export_flags_2d_physics var sight_mask : int = 3
+@export var vision_raycast : RayCast2D
 
 @export_group("Flight")
 ## How close to the target counts as having arrived (px)
@@ -37,16 +38,15 @@ func _physics_process(delta: float) -> void:
 
 ## The player is close enough AND nothing solid is between this enemy and them.
 func can_see_player() -> bool:
-	var player := get_player()
 	if player == null:
 		return false
 	var target := get_player_center()
 	if global_position.distance_to(target) > sight_range:
 		return false
-
-	var query := PhysicsRayQueryParameters2D.create(global_position, target, sight_mask, [get_rid()])
-	var result := get_world_2d().direct_space_state.intersect_ray(query)
-	return result.is_empty() or result["collider"] == player
+	
+	vision_raycast.target_position = sight_range * global_position.direction_to(get_player_center())
+	vision_raycast.force_raycast_update()
+	return vision_raycast.get_collider() is Player
 
 
 ## Location to fly to. move() flies there.
@@ -65,14 +65,15 @@ func fly_toward_target(speed: float, delta: float) -> void:
 	if not has_target:
 		accelerate_toward(Vector2.ZERO, delta)
 		return
-	var offset := target_position - global_position
-	var distance := offset.length()
+	var dir := global_position.direction_to(target_position)
+	print(dir)
+	var distance := target_position.distance_to(global_position)
 	if distance <= arrive_distance:
 		has_target = false
 		accelerate_toward(Vector2.ZERO, delta)
 		return
 	var desired_speed := speed * minf(distance / slow_radius, 1.0)
-	accelerate_toward(offset / distance * desired_speed, delta)
+	accelerate_toward(dir * desired_speed, delta)
 
 
 ## Speeds up toward target_velocity (px/sec). Pass Vector2.ZERO to slow to a stop.

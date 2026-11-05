@@ -22,6 +22,9 @@ var dash_direction : float
 @onready var dash_slash_cooldown_timer : Timer = $DashSlashCooldown
 
 func _input(event: InputEvent):
+	if Dialogue.is_playing():
+		return
+	
 	if event.is_action_pressed("temp_dash"):
 		dash_slash()
 
