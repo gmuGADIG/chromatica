@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="1_yhsm3"]
 [ext_resource type="Resource" uid="uid://bigp7swogixhk" path="res://world/world/world_cache.tres" id="2_1tbfg"]
 [ext_resource type="PackedScene" uid="uid://clra6nv8aoo0u" path="res://ui/hud/hud.tscn" id="2_lm4yx"]
-[ext_resource type="Script" uid="uid://cfjkjdo5ogo1e" path="res://world/world/room_transition_color_rect.gd" id="5_rk7fn"]
 
-[node name="World" type="Node2D" unique_id=1762502460 node_paths=PackedStringArray("player")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tbfg"]
+size = Vector2(164, 256)
+
+[node name="World" type="Node2D" unique_id=1762502460 node_paths=PackedStringArray("player") groups=["world"]]
 script = ExtResource("1_i0vah")
 player = NodePath("Player")
 world_cache = ExtResource("2_1tbfg")
@@ -14,8 +16,15 @@ world_cache = ExtResource("2_1tbfg")
 [node name="Player" parent="." unique_id=1162272003 instance=ExtResource("1_yhsm3")]
 position = Vector2(2038, 1585)
 
+[node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" parent_id_path=PackedInt32Array(1162272003, 2122688073) index="0" unique_id=1886765406]
+shape = SubResource("RectangleShape2D_1tbfg")
+
 [node name="CollisionShape2D" parent="Player/InteractRegion" parent_id_path=PackedInt32Array(1162272003, 1706310371) index="0" unique_id=2042581431]
 position = Vector2(-4, -120)
+
+[node name="Camera" parent="Player" index="11" unique_id=765522635]
+stationary_horizontal_offset = 200.0
+camera_speed_vertical = 750.0
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1408860890]
 zoom = Vector2(0.25, 0.25)
@@ -26,14 +35,6 @@ zoom = Vector2(0.25, 0.25)
 
 [node name="PlayerHealthUI" parent="CanvasLayer/Hud" index="0" unique_id=1286990881 node_paths=PackedStringArray("player_health")]
 player_health = NodePath("../../../Player/PlayerHealthComponent")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Hud" unique_id=121244226]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
-script = ExtResource("5_rk7fn")
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]
