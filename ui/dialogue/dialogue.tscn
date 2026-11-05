@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c00wh1oryqoaq"]
+[gd_scene format=3 uid="uid://b5jgpijctvfkb"]
 
 [ext_resource type="Script" uid="uid://dnnqyem7lym70" path="res://ui/dialogue/dialogue.gd" id="1_8q5o4"]
 [ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://systems/npc/npc_data.gd" id="2_jy5du"]

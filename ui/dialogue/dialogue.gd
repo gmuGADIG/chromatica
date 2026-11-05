@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal dialogue_finished
+signal curr_dialogue_line(current_line)
 
 #dictionary
 @export var npc_id_table : Dictionary[StringName,NPCData]
@@ -75,7 +76,7 @@ func _play_line() -> void:
 	else:
 		character_name_box.set_text("")
 		character_portrait.set_texture(null) #does this work? IDK! Yes it does!!
-	
+	curr_dialogue_line.emit(current_line)
 	##Make sure that the characters are not visible before loading the text
 	dialogue_box.set_visible_characters(0)
 	dialogue_box.set_text(line_text_raw)

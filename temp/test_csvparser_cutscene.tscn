@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://c8lcy1r75e7km"]
+
+[ext_resource type="Script" uid="uid://4uburbxuvn8" path="res://temp/test_csvparser.gd" id="1_b4c36"]
+[ext_resource type="Script" uid="uid://dtusglnrw8424" path="res://systems/dialogue/dialogue_starter.gd" id="2_5mjq1"]
+[ext_resource type="Script" uid="uid://dybvtp218u5b1" path="res://ui/cutscene/cutscene.gd" id="3_3iewo"]
+[ext_resource type="Script" uid="uid://btrmxkuyu7266" path="res://systems/cutscene/cutscene_frame.gd" id="4_0ptbm"]
+[ext_resource type="Texture2D" uid="uid://b3vj85ylwera" path="res://ldtk/tilesets/fih.png" id="5_clw0k"]
+[ext_resource type="Texture2D" uid="uid://dx1d4pe36blxj" path="res://ldtk/tilesets/temp_tiles.png" id="6_t22au"]
+[ext_resource type="Texture2D" uid="uid://qfxjvuqrmu66" path="res://temp/temp_art/johngodot.png" id="7_8ap36"]
+[ext_resource type="Texture2D" uid="uid://kjci5fl7tjj8" path="res://temp/temp_art/joe-camel.png" id="8_jj1ay"]
+[ext_resource type="Texture2D" uid="uid://cvailtbp1g2vu" path="res://temp/temp_art/divorcethoughts.png" id="9_gy2q1"]
+[ext_resource type="Texture2D" uid="uid://dpttgey5kf2q0" path="res://temp/temp_art/divorce_woman.png" id="10_8ap36"]
+[ext_resource type="Texture2D" uid="uid://0rv5njrvlbgf" path="res://temp/temp_art/deer-passive.png" id="11_jj1ay"]
+[ext_resource type="Texture2D" uid="uid://bse7tlojuocfe" path="res://temp/temp_art/vboy-sick.png" id="12_gy2q1"]
+
+[sub_resource type="Resource" id="Resource_b4c36"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("5_clw0k")
+Show_Dialogue = true
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[sub_resource type="Resource" id="Resource_5mjq1"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("6_t22au")
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[sub_resource type="Resource" id="Resource_3iewo"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("7_8ap36")
+Show_Dialogue = true
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[sub_resource type="Resource" id="Resource_4fdue"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("8_jj1ay")
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[sub_resource type="Resource" id="Resource_clw0k"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("8_jj1ay")
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[sub_resource type="Resource" id="Resource_qp1bh"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("9_gy2q1")
+Show_Dialogue = true
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[sub_resource type="Resource" id="Resource_0ptbm"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("10_8ap36")
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[sub_resource type="Resource" id="Resource_vgyx6"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("11_jj1ay")
+Show_Dialogue = true
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[sub_resource type="Resource" id="Resource_t22au"]
+script = ExtResource("4_0ptbm")
+Cutscene_Texture = ExtResource("12_gy2q1")
+Show_Dialogue = true
+metadata/_custom_type_script = "uid://btrmxkuyu7266"
+
+[node name="TestScripts" type="Node2D" unique_id=1414302989]
+script = ExtResource("1_b4c36")
+
+[node name="Label" type="Label" parent="." unique_id=1649803953]
+offset_left = 45.0
+offset_top = 36.0
+offset_right = 448.0
+offset_bottom = 137.0
+text = "This conversation was loaded instantly out of a CSV file that a Dialogue Starter pointed to, then sliced up neatly into lines by a CSV Parser, and finally displayed piece by piece by a Dialogue Player!
+
+and then we added a cutscene!"
+autowrap_mode = 2
+
+[node name="DialogueStarter" type="Node" parent="." unique_id=733558402]
+script = ExtResource("2_5mjq1")
+dialogue_csv = "res://systems/dialogue/data/test_dialogue_cutscene.csv"
+metadata/_custom_type_script = "uid://dtusglnrw8424"
+
+[node name="CutsceneSystem" type="Control" parent="." unique_id=1484681267]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_3iewo")
+cutscene_frames = Array[ExtResource("4_0ptbm")]([SubResource("Resource_b4c36"), SubResource("Resource_5mjq1"), SubResource("Resource_3iewo"), SubResource("Resource_4fdue"), SubResource("Resource_clw0k"), SubResource("Resource_qp1bh"), SubResource("Resource_0ptbm"), SubResource("Resource_vgyx6"), SubResource("Resource_t22au")])
+metadata/_custom_type_script = "uid://dybvtp218u5b1"
+
+[node name="CutsceneDisplay" type="TextureRect" parent="CutsceneSystem" unique_id=1644101112]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
