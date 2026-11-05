@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://dt7281jmykilv"]
+
+[ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://character/npc/npc_data.gd" id="1_a5d6g"]
+[ext_resource type="Texture2D" uid="uid://d26yr3aats7x6" path="res://character/npc/npcs/spoof/Spoof_Portrait.png" id="1_a6bj1"]
+[ext_resource type="Texture2D" uid="uid://cpxaj1bgqlp4x" path="res://character/npc/npcs/spoof/Spoof_Overworld.png" id="3_btbw2"]
+
+[resource]
+script = ExtResource("1_a5d6g")
+name = "Spoof"
+world_sprite = ExtResource("3_btbw2")
+portrait_sprite = ExtResource("1_a6bj1")
+metadata/_custom_type_script = "uid://c3elg5rqdh6gq"
