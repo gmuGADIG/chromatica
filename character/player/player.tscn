@@ -149,10 +149,13 @@ script = ExtResource("2_gtsfv")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://c46qdvbh0fpd7"
 
+[node name="CoyoteWalljumpTimer" type="Timer" parent="PlayerMovement" unique_id=488365247]
+one_shot = true
+
 [node name="JumpBuffer" type="Timer" parent="PlayerMovement" unique_id=2434172]
 one_shot = true
 
-[node name="CoyoteTimer" type="Timer" parent="PlayerMovement" unique_id=944399741]
+[node name="CoyoteJumpTimer" type="Timer" parent="PlayerMovement" unique_id=944399741]
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945416757]
