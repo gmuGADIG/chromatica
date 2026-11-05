@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/world/world.tscn" id="1_yd5ur"]
 [ext_resource type="PackedScene" uid="uid://xrs22a6c2pj3" path="res://character/npc/npc.tscn" id="2_dthq0"]
 [ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcdatas/garonic.tres" id="3_hjby2"]
+[ext_resource type="PackedScene" uid="uid://dek1tfudltcw5" path="res://world/colorable/testwindplant.tscn" id="4_ov5kx"]
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
 
@@ -11,6 +12,10 @@ position = Vector2(2824, 2720)
 npc_data = ExtResource("3_hjby2")
 dialogue_csv = "res://systems/dialogue/data/garf.csv"
 
+[node name="Testwindplant" parent="." index="3" unique_id=947602030 instance=ExtResource("4_ov5kx")]
+position = Vector2(4581, 2761)
+
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]
 [editable path="CanvasLayer/Hud"]
+[editable path="Testwindplant"]

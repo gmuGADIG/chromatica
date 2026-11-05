@@ -6,6 +6,8 @@
 [node name="Testwindplant" type="Node2D" unique_id=947602030]
 
 [node name="WindZone" parent="." unique_id=619087343 instance=ExtResource("1_pgy3b")]
+force = 100.0
+cooldown = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=300639226]
 texture = ExtResource("2_m75h1")

@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func yellow_gust() -> void:
 	if not find_player(): return
-	player.velocity += Vector2.RIGHT * force
+	player.velocity += global_transform.x * force
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -32,19 +32,18 @@ func _physics_process(_delta: float) -> void:
 	
 	match current_state:
 		ColorStates.RED:
-			player.velocity += force * Vector2.RIGHT
+			player.velocity += force * global_transform.x
 		
 		ColorStates.BLUE:
-			player.velocity -= force * Vector2.RIGHT
+			player.velocity -= force * global_transform.x
 		_:
 			# How did we get here
 			pass
 
 func find_player() -> bool:
-	if not player:
-		for body: Node2D in get_overlapping_bodies():
-			if body.is_in_group("player"):
-				player = body as Player
-				return true
-		return false
-	return player != null
+	for body: Node2D in get_overlapping_bodies():
+		if body.is_in_group("player"):
+			player = body as Player
+			return true
+	player = null
+	return false
