@@ -1,7 +1,7 @@
 extends Area2D
 
-
 @export var force: float
+@export var yellow_multiplier: float
 
 enum ColorStates {
 	RED, 
@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func yellow_gust() -> void:
 	if not find_player(): return
-	player.velocity += global_transform.x * force
+	player.velocity += global_transform.x * force * yellow_multiplier
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
