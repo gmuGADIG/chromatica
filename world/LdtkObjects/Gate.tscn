@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://c3rnu0lledkyn" path="res://world/LdtkObjects/phisical_gate_test.gd" id="1_4444p"]
 [ext_resource type="Texture2D" uid="uid://dx1d4pe36blxj" path="res://ldtk/tilesets/temp_tiles.png" id="2_0c816"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_twy56"]
-size = Vector2(50, 50)
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_avbag"]
 texture = ExtResource("2_0c816")
 texture_region_size = Vector2i(128, 128)
@@ -3012,15 +3009,21 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_avbag")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0c816"]
+size = Vector2(50, 50)
+
 [node name="Gate" type="Node2D" unique_id=841946643]
 
 [node name="Gate collider" type="Area2D" parent="." unique_id=585691787]
 script = ExtResource("1_4444p")
 size = Vector2(50, 50)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate collider" unique_id=2072520981]
-position = Vector2(0, -25)
-shape = SubResource("RectangleShape2D_twy56")
+TotalTiles = null
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Gate collider" unique_id=1484906136]
 tile_set = SubResource("TileSet_12j5o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Gate collider" unique_id=97682463]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate collider" unique_id=2072520981]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_0c816")
