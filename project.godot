@@ -24,7 +24,7 @@ buses/default_bus_layout="uid://b23cycdwm8b8d"
 EventHandler="uid://b3gmulvl2er2i"
 Dialogue="*uid://c00wh1oryqoaq"
 Progression="*uid://dnehowbc6uetq"
-ScreenTransition="*uid://bckklf0t8wrgv"
+ScreenTransition="*uid://cdgoqyx2mi2lf"
 
 [display]
 
@@ -57,6 +57,7 @@ folder_colors={
 
 LDTKLevel=""
 player=""
+world=""
 
 [importer_defaults]
 
