@@ -82,7 +82,6 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	if area is EnemyHitbox:
-		print("HURT")
 		enemy_hit.emit(area)
 		hit_things.append(area)
 

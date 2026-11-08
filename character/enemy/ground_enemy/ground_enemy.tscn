@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cpd6f8tn8gge0"]
+
+[ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="1_nfxwd"]
+[ext_resource type="Script" uid="uid://dmscjojuta41r" path="res://character/enemy/ground_enemy/ground_enemy.gd" id="2_723fa"]
+
+[node name="GroundEnemy" unique_id=43181616 node_paths=PackedStringArray("player_ray", "wall_ray", "platform_ray", "sprite") instance=ExtResource("1_nfxwd")]
+script = ExtResource("2_723fa")
+max_falling_velocity = 3000.0
+patrol_speed = 150.0
+turn_at_ledges = true
+player_sight_distance = 800.0
+arrive_distance = 20.0
+halt_distance = 500.0
+player_ray = NodePath("PlayerRay")
+wall_ray = NodePath("WallRay")
+platform_ray = NodePath("PlatformRay")
+facing_dir = -1
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=1125582819]
+animation = &""
+flip_h = true
+
+[node name="PlayerRay" type="RayCast2D" parent="." index="7" unique_id=574704434]
+position = Vector2(0, -10)
+target_position = Vector2(-800, 0)
+collision_mask = 2
+
+[node name="WallRay" type="RayCast2D" parent="." index="8" unique_id=1713967986]
+position = Vector2(0, -10)
+target_position = Vector2(-500, 0)
+
+[node name="PlatformRay" type="RayCast2D" parent="." index="9" unique_id=1597783507]
+position = Vector2(-500, 10)
+target_position = Vector2(0, -200)
+hit_from_inside = true

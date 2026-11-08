@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bif21brffqw05"]
+
+[ext_resource type="PackedScene" uid="uid://cpd6f8tn8gge0" path="res://character/enemy/ground_enemy/ground_enemy.tscn" id="1_ev7se"]
+[ext_resource type="Script" uid="uid://yevcy6l1wjsi" path="res://character/enemy/ground_enemy/lizard/lizard.gd" id="2_a2g50"]
+[ext_resource type="SpriteFrames" uid="uid://dhcbp44g47p6o" path="res://character/enemy/ground_enemy/lizard/lizard.tres" id="3_e1jfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1jfj"]
+size = Vector2(250, 350)
+
+[node name="Lizard" unique_id=43181616 instance=ExtResource("1_ev7se")]
+script = ExtResource("2_a2g50")
+player_sight_distance = 3000.0
+halt_distance = 1000.0
+facing_dir = 1
+acceleration = 1500.0
+deceleration = 1500.0
+max_velocity = 1500.0
+
+[node name="ColorableUI" parent="." index="0" unique_id=1819435004]
+offset_top = -500.0
+offset_bottom = -400.0
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=1125582819]
+position = Vector2(0, -243.07)
+sprite_frames = ExtResource("3_e1jfj")
+animation = &"run"
+
+[node name="EnemyHitbox" parent="." index="2" unique_id=1147118622]
+position = Vector2(0, -175)
+
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0" unique_id=841445170]
+shape = SubResource("RectangleShape2D_e1jfj")
+
+[node name="HealthBar" parent="." index="5" unique_id=1894704178]
+visible = false
+offset_top = -410.0
+offset_bottom = -383.0
+
+[node name="CollisionShape2D" parent="." index="6" unique_id=1367315384]
+position = Vector2(0, -175)
+shape = SubResource("RectangleShape2D_e1jfj")
+
+[node name="WallRay" parent="." index="8" unique_id=1713967986]
+z_index = 1
+
+[node name="PlatformRay" parent="." index="9" unique_id=1597783507]
+z_index = 1
+
+[connection signal="health_lost" from="HealthComponent" to="." method="_on_health_lost"]

@@ -23,7 +23,7 @@ func hurt(amount : int) -> void:
 	if amount < 0:
 		printerr("Negative value provided. Please use heal(amount) instead")
 	
-	health_lost.emit
+	health_lost.emit()
 	_update_health(-amount)
 
 func heal(amount : int) -> void:

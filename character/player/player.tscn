@@ -37,6 +37,7 @@ size = Vector2(133, 261)
 size = Vector2(130, 259)
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003 groups=["player"]]
+collision_layer = 2
 script = ExtResource("1_oul6g")
 
 [node name="Attacks" type="Node2D" parent="." unique_id=171343013]
