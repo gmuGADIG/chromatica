@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://crg1307tdbg2f"]
+
+[ext_resource type="PackedScene" uid="uid://cpd6f8tn8gge0" path="res://character/enemy/ground_enemy/ground_enemy.tscn" id="1_ypm4t"]
+[ext_resource type="Script" uid="uid://ciwlm58i16i8e" path="res://character/enemy/ground_enemy/phalanx_bees/phalanx_bees.gd" id="2_hjdrk"]
+
+[node name="PhalanxBees" unique_id=43181616 instance=ExtResource("1_ypm4t")]
+script = ExtResource("2_hjdrk")

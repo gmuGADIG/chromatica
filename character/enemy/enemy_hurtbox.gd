@@ -25,11 +25,14 @@ func _physics_process(delta: float) -> void:
 				hit_player.emit()
 				return
 
+func enable() -> void:
+	show()
+	monitoring = true
 
 ## Stops this hurtbox from ever damaging the player again.
 func disable() -> void:
-	set_physics_process(false)
-	set_deferred("monitoring", false)
+	hide()
+	monitoring = false
 
 
 ## Damages the player if [param area] is the player's hitbox. Returns true if it was.

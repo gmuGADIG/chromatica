@@ -121,12 +121,6 @@ func accelerate_toward(target_velocity: float, delta: float) -> void:
 		velocity.x = move_toward(velocity.x, signf(velocity.x) * max_velocity, dampening * delta)
 	else:
 		velocity.x = move_toward(velocity.x, target_velocity, acceleration * delta)
-	
-	##Turn Logic
-	var moving_opposite_of_facing : bool = velocity.x * facing_dir < 0
-	var moving_towards_player : bool = (get_player_center().x-global_position.x) * facing_dir > 0
-	if moving_opposite_of_facing and moving_towards_player:
-		facing_dir *= -1
 
 func _update_facing_direction() -> void:
 	wall_ray.target_position.x = facing_dir * halt_distance
@@ -139,8 +133,12 @@ func _at_obstructing_terrain() -> bool:
 	return is_on_floor() and ( not platform_ray.is_colliding() or wall_ray.is_colliding() )
 	return false
 
-#func _at_ledge() -> bool:
-	#return 
-#
-#func _at_wall() -> bool:
-	#return 
+func facing_player() -> bool:
+	return (get_player_center().x-global_position.x) * facing_dir > 0
+
+
+func moving_opposite_of_facing() -> bool:
+	return velocity.x * facing_dir < 0
+
+func moving_towards_player() -> bool:
+	return (get_player_center().x-global_position.x) * velocity.x > 0

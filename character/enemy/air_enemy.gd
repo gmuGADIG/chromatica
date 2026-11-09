@@ -24,11 +24,8 @@ var target_position : Vector2 = Vector2.ZERO
 
 
 func _physics_process(delta: float) -> void:
-	if is_friendly:
-		# No more AI: just drift to a stop.
-		accelerate_toward(Vector2.ZERO, delta)
-	else:
-		_think(delta)
+	
+	_think(delta)
 	move_and_slide()
 
 

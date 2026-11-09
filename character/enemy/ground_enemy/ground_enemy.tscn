@@ -18,7 +18,7 @@ facing_dir = -1
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" parent="." index="1" unique_id=1125582819]
-animation = &""
+offset = Vector2(0, 0)
 flip_h = true
 
 [node name="PlayerRay" type="RayCast2D" parent="." index="7" unique_id=574704434]

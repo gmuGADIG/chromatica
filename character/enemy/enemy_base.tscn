@@ -41,7 +41,6 @@ colorable_component = NodePath("../ColorableComponent")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1125582819]
 position = Vector2(0, -224)
 sprite_frames = SubResource("SpriteFrames_l7srf")
-offset = Vector2(28.65, 1.71)
 
 [node name="EnemyHitbox" type="Area2D" parent="." unique_id=1147118622 node_paths=PackedStringArray("health_component", "colorable_component")]
 position = Vector2(0, -81)

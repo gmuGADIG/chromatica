@@ -47,6 +47,7 @@ signal enemy_hit(enemy: EnemyHitbox)
 func _ready() -> void:
 	collision_mask = MASK
 	collision_layer = 0
+	monitoring = false
 	hide()
 	collision_shape.shape = RectangleShape2D.new()
 	_update_hurtbox_shape()
