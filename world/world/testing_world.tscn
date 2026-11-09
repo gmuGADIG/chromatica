@@ -11,6 +11,9 @@ size = Vector2(164, 256)
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
 
+[node name="Player" parent="." index="0" unique_id=1162272003]
+position = Vector2(7040, 2528)
+
 [node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" parent_id_path=PackedInt32Array(1162272003, 2122688073) index="0" unique_id=1886765406]
 shape = SubResource("RectangleShape2D_4r2ah")
 
@@ -24,7 +27,7 @@ position = Vector2(2516, 2704)
 npc_data = ExtResource("5_p5yow")
 dialogue_csv = "res://systems/dialogue/data/ren.csv"
 
-[node name="Lizard" parent="." index="4" unique_id=43181616 instance=ExtResource("5_4r2ah")]
+[node name="Lizard" parent="." index="11" unique_id=43181616 instance=ExtResource("5_4r2ah")]
 position = Vector2(10752, 2560)
 facing_dir = -1
 

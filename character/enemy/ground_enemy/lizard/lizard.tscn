@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cpd6f8tn8gge0" path="res://character/enemy/ground_enemy/ground_enemy.tscn" id="1_ev7se"]
 [ext_resource type="Script" uid="uid://yevcy6l1wjsi" path="res://character/enemy/ground_enemy/lizard/lizard.gd" id="2_a2g50"]
 [ext_resource type="SpriteFrames" uid="uid://dhcbp44g47p6o" path="res://character/enemy/ground_enemy/lizard/lizard.tres" id="3_e1jfj"]
+[ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="4_uojh7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1jfj"]
 size = Vector2(250, 350)
@@ -23,7 +24,9 @@ offset_bottom = -400.0
 [node name="AnimatedSprite2D" parent="." index="1" unique_id=1125582819]
 position = Vector2(0, -243.07)
 sprite_frames = ExtResource("3_e1jfj")
-animation = &"run"
+animation = &"idle"
+frame_progress = 0.38817066
+flip_h = false
 
 [node name="EnemyHitbox" parent="." index="2" unique_id=1147118622]
 position = Vector2(0, -175)
@@ -40,10 +43,24 @@ offset_bottom = -383.0
 position = Vector2(0, -175)
 shape = SubResource("RectangleShape2D_e1jfj")
 
+[node name="PlayerRay" parent="." index="7" unique_id=574704434]
+target_position = Vector2(3000, 0)
+
 [node name="WallRay" parent="." index="8" unique_id=1713967986]
 z_index = 1
+target_position = Vector2(1000, 0)
 
 [node name="PlatformRay" parent="." index="9" unique_id=1597783507]
 z_index = 1
+position = Vector2(1000, 10)
+
+[node name="EnemyHurtbox" type="Area2D" parent="." index="11" unique_id=1667213058]
+position = Vector2(0, -175)
+script = ExtResource("4_uojh7")
+attack_color = 0
+metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EnemyHurtbox" index="0" unique_id=1228965801]
+shape = SubResource("RectangleShape2D_e1jfj")
 
 [connection signal="health_lost" from="HealthComponent" to="." method="_on_health_lost"]

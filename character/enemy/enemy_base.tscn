@@ -24,6 +24,7 @@ _data = {
 }
 
 [node name="EnemyBase" type="CharacterBody2D" unique_id=43181616 node_paths=PackedStringArray("health_component", "hitbox", "health_bar", "colorable_component")]
+collision_layer = 0
 script = ExtResource("1_l7srf")
 health_component = NodePath("HealthComponent")
 hitbox = NodePath("EnemyHitbox")
