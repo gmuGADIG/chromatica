@@ -33,9 +33,6 @@ shape = SubResource("RectangleShape2D_j28bi")
 [node name="CollisionShape2D" parent="Player/InteractRegion" parent_id_path=PackedInt32Array(1162272003, 1706310371) index="0" unique_id=2042581431]
 position = Vector2(-4, -120)
 
-[node name="PlayerHealthComponent" parent="Player" index="5" unique_id=1017469324 node_paths=PackedStringArray("vignette")]
-vignette = NodePath("../../CanvasLayer/Vignette")
-
 [node name="Camera" parent="Player" index="11" unique_id=765522635]
 stationary_horizontal_offset = 200.0
 camera_speed_vertical = 750.0
@@ -52,7 +49,7 @@ player_health = NodePath("../../../Player/PlayerHealthComponent")
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=2066635479 instance=ExtResource("5_rk7fn")]
 
-[node name="Vignette" type="ColorRect" parent="CanvasLayer" unique_id=983524541]
+[node name="Vignette" type="ColorRect" parent="CanvasLayer" unique_id=983524541 node_paths=PackedStringArray("player_health")]
 visible = false
 material = SubResource("ShaderMaterial_4e2ep")
 anchors_preset = 15
@@ -61,6 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_j28bi")
+player_health = NodePath("../../Player/PlayerHealthComponent")
 metadata/_custom_type_script = "uid://btvuer81245c0"
 
 [editable path="Player"]
