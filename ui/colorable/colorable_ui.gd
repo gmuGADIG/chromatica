@@ -16,10 +16,11 @@ func color_updated() -> void:
 	
 	for i in pips.size():
 		if i < num_colors:
-			pips[i].modulate = colorable_component.colors[i]
+			pips[i].modulate = Paint.get_color(colorable_component.colors[i])
 			pips[i].show()
 		else:
 			pips[i].hide()
+
 
 # made this just in case varnish needs to be done on the UI end because the tasklist details
 # show that when varnish is applied, the ui disappears again so the player can apply new colors

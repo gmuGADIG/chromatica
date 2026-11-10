@@ -2,14 +2,14 @@ extends Node2D
 class_name PlayerBrush
 @export var player : Player
 @export var player_movement : PlayerMovement
-@export var hurtbox: PlayerHurtbox
+@export var hurtbox : PlayerHurtbox
 @export_group("Attack Properties")
 @export var brush_damage : int
 @export var brush_recovery : float = 0.2
 
 func _ready() -> void:
 	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
-		enemy.hit(DamageInfo.new(brush_damage,DamageInfo.AttackColor.RED))
+		enemy.hit(DamageInfo.new(brush_damage,Paint.Hue.RED))
 	)
 
 func _input(event: InputEvent):

@@ -2,14 +2,41 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/world/world.tscn" id="1_yd5ur"]
 [ext_resource type="PackedScene" uid="uid://xrs22a6c2pj3" path="res://character/npc/npc.tscn" id="2_dthq0"]
-[ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcdatas/garonic.tres" id="3_hjby2"]
+[ext_resource type="PackedScene" uid="uid://cbmwi8rfvkird" path="res://ui/pause_menu/pause_menu.tscn" id="2_hv1dp"]
+[ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcs/temp/garonic.tres" id="3_hjby2"]
+[ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="5_4r2ah"]
+[ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcs/ren/ren.tres" id="5_p5yow"]
+[ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="6_p5yow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnpta"]
+size = Vector2(164, 256)
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
+
+[node name="PlayerHurtbox" parent="Player/Attacks/Uppercut" parent_id_path=PackedInt32Array(1162272003, 1880163021) index="1" unique_id=2122688073]
+monitoring = false
+
+[node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" index="0" unique_id=1886765406]
+shape = SubResource("RectangleShape2D_wnpta")
+
+[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(522952111) index="1" unique_id=2066635479 instance=ExtResource("2_hv1dp")]
 
 [node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
 position = Vector2(2824, 2720)
 npc_data = ExtResource("3_hjby2")
 dialogue_csv = "res://systems/dialogue/data/garf.csv"
+
+[node name="Npc2" parent="." index="3" unique_id=1484437760 instance=ExtResource("2_dthq0")]
+position = Vector2(2516, 2704)
+npc_data = ExtResource("5_p5yow")
+dialogue_csv = "res://systems/dialogue/data/ren.csv"
+
+[node name="EnemyBase" parent="." index="4" unique_id=43181616 instance=ExtResource("5_4r2ah")]
+position = Vector2(1536, 2816)
+collision_layer = 0
+
+[node name="CarpenterBee" parent="." index="5" unique_id=615538230 instance=ExtResource("6_p5yow")]
+position = Vector2(1198, 2394)
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]

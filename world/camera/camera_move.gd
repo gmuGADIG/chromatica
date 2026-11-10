@@ -12,12 +12,17 @@ extends Node2D
 var relative_position : Vector2 = Vector2.ZERO
 
 @onready var camera : Camera2D = $Node/Camera2D
-@onready var ldtk_level : LDTKLevel = get_tree().get_first_node_in_group("LDTKLevel")
+@onready var world : World = get_tree().get_first_node_in_group("world")
+
 func _ready() -> void:
-	camera.limit_left = roundi(ldtk_level.global_position.x)
-	camera.limit_top = roundi(ldtk_level.global_position.y)
-	camera.limit_right = roundi(ldtk_level.global_position.x + ldtk_level.size.x)
-	camera.limit_bottom = roundi(ldtk_level.global_position.y + ldtk_level.size.y)
+	world.room_changed.connect(_update_camera_bounds)
+	
+func _update_camera_bounds() -> void:
+	var current_room : LDTKLevel = world.get_current_room()
+	camera.limit_left = roundi(current_room.global_position.x)
+	camera.limit_top = roundi(current_room.global_position.y)
+	camera.limit_right = roundi(current_room.global_position.x + current_room.size.x)
+	camera.limit_bottom = roundi(current_room.global_position.y + current_room.size.y)
 	camera.global_position = global_position
 	
 func _process(delta: float) -> void:
