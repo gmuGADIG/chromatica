@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/player_movement.gd" id="2_gtsfv"]
 [ext_resource type="PackedScene" uid="uid://bvmsytqm23rk2" path="res://character/player/attack/player_hurtbox.tscn" id="3_qh58e"]
 [ext_resource type="Script" uid="uid://drt58jn726c1u" path="res://character/player/player_health_component.gd" id="5_eu8pa"]
-[ext_resource type="Texture2D" uid="uid://uu0mo6d1pvx0" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
+[ext_resource type="Texture2D" uid="uid://b37va1grce71u" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
 [ext_resource type="Curve" uid="uid://dhvfejbwfim38" path="res://character/player/attack/uppercut_vertical_velocity.tres" id="5_lqp71"]
 [ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
@@ -200,14 +200,19 @@ debug_color = Color(0.5186686, 0.54240805, 0.5379915, 0.41960785)
 
 [node name="InvulnComponent" parent="." unique_id=1152976110 instance=ExtResource("16_fkbv7")]
 
-[node name="RangedAttack" type="Node2D" parent="." unique_id=1394425795 node_paths=PackedStringArray("player", "player_movement")]
+[node name="RangedAttack" type="Node2D" parent="." unique_id=1394425795 node_paths=PackedStringArray("player", "player_movement", "cooldown_timer")]
 position = Vector2(0, -120)
 script = ExtResource("9_qh58e")
 player = NodePath("..")
 player_movement = NodePath("../PlayerMovement")
 projectile_packed = ExtResource("10_hr31g")
 launch_speed = 2000.0
+cooldown_timer = NodePath("RangedAttackCooldown")
 metadata/_custom_type_script = "uid://b2hybtygkkyei"
+
+[node name="RangedAttackCooldown" type="Timer" parent="RangedAttack" unique_id=1887908116]
+wait_time = 0.4
+one_shot = true
 
 [node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
 player_movement = NodePath("../PlayerMovement")
