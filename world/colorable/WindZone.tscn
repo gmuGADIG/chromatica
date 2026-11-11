@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c6vfh1ttiolw1"]
+
+[ext_resource type="Script" uid="uid://m6kpmqkqmcc6" path="res://world/colorable/wind_zone.gd" id="1_ydpab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kjdwv"]
+size = Vector2(250, 100)
+
+[node name="WindZone" type="Area2D" unique_id=619087343]
+script = ExtResource("1_ydpab")
+force = 100.0
+yellow_multiplier = 3.0
+cooldown = 5.0
+
+[node name="YellowColorTimer" type="Timer" parent="." unique_id=1008190146]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1411868650]
+position = Vector2(125, 0)
+shape = SubResource("RectangleShape2D_kjdwv")
