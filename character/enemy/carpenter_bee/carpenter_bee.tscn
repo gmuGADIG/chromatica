@@ -22,7 +22,7 @@ lose_sight_time = 1.0
 projectile_scene = ExtResource("3_1dx5a")
 muzzle = NodePath("Muzzle")
 aim_time = 0.4
-sight_range = 900.0
+sight_range = 1200.0
 sight_mask = 3
 vision_raycast = NodePath("VisionRaycast")
 arrive_distance = 20.0
@@ -33,8 +33,6 @@ visible = false
 
 [node name="EnemyHitbox" parent="." index="2" unique_id=1147118622]
 position = Vector2(0, 0)
-collision_layer = 8
-collision_mask = 0
 
 [node name="CollisionShape2D" parent="EnemyHitbox" index="0" unique_id=841445170]
 shape = SubResource("RectangleShape2D_hitbox")

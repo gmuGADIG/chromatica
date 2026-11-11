@@ -50,34 +50,46 @@ func _ready() -> void:
 	if projectile_scene == null:
 		push_warning("No Projectile for '%s' " % name)
 	
-
 func _think(delta: float) -> void:
 	match state:
 		State.IDLE:
 			if _wander_timer <= 0.0:
 				_pick_wander_point()
+
+			##Countdown the timer AFTER the if statement because it would never trigger on first entry otherwise
+			_wander_timer -= delta
 			fly_toward_target(idle_speed, delta)
+			
+			##If we can see the player at this point, start the approach, _start_approach sets the timer to zero
 			if can_see_player():
-				_lost_sight_time = 0.0
 				_start_approach()
 		State.APPROACH:
+			##We have to do this again because _think can enter straight into State.APPROACH.
 			if can_see_player():
-				_lost_sight_time = 0.0
+				_timer -= delta # only shoot with a clear view of the player
+				## Checks to see if the timer is done before moving to shooting state
+				if _timer <= 0.0:
+					_enter(State.SHOOT, aim_time)
 			else:
+				# If the player is out of the bee's sight, the lose sight timer activates
 				_lost_sight_time += delta
+				## Checks to see if the timer is done before moving to idle state
 				if _lost_sight_time >= lose_sight_time:
-					has_target = false
 					_enter(State.IDLE, 0.0)
 					return
+					
+			##Moves to the ideal location for the enemy regardless
 			set_target(_ideal_location())
 			move(delta)
-			_timer -= delta# only shoot with a clear view of the player
-			if _timer <= 0.0 and can_see_player():
-				_enter(State.SHOOT, aim_time)
+			
+
 		State.SHOOT:
 			accelerate_toward(Vector2.ZERO, delta)
 			_timer -= delta
-			if _timer <= 0.0:
+
+			if (_timer <= 0.11 and _timer >= 0.09):
+				attack()
+			elif _timer <= 0.0:
 				attack()
 				_enter(State.APPROACH, shoot_interval)
 
@@ -94,13 +106,17 @@ func attack() -> void:
 
 ## The spot the bee tries to hold: off to one side of the player and above them.
 func _ideal_location() -> Vector2:
-	return get_player_center() + Vector2(_side * ideal_offset.x, ideal_offset.y)
+	var player_pos := get_player_center()
+	var dx := minf(absf(global_position.x - player_pos.x), ideal_offset.x)*0.75
+	var dy := minf(absf(global_position.y - player_pos.y), ideal_offset.y)*0.75
+	return player_pos + Vector2(_side * dx, dy)
 
 func _start_approach() -> void:
 	# Stay on the side of the player it's already on, so it doesn't cross through them.
 	_side = int(signf(global_position.x - get_player_center().x))
 	if _side == 0:
 		_side = 1
+
 	_lost_sight_time = 0.0
 	_enter(State.APPROACH, shoot_interval)
 
