@@ -22,10 +22,8 @@ var uppercut_direction : float
 func _ready() -> void:
 	if not is_equal_approx(uppercut_horizontal_velocity.max_domain,uppercut_vertical_velocity.max_domain):
 		printerr("Domains between two uppercut velocities different")
-	##LAST RESORT INCASE OF IDIOCY
-	#hurtbox.start_attack(Vector2(0,0))
 	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
-		enemy.hit(DamageInfo.new(damage,Paint.Hue.BLUE))
+		enemy.hit(DamageInfo.new(damage,Paint.Hue.RED))
 	)
 
 func _input(event : InputEvent) -> void:

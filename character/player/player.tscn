@@ -89,17 +89,20 @@ wait_time = 0.4
 one_shot = true
 
 [node name="UppercutArea" parent="Attacks/Uppercut" unique_id=1187232396 node_paths=PackedStringArray("player", "attack_timer") instance=ExtResource("3_qh58e")]
+position = Vector2(26, -250)
+scale = Vector2(0.65, 1)
 collision_layer = 0
 collision_mask = 8
 player = NodePath("../../..")
 attack_timer = NodePath("../UppercutCooldown")
 
 [node name="Sprite2D" type="Sprite2D" parent="Attacks/Uppercut/UppercutArea" unique_id=643035562]
-position = Vector2(112, -256)
-scale = Vector2(1.3085072, 2.158197)
+position = Vector2(128.09999, 1.9999928)
+scale = Vector2(2.0140624, 2)
 texture = ExtResource("10_aph6w")
 
 [node name="DashSlash" type="Node2D" parent="Attacks" unique_id=1018780961 node_paths=PackedStringArray("player", "player_movement", "hurtbox")]
+visible = false
 script = ExtResource("9_v2h1c")
 player = NodePath("../..")
 player_movement = NodePath("../../PlayerMovement")
