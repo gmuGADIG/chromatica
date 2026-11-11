@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://ccaf56m5vfuvj"]
+
+[ext_resource type="Script" uid="uid://csd32au1c477t" path="res://ui/credits/credits_scene.gd" id="1_jppmf"]
+[ext_resource type="Texture2D" uid="uid://4g5nexenk7gw" path="res://temp/temp_art/char.png" id="2_n6qje"]
+[ext_resource type="Texture2D" uid="uid://uc7uikxx5x87" path="res://temp/temp_art/icon.svg" id="3_0x1kb"]
+
+[node name="CreditsScene" type="Control" unique_id=1059187460]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jppmf")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1666915753]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -76.0
+offset_right = 42.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0x1kb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=806265644]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 900.0
+offset_right = 736.0
+offset_bottom = 1157.0
+
+[node name="Logo" type="Sprite2D" parent="HBoxContainer" unique_id=1994686123]
+position = Vector2(115, -182)
+scale = Vector2(0.5, 0.477)
+texture = ExtResource("2_n6qje")
+
+[node name="Text" type="Label" parent="HBoxContainer" unique_id=1177180095]
+layout_mode = 2
+text = "The logo is above this!
+Programmer: Fish
+Design: People
+Artist: Go
+Sound Design: Here
+
+Special Thanks: YOU, the player!
+
+Ik this list will be longer but this is a sample
+"
+
+[node name="EndLogo" type="Sprite2D" parent="." unique_id=998516546]
+position = Vector2(558, 1300)
+scale = Vector2(0.5, 0.4)
+texture = ExtResource("2_n6qje")
+
+[node name="Button" type="Button" parent="." unique_id=58827491]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 600.0
+offset_right = 137.0
+offset_bottom = 631.0
+text = "Exit"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

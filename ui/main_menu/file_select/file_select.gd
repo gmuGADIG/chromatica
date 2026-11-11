@@ -11,4 +11,4 @@ func _on_button_back_pressed() -> void:
 	closed.emit()
 
 func _on_button_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://world/world/world.tscn")
+	get_tree().change_scene_to_file("res://world/world/testing_world.tscn")
