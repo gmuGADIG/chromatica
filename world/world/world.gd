@@ -55,7 +55,7 @@ func _generate_world_cache() -> void:
 	##For some reason queue freeing before saving the resource kills the key & value pairs
 	for room : LDTKLevel in loaded_rooms:
 		room.queue_free()
-	EditorInterface.reload_scene_from_path.call_deferred(scene_file_path)
+	get_tree().reload_scene_from_path.call_deferred(scene_file_path)
 @export var world_cache : WorldCache
 
 var current_room_iid : String
