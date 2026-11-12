@@ -35,10 +35,14 @@ func disable() -> void:
 static func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
 	# Areas on the same layer as the PlayerHitbox (other enemies' hitboxes, etc.)
 	# also show up, so only accept ones that belong to the Player.
-	if not (area.get_parent() is Player) or not area.has_method("hit"):
+	if not (area is PlayerHitbox):
 		return false
+		
+	# Type safety
+	var player_hitbox = area as PlayerHitbox
 		
 	var info := DamageInfo.new(amount, color)
 	
-	area.call("hit", info)
+	# More method call type safety
+	player_hitbox.hit(info)
 	return true
