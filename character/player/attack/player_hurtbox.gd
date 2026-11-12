@@ -3,7 +3,7 @@ class_name PlayerHurtbox extends Area2D
 
 signal finished
 
-const MASK : int = 1<<3
+const MASK : int = 1<<3 | 1<<5
 
 @export var player : Player
 @export var collision_shape : CollisionShape2D
@@ -78,13 +78,16 @@ func end_attack() -> void:
 	finished.emit()
 
 func _on_area_entered(area: Area2D) -> void:
-	if hit_things.has(area):
-		return
-	
+#	if hit_things.has(area):
+#		return
 	if area is EnemyHitbox:
-		print("HURT")
-		enemy_hit.emit(area)
+		#enemy_hit.emit(area)
+		area.hit(DamageInfo.new(0, Paint.Hue.RED))
 		hit_things.append(area)
+	if area is ObjectHitbox:
+		area.hit(DamageInfo.new(0, Paint.Hue.RED))
+		hit_things.append(area)
+
 
 func _update_hurtbox_shape() -> void:
 	collision_shape.shape.size = hurtbox_shape

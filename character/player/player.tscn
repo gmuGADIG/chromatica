@@ -61,7 +61,6 @@ one_shot = true
 one_shot = true
 
 [node name="AttackArea" parent="Attacks/PlayerBrush" unique_id=379676843 node_paths=PackedStringArray("player", "attack_timer") instance=ExtResource("3_qh58e")]
-collision_layer = 0
 collision_mask = 8
 player = NodePath("../../..")
 attack_timer = NodePath("../SwingDuration")
@@ -128,7 +127,6 @@ one_shot = true
 
 [node name="SlashArea" parent="Attacks/DashSlash" unique_id=508201604 node_paths=PackedStringArray("player", "attack_timer") instance=ExtResource("3_qh58e")]
 position = Vector2(0, -120)
-collision_layer = 0
 collision_mask = 8
 player = NodePath("../../..")
 attack_timer = NodePath("../SlashTimer")
