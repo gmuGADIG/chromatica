@@ -4,12 +4,13 @@ extends Node2D
 class_name Gate
 
 @export var size:Vector2
-@export var location:Vector2
+
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var Tile_Map: TileMapLayer = $TileMapLayer
 
-@export var TileSize: int = 128
+var location:Vector2
+var TileSize: int = 128
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#rectangle creation
