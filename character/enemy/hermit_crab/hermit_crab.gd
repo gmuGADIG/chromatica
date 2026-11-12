@@ -73,6 +73,8 @@ func face(direction: int) -> void:
 	_update_player_ray()
 	if sprite:
 		sprite.flip_h = facing < 0
+	if claw_hurtbox:
+		claw_hurtbox.position.x = facing * absf(claw_hurtbox.position.x)	
 
 func _advance_state() -> void:
 	match state:
@@ -94,9 +96,9 @@ func _set_state(new_state: State, duration: float = 0.0) -> void:
 	if claw_hurtbox:
 		claw_hurtbox.set_deferred("monitoring", new_state == State.STRIKE)
 	
-	var crab_hitbox := hitbox as HermitCrabHitbox
-	if crab_hitbox:
-		crab_hitbox.invulnerable = new_state == State.CLAMMED
+	# Invulnerability: while clammed, the hitbox can't be detected, so the player's attacks never register. (Enemy.become_friendly uses the same trick.)
+	if hitbox:
+		hitbox.set_deferred("monitorable", new_state != State.CLAMMED)
  
 	state_changed.emit(new_state)
 	if was_clammed != is_clammed:

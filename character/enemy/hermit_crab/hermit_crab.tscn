@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="1_up8l0"]
 [ext_resource type="Script" uid="uid://bp2wb8444e32i" path="res://character/enemy/hermit_crab/hermit_crab.gd" id="2_une2y"]
 [ext_resource type="Texture2D" uid="uid://wke50uvs0s6i" path="res://character/enemy/hermit_crab/hermit_crab_placeholder.png" id="3_une2y"]
-[ext_resource type="Script" uid="uid://bp1emfmhli203" path="res://character/enemy/hermit_crab/hermit_crab_hitbox.gd" id="4_amlg8"]
 [ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="5_yujdf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p5khm"]
@@ -34,9 +33,6 @@ platform_ray = NodePath("LedgeRay")
 [node name="Sprite2D" parent="." index="1" unique_id=1560740887]
 texture = ExtResource("3_une2y")
 
-[node name="EnemyHitbox" parent="." index="2" unique_id=1147118622]
-script = ExtResource("4_amlg8")
-
 [node name="PlayerRay" type="RayCast2D" parent="." index="7" unique_id=637253932]
 position = Vector2(0, -81)
 target_position = Vector2(50, 0)
@@ -65,5 +61,5 @@ damage = 2
 metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClawHurtbox" index="0" unique_id=710821158]
-position = Vector2(-15, -82)
+position = Vector2(0, -82)
 shape = SubResource("CapsuleShape2D_rl4v8")
