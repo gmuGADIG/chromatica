@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://pdux0r10d7q2"]
+[gd_scene format=4 uid="uid://pdux0r10d7q2"]
 
 [ext_resource type="Script" uid="uid://c3rnu0lledkyn" path="res://world/LdtkObjects/phisical_gate_test.gd" id="1_4444p"]
 [ext_resource type="Texture2D" uid="uid://dx1d4pe36blxj" path="res://ldtk/tilesets/temp_tiles.png" id="2_0c816"]
@@ -3016,10 +3016,11 @@ size = Vector2(50, 50)
 
 [node name="Gate collider" type="Area2D" parent="." unique_id=585691787]
 script = ExtResource("1_4444p")
-size = Vector2(50, 50)
-TotalTiles = null
+size = Vector2(128, 640)
+TileSize = null
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Gate collider" unique_id=1484906136]
+tile_map_data = PackedByteArray("AAAAAAEAAAAFAAQAAAAAAAIAAAAFAAQAAAAAAAMAAAAFAAQAAAAAAAQAAAAFAAQAAAAAAAUAAAAFAAQAAAAAAAYAAAAFAAQAAAAAAAcAAAAFAAQAAAAAAAgAAAAFAAQAAAA=")
 tile_set = SubResource("TileSet_12j5o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Gate collider" unique_id=97682463]
