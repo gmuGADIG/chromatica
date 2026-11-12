@@ -42,6 +42,10 @@ signal became_friendly
 
 @export var platform_ray : RayCast2D
 
+@export var hurtbox : EnemyHurtbox
+
+@export var knockback_force : float
+
 ## ----------------------------------------------------
 ## Movement group has migrated to @enemy_behavior.gd
 ## ----------------------------------------------------
@@ -67,8 +71,11 @@ func _ready() -> void:
 		printerr("No player found!")
 	if health_component == null:
 		printerr("No Health component!")
+	if hurtbox == null:
+		printerr("No hurtbox!")
 	
 	health_component.health_depleted.connect(become_friendly)
+	hurtbox.knockback_force = knockback_force
 
 
 ## World position of the point enemies aim at / check line of sight to.
@@ -88,8 +95,8 @@ func become_friendly() -> void:
 	# Stop being a target and stop being a threat.
 	if hitbox:
 		hitbox.set_deferred("monitorable", false)
-	for hurtbox in find_children("*", "EnemyHurtbox", true, false):
-		(hurtbox as EnemyHurtbox).disable()
+	if hurtbox:
+		hurtbox.disable()
 	if health_bar:
 		health_bar.hide()
 

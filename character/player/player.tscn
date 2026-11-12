@@ -223,4 +223,6 @@ player = NodePath("..")
 stationary_horizontal_offset = null
 camera_speed_vertical = null
 
+[connection signal="player_hit" from="PlayerHitbox" to="PlayerMovement" method="_on_player_hitbox_player_hit"]
+
 [editable path="PlayerHitbox"]

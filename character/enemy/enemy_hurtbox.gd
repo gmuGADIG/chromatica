@@ -12,7 +12,7 @@ class_name EnemyHurtbox
 signal hit_player
 
 var _cooldown : float = 0.0
-
+var knockback_force : float
 
 func _physics_process(delta: float) -> void:
 	_cooldown = maxf(_cooldown - delta, 0.0)
@@ -33,15 +33,20 @@ func disable() -> void:
 
 
 ## Damages the player if [param area] is the player's hitbox. Returns true if it was.
-static func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
+func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
 	# Areas on the same layer as the PlayerHitbox (other enemies' hitboxes, etc.)
 	# also show up, so only accept ones that belong to the Player.
-	if not (area.get_parent() is Player) or not area.has_method("hit"):
+	if not (area is PlayerHitbox):
 		return false
-	var info := DamageInfo.new(amount, color)
-	# Set explicitly as well: DamageInfo._init currently shadows its own fields
-	# with local vars, so the constructor arguments never get stored.
-	info.damage = amount
-	info.attack_color = color
-	area.call("hit", info)
+	
+	var player_hitbox = area as PlayerHitbox
+
+	var pos := self.position
+	var dir_to_player_hitbox := pos.direction_to(player_hitbox.global_position)
+
+	# Type safety
+	var info := DamageInfo.new(amount, color, knockback_force, dir_to_player_hitbox)
+	
+	# More method call type safety
+	player_hitbox.hit(info)
 	return true
