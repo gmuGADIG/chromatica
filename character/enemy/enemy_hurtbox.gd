@@ -14,7 +14,6 @@ signal hit_player
 var _cooldown : float = 0.0
 var _knockback_force : float
 
-
 func _physics_process(delta: float) -> void:
 	_cooldown = maxf(_cooldown - delta, 0.0)
 	if _cooldown > 0.0:
@@ -42,8 +41,8 @@ func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
 	
 	var player_hitbox = area as PlayerHitbox
 
-	var pos = self.position
-	var dir_to_player_hitbox = pos.direction_to(player_hitbox.global_position)
+	var pos := self.position
+	var dir_to_player_hitbox := pos.direction_to(player_hitbox.global_position)
 	# Type safety
 	var info := DamageInfo.new(amount, color, _knockback_force, dir_to_player_hitbox)
 	
