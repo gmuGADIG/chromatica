@@ -6,10 +6,11 @@ class_name PlayerBrush
 @export_group("Attack Properties")
 @export var brush_damage : int
 @export var brush_recovery : float = 0.2
+@export var color_selection : PaintSelector
 
 func _ready() -> void:
 	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
-		enemy.hit(DamageInfo.new(brush_damage,Paint.Hue.RED))
+		enemy.hit(DamageInfo.new(brush_damage,color_selection.current_color))
 	)
 
 func _input(event: InputEvent):

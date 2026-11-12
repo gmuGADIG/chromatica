@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c8q0684rdd6yr" path="res://character/player/player.tscn" id="1_yhsm3"]
 [ext_resource type="Resource" uid="uid://bigp7swogixhk" path="res://world/world/world_cache.tres" id="2_1tbfg"]
 [ext_resource type="PackedScene" uid="uid://clra6nv8aoo0u" path="res://ui/hud/hud.tscn" id="2_lm4yx"]
+[ext_resource type="Script" uid="uid://dhqny3jdqwmv7" path="res://character/player/paint/paint_selector_component.gd" id="4_rk7fn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tbfg"]
 size = Vector2(164, 256)
@@ -15,6 +16,12 @@ world_cache = ExtResource("2_1tbfg")
 
 [node name="Player" parent="." unique_id=1162272003 instance=ExtResource("1_yhsm3")]
 position = Vector2(2038, 1585)
+
+[node name="ColorSelectionComponent" type="Node" parent="Player/Attacks" parent_id_path=PackedInt32Array(1162272003, 171343013) index="0" unique_id=934235443]
+script = ExtResource("4_rk7fn")
+
+[node name="PlayerBrush" parent="Player/Attacks" parent_id_path=PackedInt32Array(1162272003, 171343013) index="1" unique_id=1894793710 node_paths=PackedStringArray("color_selection")]
+color_selection = NodePath("../ColorSelectionComponent")
 
 [node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" parent_id_path=PackedInt32Array(1162272003, 2122688073) index="0" unique_id=1886765406]
 shape = SubResource("RectangleShape2D_1tbfg")
