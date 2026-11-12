@@ -82,9 +82,12 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	if area is EnemyHitbox:
-		print("HURT")
 		enemy_hit.emit(area)
 		hit_things.append(area)
+	if area is EnemyHitbox:
+		area.hit(DamageInfo.new(0, Paint.Hue.RED))
+		hit_things.append(area)
+
 
 func _update_hurtbox_shape() -> void:
 	collision_shape.shape.size = hurtbox_shape

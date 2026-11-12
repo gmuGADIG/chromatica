@@ -1,28 +1,42 @@
 [gd_scene format=3 uid="uid://nkhkrmdh073y"]
 
+[ext_resource type="Script" uid="uid://dmiva7hlr3uey" path="res://world/colorable/object_base.gd" id="1_jdfui"]
 [ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="1_t6743"]
 [ext_resource type="PackedScene" uid="uid://bvryli3jm4n8u" path="res://ui/colorable/colorable_ui.tscn" id="2_jdfui"]
 [ext_resource type="Script" uid="uid://bwaavhkj00svs" path="res://character/paintable hitbox/paintable_object_hitbox.gd" id="3_a3tb2"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5flen"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m31g"]
+size = Vector2(224, 266.5)
 
-[node name="ObjectBase" type="Node2D" unique_id=528316572]
-script = ExtResource("1_t6743")
+[node name="ObjectBase" type="Node2D" unique_id=528316572 node_paths=PackedStringArray("colorable_component", "hitbox")]
+script = ExtResource("1_jdfui")
+colorable_component = NodePath("ColorableComponent")
+hitbox = NodePath("ObjectHitbox")
 
-[node name="ColorableUI" parent="." unique_id=1819435004 instance=ExtResource("2_jdfui")]
-offset_left = -118.01601
-offset_right = 101.98399
-offset_bottom = 100.0
+[node name="ColorableUI" parent="." unique_id=1819435004 node_paths=PackedStringArray("colorable_component") instance=ExtResource("2_jdfui")]
+offset_left = -110.0
+offset_top = -367.0
+offset_right = 110.0
+offset_bottom = -267.0
+colorable_component = NodePath("../ColorableComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1737062087]
+position = Vector2(0.99999213, -134)
+scale = Vector2(223, 265.00003)
+texture = SubResource("PlaceholderTexture2D_5flen")
 
-[node name="ObjectHitbox" type="Area2D" parent="." unique_id=1286574593]
+[node name="ObjectHitbox" type="Area2D" parent="." unique_id=1286574593 node_paths=PackedStringArray("colorable_component")]
 script = ExtResource("3_a3tb2")
+colorable_component = NodePath("../ColorableComponent")
 metadata/_custom_type_script = "uid://bwaavhkj00svs"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectHitbox" unique_id=929686185]
+position = Vector2(0, -132)
 shape = SubResource("RectangleShape2D_6m31g")
 
-[node name="ColorableComponent" type="Node" parent="." unique_id=572556418]
+[node name="ColorableComponent" type="Node" parent="." unique_id=572556418 node_paths=PackedStringArray("color_target")]
 script = ExtResource("1_t6743")
+color_target = NodePath("../Sprite2D")
 metadata/_custom_type_script = "uid://diph7secwmb53"
