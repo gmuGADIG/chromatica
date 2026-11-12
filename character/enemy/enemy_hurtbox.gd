@@ -12,6 +12,8 @@ class_name EnemyHurtbox
 signal hit_player
 
 var _cooldown : float = 0.0
+var _knockback_force : float
+
 
 func _physics_process(delta: float) -> void:
 	_cooldown = maxf(_cooldown - delta, 0.0)
