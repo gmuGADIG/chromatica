@@ -168,3 +168,8 @@ func locate_room(pos : Vector2, include_unloaded : bool) -> String:
 		
 		return iid
 	return ""
+
+
+func _on_player_health_component_death_complete() -> void:
+	set_current_room(current_room_iid)
+	print("did it")

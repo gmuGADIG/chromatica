@@ -7,7 +7,13 @@
 [ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcs/ren/ren.tres" id="5_p5yow"]
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="6_p5yow"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5yow"]
+size = Vector2(164, 256)
+
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
+
+[node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" parent_id_path=PackedInt32Array(1162272003, 2122688073) index="0" unique_id=1886765406]
+shape = SubResource("RectangleShape2D_p5yow")
 
 [node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
 position = Vector2(2824, 2720)
@@ -24,6 +30,10 @@ position = Vector2(1536, 2816)
 
 [node name="CarpenterBee" parent="." index="5" unique_id=615538230 instance=ExtResource("6_p5yow")]
 position = Vector2(1198, 2394)
+
+[connection signal="death_complete" from="Player/PlayerHealthComponent" to="." method="_on_player_health_component_death_complete"]
+[connection signal="death_complete" from="Player/PlayerHealthComponent" to="Player/PlayerMovement" method="_on_player_health_component_death_complete"]
+[connection signal="health_depleted" from="Player/PlayerHealthComponent" to="Player/PlayerMovement" method="_on_player_health_component_health_depleted"]
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]

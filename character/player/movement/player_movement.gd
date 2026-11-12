@@ -200,3 +200,13 @@ func no_special_player_state() -> bool:
 			return true
 		_:
 			return false
+
+
+func _on_player_health_component_health_depleted() -> void:
+	maxVelocity = 0
+	jump_velocity = 0
+
+
+func _on_player_health_component_death_complete() -> void:
+	maxVelocity = 1000.0
+	jump_velocity = 2430.0
