@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://csbamg7eo1tp"]
+
+[ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="1_xahn3"]
+[ext_resource type="Script" uid="uid://bp05yt5s6ornt" path="res://character/enemy/sea_slug/sea_slug.gd" id="2_uxbhp"]
+[ext_resource type="Texture2D" uid="uid://duahwqhiddt6s" path="res://character/enemy/sea_slug/seaslug.png" id="3_aqddu"]
+[ext_resource type="PackedScene" uid="uid://6erb3cxoiw1s" path="res://character/enemy/sea_slug/sea_slug_attacks/goop_projectile.tscn" id="3_fl1ao"]
+[ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="4_fw1st"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fl1ao"]
+size = Vector2(120, 160)
+
+[node name="sea_slug" unique_id=43181616 node_paths=PackedStringArray("shoot_point", "player_ray", "wall_ray", "platform_ray") instance=ExtResource("1_xahn3")]
+floor_constant_speed = true
+floor_max_angle = 0.0
+script = ExtResource("2_uxbhp")
+projectile = ExtResource("3_fl1ao")
+attack_cooldown = 1.5
+shoot_point = NodePath("shoot_point")
+halt_distance = 500.0
+player_ray = NodePath("player_ray")
+wall_ray = NodePath("wall_ray")
+platform_ray = NodePath("platform_ray")
+
+[node name="CollisionShape2D" parent="EnemyHitbox" parent_id_path=PackedInt32Array(1147118622) index="0" unique_id=841445170]
+shape = SubResource("RectangleShape2D_fl1ao")
+
+[node name="CollisionShape2D" parent="." index="6" unique_id=1367315384]
+shape = SubResource("RectangleShape2D_fl1ao")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="8" unique_id=1084974468]
+texture = ExtResource("3_aqddu")
+offset = Vector2(0, -65)
+
+[node name="player_ray" type="RayCast2D" parent="." index="9" unique_id=2070056736]
+position = Vector2(0, -81)
+target_position = Vector2(-800, 0)
+collision_mask = 3
+
+[node name="wall_ray" type="RayCast2D" parent="." index="10" unique_id=1210467160]
+position = Vector2(0, -81)
+scale = Vector2(1.4, 1)
+target_position = Vector2(-300, 0)
+
+[node name="platform_ray" type="RayCast2D" parent="." index="11" unique_id=1615426549]
+position = Vector2(-300, 10)
+scale = Vector2(1.4, 1)
+target_position = Vector2(0, -200)
+
+[node name="EnemyHurtbox" type="Area2D" parent="." index="12" unique_id=24039937]
+position = Vector2(0, -81)
+script = ExtResource("4_fw1st")
+metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" index="0" unique_id=1100066518]
+shape = SubResource("RectangleShape2D_fl1ao")
+
+[node name="shoot_point" type="Marker2D" parent="." index="13" unique_id=2143791563]
+position = Vector2(0, -70)

@@ -1,7 +1,7 @@
 extends Area2D
 class_name GoopProjectile
 
-@export var projectile_speed : float = 50.00
+@export var projectile_velocity : Vector2
 
 #custom functions
 func hit_something(body: Node2D) -> void:
@@ -26,7 +26,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position += transform.x * projectile_speed * delta
+	position += projectile_velocity*delta
 
 
 func _on_body_entered(body: Node2D) -> void:
