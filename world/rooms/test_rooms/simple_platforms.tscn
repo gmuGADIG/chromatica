@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://dsfvo7vwn1a0x"]
+[gd_scene format=4 uid="uid://dsfvo7vwn1a0x"]
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/rooms/room_base.tscn" id="1_tg01w"]
 [ext_resource type="PackedScene" uid="uid://htkijbiwnrc3" path="res://ldtk/levels/TestLevel.scn" id="2_44v25"]
+[ext_resource type="Script" uid="uid://cn14jb7emmx70" path="res://addons/ldtk-importer/src/components/ldtk-level.gd" id="3_4a5px"]
+[ext_resource type="TileSet" uid="uid://dtf3pu0jwbws0" path="res://ldtk/tilesets/tileset_128px.res" id="4_lwxdh"]
 [ext_resource type="PackedScene" uid="uid://blbd8cixeawwr" path="res://world/interactable/interactable_region.tscn" id="4_r7hm1"]
+[ext_resource type="Script" uid="uid://25iwwmpfxf30" path="res://addons/ldtk-importer/src/components/ldtk-entity-layer.gd" id="6_7a74n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wg1qd"]
 radius = 79.7
@@ -12,7 +15,19 @@ radius = 84.2
 
 [node name="RoomBase" unique_id=1762502460 instance=ExtResource("1_tg01w")]
 
-[node name="TestLevel" parent="." index="0" unique_id=129877507 instance=ExtResource("2_44v25")]
+[node name="TestLevel" parent="." index="0" unique_id=129877507 groups=["LDTKLevel"] instance=ExtResource("2_44v25")]
+script = ExtResource("3_4a5px")
+iid = "0422f9d0-96d0-11f1-a239-d7fe97153aa0"
+size = Vector2i(5248, 3328)
+neighbours = [{
+"dir": "e",
+"levelIid": "394a8610-96d0-11f1-93be-9b3cf3013799"
+}]
+bg_color = Color(0.4117647, 0.41568628, 0.4745098, 1)
+
+[node name="Tiles" parent="TestLevel" index="0"]
+tile_map_data = PackedByteArray("AAAJAAUABgAJAAIAAAAKAAUABgAJAAIAAAALAAUABgAJAAIAAAAMAAUABgAJAAIAAAANAAUABgAJAAIAAAAOAAUABgAJAAIAAAAQAAkABgAJAAIAAAARAAkABgAJAAIAAAASAAkABgAJAAIAAAATAAkABgAJAAIAAAAUAAkABgAJAAIAAAAKAA0ABgAJAAIAAAALAA0ABgAJAAIAAAAMAA0ABgAJAAIAAAANAA0ABgAJAAIAAAAOAA0ABgAJAAIAAAAAABEABgAJAAIAAAABABEABgAJAAIAAAACABEABgAJAAIAAAADABEABgAJAAIAAAAEABEABgAJAAIAAAAFABEABgAJAAIAAAAGABEABgAJAAIAAAAHABEABgAJAAIAAAAIABEABgAJAAIAAAAJABEABgAJAAIAAAAKABEABgAJAAIAAAALABEABgAJAAIAAAAMABEABgAJAAIAAAANABEABgAJAAIAAAAOABEABgAJAAIAAAAPABEABgAJAAIAAAAQABEABgAJAAIAAAARABEABgAJAAIAAAASABEABgAJAAIAAAATABEABgAJAAIAAAAUABEABgAJAAIAAAAVABEABgAJAAIAAAAWABEABgAJAAIAAAAXABEABgAJAAIAAAAYABEABgAJAAIAAAAZABEABgAJAAIAAAAaABEABgAJAAIAAAAbABEABgAJAAIAAAAcABEABgAJAAIAAAAdABEABgAJAAIAAAAeABEABgAJAAIAAAAfABEABgAJAAIAAAAgABEABgAJAAIAAAAhABEABgAJAAIAAAAiABEABgAJAAIAAAAjABEABgAJAAIAAAAkABEABgAJAAIAAAAlABEABgAJAAIAAAAmABEABgAJAAIAAAAnABEABgAJAAIAAAAoABEABgAJAAIAAAAAABIABgAJAAIAAAABABIABgAJAAIAAAACABIABgAJAAIAAAADABIABgAJAAIAAAAEABIABgAJAAIAAAAFABIABgAJAAIAAAAGABIABgAJAAIAAAAHABIABgAJAAIAAAAIABIABgAJAAIAAAAJABIABgAJAAIAAAAKABIABgAJAAIAAAALABIABgAJAAIAAAAMABIABgAJAAIAAAANABIABgAJAAIAAAAOABIABgAJAAIAAAAPABIABgAJAAIAAAAQABIABgAJAAIAAAARABIABgAJAAIAAAASABIABgAJAAIAAAATABIABgAJAAIAAAAUABIABgAJAAIAAAAVABIABgAJAAIAAAAWABIABgAJAAIAAAAXABIABgAJAAIAAAAYABIABgAJAAIAAAAZABIABgAJAAIAAAAaABIABgAJAAIAAAAbABIABgAJAAIAAAAcABIABgAJAAIAAAAdABIABgAJAAIAAAAeABIABgAJAAIAAAAfABIABgAJAAIAAAAgABIABgAJAAIAAAAhABIABgAJAAIAAAAiABIABgAJAAIAAAAjABIABgAJAAIAAAAkABIABgAJAAIAAAAlABIABgAJAAIAAAAmABIABgAJAAIAAAAnABIABgAJAAIAAAAoABIABgAJAAIAAAAAABMABgAJAAIAAAABABMABgAJAAIAAAACABMABgAJAAIAAAADABMABgAJAAIAAAAEABMABgAJAAIAAAAFABMABgAJAAIAAAAGABMABgAJAAIAAAAHABMABgAJAAIAAAAIABMABgAJAAIAAAAJABMABgAJAAIAAAAKABMABgAJAAIAAAALABMABgAJAAIAAAAMABMABgAJAAIAAAANABMABgAJAAIAAAAOABMABgAJAAIAAAAPABMABgAJAAIAAAAQABMABgAJAAIAAAARABMABgAJAAIAAAASABMABgAJAAIAAAATABMABgAJAAIAAAAUABMABgAJAAIAAAAVABMABgAJAAIAAAAWABMABgAJAAIAAAAXABMABgAJAAIAAAAYABMABgAJAAIAAAAZABMABgAJAAIAAAAaABMABgAJAAIAAAAbABMABgAJAAIAAAAcABMABgAJAAIAAAAdABMABgAJAAIAAAAeABMABgAJAAIAAAAfABMABgAJAAIAAAAgABMABgAJAAIAAAAhABMABgAJAAIAAAAiABMABgAJAAIAAAAjABMABgAJAAIAAAAkABMABgAJAAIAAAAlABMABgAJAAIAAAAmABMABgAJAAIAAAAnABMABgAJAAIAAAAoABMABgAJAAIAAAAAABQABgAJAAIAAAABABQABgAJAAIAAAACABQABgAJAAIAAAADABQABgAJAAIAAAAEABQABgAJAAIAAAAFABQABgAJAAIAAAAGABQABgAJAAIAAAAHABQABgAJAAIAAAAIABQABgAJAAIAAAAJABQABgAJAAIAAAAKABQABgAJAAIAAAALABQABgAJAAIAAAAMABQABgAJAAIAAAANABQABgAJAAIAAAAOABQABgAJAAIAAAAPABQABgAJAAIAAAAQABQABgAJAAIAAAARABQABgAJAAIAAAASABQABgAJAAIAAAATABQABgAJAAIAAAAUABQABgAJAAIAAAAVABQABgAJAAIAAAAWABQABgAJAAIAAAAXABQABgAJAAIAAAAYABQABgAJAAIAAAAZABQABgAJAAIAAAAaABQABgAJAAIAAAAbABQABgAJAAIAAAAcABQABgAJAAIAAAAdABQABgAJAAIAAAAeABQABgAJAAIAAAAfABQABgAJAAIAAAAgABQABgAJAAIAAAAhABQABgAJAAIAAAAiABQABgAJAAIAAAAjABQABgAJAAIAAAAkABQABgAJAAIAAAAlABQABgAJAAIAAAAmABQABgAJAAIAAAAnABQABgAJAAIAAAAoABQABgAJAAIAAAAAABUABgAJAAIAAAABABUABgAJAAIAAAACABUABgAJAAIAAAADABUABgAJAAIAAAAEABUABgAJAAIAAAAFABUABgAJAAIAAAAGABUABgAJAAIAAAAHABUABgAJAAIAAAAIABUABgAJAAIAAAAJABUABgAJAAIAAAAKABUABgAJAAIAAAALABUABgAJAAIAAAAMABUABgAJAAIAAAANABUABgAJAAIAAAAOABUABgAJAAIAAAAPABUABgAJAAIAAAAQABUABgAJAAIAAAARABUABgAJAAIAAAASABUABgAJAAIAAAATABUABgAJAAIAAAAUABUABgAJAAIAAAAVABUABgAJAAIAAAAWABUABgAJAAIAAAAXABUABgAJAAIAAAAYABUABgAJAAIAAAAZABUABgAJAAIAAAAaABUABgAJAAIAAAAbABUABgAJAAIAAAAcABUABgAJAAIAAAAdABUABgAJAAIAAAAeABUABgAJAAIAAAAfABUABgAJAAIAAAAgABUABgAJAAIAAAAhABUABgAJAAIAAAAiABUABgAJAAIAAAAjABUABgAJAAIAAAAkABUABgAJAAIAAAAlABUABgAJAAIAAAAmABUABgAJAAIAAAAnABUABgAJAAIAAAAoABUABgAJAAIAAAAAABYABgAJAAIAAAABABYABgAJAAIAAAACABYABgAJAAIAAAADABYABgAJAAIAAAAEABYABgAJAAIAAAAFABYABgAJAAIAAAAGABYABgAJAAIAAAAHABYABgAJAAIAAAAIABYABgAJAAIAAAAJABYABgAJAAIAAAAKABYABgAJAAIAAAALABYABgAJAAIAAAAMABYABgAJAAIAAAANABYABgAJAAIAAAAOABYABgAJAAIAAAAPABYABgAJAAIAAAAQABYABgAJAAIAAAARABYABgAJAAIAAAASABYABgAJAAIAAAATABYABgAJAAIAAAAUABYABgAJAAIAAAAVABYABgAJAAIAAAAWABYABgAJAAIAAAAXABYABgAJAAIAAAAYABYABgAJAAIAAAAZABYABgAJAAIAAAAaABYABgAJAAIAAAAbABYABgAJAAIAAAAcABYABgAJAAIAAAAdABYABgAJAAIAAAAeABYABgAJAAIAAAAfABYABgAJAAIAAAAgABYABgAJAAIAAAAhABYABgAJAAIAAAAiABYABgAJAAIAAAAjABYABgAJAAIAAAAkABYABgAJAAIAAAAlABYABgAJAAIAAAAmABYABgAJAAIAAAAnABYABgAJAAIAAAAoABYABgAJAAIAAAAAABcABgAJAAIAAAABABcABgAJAAIAAAACABcABgAJAAIAAAADABcABgAJAAIAAAAEABcABgAJAAIAAAAFABcABgAJAAIAAAAGABcABgAJAAIAAAAHABcABgAJAAIAAAAIABcABgAJAAIAAAAJABcABgAJAAIAAAAKABcABgAJAAIAAAALABcABgAJAAIAAAAMABcABgAJAAIAAAANABcABgAJAAIAAAAOABcABgAJAAIAAAAPABcABgAJAAIAAAAQABcABgAJAAIAAAARABcABgAJAAIAAAASABcABgAJAAIAAAATABcABgAJAAIAAAAUABcABgAJAAIAAAAVABcABgAJAAIAAAAWABcABgAJAAIAAAAXABcABgAJAAIAAAAYABcABgAJAAIAAAAZABcABgAJAAIAAAAaABcABgAJAAIAAAAbABcABgAJAAIAAAAcABcABgAJAAIAAAAdABcABgAJAAIAAAAeABcABgAJAAIAAAAfABcABgAJAAIAAAAgABcABgAJAAIAAAAhABcABgAJAAIAAAAiABcABgAJAAIAAAAjABcABgAJAAIAAAAkABcABgAJAAIAAAAlABcABgAJAAIAAAAmABcABgAJAAIAAAAnABcABgAJAAIAAAAoABcABgAJAAIAAAAAABgABgAJAAIAAAACABgABgAJAAIAAAAEABgABgAJAAIAAAAGABgABgAJAAIAAAAIABgABgAJAAIAAAAKABgABgAJAAIAAAAMABgABgAJAAIAAAAOABgABgAJAAIAAAAQABgABgAJAAIAAAASABgABgAJAAIAAAAUABgABgAJAAIAAAAWABgABgAJAAIAAAAYABgABgAJAAIAAAAZABgABgAJAAIAAAAaABgABgAJAAIAAAAbABgABgAJAAIAAAAcABgABgAJAAIAAAAdABgABgAJAAIAAAAeABgABgAJAAIAAAAfABgABgAJAAIAAAAgABgABgAJAAIAAAAhABgABgAJAAIAAAAiABgABgAJAAIAAAAjABgABgAJAAIAAAAkABgABgAJAAIAAAAlABgABgAJAAIAAAAmABgABgAJAAIAAAAnABgABgAJAAIAAAAoABgABgAJAAIAAAABABkABgAJAAIAAAADABkABgAJAAIAAAAFABkABgAJAAIAAAAHABkABgAJAAIAAAAJABkABgAJAAIAAAALABkABgAJAAIAAAANABkABgAJAAIAAAAPABkABgAJAAIAAAARABkABgAJAAIAAAATABkABgAJAAIAAAAVABkABgAJAAIAAAAXABkABgAJAAIAAAAYABkABgAJAAIAAAAZABkABgAJAAIAAAAaABkABgAJAAIAAAAbABkABgAJAAIAAAAcABkABgAJAAIAAAAdABkABgAJAAIAAAAeABkABgAJAAIAAAAfABkABgAJAAIAAAAgABkABgAJAAIAAAAhABkABgAJAAIAAAAiABkABgAJAAIAAAAjABkABgAJAAIAAAAkABkABgAJAAIAAAAlABkABgAJAAIAAAAmABkABgAJAAIAAAAnABkABgAJAAIAAAAoABkABgAJAAIAAAA=")
+tile_set = ExtResource("4_lwxdh")
 
 [node name="InteractableRegion" parent="TestLevel" index="1" unique_id=1399024953 instance=ExtResource("4_r7hm1")]
 position = Vector2(2736, 2073)
@@ -25,6 +40,493 @@ position = Vector2(2923, 2077)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel/InteractableRegion2" index="0" unique_id=1918682467]
 shape = SubResource("CircleShape2D_r4td4")
+
+[node name="Entities" parent="TestLevel" index="3"]
+script = ExtResource("6_7a74n")
+iid = "2038b3b0-96d0-11f1-ad49-61f1c879beb8"
+definition = {
+"gridSize": 16.0,
+"identifier": "Entities",
+"intGridValues": [],
+"offset": Vector2i(0, 0),
+"parallax": Vector2(0, 0),
+"parallaxScaling": true,
+"type": "Entities",
+"uid": 9.0
+}
+entities = [{
+"definition": {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+},
+"fields": {
+"RespawnPoint": Vector2i(193, 135)
+},
+"identifier": "RespawnRegion",
+"iid": "b9645ce0-96d0-11f1-ad49-bb5d378aa7c7",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(2968, 1904),
+"size": Vector2i(480, 128),
+"smart_color": Color(0.3882353, 0.78039217, 0.3019608, 1)
+}, {
+"definition": {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+},
+"fields": {
+"RespawnPoint": Vector2i(172, 135)
+},
+"identifier": "RespawnRegion",
+"iid": "badc56e0-96d0-11f1-ad49-add31c187f9d",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(2024, 1552),
+"size": Vector2i(128, 128),
+"smart_color": Color(0.3882353, 0.78039217, 0.3019608, 1)
+}, {
+"definition": {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+},
+"fields": {
+"RespawnPoint": Vector2i(212, 135)
+},
+"identifier": "RespawnRegion",
+"iid": "c8cf81a0-96d0-11f1-ad49-bfa817455143",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(3096, 1520),
+"size": Vector2i(128, 128),
+"smart_color": Color(0.3882353, 0.78039217, 0.3019608, 1)
+}, {
+"definition": {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+},
+"fields": {
+"RespawnPoint": Vector2i(118, 135)
+},
+"identifier": "RespawnRegion",
+"iid": "eec06110-96d0-11f1-86a1-957d27a2050a",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(1912, 2008),
+"size": Vector2i(496, 128),
+"smart_color": Color(0.3882353, 0.78039217, 0.3019608, 1)
+}, {
+"definition": {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+},
+"fields": {
+"RespawnPoint": Vector2i(95, 135)
+},
+"identifier": "RespawnRegion",
+"iid": "a74df1f0-96d0-11f1-86a1-3d105826545f",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(1080, 1768),
+"size": Vector2i(128, 128),
+"smart_color": Color(0.3882353, 0.78039217, 0.3019608, 1)
+}, {
+"definition": {
+"color": Color(0.84313726, 0.4627451, 0.2627451, 1),
+"field_defs": {},
+"hollow": false,
+"identifier": "Entity",
+"renderMode": "Rectangle",
+"tags": [],
+"tile": null
+},
+"fields": {},
+"identifier": "Entity",
+"iid": "113f1c50-96d0-11f1-86a1-2d35c99ab90e",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(3528, 1856),
+"size": Vector2i(128, 128),
+"smart_color": Color(0.84313726, 0.4627451, 0.2627451, 1)
+}, {
+"definition": {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+},
+"fields": {
+"RespawnPoint": Vector2i(146, 135)
+},
+"identifier": "RespawnRegion",
+"iid": "40af27c0-bde0-11f1-ac3d-bdf61b93dded",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(2248, 2176),
+"size": Vector2i(128, 128),
+"smart_color": Color(0.3882353, 0.78039217, 0.3019608, 1)
+}, {
+"definition": {
+"color": Color(1, 1, 0.5254902, 1),
+"field_defs": {},
+"hollow": false,
+"identifier": "CutsceneTrigger",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+},
+"fields": {},
+"identifier": "CutsceneTrigger",
+"iid": "473a6390-bde0-11f1-ac3d-972fc57a4b61",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(1128, 2176),
+"size": Vector2i(128, 128),
+"smart_color": Color(1, 1, 0.5254902, 1)
+}, {
+"definition": {
+"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
+"field_defs": {},
+"hollow": false,
+"identifier": "Gate",
+"renderMode": "Rectangle",
+"tags": ["Gate"],
+"tile": null
+},
+"fields": {},
+"identifier": "Gate",
+"iid": "3bfb0bd0-bde0-11f1-b568-17a5529dece3",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(712, 2080),
+"size": Vector2i(128, 416),
+"smart_color": Color(0.74509805, 0.2901961, 0.18431373, 1)
+}, {
+"definition": {
+"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
+"field_defs": {},
+"hollow": false,
+"identifier": "Gate",
+"renderMode": "Rectangle",
+"tags": ["Gate"],
+"tile": null
+},
+"fields": {},
+"identifier": "Gate",
+"iid": "37673cc0-bde0-11f1-b568-65ba61565dda",
+"pivot": Vector2(0.5, 1),
+"position": Vector2i(472, 2096),
+"size": Vector2i(128, 880),
+"smart_color": Color(0.74509805, 0.2901961, 0.18431373, 1)
+}]
+
+[node name="RespawnRegion" parent="TestLevel/Entities" index="0" unique_id=1899124233]
+position = Vector2(2968, 1904)
+iid = "b9645ce0-96d0-11f1-ad49-bb5d378aa7c7"
+identifier = "RespawnRegion"
+fields = {
+"RespawnPoint": Vector2i(193, 135)
+}
+pivot = Vector2(0.5, 1)
+size = Vector2(480, 128)
+smart_color = Color(0.3882353, 0.78039217, 0.3019608, 1)
+definition = {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+}
+
+[node name="RespawnRegion2" parent="TestLevel/Entities" index="1" unique_id=1899124233]
+position = Vector2(2024, 1552)
+iid = "badc56e0-96d0-11f1-ad49-add31c187f9d"
+identifier = "RespawnRegion"
+fields = {
+"RespawnPoint": Vector2i(172, 135)
+}
+pivot = Vector2(0.5, 1)
+size = Vector2(128, 128)
+smart_color = Color(0.3882353, 0.78039217, 0.3019608, 1)
+definition = {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+}
+
+[node name="RespawnRegion3" parent="TestLevel/Entities" index="2" unique_id=1899124233]
+position = Vector2(3096, 1520)
+iid = "c8cf81a0-96d0-11f1-ad49-bfa817455143"
+identifier = "RespawnRegion"
+fields = {
+"RespawnPoint": Vector2i(212, 135)
+}
+pivot = Vector2(0.5, 1)
+size = Vector2(128, 128)
+smart_color = Color(0.3882353, 0.78039217, 0.3019608, 1)
+definition = {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+}
+
+[node name="RespawnRegion4" parent="TestLevel/Entities" index="3" unique_id=1899124233]
+position = Vector2(1912, 2008)
+iid = "eec06110-96d0-11f1-86a1-957d27a2050a"
+identifier = "RespawnRegion"
+fields = {
+"RespawnPoint": Vector2i(118, 135)
+}
+pivot = Vector2(0.5, 1)
+size = Vector2(496, 128)
+smart_color = Color(0.3882353, 0.78039217, 0.3019608, 1)
+definition = {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+}
+
+[node name="RespawnRegion5" parent="TestLevel/Entities" index="4" unique_id=1899124233]
+position = Vector2(1080, 1768)
+iid = "a74df1f0-96d0-11f1-86a1-3d105826545f"
+identifier = "RespawnRegion"
+fields = {
+"RespawnPoint": Vector2i(95, 135)
+}
+pivot = Vector2(0.5, 1)
+size = Vector2(128, 128)
+smart_color = Color(0.3882353, 0.78039217, 0.3019608, 1)
+definition = {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+}
+
+[node name="Entity" parent="TestLevel/Entities" index="5" unique_id=1899124233]
+position = Vector2(3528, 1856)
+iid = "113f1c50-96d0-11f1-86a1-2d35c99ab90e"
+identifier = "Entity"
+pivot = Vector2(0.5, 1)
+size = Vector2(128, 128)
+smart_color = Color(0.84313726, 0.4627451, 0.2627451, 1)
+definition = {
+"color": Color(0.84313726, 0.4627451, 0.2627451, 1),
+"field_defs": {},
+"hollow": false,
+"identifier": "Entity",
+"renderMode": "Rectangle",
+"tags": [],
+"tile": null
+}
+
+[node name="RespawnRegion6" parent="TestLevel/Entities" index="6" unique_id=1899124233]
+position = Vector2(2248, 2176)
+iid = "40af27c0-bde0-11f1-ac3d-bdf61b93dded"
+identifier = "RespawnRegion"
+fields = {
+"RespawnPoint": Vector2i(146, 135)
+}
+pivot = Vector2(0.5, 1)
+size = Vector2(128, 128)
+smart_color = Color(0.3882353, 0.78039217, 0.3019608, 1)
+definition = {
+"color": Color(0.3882353, 0.78039217, 0.3019608, 1),
+"field_defs": {
+13: {
+"identifier": "RespawnPoint",
+"type": "Point"
+}
+},
+"hollow": false,
+"identifier": "RespawnRegion",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+}
+
+[node name="CutsceneTrigger" parent="TestLevel/Entities" index="7" unique_id=1899124233]
+position = Vector2(1128, 2176)
+iid = "473a6390-bde0-11f1-ac3d-972fc57a4b61"
+identifier = "CutsceneTrigger"
+pivot = Vector2(0.5, 1)
+size = Vector2(128, 128)
+smart_color = Color(1, 1, 0.5254902, 1)
+definition = {
+"color": Color(1, 1, 0.5254902, 1),
+"field_defs": {},
+"hollow": false,
+"identifier": "CutsceneTrigger",
+"renderMode": "Rectangle",
+"tags": ["AreaTrigger"],
+"tile": null
+}
+
+[node name="Gate" parent="TestLevel/Entities" index="8" unique_id=1899124233]
+position = Vector2(712, 2080)
+iid = "3bfb0bd0-bde0-11f1-b568-17a5529dece3"
+identifier = "Gate"
+pivot = Vector2(0.5, 1)
+size = Vector2(128, 416)
+smart_color = Color(0.74509805, 0.2901961, 0.18431373, 1)
+definition = {
+"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
+"field_defs": {},
+"hollow": false,
+"identifier": "Gate",
+"renderMode": "Rectangle",
+"tags": ["Gate"],
+"tile": null
+}
+
+[node name="Gate2" parent="TestLevel/Entities" index="9" unique_id=1899124233]
+position = Vector2(472, 2096)
+iid = "37673cc0-bde0-11f1-b568-65ba61565dda"
+identifier = "Gate"
+pivot = Vector2(0.5, 1)
+size = Vector2(128, 880)
+smart_color = Color(0.74509805, 0.2901961, 0.18431373, 1)
+definition = {
+"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
+"field_defs": {},
+"hollow": false,
+"identifier": "Gate",
+"renderMode": "Rectangle",
+"tags": ["Gate"],
+"tile": null
+}
+
+[node name="@Area2D@29170" parent="TestLevel/Entities" index="10" unique_id=444725797]
+position = Vector2(2968, 1904)
+respawn_point = Vector2(193, 135)
+size = Vector2(480, 128)
+
+[node name="@Area2D@29171" parent="TestLevel/Entities" index="11" unique_id=444725797]
+position = Vector2(2024, 1552)
+respawn_point = Vector2(172, 135)
+size = Vector2(128, 128)
+
+[node name="@Area2D@29172" parent="TestLevel/Entities" index="12" unique_id=444725797]
+position = Vector2(3096, 1520)
+respawn_point = Vector2(212, 135)
+size = Vector2(128, 128)
+
+[node name="@Area2D@29173" parent="TestLevel/Entities" index="13" unique_id=444725797]
+position = Vector2(1912, 2008)
+respawn_point = Vector2(118, 135)
+size = Vector2(496, 128)
+
+[node name="@Area2D@29174" parent="TestLevel/Entities" index="14" unique_id=444725797]
+position = Vector2(1080, 1768)
+respawn_point = Vector2(95, 135)
+size = Vector2(128, 128)
+
+[node name="@Area2D@29175" parent="TestLevel/Entities" index="15" unique_id=444725797]
+position = Vector2(2248, 2176)
+respawn_point = Vector2(146, 135)
+size = Vector2(128, 128)
+
+[node name="@Area2D@29176" parent="TestLevel/Entities" index="16" unique_id=444725797]
+position = Vector2(1128, 2176)
+size = Vector2(128, 128)
+
+[node name="Gate collider" parent="TestLevel/Entities" index="17" unique_id=2065995413]
+position = Vector2(712, 2080)
+size = Vector2(128, 416)
+
+[node name="@StaticBody2D@29177" parent="TestLevel/Entities" index="18" unique_id=2065995413]
+position = Vector2(472, 2096)
+size = Vector2(128, 880)
 
 [node name="Player" parent="." index="1" unique_id=1162272003]
 position = Vector2(838, 1425)

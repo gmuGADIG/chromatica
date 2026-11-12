@@ -3012,18 +3012,16 @@ sources/0 = SubResource("TileSetAtlasSource_avbag")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0c816"]
 size = Vector2(128, 128)
 
-[node name="Gate" type="Node2D" unique_id=841946643]
-
-[node name="Gate collider" type="Area2D" parent="." unique_id=585691787]
+[node name="Gate collider" type="StaticBody2D" unique_id=2065995413]
 script = ExtResource("1_4444p")
 size = Vector2(128, 128)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Gate collider" unique_id=1484906136]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 6, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 7, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 8, 0, 0, 0, 5, 0, 4, 0, 0, 0)
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1484906136]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 6, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 7, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 8, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_12j5o")
 
-[node name="Sprite2D" type="Sprite2D" parent="Gate collider" unique_id=97682463]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=97682463]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate collider" unique_id=2072520981]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2072520981]
 position = Vector2(64, 64)
 shape = SubResource("RectangleShape2D_0c816")

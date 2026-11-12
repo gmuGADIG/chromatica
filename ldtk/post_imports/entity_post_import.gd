@@ -48,6 +48,7 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 					Util.add_unresolved_reference(new_area_trigger, "ref")
 		elif entity_has_tag(entity, "Gate"):
 			var identifier : String = entity.definition["identifier"]
+			print("yea")
 			var area_trigger_packed : PackedScene = (
 					gate_packed if identifier == "Gate"
 					else null
@@ -57,9 +58,12 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 				return null
 			## Create the gate
 			var new_gate : Gate = gate_packed.instantiate()
+			print("what")
 			entity_layer.add_child(new_gate)
 			new_gate.global_position = entity.position
 			new_gate.size = entity.size
+			
+			
 
 	return entity_layer
 
