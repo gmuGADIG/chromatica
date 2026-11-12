@@ -3,7 +3,7 @@ class_name PlayerHurtbox extends Area2D
 
 signal finished
 
-const MASK : int = 1<<3
+const MASK : int = 1<<3 | 1<<5
 
 @export var player : Player
 @export var collision_shape : CollisionShape2D

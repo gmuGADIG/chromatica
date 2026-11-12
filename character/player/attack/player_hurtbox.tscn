@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://cg00jpsjgo1fo" path="res://character/player/attack/player_hurtbox.gd" id="1_rcqpp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcqpp"]
-size = Vector2(140, 270)
+size = Vector2(256, 256)
 
 [node name="AttackArea" type="Area2D" unique_id=379676843 node_paths=PackedStringArray("collision_shape")]
 visible = false
 collision_layer = 0
-collision_mask = 40
+collision_mask = 8
 monitoring = false
 script = ExtResource("1_rcqpp")
 collision_shape = NodePath("CollisionShape2D")
