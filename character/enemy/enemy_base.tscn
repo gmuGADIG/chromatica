@@ -22,7 +22,7 @@ hitbox = NodePath("EnemyHitbox")
 health_bar = NodePath("HealthBar")
 colorable_component = NodePath("ColorableComponent")
 hurtbox = NodePath("EnemyHurtbox")
-knockback_force = 500.0
+knockback_force = 1000.0
 
 [node name="ColorableUI" parent="." unique_id=1819435004 node_paths=PackedStringArray("colorable_component") instance=ExtResource("2_th2e7")]
 offset_left = -118.01601

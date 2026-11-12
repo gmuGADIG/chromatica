@@ -12,8 +12,10 @@ class_name EnemyHurtbox
 signal hit_player
 
 var _cooldown : float = 0.0
-var _knockback_force : float
+var knockback_force : float
 
+func _ready() -> void:
+	find_parent("")
 
 func _physics_process(delta: float) -> void:
 	_cooldown = maxf(_cooldown - delta, 0.0)
@@ -44,8 +46,9 @@ func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
 
 	var pos = self.position
 	var dir_to_player_hitbox = pos.direction_to(player_hitbox.global_position)
+
 	# Type safety
-	var info := DamageInfo.new(amount, color, _knockback_force, dir_to_player_hitbox)
+	var info := DamageInfo.new(amount, color, knockback_force, dir_to_player_hitbox)
 	
 	# More method call type safety
 	player_hitbox.hit(info)
