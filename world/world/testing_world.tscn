@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="5_4r2ah"]
 [ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcs/ren/ren.tres" id="5_p5yow"]
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="6_p5yow"]
+[ext_resource type="PackedScene" uid="uid://c6ob4a5w3riaf" path="res://pickup/paint_bucket/paint_bucket.tscn" id="8_wnpta"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv1dp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnpta"]
 size = Vector2(164, 256)
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
@@ -17,7 +18,7 @@ size = Vector2(164, 256)
 monitoring = false
 
 [node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" index="0" unique_id=1886765406]
-shape = SubResource("RectangleShape2D_hv1dp")
+shape = SubResource("RectangleShape2D_wnpta")
 
 [node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
 position = Vector2(2824, 2720)
@@ -38,6 +39,10 @@ position = Vector2(1198, 2394)
 
 [node name="Testwindplant" parent="." index="6" unique_id=947602030 instance=ExtResource("4_ov5kx")]
 position = Vector2(4581, 2761)
+
+[node name="PaintBucket" parent="." index="7" unique_id=71374752 instance=ExtResource("8_wnpta")]
+position = Vector2(3384, 2739)
+scale = Vector2(0.5, 0.5)
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]
