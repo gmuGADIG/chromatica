@@ -13,7 +13,6 @@ signal hit_player
 
 var _cooldown : float = 0.0
 
-
 func _physics_process(delta: float) -> void:
 	_cooldown = maxf(_cooldown - delta, 0.0)
 	if _cooldown > 0.0:
@@ -38,10 +37,8 @@ static func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bo
 	# also show up, so only accept ones that belong to the Player.
 	if not (area.get_parent() is Player) or not area.has_method("hit"):
 		return false
+		
 	var info := DamageInfo.new(amount, color)
-	# Set explicitly as well: DamageInfo._init currently shadows its own fields
-	# with local vars, so the constructor arguments never get stored.
-	info.damage = amount
-	info.attack_color = color
+	
 	area.call("hit", info)
 	return true
