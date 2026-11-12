@@ -2,6 +2,8 @@ extends Node
 
 static var DEBUG_UNLOCK_ALL : bool = false
 
+signal unlocked_item(item : Unlockable)
+
 # enum that contains all possible unlocks
 # will need to be updated will the unlocks in the game
 enum Unlockable {
@@ -32,6 +34,7 @@ signal collected_bead(bead : Bead.BeadType, new_amount : int)
 # function to unlock an unlockable by setting its boolean to true
 func unlock(unlock : Unlockable) -> void:
 	unlocked_items.set(unlock, true)
+	unlocked_item.emit(unlock)
 
 # function to check if the player has someting unlocked
 func is_unlocked(unlock : Unlockable) -> bool:

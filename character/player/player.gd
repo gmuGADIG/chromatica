@@ -12,3 +12,7 @@ enum State{
 }
 
 var state : State = State.NONE
+
+
+func _ready() -> void:
+	pass
