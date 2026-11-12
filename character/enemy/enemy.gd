@@ -42,6 +42,8 @@ signal became_friendly
 
 @export var platform_ray : RayCast2D
 
+@export var knockback_force : Vector2
+
 ## ----------------------------------------------------
 ## Movement group has migrated to @enemy_behavior.gd
 ## ----------------------------------------------------
