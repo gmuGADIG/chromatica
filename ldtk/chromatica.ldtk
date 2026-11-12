@@ -11,7 +11,7 @@
 	"iid": "0d8dd960-96d0-11f1-8ae1-b1521fc80acf",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 4000,
+	"nextUid": 4001,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": null,
@@ -1549,14 +1549,14 @@
 		}
 	], "tilesets": [
 		{
-			"__cWid": 12,
-			"__cHei": 4,
-			"identifier": "Temp_tiles",
+			"__cWid": 10,
+			"__cHei": 6,
+			"identifier": "Walls_tilemap",
 			"uid": 6,
-			"relPath": "tilesets/temp_tiles.png",
+			"relPath": "tilesets/walls_tilemap.png",
 			"embedAtlas": null,
-			"pxWid": 1536,
-			"pxHei": 512,
+			"pxWid": 1280,
+			"pxHei": 768,
 			"tileGridSize": 128,
 			"spacing": 0,
 			"padding": 0,
@@ -1566,8 +1566,8 @@
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
-				"opaqueTiles": "000000000000000000000000000000000100000000000000",
-				"averageColors": "d777e787f777e676f868f777f777f878e787f777f777e676d878e878f777e767e878f878f878e767e878f8780000f868c868d878e777d767e878f878f868e767f878f878f878e767c777d787e777d676f777e877e867f777d878e868f868d767"
+				"opaqueTiles": "000000000001001010010000000000000000000001001000000000000000",
+				"averageColors": "e732f722e722f711f711e961f961e961f840f840f712f711f712f712f712f840f840f840f840f840f611f611f61100000000f740f740f74000000000e237f237e237f137f13700000000000000000000f137f137f137f137f13700000000000000000000f136f136f1360000000000000000000000000000"
 			}
 		},
 		{
@@ -1789,10 +1789,10 @@
 				"iid": "e1e1cf70-bde0-11f1-a54d-fb7c9bac9ed3",
 				"uid": 18,
 				"worldX": 0,
-				"worldY": 0,
+				"worldY": -3584,
 				"worldDepth": 0,
-				"pxWid": 256,
-				"pxHei": 256,
+				"pxWid": 9216,
+				"pxHei": 5376,
 				"__bgColor": "#696A79",
 				"bgColor": null,
 				"useAutoIdentifier": true,
@@ -1805,7 +1805,30 @@
 				"externalRelPath": "chromatica/Level_1.ldtkl",
 				"fieldInstances": [],
 				"layerInstances": null,
-				"__neighbours": []
+				"__neighbours": [{ "levelIid": "7df0ca60-bde0-11f1-98fd-d9d98f62500a", "dir": "s" }]
+			},
+			{
+				"identifier": "Level_9",
+				"iid": "7df0ca60-bde0-11f1-98fd-d9d98f62500a",
+				"uid": 4000,
+				"worldX": 2944,
+				"worldY": 1792,
+				"worldDepth": 0,
+				"pxWid": 3072,
+				"pxHei": 1792,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": true,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "chromatica/Level_9.ldtkl",
+				"fieldInstances": [],
+				"layerInstances": null,
+				"__neighbours": [{ "levelIid": "e1e1cf70-bde0-11f1-a54d-fb7c9bac9ed3", "dir": "n" }]
 			}
 		] },
 		{ "iid": "ea1878b0-bde0-11f1-a54d-cda11acc4979", "identifier": "YellowDomain", "defaultLevelWidth": 256, "defaultLevelHeight": 256, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
