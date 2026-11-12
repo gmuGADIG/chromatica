@@ -201,8 +201,7 @@ position = Vector2(-2, -119.5)
 shape = SubResource("RectangleShape2D_q3pmv")
 debug_color = Color(0.5186686, 0.54240805, 0.5379915, 0.41960785)
 
-[node name="InvulnComponent" parent="." unique_id=1152976110 node_paths=PackedStringArray("sprite") instance=ExtResource("16_fkbv7")]
-sprite = NodePath("../Sprite2D")
+[node name="InvulnComponent" parent="." unique_id=1152976110 instance=ExtResource("16_fkbv7")]
 
 [node name="RangedAttack" type="Node2D" parent="." unique_id=1394425795 node_paths=PackedStringArray("player", "player_movement", "cooldown_timer")]
 position = Vector2(0, -120)
