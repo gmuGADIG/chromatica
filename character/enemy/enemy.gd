@@ -75,7 +75,7 @@ func _ready() -> void:
 		printerr("No hurtbox!")
 	
 	health_component.health_depleted.connect(become_friendly)
-	hurtbox._knockback_force = knockback_force
+	hurtbox.knockback_force = knockback_force
 
 
 ## World position of the point enemies aim at / check line of sight to.
