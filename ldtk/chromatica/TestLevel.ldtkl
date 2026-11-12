@@ -197,6 +197,38 @@
 					"fieldInstances": [],
 					"__worldX": 1128,
 					"__worldY": 2176
+				},
+				{
+					"__identifier": "Gate",
+					"__grid": [44,129],
+					"__pivot": [0.5,1],
+					"__tags": ["Gate"],
+					"__tile": null,
+					"__smartColor": "#BE4A2F",
+					"iid": "3bfb0bd0-bde0-11f1-b568-17a5529dece3",
+					"width": 128,
+					"height": 416,
+					"defUid": 16,
+					"px": [712,2080],
+					"fieldInstances": [],
+					"__worldX": 712,
+					"__worldY": 2080
+				},
+				{
+					"__identifier": "Gate",
+					"__grid": [29,130],
+					"__pivot": [0.5,1],
+					"__tags": ["Gate"],
+					"__tile": null,
+					"__smartColor": "#BE4A2F",
+					"iid": "37673cc0-bde0-11f1-b568-65ba61565dda",
+					"width": 128,
+					"height": 880,
+					"defUid": 16,
+					"px": [472,2096],
+					"fieldInstances": [],
+					"__worldX": 472,
+					"__worldY": 2096
 				}
 			]
 		},
@@ -588,5 +620,5 @@
 			"entityInstances": []
 		}
 	],
-	"__neighbours": []
+	"__neighbours": [{ "levelIid": "394a8610-96d0-11f1-93be-9b3cf3013799", "dir": "e" }]
 }
