@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c6ob4a5w3riaf"]
+
+[ext_resource type="Script" uid="uid://cpuogrmg0ld5g" path="res://pickup/paint_bucket/paint_bucket.gd" id="1_a7h4q"]
+[ext_resource type="Texture2D" uid="uid://b6w8gu38fsne1" path="res://temp/temp_art/egg.png" id="1_paqtu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0bka"]
+size = Vector2(441, 319)
+
+[node name="PaintBucket" type="Area2D" unique_id=71374752 node_paths=PackedStringArray("item_area")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_a7h4q")
+item_area = NodePath(".")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1893810353]
+position = Vector2(-4.5, -3.5)
+shape = SubResource("RectangleShape2D_d0bka")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1771021198]
+texture = ExtResource("1_paqtu")

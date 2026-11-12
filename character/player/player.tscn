@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://c6van22sdy5fy" path="res://character/invuln_component.tscn" id="16_fkbv7"]
 [ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
 [ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
+[ext_resource type="Script" uid="uid://qlt4frhdub1y" path="res://character/player/paint_bucket_manager.gd" id="24_mkl32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nphxe"]
 size = Vector2(164, 256)
@@ -190,10 +191,11 @@ shape = SubResource("RectangleShape2D_oul6g")
 [node name="Paint Guard" parent="." unique_id=933931754 node_paths=PackedStringArray("invuln_component") instance=ExtResource("15_fkbv7")]
 invuln_component = NodePath("../InvulnComponent")
 
-[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375]
+[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375 node_paths=PackedStringArray("paint_bucket_manager")]
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("10_qh58e")
+paint_bucket_manager = NodePath("../PaintBuckets")
 metadata/_custom_type_script = "uid://qsjyr53tj0c1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupRegion" unique_id=1466356474]
@@ -222,5 +224,11 @@ player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
 stationary_horizontal_offset = null
 camera_speed_vertical = null
+
+[node name="PaintBuckets" type="Node" parent="." unique_id=1238120023 node_paths=PackedStringArray("player_health")]
+script = ExtResource("24_mkl32")
+starting_max_paint_buckets = 3
+bucket_heal_amount = 1
+player_health = NodePath("../PlayerHealthComponent")
 
 [editable path="PlayerHitbox"]
