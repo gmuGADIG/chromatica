@@ -1,4 +1,4 @@
-class_name PaintBucketManager
+class_name PaintBucketStorage
 extends Node
 
 @export var starting_max_paint_buckets : int

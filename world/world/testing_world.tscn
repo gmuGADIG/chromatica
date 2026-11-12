@@ -40,9 +40,8 @@ position = Vector2(1198, 2394)
 [node name="Testwindplant" parent="." index="6" unique_id=947602030 instance=ExtResource("4_ov5kx")]
 position = Vector2(4581, 2761)
 
-[node name="PaintBucket" parent="." index="7" unique_id=71374752 instance=ExtResource("8_wnpta")]
-position = Vector2(3384, 2739)
-scale = Vector2(0.5, 0.5)
+[node name="Pickup" parent="." index="7" unique_id=1498291215 instance=ExtResource("8_wnpta")]
+position = Vector2(3392, 2792)
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]

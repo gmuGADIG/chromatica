@@ -23,9 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://c6van22sdy5fy" path="res://character/invuln_component.tscn" id="16_fkbv7"]
 [ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
 [ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
-[ext_resource type="Script" uid="uid://qlt4frhdub1y" path="res://character/player/paint_bucket_manager.gd" id="24_mkl32"]
+[ext_resource type="Script" uid="uid://qlt4frhdub1y" path="res://character/player/paint_bucket_storage.gd" id="24_mkl32"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nphxe"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkl32"]
 size = Vector2(164, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -108,7 +108,7 @@ metadata/_custom_type_script = "uid://cg00jpsjgo1fo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=1886765406]
 position = Vector2(110, 0)
-shape = SubResource("RectangleShape2D_nphxe")
+shape = SubResource("RectangleShape2D_mkl32")
 
 [node name="Sprite2D" type="Sprite2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=643035562]
 position = Vector2(112, -8)
@@ -191,11 +191,11 @@ shape = SubResource("RectangleShape2D_oul6g")
 [node name="Paint Guard" parent="." unique_id=933931754 node_paths=PackedStringArray("invuln_component") instance=ExtResource("15_fkbv7")]
 invuln_component = NodePath("../InvulnComponent")
 
-[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375 node_paths=PackedStringArray("paint_bucket_manager")]
+[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375 node_paths=PackedStringArray("paint_bucket_storage")]
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("10_qh58e")
-paint_bucket_manager = NodePath("../PaintBuckets")
+paint_bucket_storage = NodePath("../PaintBuckets")
 metadata/_custom_type_script = "uid://qsjyr53tj0c1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupRegion" unique_id=1466356474]
