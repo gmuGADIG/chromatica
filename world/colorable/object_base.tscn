@@ -28,6 +28,8 @@ scale = Vector2(223, 265.00003)
 texture = SubResource("PlaceholderTexture2D_5flen")
 
 [node name="ObjectHitbox" type="Area2D" parent="." unique_id=1286574593 node_paths=PackedStringArray("colorable_component")]
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("3_a3tb2")
 colorable_component = NodePath("../ColorableComponent")
 metadata/_custom_type_script = "uid://bwaavhkj00svs"
