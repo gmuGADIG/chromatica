@@ -32,15 +32,17 @@ func disable() -> void:
 
 
 ## Damages the player if [param area] is the player's hitbox. Returns true if it was.
-static func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
+func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
 	# Areas on the same layer as the PlayerHitbox (other enemies' hitboxes, etc.)
 	# also show up, so only accept ones that belong to the Player.
 	if not (area is PlayerHitbox):
 		return false
-		
-	# Type safety
+	
 	var player_hitbox = area as PlayerHitbox
-		
+
+	var pos = self.position
+	var dir_to_player_hitbox = pos.direction_to(player_hitbox.global_position)
+	# Type safety
 	var info := DamageInfo.new(amount, color)
 	
 	# More method call type safety
