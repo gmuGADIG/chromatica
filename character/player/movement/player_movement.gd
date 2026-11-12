@@ -1,5 +1,18 @@
 extends Node
 class_name PlayerMovement
+
+enum MovementState{
+	IDLE,
+	JUMPING,
+	FALLING,
+	LANDING,
+	WALKING
+}
+
+signal on_jump
+signal on_falling
+signal on_land
+
 ## Player reference and Input Reference
 @export var player: CharacterBody2D
 
@@ -48,6 +61,20 @@ class_name PlayerMovement
 ## How fast a player decreases there falling velocity when over max speed
 @export var fall_dampening: float = 11000.0
 
+var movement_state : MovementState = MovementState.IDLE:
+	set(val):
+		if val == movement_state:
+			return
+		movement_state = val
+		match movement_state:
+			MovementState.FALLING:
+				on_falling.emit()
+			MovementState.JUMPING:
+				on_jump.emit()
+			MovementState.LANDING:
+				on_land.emit()
+				movement_state = MovementState.IDLE
+				
 var can_early_jump_release : bool = false
 var coyote_eligible : bool = false
 var last_horizontal_direction : float = 1.0
@@ -85,8 +112,18 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	var not_in_dialogue = not Dialogue.is_playing()
 	
-	if not player.is_on_floor():
+	
+	if player.is_on_floor():
+		var air_state : bool = movement_state == MovementState.JUMPING or movement_state == MovementState.FALLING
+		var not_ascending : bool = player.velocity.y >= 0
+		if air_state and not_ascending:
+			movement_state = MovementState.LANDING
+	else:
 		apply_gravity(delta)
+		if player.velocity.y > 0:
+			movement_state = MovementState.FALLING
+	
+		
 		
 	if not no_special_player_state():
 		coyote_eligible = false
@@ -172,6 +209,7 @@ func can_walljump() -> bool:
 func jump() -> bool:
 	if not can_jump():
 		return false
+	movement_state = MovementState.JUMPING
 	player.velocity.y = - jump_velocity
 	can_early_jump_release = true
 	coyote_eligible = false

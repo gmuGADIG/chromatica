@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcs/ren/ren.tres" id="5_p5yow"]
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="6_p5yow"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnpta"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv1dp"]
 size = Vector2(164, 256)
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
@@ -17,9 +17,9 @@ size = Vector2(164, 256)
 monitoring = false
 
 [node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" index="0" unique_id=1886765406]
-shape = SubResource("RectangleShape2D_wnpta")
+shape = SubResource("RectangleShape2D_hv1dp")
 
-[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(522952111) index="1" unique_id=2066635479 instance=ExtResource("2_hv1dp")]
+[node name="PauseMenu2" parent="CanvasLayer" parent_id_path=PackedInt32Array(522952111) index="1" unique_id=2066635479 instance=ExtResource("2_hv1dp")]
 
 [node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
 position = Vector2(2824, 2720)

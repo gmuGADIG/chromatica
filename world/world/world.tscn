@@ -8,7 +8,7 @@
 [ext_resource type="Shader" uid="uid://b5q00radwkc3w" path="res://ui/screen_vignette/vignette.gdshader" id="6_4e2ep"]
 [ext_resource type="Script" uid="uid://btvuer81245c0" path="res://ui/screen_vignette/vignette.gd" id="6_j28bi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j28bi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e2ep"]
 size = Vector2(164, 256)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4e2ep"]
@@ -28,7 +28,7 @@ world_cache = ExtResource("2_1tbfg")
 position = Vector2(2038, 1585)
 
 [node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" parent_id_path=PackedInt32Array(1162272003, 2122688073) index="0" unique_id=1886765406]
-shape = SubResource("RectangleShape2D_j28bi")
+shape = SubResource("RectangleShape2D_4e2ep")
 
 [node name="CollisionShape2D" parent="Player/InteractRegion" parent_id_path=PackedInt32Array(1162272003, 1706310371) index="0" unique_id=2042581431]
 position = Vector2(-4, -120)
