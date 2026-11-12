@@ -221,3 +221,8 @@ func no_special_player_state() -> bool:
 			return true
 		_:
 			return false
+
+
+func _on_player_hitbox_player_hit(knockback: Vector2) -> void:
+	print(knockback, " KNOCKBACK")
+	player.velocity -= knockback
