@@ -1,3 +1,28 @@
 [gd_scene format=3 uid="uid://nkhkrmdh073y"]
 
-[node name="ObjectHitbox" type="Node2D" unique_id=528316572]
+[ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="1_t6743"]
+[ext_resource type="PackedScene" uid="uid://bvryli3jm4n8u" path="res://ui/colorable/colorable_ui.tscn" id="2_jdfui"]
+[ext_resource type="Script" uid="uid://bwaavhkj00svs" path="res://character/paintable hitbox/paintable_object_hitbox.gd" id="3_a3tb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6m31g"]
+
+[node name="ObjectBase" type="Node2D" unique_id=528316572]
+script = ExtResource("1_t6743")
+
+[node name="ColorableUI" parent="." unique_id=1819435004 instance=ExtResource("2_jdfui")]
+offset_left = -118.01601
+offset_right = 101.98399
+offset_bottom = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1737062087]
+
+[node name="ObjectHitbox" type="Area2D" parent="." unique_id=1286574593]
+script = ExtResource("3_a3tb2")
+metadata/_custom_type_script = "uid://bwaavhkj00svs"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectHitbox" unique_id=929686185]
+shape = SubResource("RectangleShape2D_6m31g")
+
+[node name="ColorableComponent" type="Node" parent="." unique_id=572556418]
+script = ExtResource("1_t6743")
+metadata/_custom_type_script = "uid://diph7secwmb53"

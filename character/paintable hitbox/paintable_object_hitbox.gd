@@ -11,3 +11,7 @@ func _ready() -> void:
 func color_object() -> void:
 	get_parent().modulate = colorable_component.colors[-1]
 	pass
+
+func hit(damage_info: DamageInfo) -> void:
+	# apply the color type to the object.
+	colorable_component.apply(damage_info.attack_color)
