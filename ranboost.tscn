@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bln40v3ltt5ew"]
+
+[ext_resource type="Shader" uid="uid://bqvpky2pdi0a4" path="res://rainbow_boost.gdshader" id="1_lgaom"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7txkx"]
+shader = ExtResource("1_lgaom")
+shader_parameter/speedScale = 10.0
+shader_parameter/clipPosition = 0.2
+
+[node name="Node2D" type="ColorRect" unique_id=1789003450]
+material = SubResource("ShaderMaterial_7txkx")
+custom_minimum_size = Vector2(100, 100)
+offset_right = 100.0
+offset_bottom = 50.0
