@@ -23,12 +23,12 @@
 [ext_resource type="PackedScene" uid="uid://c6van22sdy5fy" path="res://character/invuln_component.tscn" id="16_fkbv7"]
 [ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
 [ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
-[ext_resource type="Script" uid="uid://qlt4frhdub1y" path="res://character/player/paint_bucket_storage.gd" id="24_mkl32"]
-[ext_resource type="Shader" uid="uid://bqvpky2pdi0a4" path="res://rainbow_boost.gdshader" id="25_ygsv2"]
+[ext_resource type="Script" uid="uid://qlt4frhdub1y" path="res://character/player/heal/paint_bucket_storage.gd" id="24_mkl32"]
+[ext_resource type="Shader" uid="uid://bqvpky2pdi0a4" path="res://character/player/heal/rainbow_boost.gdshader" id="25_ygsv2"]
 [ext_resource type="Shader" uid="uid://b5q00radwkc3w" path="res://ui/screen_vignette/vignette.gdshader" id="26_dxmtl"]
 [ext_resource type="Script" uid="uid://btvuer81245c0" path="res://ui/screen_vignette/vignette.gd" id="27_4u7af"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkl32"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxmtl"]
 size = Vector2(164, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -145,7 +145,7 @@ metadata/_custom_type_script = "uid://cg00jpsjgo1fo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=1886765406]
 position = Vector2(110, 0)
-shape = SubResource("RectangleShape2D_mkl32")
+shape = SubResource("RectangleShape2D_dxmtl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=643035562]
 position = Vector2(112, -8)
@@ -288,7 +288,7 @@ texture = SubResource("GradientTexture2D_ygsv2")
 one_shot = true
 explosiveness = 0.9
 emission_shape = 3
-emission_rect_extents = Vector2(30, 128)
+emission_rect_extents = Vector2(64, 128)
 direction = Vector2(0, -1)
 spread = 0.0
 gravity = Vector2(0, -30)

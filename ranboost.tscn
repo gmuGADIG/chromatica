@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bln40v3ltt5ew"]
 
-[ext_resource type="Shader" uid="uid://bqvpky2pdi0a4" path="res://rainbow_boost.gdshader" id="1_lgaom"]
+[ext_resource type="Shader" uid="uid://bqvpky2pdi0a4" path="res://character/player/heal/rainbow_boost.gdshader" id="1_lgaom"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7txkx"]
 shader = ExtResource("1_lgaom")
