@@ -23,8 +23,12 @@
 [ext_resource type="PackedScene" uid="uid://c6van22sdy5fy" path="res://character/invuln_component.tscn" id="16_fkbv7"]
 [ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
 [ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
+[ext_resource type="Script" uid="uid://qlt4frhdub1y" path="res://character/player/heal/paint_bucket_storage.gd" id="24_mkl32"]
+[ext_resource type="Shader" uid="uid://bqvpky2pdi0a4" path="res://character/player/heal/rainbow_boost.gdshader" id="25_ygsv2"]
+[ext_resource type="Shader" uid="uid://b5q00radwkc3w" path="res://ui/screen_vignette/vignette.gdshader" id="26_dxmtl"]
+[ext_resource type="Script" uid="uid://btvuer81245c0" path="res://ui/screen_vignette/vignette.gd" id="27_4u7af"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nphxe"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxmtl"]
 size = Vector2(164, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -35,6 +39,40 @@ size = Vector2(133, 261)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3pmv"]
 size = Vector2(130, 259)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ygsv2"]
+shader = ExtResource("25_ygsv2")
+shader_parameter/time = 0.0
+shader_parameter/seed = 0.0
+shader_parameter/heal_duration = 0.0
+shader_parameter/speedScale = 3.0
+shader_parameter/clipPosition = 0.2
+
+[sub_resource type="Gradient" id="Gradient_ygsv2"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ygsv2"]
+gradient = SubResource("Gradient_ygsv2")
+width = 16
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_ecpu6"]
+offsets = PackedFloat32Array(0, 0.15522388, 0.5641791)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_dxmtl"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.6, 0, 1, 0.79999995, 1, 0, 1, 0.19999993, 1, 0, 1, 0, 1, 0.4000001, 1, 0, 1, 1, 1, 0, 0.39999986, 1, 1, 0.19999981, 0, 1, 1, 0.8000002, 0, 1, 1, 1, 0, 0.6000004, 1, 1, 0, 0.016666412, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gte1"]
+shader = ExtResource("26_dxmtl")
+shader_parameter/min_inner_radius = 0.7
+shader_parameter/inner_radius_bounce = 0.2
+shader_parameter/min_outer_radius = 1.3
+shader_parameter/outer_radius_bounce = 0.1
+shader_parameter/bounce_frequency = 1.2
 
 [node name="Player" type="CharacterBody2D" unique_id=1162272003 groups=["player"]]
 script = ExtResource("1_oul6g")
@@ -107,7 +145,7 @@ metadata/_custom_type_script = "uid://cg00jpsjgo1fo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=1886765406]
 position = Vector2(110, 0)
-shape = SubResource("RectangleShape2D_nphxe")
+shape = SubResource("RectangleShape2D_dxmtl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=643035562]
 position = Vector2(112, -8)
@@ -190,10 +228,11 @@ shape = SubResource("RectangleShape2D_oul6g")
 [node name="Paint Guard" parent="." unique_id=933931754 node_paths=PackedStringArray("invuln_component") instance=ExtResource("15_fkbv7")]
 invuln_component = NodePath("../InvulnComponent")
 
-[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375]
+[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375 node_paths=PackedStringArray("paint_bucket_storage")]
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("10_qh58e")
+paint_bucket_storage = NodePath("../PaintBucketStorage")
 metadata/_custom_type_script = "uid://qsjyr53tj0c1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupRegion" unique_id=1466356474]
@@ -222,5 +261,57 @@ player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
 stationary_horizontal_offset = null
 camera_speed_vertical = null
+
+[node name="PaintBucketStorage" type="Node2D" parent="." unique_id=1269419462 node_paths=PackedStringArray("player", "player_health", "heal_timer", "heal_shader", "heal_particles")]
+position = Vector2(0, -128)
+script = ExtResource("24_mkl32")
+player = NodePath("..")
+player_health = NodePath("../PlayerHealthComponent")
+heal_timer = NodePath("HealingTimer")
+heal_shader = NodePath("HealingShader")
+heal_particles = NodePath("CPUParticles2D")
+metadata/_custom_type_script = "uid://qlt4frhdub1y"
+
+[node name="HealingShader" type="Sprite2D" parent="PaintBucketStorage" unique_id=39700630]
+z_index = -1
+material = SubResource("ShaderMaterial_ygsv2")
+scale = Vector2(3, 3)
+texture = ExtResource("10_aph6w")
+
+[node name="HealingTimer" type="Timer" parent="PaintBucketStorage" unique_id=1690092584]
+one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="PaintBucketStorage" unique_id=2129027945]
+emitting = false
+amount = 20
+texture = SubResource("GradientTexture2D_ygsv2")
+one_shot = true
+explosiveness = 0.9
+emission_shape = 3
+emission_rect_extents = Vector2(64, 128)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -30)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+tangential_accel_min = -50.0
+tangential_accel_max = 50.0
+color_ramp = SubResource("Gradient_ecpu6")
+color_initial_ramp = SubResource("Gradient_dxmtl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=989477276]
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer" unique_id=750229576 node_paths=PackedStringArray("player_health")]
+visible = false
+material = SubResource("ShaderMaterial_7gte1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("27_4u7af")
+threshold_percentage = 34.0
+player_health = NodePath("../../PlayerHealthComponent")
+metadata/_custom_type_script = "uid://btvuer81245c0"
 
 [editable path="PlayerHitbox"]

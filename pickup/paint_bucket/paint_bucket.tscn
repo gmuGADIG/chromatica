@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c6ob4a5w3riaf"]
+
+[ext_resource type="PackedScene" uid="uid://d2xedqxv2bd6p" path="res://pickup/pickup.tscn" id="1_a7h4q"]
+[ext_resource type="Texture2D" uid="uid://b6w8gu38fsne1" path="res://temp/temp_art/egg.png" id="1_paqtu"]
+[ext_resource type="Script" uid="uid://cpuogrmg0ld5g" path="res://pickup/paint_bucket/paint_bucket.gd" id="2_2kl6s"]
+
+[node name="Pickup" unique_id=1498291215 instance=ExtResource("1_a7h4q")]
+script = ExtResource("2_2kl6s")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1968873927]
+texture = ExtResource("1_paqtu")
