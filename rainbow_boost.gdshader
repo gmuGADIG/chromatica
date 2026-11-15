@@ -45,15 +45,23 @@ vec3 hue_to_rgb(float hue){
 	);
 }
 
+vec2 to_polar(vec2 pos){
+	float theta = round(64.0*atan(pos.y, pos.x));
+	float dist = sqrt(pow(pos.x, 2) + pow(pos.y, 2));
+	return vec2(theta,dist);
+}
+
 void fragment() {
 	COLOR.a = 0.0;
 	
-	vec2 pos = UV - vec2(0.5,1.0);
-	float theta = round(64.0 * atan(pos.y, pos.x));
-	float dist = sqrt(pow(pos.x, 2) + pow(pos.y, 2));
+	vec2 pos = UV - vec2(0.5,0.5);
+	vec2 polar = to_polar(pos);
+	float theta = polar.x;
+	float dist = polar.y;
 	
 	float distValue = round(dist * 4.0 + TIME * speedScale + 8.0 * random(vec2(theta)));
-	if (dist > clipPosition + random(vec2(theta)) * 0.3 && random(vec2(theta, distValue)) < 0.02) {
+	float f = random(vec2(theta, distValue));
+	if (f < 0.02) {
 		COLOR.a = 1.0;
 		COLOR.rgb = hue_to_rgb(random(vec2(theta,0.0)) * 360.0);
 	}
