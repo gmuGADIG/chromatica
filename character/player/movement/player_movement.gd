@@ -1,7 +1,7 @@
 extends Node
 class_name PlayerMovement
 ## Player reference and Input Reference
-@export var player: CharacterBody2D
+@export var player: Player
 
 # Player Movmement variables
 @export_group("Horizontal Movement")
@@ -64,7 +64,7 @@ var last_horizontal_direction : float = 1.0
 
 func _input(event: InputEvent) -> void:
 
-	if not no_special_player_state():
+	if not player.in_state([ Player.State.NONE, Player.State.BRUSH_SWING ]):
 		return
 
 	##Jump Inputs
@@ -88,46 +88,54 @@ func _input(event: InputEvent) -> void:
 
 	
 
-func _physics_process(delta: float) -> void:	
-	var not_in_dialogue = not Dialogue.is_playing()
+func _physics_process(delta: float) -> void:
+	var lock_input : bool = (
+			not player.in_state([
+					Player.State.NONE,
+					Player.State.BRUSH_SWING,
+			])
+			or Dialogue.is_playing()
+	)
 	
 	if not player.is_on_floor():
 		apply_gravity(delta)
-		
-	if not no_special_player_state():
-		coyote_jump_eligible = false
-		return
+	
 	
 	var input_value := Input.get_axis("move_left", "move_right")
-	var actual_movement: float = input_value if not_in_dialogue else 0.
+	var actual_movement: float = 0. if lock_input else input_value
 	
 	walk(actual_movement, delta)
 
 	##Jump Buffering
-	if not jump_buffer_timer.is_stopped() and can_jump() and not_in_dialogue:
+	if not jump_buffer_timer.is_stopped() and can_jump() and not lock_input:
 		jump()
 		jump_buffer_timer.stop()
 	
 	##Walljump Buffering
-	if not jump_buffer_timer.is_stopped() and can_walljump() and not_in_dialogue:
+	if not jump_buffer_timer.is_stopped() and can_walljump() and not lock_input:
 		walljump()
 		jump_buffer_timer.stop()
 	
 	##Start Coyote Time
-	if coyote_jump_conditions_met() and not_in_dialogue:
+	if coyote_jump_conditions_met() and not lock_input:
 		coyote_jump_eligible = false
 		coyote_jump_timer.start(coyote_jump_time)
 		
-	if coyote_walljump_conditions_met() and not_in_dialogue:
+	if coyote_walljump_conditions_met() and not lock_input:
 		coyote_walljump_eligible = false;
 		coyote_walljump_timer.start(coyote_walljump_time)
-
-	player.move_and_slide()
 	
-	if player.is_on_floor() and not_in_dialogue:
+	if player.in_state([
+			Player.State.NONE,
+			Player.State.BRUSH_SWING,
+			Player.State.HEALING
+	]):
+		player.move_and_slide()
+	
+	if player.is_on_floor() and not lock_input:
 		coyote_jump_eligible = true
 		
-	if player.is_on_wall_only() and not_in_dialogue:
+	if player.is_on_wall_only() and not lock_input:
 		coyote_walljump_eligible = true
 
 func air_check_passes() -> bool:
@@ -214,10 +222,3 @@ func early_release() -> void:
 	if can_early_jump_release and player.velocity.y < 0:
 		player.velocity.y *= early_jump_release_multiplier
 		can_early_jump_release = false
-
-func no_special_player_state() -> bool:
-	match player.state:
-		Player.State.NONE, Player.State.BRUSH_SWING:
-			return true
-		_:
-			return false

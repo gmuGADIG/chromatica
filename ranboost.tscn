@@ -4,7 +4,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7txkx"]
 shader = ExtResource("1_lgaom")
-shader_parameter/speedScale = 10.0
+shader_parameter/time = 0.0
+shader_parameter/seed = 0.0
+shader_parameter/heal_duration = 0.0
+shader_parameter/speedScale = 3.0
 shader_parameter/clipPosition = 0.2
 
 [node name="Node2D" type="ColorRect" unique_id=1789003450]

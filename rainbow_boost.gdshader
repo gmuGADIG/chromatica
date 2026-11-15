@@ -1,6 +1,11 @@
 shader_type canvas_item;
 
-uniform float speedScale = 10.0;
+//Set via script
+uniform float time;
+uniform float seed;
+uniform float heal_duration;
+
+uniform float speedScale = 3.0;
 uniform float clipPosition = 0.2;
 
 float random (vec2 uv) {
@@ -46,8 +51,9 @@ vec3 hue_to_rgb(float hue){
 }
 
 vec2 to_polar(vec2 pos){
-	float theta = round(64.0*atan(pos.y, pos.x));
 	float dist = sqrt(pow(pos.x, 2) + pow(pos.y, 2));
+	float theta = round(20.0*atan(pos.y, pos.x));
+	
 	return vec2(theta,dist);
 }
 
@@ -59,10 +65,14 @@ void fragment() {
 	float theta = polar.x;
 	float dist = polar.y;
 	
-	float distValue = round(dist * 4.0 + TIME * speedScale + 8.0 * random(vec2(theta)));
-	float f = random(vec2(theta, distValue));
-	if (f < 0.02) {
+	float distValue = 1000.0 * seed + round(20.0 * dist + time * speedScale * (2.0 + 8.0 * random(vec2(theta))));
+	float thresh = random(vec2(theta, distValue));
+	float r = 0.5;
+	
+	bool after_startup = time+dist > r;
+	bool before_end = time+dist-0.1 < heal_duration;
+	if (thresh < 0.02 && dist < r && after_startup && before_end) {
 		COLOR.a = 1.0;
-		COLOR.rgb = hue_to_rgb(random(vec2(theta,0.0)) * 360.0);
+		COLOR.rgb = hue_to_rgb(random(vec2(theta,seed)) * 360.0);
 	}
 }
