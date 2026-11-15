@@ -1,10 +1,14 @@
-@abstract
+@tool
 class_name GroundEnemy
 extends Enemy
 ## Behavior for enemies that walk on the ground. Add as a child of an Enemy.
 ## Handles gravity, patrolling, and the can_see_player() / set_target() / move() interface.
 ## Children implement _think() (their decision-making each physics frame) and attack().
 
+enum FacingDirection{
+	LEFT = -1,
+	RIGHT = 1
+}
 	# "body" references the parent extended from EnemyBehavior; 
 	# "Enemy, which contains borrowed variables such as:
 	# "is_friendly", move_and_slide(), get_player(), global_position, is_on_wall(), is_on_floor(), velocity
@@ -15,67 +19,67 @@ extends Enemy
 @export_group("Patrol")
 @export var patrol_speed : float = 150.0
 @export var turn_at_ledges : bool = true
-## Floor-check ray pointing down, placed just in front of the enemy. (child of the Enemy)
-@export var ledge_check : RayCast2D
-## How far in front of the origin the ledge check sits (px)
-@export var ledge_check_offset : float = 60.0
 
 @export_group("Sight")
 ## Horizontal distance the enemy can notice the player from
-@export var sight_range : float = 800.0
+@export var player_sight_distance : float = 800.0
 ## Vertical distance tolerance. Stand-in for "same platform" until platforms exist.
-@export var sight_height : float = 300.0
-## How close to a target x (set_target) counts as having arrived
 @export var arrive_distance : float = 20.0
 
-## 1 = facing right, -1 = facing left
-var facing : int = 1
+## How far the wall & platform ray goes
+@export var halt_distance : float = 500.0
+
+@export var player_ray : RayCast2D
+
+@export var wall_ray : RayCast2D
+
+@export var platform_ray : RayCast2D
+
 var has_target : bool = false
 var target_position : Vector2 = Vector2.ZERO
+@export var facing_dir : FacingDirection = FacingDirection.LEFT:
+	set(val):
+		if val == 0:
+			return
+		facing_dir = val
+		
+		if Engine.is_editor_hint():
+			_update_facing_direction()
+		#player_ray.target_position.x = facing_dir * absf(player_ray.target_position.x)
 
-var _turn_lock : float = 0.0
 
 
 func _ready() -> void:
-	super()
-	face(facing)
+	super._ready()
+	_update_facing_direction()
 
 
 func _physics_process(delta: float) -> void:
-	_turn_lock = maxf(_turn_lock - delta, 0.0)
+	if Engine.is_editor_hint():
+		return
 	apply_gravity(delta)
-
-	if is_friendly:
-		# Deactivate the Enemy AI, halt movement
-		accelerate_toward(0.0, delta)
-	else:
-		_think(delta)
+	_think(delta)
 	move_and_slide()
 
 
 ## Decision-making for this enemy. Called every physics frame, after gravity
 ## and before move_and_slide().
-@abstract func _think(delta: float) -> void
+func _think(delta: float) -> void:
+	assert(false,"Not Implemented!")
 
 ## The enemy's attack. Called by the enemy's own logic when it decides to attack.
-@abstract func attack() -> void
+func attack() -> void:
+	assert(false,"Not Implemented!")
 
 
 ## Default: the player is within sight_range horizontally and sight_height vertically.
 ## TODO: swap for "last platform the player touched is this enemy's platform".
 func can_see_player() -> bool:
 	#aggroed enemies should always see player
-	if !is_friendly:
-		return true
 	var collision = player_ray.get_collider()
 	if collision is Player:
-		return true	
+		return true
 	return false
-	#var player := body.get_player()
-	#if player == null:
-		#return false
-	#var offset := player.global_position - body.global_position
-	#return absf(offset.x) <= sight_range and absf(offset.y) <= sight_height
 
 
 ## Location to walk to. move() walks there.
@@ -86,31 +90,14 @@ func set_target(pos: Vector2) -> void:
 
 ## Walks toward the target set by set_target(), stopping once it arrives.
 func move(delta: float) -> void:
+	if absf(target_position.x - global_position.x) <= arrive_distance:
+		has_target = false
 	if not has_target:
 		accelerate_toward(0.0, delta)
 		return
-	var direction := dir_to(target_position.x)
-	if absf(target_position.x - global_position.x) <= arrive_distance:
-		has_target = false
-		accelerate_toward(0.0, delta)
-		return
-	face(direction)
-	accelerate_toward(facing * max_velocity, delta)
-
-
-func patrol(delta: float) -> void:
-	if _turn_lock <= 0.0 and is_on_floor() and (is_on_wall() or _at_ledge()):
-		face(-facing)
-		_turn_lock = 0.25
-	accelerate_toward(facing * patrol_speed, delta)
-
-
-func face(direction: int) -> void:
-	if direction == 0:
-		return
-	facing = 1 if direction > 0 else -1
-	if ledge_check:
-		ledge_check.position.x = facing * ledge_check_offset
+	
+	var target_velocity : float = dir_to(target_position.x) * max_velocity
+	accelerate_toward(target_velocity, delta)
 
 
 ## -1, 0 or 1: which way a world x position is from this enemy.
@@ -125,15 +112,33 @@ func apply_gravity(delta: float) -> void:
 
 ## Speeds up toward target_speed (px/sec, signed). Pass 0.0 to slow to a stop.
 ## Anything faster than max_velocity is damped down to it first.
-func accelerate_toward(target_speed: float, delta: float) -> void:
-	target_speed = clampf(target_speed, -max_velocity, max_velocity)
-	if absf(velocity.x) > max_velocity:
-		velocity.x = move_toward(velocity.x, signf(velocity.x) * max_velocity, dampening * delta)
-	elif is_zero_approx(target_speed):
+func accelerate_toward(target_velocity: float, delta: float) -> void:
+	
+	target_velocity = clampf(target_velocity, -max_velocity, max_velocity)
+	if is_zero_approx(target_velocity):
 		velocity.x = move_toward(velocity.x, 0.0, deceleration * delta)
+	elif absf(velocity.x) > max_velocity:
+		velocity.x = move_toward(velocity.x, signf(velocity.x) * max_velocity, dampening * delta)
 	else:
-		velocity.x = move_toward(velocity.x, target_speed, acceleration * delta)
+		velocity.x = move_toward(velocity.x, target_velocity, acceleration * delta)
+
+func _update_facing_direction() -> void:
+	wall_ray.target_position.x = facing_dir * halt_distance
+	platform_ray.position.x = facing_dir * halt_distance
+	player_ray.target_position.x = facing_dir * player_sight_distance
+	sprite.flip_h = facing_dir == FacingDirection.LEFT
+
+##When an enemy reaches a wall or ledge they should stop
+func _at_obstructing_terrain() -> bool:
+	return is_on_floor() and ( not platform_ray.is_colliding() or wall_ray.is_colliding() )
+	return false
+
+func facing_player() -> bool:
+	return (get_player_center().x-global_position.x) * facing_dir > 0
 
 
-func _at_ledge() -> bool:
-	return turn_at_ledges and ledge_check != null and not ledge_check.is_colliding()
+func moving_opposite_of_facing() -> bool:
+	return velocity.x * facing_dir < 0
+
+func moving_towards_player() -> bool:
+	return (get_player_center().x-global_position.x) * velocity.x > 0

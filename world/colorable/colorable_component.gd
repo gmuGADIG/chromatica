@@ -2,7 +2,7 @@ extends Node
 class_name Colorable
 
 @export var color_target : Node2D
-signal combo_triggered
+signal combo_triggered(combo_color : Paint.Hue)
 signal color_changed
 var colors : Array[Paint.Hue] = []
 
@@ -27,5 +27,5 @@ func apply(new_color : Paint.Hue) -> void:
 
 func varnish() -> void:
 	if(colors.size() == 2 and colors[0] != colors[1]):
-		combo_triggered.emit()
+		combo_triggered.emit(Paint.get_color_mix(colors[0], colors[1]))
 	colors = []
