@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dgt3m6jyjwv6x"]
 
 [ext_resource type="Script" uid="uid://du3rkokrfmoxa" path="res://character/projectile/projectile.gd" id="1_vkau0"]
+
 [ext_resource type="Texture2D" uid="uid://cag8o7m7mdvgf" path="res://temp/temp_art/themoon.png" id="2_tukyk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmie6"]
@@ -8,7 +9,7 @@ radius = 60.06
 
 [node name="Projectile" type="Area2D" unique_id=1967011123]
 collision_layer = 0
-collision_mask = 9
+collision_mask = 41
 script = ExtResource("1_vkau0")
 projectile_gravity = 1500.0
 

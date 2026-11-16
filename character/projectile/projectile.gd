@@ -32,3 +32,6 @@ func _on_area_entered(area):
 	if area is EnemyHitbox:
 		area.hit(DamageInfo.new(projectile_damage, color))
 		queue_free()
+	if area is ObjectHitbox:
+		area.hit(DamageInfo.new(projectile_damage, Paint.Hue.RED))
+		queue_free()
