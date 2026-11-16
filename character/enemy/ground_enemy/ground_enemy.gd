@@ -90,7 +90,7 @@ func set_target(pos: Vector2) -> void:
 
 ## Walks toward the target set by set_target(), stopping once it arrives.
 func move(delta: float) -> void:
-	if absf(target_position.x - global_position.x) <= arrive_distance:
+	if absf(target_position.x - global_position.x) <= arrive_distance and facing_player():
 		has_target = false
 	if not has_target:
 		accelerate_toward(0.0, delta)

@@ -13,7 +13,6 @@ signal hit_player
 
 var _cooldown : float = 0.0
 
-
 func _physics_process(delta: float) -> void:
 	_cooldown = maxf(_cooldown - delta, 0.0)
 	if _cooldown > 0.0:

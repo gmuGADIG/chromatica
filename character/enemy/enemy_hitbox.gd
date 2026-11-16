@@ -2,6 +2,7 @@ extends Area2D
 class_name EnemyHitbox
 
 
+
 # has the variables "maximum_hp" and "hp", this should only touch "hp" var
 # This HealthComponent should be from an Enemy, so that the "hp" of health_component
 # is how much health left the enemy has, or in this case how much it gained.
@@ -12,6 +13,7 @@ class_name EnemyHitbox
 
 func hit(damage_info: DamageInfo) -> void:
 	# DamageInfo has the integer variable "damage"
+	
 	if health_component.hp:
 		health_component.hurt(damage_info.damage)
 		colorable_component.apply(damage_info.attack_color)
