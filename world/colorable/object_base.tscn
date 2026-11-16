@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dmiva7hlr3uey" path="res://world/colorable/object_base.gd" id="1_jdfui"]
 [ext_resource type="Script" uid="uid://diph7secwmb53" path="res://world/colorable/colorable_component.gd" id="1_t6743"]
 [ext_resource type="PackedScene" uid="uid://bvryli3jm4n8u" path="res://ui/colorable/colorable_ui.tscn" id="2_jdfui"]
-[ext_resource type="Script" uid="uid://bwaavhkj00svs" path="res://character/paintable hitbox/paintable_object_hitbox.gd" id="3_a3tb2"]
+[ext_resource type="Script" uid="uid://bwaavhkj00svs" path="res://world/colorable/paintable_object_hitbox.gd" id="3_a3tb2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5flen"]
 
