@@ -32,7 +32,7 @@ func do_shoot() -> bool:
 	var new_projectile : PlayerProjectile = projectile_packed.instantiate()
 	player.add_sibling(new_projectile)
 	new_projectile.global_position = global_position
-	
+	new_projectile.change_color(player.paint_selector.current_color)
 	# uncomment the following line to aim bullet with mouse
 	#var direction : Vector2 = get_local_mouse_position().normalized()
 	

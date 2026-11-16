@@ -36,6 +36,7 @@ func _ready() -> void:
 
 # function to unlock an unlockable by setting its boolean to true
 func unlock(unlock : Unlockable) -> void:
+	if unlocked_items.has(unlock): return
 	unlocked_items.set(unlock, true)
 	unlocked_item.emit(unlock)
 

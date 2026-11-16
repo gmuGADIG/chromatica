@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgt3m6jyjwv6x"]
 
 [ext_resource type="Script" uid="uid://du3rkokrfmoxa" path="res://character/projectile/projectile.gd" id="1_vkau0"]
-[ext_resource type="Texture2D" uid="uid://btnomr554nbx1" path="res://temp/temp_art/thesun.png" id="2_tukyk"]
+[ext_resource type="Texture2D" uid="uid://cag8o7m7mdvgf" path="res://temp/temp_art/themoon.png" id="2_tukyk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmie6"]
 radius = 60.06
@@ -12,8 +12,8 @@ collision_mask = 9
 script = ExtResource("1_vkau0")
 projectile_gravity = 1500.0
 
-[node name="Thesun" type="Sprite2D" parent="." unique_id=431560889]
-scale = Vector2(0.64, 0.7862069)
+[node name="themoon" type="Sprite2D" parent="." unique_id=431560889]
+scale = Vector2(1.8823528, 1.7222222)
 texture = ExtResource("2_tukyk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=383585569]

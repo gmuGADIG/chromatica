@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@export var paint_selector: PaintSelector
+
 enum State{
 	NONE,
 	BRUSH_SWING,

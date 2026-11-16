@@ -10,7 +10,7 @@ class_name DashSlash
 ## shoudln't, not yet.
 func _ready() -> void:
 	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
-		enemy.hit(DamageInfo.new(dash_damage,Paint.Hue.RED))
+		enemy.hit(DamageInfo.new(dash_damage,player.paint_selector.current_color))
 	)
 
 @export_group("Parameters")

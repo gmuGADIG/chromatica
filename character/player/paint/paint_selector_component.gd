@@ -1,19 +1,13 @@
 class_name PaintSelector
 extends Node
 
-static var unlocked_hues : Array = [
-	Paint.Hue.RED,
-	Paint.Hue.YELLOW,
-	Paint.Hue.BLUE
-]
-
 @export var selected_hue : Paint.Hue
 
 var current_color : Paint.Hue = Paint.Hue.RED
-var colors : Array = []
-var cur : int = 0
+var colors : Array[Paint.Hue] = [Paint.Hue.RED]
+var current_index : int = 0
 
-var selected_hue_index : int = 0
+signal selected_color_changed(new_color: Paint.Hue)
 
 func _ready() -> void:
 	Progression.unlocked_item.connect(add_color)
@@ -31,22 +25,27 @@ func add_color(color : Progression.Unlockable):
 			Progression.Unlockable.YELLOW_COLOR:
 				colors.append(Paint.Hue.YELLOW)
 				current_color = Paint.Hue.YELLOW
+			_:
+				#unlock was not a hue
+				pass
 	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("next_color"):
-		if colors.size() == 0:
+		if colors.size() == 1:
 			return
-		cur = (cur+1) % colors.size()
-		current_color = colors[cur]
+		current_index += 1
+		if current_index >= colors.size(): current_index = 0
+		current_color = colors[current_index]
 		print(current_color)
+		selected_color_changed.emit(current_color)
 		
 		
 	if event.is_action_pressed("previous_color"):
-		if colors.size() == 0:
+		if colors.size() == 1:
 			return
-		cur = (cur-1)
-		if cur < 0:
-			cur = colors.size()-1
-		current_color = colors[cur]
+		current_index -= 1
+		if current_index < 0: current_index = colors.size()-1
+		current_color = colors[current_index]
 		print(current_color)
+		selected_color_changed.emit(current_color)

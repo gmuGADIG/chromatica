@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b01g8xm68jf3v" path="res://character/player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/player_movement.gd" id="2_gtsfv"]
+[ext_resource type="Script" uid="uid://dhqny3jdqwmv7" path="res://character/player/paint/paint_selector_component.gd" id="2_mkl32"]
 [ext_resource type="PackedScene" uid="uid://bvmsytqm23rk2" path="res://character/player/attack/player_hurtbox.tscn" id="3_qh58e"]
 [ext_resource type="Script" uid="uid://drt58jn726c1u" path="res://character/player/player_health_component.gd" id="5_eu8pa"]
 [ext_resource type="Texture2D" uid="uid://uu0mo6d1pvx0" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
@@ -36,8 +37,12 @@ size = Vector2(133, 261)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3pmv"]
 size = Vector2(130, 259)
 
-[node name="Player" type="CharacterBody2D" unique_id=1162272003 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1162272003 node_paths=PackedStringArray("paint_selector") groups=["player"]]
 script = ExtResource("1_oul6g")
+paint_selector = NodePath("ColorSelectionComponent")
+
+[node name="ColorSelectionComponent" type="Node" parent="." unique_id=674403541]
+script = ExtResource("2_mkl32")
 
 [node name="Attacks" type="Node2D" parent="." unique_id=171343013]
 
