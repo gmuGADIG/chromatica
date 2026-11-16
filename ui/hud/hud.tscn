@@ -3,6 +3,18 @@
 [ext_resource type="Theme" uid="uid://1de4owo4vojh" path="res://ui/chromatica_theme.tres" id="1_w75iv"]
 [ext_resource type="Script" uid="uid://d0yf6g6egcckk" path="res://ui/hud/hud.gd" id="1_xmswo"]
 [ext_resource type="Script" uid="uid://bauu0mwqrhyw8" path="res://ui/hud/player_health_ui.gd" id="2_e0nub"]
+[ext_resource type="Script" uid="uid://conuinh3o74qv" path="res://ui/hud/player_color_ui.gd" id="3_imuuq"]
+
+[sub_resource type="Gradient" id="Gradient_w75iv"]
+offsets = PackedFloat32Array(0.5950704, 0.6619718)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_frf6u"]
+gradient = SubResource("Gradient_w75iv")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Hud" type="Control" unique_id=916575799]
 layout_mode = 3
@@ -13,6 +25,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_w75iv")
 script = ExtResource("1_xmswo")
+
+[node name="PlayerColorUI" type="TextureRect" parent="." unique_id=1714647978]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 25.0
+offset_right = 148.0
+offset_bottom = 153.0
+scale = Vector2(0.555, 0.555)
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+texture = SubResource("GradientTexture2D_frf6u")
+script = ExtResource("3_imuuq")
 
 [node name="PlayerHealthUI" type="ProgressBar" parent="." unique_id=1286990881]
 layout_mode = 1

@@ -24,7 +24,7 @@ func _ready() -> void:
 		printerr("Domains between two uppercut velocities different")
 	
 	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
-		enemy.hit(DamageInfo.new(damage,Paint.Hue.RED))
+		enemy.hit(DamageInfo.new(damage,player.paint_selector.current_color))
 	)
 
 func _input(event : InputEvent) -> void:

@@ -12,6 +12,8 @@ class_name EnemyHitbox
 
 func hit(damage_info: DamageInfo) -> void:
 	# DamageInfo has the integer variable "damage"
+	if damage_info.attack_color == Paint.Hue.NONE:
+		return
 	if health_component.hp:
 		health_component.hurt(damage_info.damage)
 		colorable_component.apply(damage_info.attack_color)
