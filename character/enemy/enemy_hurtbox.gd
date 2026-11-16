@@ -39,7 +39,7 @@ func try_damage_player(area: Area2D, amount: int, color: Paint.Hue) -> bool:
 	if not (area is PlayerHitbox):
 		return false
 	
-	var player_hitbox = area as PlayerHitbox
+	var player_hitbox := area as PlayerHitbox
 
 	var pos := self.position
 	var dir_to_player_hitbox := pos.direction_to(player_hitbox.global_position)
