@@ -10,6 +10,9 @@ signal room_changed
 @export var region_folder_name : String = "TestWorld"
 @export_tool_button("Update World Cache","Reload") var action : Callable = _generate_world_cache
 func _generate_world_cache() -> void:
+	if not (Engine.is_editor_hint() and OS.has_feature("editor_hint")):
+		return
+	
 	world_cache = null
 	var time_string : Callable = func() -> String:
 		return "["+Time.get_time_string_from_system()+"]"
@@ -55,7 +58,9 @@ func _generate_world_cache() -> void:
 	##For some reason queue freeing before saving the resource kills the key & value pairs
 	for room : LDTKLevel in loaded_rooms:
 		room.queue_free()
-	get_tree().reload_scene_from_path.call_deferred(scene_file_path)
+	
+	var reload := load("res://world/world/reload_editor.gd")
+	reload.reload_editor(scene_file_path)
 @export var world_cache : WorldCache
 
 var current_room_iid : String
@@ -65,6 +70,7 @@ var loaded_rooms : Dictionary[String,LDTKLevel]
 
 func _ready() -> void:
 	world_cache = load("res://world/world/world_cache.tres")
+	print("WORLD CACHE ",world_cache)
 	if Engine.is_editor_hint():
 		for room_iid : String in world_cache.room_data.keys():
 			load_room(room_iid)
