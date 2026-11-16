@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bwaavhkj00svs" path="res://world/colorable/paintable_object_hitbox.gd" id="3_a3tb2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5flen"]
+size = Vector2(223, 265)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m31g"]
 size = Vector2(224, 266.5)
@@ -23,9 +24,8 @@ offset_bottom = -267.0
 colorable_component = NodePath("../ColorableComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1737062087]
-position = Vector2(0.99999213, -134)
-scale = Vector2(223, 265.00003)
 texture = SubResource("PlaceholderTexture2D_5flen")
+offset = Vector2(0, -132)
 
 [node name="ObjectHitbox" type="Area2D" parent="." unique_id=1286574593 node_paths=PackedStringArray("colorable_component")]
 collision_layer = 32
