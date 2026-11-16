@@ -9,6 +9,10 @@ enum State{
 	PARRY,
 	UPPERCUT,
 	DASH_SLASH,
-}
+	HEALING
+}	
 
 var state : State = State.NONE
+
+func in_state(states : Array[State]) -> bool:
+	return states.has(state) 
