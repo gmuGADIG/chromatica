@@ -1,10 +1,11 @@
 extends Node2D
 class_name RangedAttack
-@export var player : Player
+@export var player: Player
 @export var player_movement: PlayerMovement
-@export var projectile_packed : PackedScene
-@export var launch_speed : float = 100.0
+@export var projectile_packed: PackedScene
+@export var launch_speed: float = 100.0
 @export var launch_arc_compensation: float = 4.0
+@export var cooldown_timer: Timer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -18,8 +19,8 @@ func _process(_delta: float) -> void:
 
 	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ranged_attack"):
-		print("projectile shot")
+	if event.is_action_pressed("ranged_attack") and cooldown_timer.is_stopped():
+		#print("projectile shot")
 		var shot : bool = do_shoot()
 		if not shot:
 			pass
@@ -28,7 +29,8 @@ func _input(event: InputEvent) -> void:
 func do_shoot() -> bool:
 	if not player.state == Player.State.NONE:
 		return false
-	print("projectile shot")
+	#print("projectile shot")
+	cooldown_timer.start()
 	var new_projectile : PlayerProjectile = projectile_packed.instantiate()
 	player.add_sibling(new_projectile)
 	new_projectile.global_position = global_position
