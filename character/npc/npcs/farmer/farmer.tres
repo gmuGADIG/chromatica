@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://crew83q7lkmu4"]
+
+[ext_resource type="Texture2D" uid="uid://bmyp3st6hqen5" path="res://character/npc/npcs/farmer/farmer_Portrait.png" id="1_doqld"]
+[ext_resource type="Script" uid="uid://c3elg5rqdh6gq" path="res://character/npc/npc_data.gd" id="1_r31mn"]
+[ext_resource type="Texture2D" uid="uid://cpmdwx5mtbt54" path="res://character/npc/npcs/farmer/farmer_Overworld.png" id="3_7mu1l"]
+
+[resource]
+script = ExtResource("1_r31mn")
+name = "farmer"
+world_sprite = ExtResource("3_7mu1l")
+portrait_sprite = ExtResource("1_doqld")
+metadata/_custom_type_script = "uid://c3elg5rqdh6gq"
