@@ -1,4 +1,4 @@
-@tool
+z@tool
 extends Node2D
 class_name NPC
 
