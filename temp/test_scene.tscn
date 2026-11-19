@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://yqtxh6q1evc3"]
 
 [ext_resource type="Script" uid="uid://b0f7is5e7h133" path="res://character/invuln_component.gd" id="1_ravht"]
-[ext_resource type="Texture2D" uid="uid://b3vj85ylwera" path="res://ldtk/tilesets/fih.png" id="2_f4o15"]
+[ext_resource type="Texture2D" uid="uid://urg7qsuho8ax" path="res://ldtk/tilesets/fih.png" id="2_f4o15"]
 [ext_resource type="Shader" uid="uid://cfklcnu76on5v" path="res://systems/desaturation/desaturation_hsl.gdshader" id="2_g482p"]
-[ext_resource type="Texture2D" uid="uid://4g5nexenk7gw" path="res://temp/temp_art/char.png" id="3_yadb5"]
-[ext_resource type="PackedScene" uid="uid://c0gnoeun33jjj" path="res://systems/desaturation/desaturation_component.tscn" id="5_ravht"]
+[ext_resource type="Texture2D" uid="uid://4k2bykx0ja41" path="res://temp/temp_art/char.png" id="3_yadb5"]
+[ext_resource type="PackedScene" uid="uid://bj0le6ghuysk0" path="res://systems/desaturation/desaturation_component.tscn" id="5_ravht"]
 [ext_resource type="Shader" uid="uid://bd6ckr3hjdnwf" path="res://systems/desaturation/desaturation_ok.gdshader" id="6_f4o15"]
 [ext_resource type="Shader" uid="uid://doi57ygd8jjm2" path="res://systems/desaturation/desaturation_hsv.gdshader" id="6_yadb5"]
 
@@ -72,24 +72,16 @@ position = Vector2(643, 392)
 scale = Vector2(0.15494832, 0.15494832)
 texture = ExtResource("3_yadb5")
 
-[node name="DesaturationComponent" parent="." unique_id=2088411467 node_paths=PackedStringArray("target") instance=ExtResource("5_ravht")]
-target = NodePath("../Sprite2D")
-red_scale = 1.0
-blue_scale = 1.0
-color_space = 0
+[node name="DesaturationComponent" parent="." unique_id=2088411467 instance=ExtResource("5_ravht")]
 
-[node name="DesaturationComponent2" parent="." unique_id=1212724693 node_paths=PackedStringArray("target") instance=ExtResource("5_ravht")]
+[node name="DesaturationComponent2" parent="." unique_id=1212724693 instance=ExtResource("5_ravht")]
 shader = ExtResource("2_g482p")
-target = NodePath("../Sprite2D4")
 red_scale = 0.0
 yellow_scale = 0.0
 blue_scale = 0.0
-color_space = 0
 
-[node name="DesaturationComponent3" parent="." unique_id=1871918937 node_paths=PackedStringArray("target") instance=ExtResource("5_ravht")]
+[node name="DesaturationComponent3" parent="." unique_id=1871918937 instance=ExtResource("5_ravht")]
 shader = ExtResource("6_f4o15")
-target = NodePath("../Sprite2D5")
-red_scale = 1.0
 yellow_scale = 0.0
 blue_scale = 0.0
 
