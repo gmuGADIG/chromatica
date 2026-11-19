@@ -17,10 +17,10 @@ func _ready() -> void:
 	var Rect : RectangleShape2D = RectangleShape2D.new()
 	Rect.size = size
 	#collision
-	collision_shape.position.y = location.y + (.5 * size.y)
-	collision_shape.position.x = location.x + (TileSize/2)
+	collision_shape.position.y = location.y - (.5 * size.y)
+	collision_shape.position.x = location.x #+ (TileSize/2)
 	collision_shape.shape = Rect
-	
+	Tile_Map.position = Vector2(location.x - (.5 * size.x), location.y - (size.y))
 	##texture
 	## tile size is 128
 	for i in (size.y / TileSize):
@@ -33,6 +33,9 @@ func _ready() -> void:
 			
 		
 	pass # Replace with function body.
+
+func open() -> void:
+	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 ##func _process(delta: float) -> void:

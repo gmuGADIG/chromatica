@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pdux0r10d7q2"]
 
 [ext_resource type="Script" uid="uid://c3rnu0lledkyn" path="res://world/LdtkObjects/phisical_gate_test.gd" id="1_4444p"]
-[ext_resource type="Texture2D" uid="uid://dx1d4pe36blxj" path="res://ldtk/tilesets/temp_tiles.png" id="2_0c816"]
+[ext_resource type="Texture2D" uid="uid://ddy8tc6ywlmgt" path="res://ldtk/tilesets/temp_tiles.png" id="2_0c816"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_avbag"]
 texture = ExtResource("2_0c816")
@@ -3017,7 +3017,7 @@ script = ExtResource("1_4444p")
 size = Vector2(128, 128)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1484906136]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 6, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 7, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 8, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_12j5o")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=97682463]
