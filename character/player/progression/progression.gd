@@ -28,10 +28,13 @@ var beads_collected : Dictionary[Bead.BeadType,int] = {
 }
 
 signal collected_bead(bead : Bead.BeadType, new_amount : int)
+signal unlocked_item(unlock : Unlockable)
 
 # function to unlock an unlockable by setting its boolean to true
 func unlock(unlock : Unlockable) -> void:
 	unlocked_items.set(unlock, true)
+	unlocked_item.emit(unlock)
+	
 
 # function to check if the player has someting unlocked
 func is_unlocked(unlock : Unlockable) -> bool:

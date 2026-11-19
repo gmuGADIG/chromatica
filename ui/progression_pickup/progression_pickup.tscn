@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://qrortl6lrlps"]
+
+[node name="ProgressionPickup" type="Control" unique_id=1851202812]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1285010948]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 1, 1, 0.2)
+
+[node name="Progression unlock text" type="RichTextLabel" parent="." unique_id=1023185524]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -126.0
+offset_right = 285.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "You unlocked the red color"
+horizontal_alignment = 1
+
+[node name="Continue text" type="RichTextLabel" parent="." unique_id=2080934903]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -126.0
+offset_right = 285.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Press any key to continue"
+horizontal_alignment = 1
+vertical_alignment = 2
