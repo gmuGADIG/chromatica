@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cbux3nfnho5ss"]
 
 [ext_resource type="Script" uid="uid://dgh0sad4a33h4" path="res://ui/settings_menu/settings_menu.gd" id="1_cobfr"]
-[ext_resource type="Texture2D" uid="uid://clybynjtqxw3t" path="res://ui/settings_menu/settings_wireframe.png" id="2_kvsec"]
+[ext_resource type="Texture2D" uid="uid://ljssfsbrbpjx" path="res://ui/settings_menu/settings(3).png" id="2_2adas"]
+[ext_resource type="Theme" uid="uid://1de4owo4vojh" path="res://ui/chromatica_theme.tres" id="3_424ss"]
 
 [node name="SettingsMenu" type="Control" unique_id=1456142874]
 layout_mode = 3
@@ -21,59 +22,92 @@ anchor_right = 0.7282986
 anchor_bottom = 0.83179015
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_kvsec")
+texture = ExtResource("2_2adas")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1140205085]
+[node name="Label" type="Label" parent="TextureRect" unique_id=1469303661]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -99.5
-offset_right = 100.0
-offset_bottom = 99.5
+offset_left = -63.0
+offset_top = 78.0
+offset_right = -1.0
+offset_bottom = 101.0
 grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("3_424ss")
+theme_override_font_sizes/font_size = 20
+text = "Settings"
 
-[node name="MasterVolumeLabel" type="Label" parent="TextureRect/VBoxContainer" unique_id=787635390]
-layout_mode = 2
-text = "Master"
-
-[node name="MasterVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer" unique_id=1563713735]
-layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
-
-[node name="SFXVolumeLabel" type="Label" parent="TextureRect/VBoxContainer" unique_id=2110771480]
-layout_mode = 2
-text = "SFX"
-
-[node name="SFXVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer" unique_id=853026901]
-layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
-
-[node name="BGMVolumeLabel" type="Label" parent="TextureRect/VBoxContainer" unique_id=1197516837]
-layout_mode = 2
-text = "BGM"
-
-[node name="BGMVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer" unique_id=1823484834]
-layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
-
-[node name="BackButton" type="Button" parent="TextureRect/VBoxContainer" unique_id=866340540]
+[node name="BackButton" type="Button" parent="TextureRect" unique_id=866340540]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_left = 209.0
+offset_top = 301.0
+offset_right = 254.0
+offset_bottom = 332.0
 text = "Back"
 
-[connection signal="value_changed" from="TextureRect/VBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_changed"]
-[connection signal="value_changed" from="TextureRect/VBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_changed"]
-[connection signal="value_changed" from="TextureRect/VBoxContainer/BGMVolumeSlider" to="." method="_on_bgm_volume_changed"]
-[connection signal="pressed" from="TextureRect/VBoxContainer/BackButton" to="." method="_on_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1193773610]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2962264
+anchor_top = 0.31880733
+anchor_right = 0.57924527
+anchor_bottom = 0.51605505
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Volume" type="Label" parent="TextureRect/VBoxContainer" unique_id=1240173098]
+layout_mode = 2
+text = "Volume"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer" unique_id=592072824]
+custom_minimum_size = Vector2(150, 10)
+layout_mode = 2
+alignment = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer" unique_id=787635390]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Master"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer/HBoxContainer" unique_id=1563713735]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/VBoxContainer" unique_id=1604627938]
+custom_minimum_size = Vector2(150, 10)
+layout_mode = 2
+alignment = 2
+
+[node name="BGMVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer2" unique_id=1197516837]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Music"
+
+[node name="BGMVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer/HBoxContainer2" unique_id=1823484834]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/VBoxContainer" unique_id=610976568]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="SFXVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer3" unique_id=2110771480]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "SFX"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer/HBoxContainer3" unique_id=853026901]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="TextureRect/BackButton" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="TextureRect/VBoxContainer/HBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_changed"]
+[connection signal="value_changed" from="TextureRect/VBoxContainer/HBoxContainer2/BGMVolumeSlider" to="." method="_on_bgm_volume_changed"]
+[connection signal="value_changed" from="TextureRect/VBoxContainer/HBoxContainer3/SFXVolumeSlider" to="." method="_on_sfx_volume_changed"]
