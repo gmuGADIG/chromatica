@@ -2,6 +2,47 @@
 
 [ext_resource type="PackedScene" uid="uid://cpd6f8tn8gge0" path="res://character/enemy/ground_enemy/ground_enemy.tscn" id="1_ypm4t"]
 [ext_resource type="Script" uid="uid://ciwlm58i16i8e" path="res://character/enemy/ground_enemy/phalanx_bees/phalanx_bees.gd" id="2_hjdrk"]
+[ext_resource type="Texture2D" uid="uid://b6gh0a8e06qpf" path="res://temp/temp_art/tee-eff-two-soljer.png" id="3_wwl41"]
+[ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="4_5c61i"]
 
-[node name="PhalanxBees" unique_id=43181616 instance=ExtResource("1_ypm4t")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lntlq"]
+size = Vector2(89, 162)
+
+[node name="PhalanxBees" unique_id=43181616 node_paths=PackedStringArray("back_player_ray") instance=ExtResource("1_ypm4t")]
 script = ExtResource("2_hjdrk")
+back_player_ray = NodePath("BackPlayerRay")
+stunTime = 1000
+patrol_acceleration = 750.0
+patrol_deceleration = 750.0
+patrol_max_velocity = 150.0
+chase_acceleration = 1500.0
+chase_deceleration = 1500.0
+chase_max_velocity = 300.0
+attention_span = null
+halt_distance = 100.0
+
+[node name="PlayerRay" parent="." index="7" unique_id=574704434]
+position = Vector2(0, -128)
+
+[node name="WallRay" parent="." index="8" unique_id=1713967986]
+target_position = Vector2(-100, 0)
+
+[node name="PlatformRay" parent="." index="9" unique_id=1597783507]
+position = Vector2(-100, 10)
+
+[node name="BackPlayerRay" type="RayCast2D" parent="." index="11" unique_id=139420335]
+position = Vector2(0, -128)
+target_position = Vector2(800, 0)
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="12" unique_id=195788582]
+position = Vector2(10, -108)
+texture = ExtResource("3_wwl41")
+
+[node name="EnemyHurtbox" type="Area2D" parent="." index="13" unique_id=708530493]
+script = ExtResource("4_5c61i")
+metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" index="0" unique_id=775790438]
+position = Vector2(0, -81)
+shape = SubResource("RectangleShape2D_lntlq")

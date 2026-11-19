@@ -3,7 +3,8 @@ extends GroundEnemy
 
 @export var back_player_ray : RayCast2D
 
-@export var stunTimer : int
+var stunTimer : int
+@export var stunTime : int
 
 enum State {PATROL, CHASE, STUN}
 
@@ -16,6 +17,9 @@ enum State {PATROL, CHASE, STUN}
 @export var chase_acceleration : float = 1500
 @export var chase_deceleration : float = 1500
 @export var chase_max_velocity : float = 300
+
+@export var attention_span : float = 7.0
+var time_since_last_seen : float = 0.0
 
 var state : State = State.PATROL:
 	set(val):
@@ -39,6 +43,7 @@ func _ready() -> void:
 	super()
 	health_component.health_lost.connect(_on_take_damage)
 	colorable_component.combo_triggered.connect(on_combo)
+	##back_player_ray.target_position.x = -facing_dir * player_sight_distance
 
 func can_see_player() -> bool:
 	if (super.can_see_player()):
@@ -46,8 +51,15 @@ func can_see_player() -> bool:
 	
 	var collision = back_player_ray.get_collider()
 	if collision is Player:
+		## Flip around to face the player
+		facing_dir *= -1
+		_update_facing_direction()
 		return true
 	return false
+
+func _update_facing_direction() -> void:
+	back_player_ray.target_position.x = (-1) * facing_dir * player_sight_distance
+	super._update_facing_direction()
 
 func _on_take_damage() -> void:
 	if state != State.PATROL:
@@ -60,20 +72,16 @@ func _on_take_damage() -> void:
 
 func on_combo(color : Paint.Hue) -> void:
 	if (color == Paint.Hue.PURPLE):
-		pass
+		stunTimer = stunTime
+		state = State.STUN
 
 func _think(delta: float) -> void:
 	match state:
 		State.PATROL:
 			patrol(delta)
-			if can_see_player():
-				state = State.CHASE
 			pass
 		State.CHASE:
-			var new_target : Vector2 = global_position
-			new_target.x = player.global_position.x
-			set_target(new_target)
-			
+			chase(delta)
 			pass 
 		State.STUN:
 			stunTimer -= 1
@@ -108,12 +116,38 @@ func patrol(delta : float) -> void:
 	if can_see_player():
 		state = State.CHASE
 
+func chase(delta : float) -> void:
+	var player_seen : bool = false
+	if can_see_player():
+		time_since_last_seen = 0
+		player_seen = true
+	time_since_last_seen += delta
+	if (time_since_last_seen > attention_span):
+		state = State.PATROL
+	
+	if (player_seen):
+		print("Player Seen")
+		if (_at_obstructing_terrain() && facing_player()):
+			has_target = false
+		else:
+			set_target(player.global_position)
+	else:
+		if (_at_obstructing_terrain() && facing_player()):
+			has_target = false
+		else:
+			# If the player is not seen, keep moving in the last direction
+			var new_target : Vector2 = global_position
+			new_target.x += facing_dir * 10000
+			set_target(new_target)
+	move(delta)
+
 ## The enemy's attack. Called by the enemy's own logic when it decides to attack.:
 func attack() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if can_see_player():
-		state = State.CHASE
+	##if can_see_player():
+		##state = State.CHASE
+	pass
 	

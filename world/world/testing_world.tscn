@@ -5,8 +5,9 @@
 [ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcs/temp/garonic.tres" id="3_hjby2"]
 [ext_resource type="PackedScene" uid="uid://bt7k68i2nfysv" path="res://character/enemy/ground_enemy/scorpion/scorpion.tscn" id="5_4r2ah"]
 [ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcs/ren/ren.tres" id="5_p5yow"]
+[ext_resource type="PackedScene" uid="uid://crg1307tdbg2f" path="res://character/enemy/ground_enemy/phalanx_bees/phalanx_bees.tscn" id="6_p5yow"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r2ah"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv1dp"]
 size = Vector2(164, 256)
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
@@ -14,11 +15,8 @@ size = Vector2(164, 256)
 [node name="Player" parent="." index="0" unique_id=1162272003]
 position = Vector2(6688, 2816)
 
-[node name="PlayerHurtbox" parent="Player/Attacks/Uppercut" parent_id_path=PackedInt32Array(1162272003, 1880163021) index="1" unique_id=2122688073]
-monitoring = false
-
-[node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" index="0" unique_id=1886765406]
-shape = SubResource("RectangleShape2D_4r2ah")
+[node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" parent_id_path=PackedInt32Array(1162272003, 2122688073) index="0" unique_id=1886765406]
+shape = SubResource("RectangleShape2D_hv1dp")
 
 [node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
 position = Vector2(2824, 2720)
@@ -31,7 +29,10 @@ npc_data = ExtResource("5_p5yow")
 dialogue_csv = "res://systems/dialogue/data/ren.csv"
 
 [node name="Scorpion" parent="." index="4" unique_id=43181616 instance=ExtResource("5_4r2ah")]
-position = Vector2(7776, 2560)
+position = Vector2(4389, 3252)
+
+[node name="PhalanxBees" parent="." index="12" unique_id=38657615 instance=ExtResource("6_p5yow")]
+position = Vector2(7928, 2546)
 
 [editable path="Player"]
 [editable path="Player/PlayerHitbox"]
