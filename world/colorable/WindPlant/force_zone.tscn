@@ -6,6 +6,7 @@
 size = Vector2(250, 100)
 
 [node name="ForceZone" type="Area2D" unique_id=619087343]
+collision_mask = 3
 script = ExtResource("1_ydpab")
 force = 100.0
 yellow_multiplier = 3.0
