@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c6vfh1ttiolw1"]
 
-[ext_resource type="Script" uid="uid://m6kpmqkqmcc6" path="res://world/colorable/wind_zone.gd" id="1_ydpab"]
+[ext_resource type="Script" uid="uid://m6kpmqkqmcc6" path="res://world/colorable/WindPlant/force_zone.gd" id="1_ydpab"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjdwv"]
 size = Vector2(250, 100)
 
-[node name="WindZone" type="Area2D" unique_id=619087343]
+[node name="ForceZone" type="Area2D" unique_id=619087343]
 script = ExtResource("1_ydpab")
 force = 100.0
 yellow_multiplier = 3.0

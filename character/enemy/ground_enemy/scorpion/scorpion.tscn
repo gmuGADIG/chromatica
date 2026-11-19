@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bt7k68i2nfysv"]
+
+[ext_resource type="PackedScene" uid="uid://cpd6f8tn8gge0" path="res://character/enemy/ground_enemy/ground_enemy.tscn" id="1_1tg7r"]
+[ext_resource type="Script" uid="uid://nnysaq06mat4" path="res://character/enemy/ground_enemy/scorpion/scorpion.gd" id="2_cqdji"]
+[ext_resource type="SpriteFrames" uid="uid://bpvthwial8tbp" path="res://character/enemy/ground_enemy/scorpion/scorpion.tres" id="3_x06k3"]
+[ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="4_dmjdb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmjdb"]
+size = Vector2(192, 192)
+
+[node name="Scorpion" unique_id=43181616 node_paths=PackedStringArray("stinger_hurtbox") instance=ExtResource("1_1tg7r")]
+script = ExtResource("2_cqdji")
+attention_span = 7.0
+stinger_hurtbox = NodePath("StingerHurtbox")
+patrol_acceleration = 1500.0
+patrol_deceleration = 1500.0
+patrol_max_velocity = 300.0
+chase_acceleration = 2000.0
+chase_deceleration = 2000.0
+chase_max_velocity = 400.0
+player_sight_distance = 1200.0
+arrive_distance = 300.0
+halt_distance = 300.0
+acceleration = 1500.0
+deceleration = 1500.0
+
+[node name="ColorableUI" parent="." index="0" unique_id=1819435004]
+offset_top = -351.75
+offset_bottom = -251.75
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=1125582819]
+position = Vector2(0, -128)
+sprite_frames = ExtResource("3_x06k3")
+animation = &"walk"
+frame_progress = 0.7090803
+
+[node name="HealthBar" parent="." index="5" unique_id=1894704178]
+visible = false
+
+[node name="WallRay" parent="." index="8" unique_id=1713967986]
+target_position = Vector2(-300, 0)
+
+[node name="PlatformRay" parent="." index="9" unique_id=1597783507]
+position = Vector2(-300, 10)
+
+[node name="StingerHurtbox" type="Area2D" parent="." index="11" unique_id=1341950259]
+position = Vector2(-128, -96)
+script = ExtResource("4_dmjdb")
+metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StingerHurtbox" index="0" unique_id=1412437376]
+shape = SubResource("RectangleShape2D_dmjdb")
+
+[connection signal="health_lost" from="HealthComponent" to="." method="_on_health_lost"]
