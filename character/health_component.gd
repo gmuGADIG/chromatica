@@ -4,10 +4,11 @@ class_name HealthComponent
 
 @export var maximum_hp: int
 
-
 var hp: int
 ## Updates maxHP, reserved for the player character.
 signal health_changed(new_health:int)
+
+signal health_lost
 
 ## Sends a signal when health is fully depleted.
 signal health_depleted
@@ -22,6 +23,7 @@ func hurt(amount : int) -> void:
 	if amount < 0:
 		printerr("Negative value provided. Please use heal(amount) instead")
 	
+	health_lost.emit()
 	_update_health(-amount)
 
 func heal(amount : int) -> void:

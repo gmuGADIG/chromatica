@@ -20,7 +20,7 @@ vec3 rgb_to_hsv(vec3 color){
 	if(delta == 0.0){
 		hue = 0.;
 		saturation = 0.;
-		value = 0.;
+		value = color_max;
 	}
 	else{
 		saturation = delta/color_max;
@@ -102,11 +102,14 @@ void fragment() {
 	
 	//vec3 hsv = rgb_to_hsv(COLOR.rgb);
 	vec3 new_hsv = hsv;
-	new_hsv.y = 0.0;
 	
 	
-	if(hsv.x < 60.0){
-		//RED-YELLOw
+	if(new_hsv.y == 0.0){
+		//Nothing Happens
+	}
+	else if(hsv.x < 60.0){
+		new_hsv.y = 0.0;
+		//RED-YELLOW
 		float sat = mix(mix(0.0,hsv.y,red_scale),mix(0.0,hsv.y,yellow_scale),distance(0.0,hsv.x)/60.0);
 		new_hsv.z = mix(hsv.z+lighten_modifier,hsv.z,sat/hsv.y);
 		new_hsv.y = sat;
@@ -118,6 +121,7 @@ void fragment() {
 		new_hsv.x = ratio*60.0;
 	}
 	else if(hsv.x < 240.0){
+		new_hsv.y = 0.0;
 		//YELLOW-BLUE
 		float sat = mix(mix(0.0,hsv.y,blue_scale),mix(0.0,hsv.y,yellow_scale),distance(240,hsv.x)/180.0);
 		new_hsv.z = mix(hsv.z+lighten_modifier,hsv.z,sat/hsv.y);
@@ -130,6 +134,7 @@ void fragment() {
 		new_hsv.x = 60.0+ratio*180.0;
 	}
 	else{
+		new_hsv.y = 0.0;
 		//BLUE-RED
 		float sat = mix(mix(0.0,hsv.y,red_scale),mix(0.0,hsv.y,blue_scale),1.0-distance(240,hsv.x)/120.0);
 		new_hsv.z = mix(hsv.z+lighten_modifier,hsv.z,sat/hsv.y);

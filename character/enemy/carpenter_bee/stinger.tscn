@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://character/enemy/spannon/cannonball.gd" id="1_ball"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stinger"]
+radius = 10.0
+
+[node name="Stinger" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_ball")
+speed = 900.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_stinger")
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.1, 0.1, 0.1, 1)
+polygon = PackedVector2Array(22, 0, -10, -7, -6, 0, -10, 7)

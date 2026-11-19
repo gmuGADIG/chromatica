@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cvlemcva41pig" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
 [ext_resource type="PackedScene" uid="uid://b5k2j04yb2cvu" path="res://ui/main_menu/file_select/file_select.tscn" id="2_mu8pm"]
+[ext_resource type="Texture2D" uid="uid://b3vj85ylwera" path="res://ldtk/tilesets/fih.png" id="2_u184e"]
+[ext_resource type="Texture2D" uid="uid://duah1d8aosqby" path="res://temp/temp_art/egg_portrait.png" id="3_6mijq"]
 [ext_resource type="PackedScene" uid="uid://cbux3nfnho5ss" path="res://ui/settings_menu/settings_menu.tscn" id="3_omy8q"]
+[ext_resource type="PackedScene" uid="uid://ccaf56m5vfuvj" path="res://ui/credits/credits_scene.tscn" id="4_i5wg5"]
+[ext_resource type="Texture2D" uid="uid://cvailtbp1g2vu" path="res://temp/temp_art/divorcethoughts.png" id="5_3c04x"]
+[ext_resource type="Texture2D" uid="uid://c862dxgffhsy0" path="res://temp/temp_art/nirby.png" id="5_6mijq"]
 
 [node name="MainMenu" type="Control" unique_id=1450645728]
 layout_mode = 3
@@ -13,6 +18,162 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uhj5c")
 
+[node name="Background" type="TextureRect" parent="." unique_id=1312356174]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 596.0
+offset_bottom = 595.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_u184e")
+
+[node name="PaintPallete" type="TextureRect" parent="." unique_id=314053676]
+self_modulate = Color(0.91, 0.778505, 0.44590002, 1)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -552.0
+offset_top = -592.0
+offset_right = 696.0
+offset_bottom = -114.0
+grow_vertical = 2
+scale = Vector2(0.75, 2)
+texture = ExtResource("3_6mijq")
+
+[node name="Logo" type="TextureRect" parent="." unique_id=30691174]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.51600003
+anchor_right = 0.51600003
+offset_left = -184.432
+offset_right = 290.568
+offset_bottom = 287.0
+grow_horizontal = 0
+texture = ExtResource("5_3c04x")
+
+[node name="Label" type="Label" parent="Logo" unique_id=860602413]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.50006
+offset_top = 294.5
+offset_right = -135.50006
+offset_bottom = 317.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5.3761806, 5.3761806)
+text = "chromatica wow"
+
+[node name="QuitButton" type="TextureButton" parent="." unique_id=675570858]
+self_modulate = Color(0.42876408, 0, 0.12662205, 1)
+layout_mode = 0
+offset_left = 57.999996
+offset_top = 2.0000005
+offset_right = 314.0
+offset_bottom = 226.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("5_6mijq")
+
+[node name="Label" type="Label" parent="QuitButton" unique_id=2129745385]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Quit"
+
+[node name="SettingsButton" type="TextureButton" parent="." unique_id=207367727]
+self_modulate = Color(0.33727396, 0.16946262, 0.029991377, 1)
+layout_mode = 0
+offset_left = 20.999998
+offset_top = 166.00003
+offset_right = 277.0
+offset_bottom = 390.00003
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("5_6mijq")
+
+[node name="Label" type="Label" parent="SettingsButton" unique_id=382411875]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Settings"
+
+[node name="CreditsButton" type="TextureButton" parent="." unique_id=2135999206]
+self_modulate = Color(3.1670035e-05, 0.30606514, 0.8607712, 1)
+layout_mode = 0
+offset_left = 164.0
+offset_top = 298.0
+offset_right = 420.0
+offset_bottom = 522.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("5_6mijq")
+
+[node name="Label" type="Label" parent="CreditsButton" unique_id=1821483877]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Credits"
+
+[node name="StartButton" type="TextureButton" parent="." unique_id=1269426287]
+self_modulate = Color(0.22, 0.22, 0.22, 1)
+layout_mode = 0
+offset_left = 1.0000305
+offset_top = 463.0
+offset_right = 257.00003
+offset_bottom = 687.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("5_6mijq")
+
+[node name="Label" type="Label" parent="StartButton" unique_id=1095136807]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Start"
+
 [node name="MainMenu" type="VBoxContainer" parent="." unique_id=1972150704]
 layout_mode = 1
 anchors_preset = 8
@@ -20,26 +181,34 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -50.5
-offset_right = 68.5
-offset_bottom = 50.5
+offset_left = 397.0
+offset_top = 72.0
+offset_right = 520.0
+offset_bottom = 208.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Start" type="Button" parent="MainMenu" unique_id=431970254]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Quit")
-text = "main menu start"
-
-[node name="Settings" type="Button" parent="MainMenu" unique_id=1178353407]
-layout_mode = 2
-text = "set the settings"
-
 [node name="Quit" type="Button" parent="MainMenu" unique_id=1033594454]
+visible = false
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Start")
 text = "quit the game"
+
+[node name="Settings" type="Button" parent="MainMenu" unique_id=1178353407]
+visible = false
+layout_mode = 2
+text = "set the settings"
+
+[node name="Credits" type="Button" parent="MainMenu" unique_id=1504501349]
+visible = false
+layout_mode = 2
+text = "view the credits"
+
+[node name="Start" type="Button" parent="MainMenu" unique_id=431970254]
+visible = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+text = "main menu start"
 
 [node name="FileSelect" parent="." unique_id=990807234 instance=ExtResource("2_mu8pm")]
 visible = false
@@ -49,7 +218,16 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="CreditsScene" parent="." unique_id=1059187460 instance=ExtResource("4_i5wg5")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_button_main_quit_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_button_main_start_pressed"]
 [connection signal="visibility_changed" from="MainMenu" to="." method="_on_main_menu_visibility_changed"]
-[connection signal="pressed" from="MainMenu/Start" to="." method="_on_button_main_start_pressed"]
-[connection signal="pressed" from="MainMenu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/Quit" to="." method="_on_button_main_quit_pressed"]
+[connection signal="pressed" from="MainMenu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenu/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MainMenu/Start" to="." method="_on_button_main_start_pressed"]

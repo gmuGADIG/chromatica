@@ -3,17 +3,24 @@ class_name PlayerHurtbox extends Area2D
 
 signal finished
 
+const MASK : int = 1<<3 | 1<<5
+
 @export var player : Player
 @export var collision_shape : CollisionShape2D
+@export var attack_timer : Timer
 
 @export_group("Dimensions")
 @export var hurtbox_shape : Vector2 = Vector2(256,256):
 	set(val):
 		hurtbox_shape = val
+		if not Engine.is_editor_hint():
+			await ready
 		_update_hurtbox_shape()
 @export var offset : Vector2 = Vector2(128,0):
 	set(val):
 		offset = val
+		if not Engine.is_editor_hint():
+			await ready
 		_update_hurtbox_shape()
 
 @export_group("Timing")
@@ -26,7 +33,7 @@ signal finished
 		attack_direction = val
 		rotation_degrees = val
 @onready var rect_shape : RectangleShape2D = $CollisionShape2D.shape
-@onready var attack_timer := $SwingDuration as Timer
+#@onready var attack_timer := $SwingDuration as Timer
 
 ##Used to avoid double hitting entities & objects within a single swing
 var hit_things : Array[Variant]
@@ -38,6 +45,9 @@ signal enemy_hit(enemy: EnemyHitbox)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	collision_mask = MASK
+	collision_layer = 0
+	monitoring = false
 	hide()
 	collision_shape.shape = RectangleShape2D.new()
 	_update_hurtbox_shape()
@@ -61,7 +71,7 @@ func start_attack(dir: Vector2) -> void:
 	hit_things.clear()
 	monitoring = true
 	show()
-	attack_timer.start()
+	attack_timer.start(swing_duration)
 
 func end_attack() -> void:
 	monitoring = false
@@ -69,12 +79,16 @@ func end_attack() -> void:
 	finished.emit()
 
 func _on_area_entered(area: Area2D) -> void:
-	if hit_things.has(area):
-		return
-	
+#	if hit_things.has(area):
+#		return
 	if area is EnemyHitbox:
-		enemy_hit.emit(area)
+		#enemy_hit.emit(area)
+		area.hit(DamageInfo.new(1, Paint.Hue.RED))
 		hit_things.append(area)
+	if area is ObjectHitbox:
+		area.hit(DamageInfo.new(1, Paint.Hue.RED))
+		hit_things.append(area)
+
 
 func _update_hurtbox_shape() -> void:
 	collision_shape.shape.size = hurtbox_shape
