@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="6_p5yow"]
 [ext_resource type="PackedScene" uid="uid://celweuiliojoc" path="res://world/colorable/WindPlant/wind_plant.tscn" id="8_n61ly"]
 [ext_resource type="PackedScene" uid="uid://c6ob4a5w3riaf" path="res://pickup/paint_bucket/paint_bucket.tscn" id="8_wnpta"]
+[ext_resource type="Resource" uid="uid://b4qyqurveaq42" path="res://character/npc/npcs/sorceress/sorceress.tres" id="11_j328r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n61ly"]
 size = Vector2(164, 256)
@@ -28,19 +29,24 @@ position = Vector2(2516, 2704)
 npc_data = ExtResource("5_p5yow")
 dialogue_csv = "res://systems/dialogue/data/ren.csv"
 
-[node name="CarpenterBee" parent="." index="4" unique_id=615538230 instance=ExtResource("6_p5yow")]
+[node name="Sorceress" parent="." index="4" unique_id=1895689378 instance=ExtResource("2_dthq0")]
+position = Vector2(2242, 2704)
+npc_data = ExtResource("11_j328r")
+dialogue_csv = "res://systems/dialogue/data/ren.csv"
+
+[node name="CarpenterBee" parent="." index="5" unique_id=615538230 instance=ExtResource("6_p5yow")]
 position = Vector2(1198, 2394)
 
-[node name="Pickup" parent="." index="5" unique_id=1498291215 instance=ExtResource("8_wnpta")]
+[node name="Pickup" parent="." index="6" unique_id=1498291215 instance=ExtResource("8_wnpta")]
 position = Vector2(3392, 2792)
 
-[node name="WindPlant" parent="." index="6" unique_id=528316572 instance=ExtResource("8_n61ly")]
+[node name="WindPlant" parent="." index="7" unique_id=528316572 instance=ExtResource("8_n61ly")]
 position = Vector2(4038, 2818)
 
-[node name="Lizard" parent="." index="7" unique_id=43181616 instance=ExtResource("2_n61ly")]
+[node name="Lizard" parent="." index="8" unique_id=43181616 instance=ExtResource("2_n61ly")]
 position = Vector2(7144, 2560)
 
-[node name="HermitCrab" parent="." index="8" unique_id=1546083802 instance=ExtResource("4_ltgpm")]
+[node name="HermitCrab" parent="." index="9" unique_id=1546083802 instance=ExtResource("4_ltgpm")]
 position = Vector2(1576, 2816)
 
 [editable path="Player"]
