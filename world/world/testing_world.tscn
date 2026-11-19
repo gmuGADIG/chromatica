@@ -2,18 +2,30 @@
 
 [ext_resource type="PackedScene" uid="uid://v312c2564i2o" path="res://world/world/world.tscn" id="1_yd5ur"]
 [ext_resource type="PackedScene" uid="uid://xrs22a6c2pj3" path="res://character/npc/npc.tscn" id="2_dthq0"]
+[ext_resource type="Shader" uid="uid://bd6ckr3hjdnwf" path="res://systems/desaturation/desaturation_ok.gdshader" id="2_hv1dp"]
 [ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcs/temp/garonic.tres" id="3_hjby2"]
 [ext_resource type="PackedScene" uid="uid://bnktjvt8vda52" path="res://character/enemy/enemy_base.tscn" id="5_4r2ah"]
 [ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcs/ren/ren.tres" id="5_p5yow"]
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="6_p5yow"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5yow"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnpta"]
+shader = ExtResource("2_hv1dp")
+shader_parameter/lighten_modifier = 0.0
+shader_parameter/red_scale = 0.0
+shader_parameter/yellow_scale = 0.0
+shader_parameter/blue_scale = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnpta"]
 size = Vector2(164, 256)
 
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
+material = SubResource("ShaderMaterial_wnpta")
 
 [node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" parent_id_path=PackedInt32Array(1162272003, 2122688073) index="0" unique_id=1886765406]
-shape = SubResource("RectangleShape2D_p5yow")
+shape = SubResource("RectangleShape2D_wnpta")
+
+[node name="Sprite2D" parent="Player" parent_id_path=PackedInt32Array(1162272003) index="3" unique_id=1945416757]
+use_parent_material = true
 
 [node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
 position = Vector2(2824, 2720)
@@ -32,7 +44,9 @@ position = Vector2(1536, 2816)
 position = Vector2(1198, 2394)
 
 [connection signal="death_complete" from="Player/PlayerHealthComponent" to="." method="_on_player_health_component_death_complete"]
+[connection signal="death_complete" from="Player/PlayerHealthComponent" to="." method="_on_player_revive"]
 [connection signal="death_complete" from="Player/PlayerHealthComponent" to="Player/PlayerMovement" method="_on_player_health_component_death_complete"]
+[connection signal="health_depleted" from="Player/PlayerHealthComponent" to="." method="_on_player_death"]
 [connection signal="health_depleted" from="Player/PlayerHealthComponent" to="Player/PlayerMovement" method="_on_player_health_component_health_depleted"]
 
 [editable path="Player"]
