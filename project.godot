@@ -22,9 +22,9 @@ buses/default_bus_layout="uid://b23cycdwm8b8d"
 [autoload]
 
 EventHandler="uid://b3gmulvl2er2i"
-Dialogue="*uid://dnnqyem7lym70"
 Progression="*uid://dnehowbc6uetq"
 ScreenTransition="*uid://cdgoqyx2mi2lf"
+Dialogue="*uid://c00wh1oryqoaq"
 
 [display]
 
