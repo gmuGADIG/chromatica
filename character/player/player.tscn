@@ -75,9 +75,10 @@ shader_parameter/min_outer_radius = 1.3
 shader_parameter/outer_radius_bounce = 0.1
 shader_parameter/bounce_frequency = 1.2
 
-[node name="Player" type="CharacterBody2D" unique_id=1162272003 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1162272003 node_paths=PackedStringArray("paint_selector") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_oul6g")
+paint_selector = NodePath("ColorSelectionComponent")
 
 [node name="ColorSelectionComponent" type="Node" parent="." unique_id=674403541]
 script = ExtResource("2_mkl32")
