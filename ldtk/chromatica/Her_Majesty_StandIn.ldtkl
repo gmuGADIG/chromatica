@@ -207,5 +207,5 @@
 			"entityInstances": []
 		}
 	],
-	"__neighbours": []
+	"__neighbours": [ { "levelIid": "d4b92270-bde0-11f1-aa76-9da092505e8f", "dir": "w" }, { "levelIid": "f0f7bff0-bde0-11f1-9329-ed8bd46a91fa", "dir": "w" }, { "levelIid": "3f18b460-bde0-11f1-9542-1556e27b420b", "dir": "sw" } ]
 }
