@@ -21,7 +21,7 @@ class_name PlayerMovement
 
 ##The impulse applied to the p	layer when they jump
 
-@export var jump_velocity : float = 2430.0
+@export var jump_velocity : float = 2100.0
 ##The vertical & horizontal impulse applied to the player when they walljump
 ##(NOTE: Make sure these values remains positive, or else the player will jump into the wall, 
 ##aka not have any horizontal velocity!)
