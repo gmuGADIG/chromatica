@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bif21brffqw05" path="res://character/enemy/ground_enemy/lizard/lizard.tscn" id="2_n61ly"]
 [ext_resource type="Resource" uid="uid://bq5pmf1jk7dun" path="res://character/npc/npcs/temp/garonic.tres" id="3_hjby2"]
 [ext_resource type="PackedScene" uid="uid://b5tujrjhal74k" path="res://character/enemy/ground_enemy/hermit_crab/hermit_crab.tscn" id="4_ltgpm"]
+[ext_resource type="Resource" uid="uid://u7dfalum0q8c" path="res://character/npc/npcs/beebo/beebo.tres" id="5_ltgpm"]
 [ext_resource type="Resource" uid="uid://b6rpc2vh3bxsl" path="res://character/npc/npcs/ren/ren.tres" id="5_p5yow"]
 [ext_resource type="PackedScene" uid="uid://byyspl5sf8uhg" path="res://character/enemy/carpenter_bee/carpenter_bee.tscn" id="6_p5yow"]
 [ext_resource type="PackedScene" uid="uid://celweuiliojoc" path="res://world/colorable/WindPlant/wind_plant.tscn" id="8_n61ly"]
@@ -28,19 +29,24 @@ position = Vector2(2516, 2704)
 npc_data = ExtResource("5_p5yow")
 dialogue_csv = "res://systems/dialogue/data/ren.csv"
 
-[node name="CarpenterBee" parent="." index="4" unique_id=615538230 instance=ExtResource("6_p5yow")]
+[node name="Beebo" parent="." index="4" unique_id=290295400 instance=ExtResource("2_dthq0")]
+position = Vector2(2288, 2695)
+npc_data = ExtResource("5_ltgpm")
+dialogue_csv = "res://systems/dialogue/data/ren.csv"
+
+[node name="CarpenterBee" parent="." index="5" unique_id=615538230 instance=ExtResource("6_p5yow")]
 position = Vector2(1198, 2394)
 
-[node name="Pickup" parent="." index="5" unique_id=1498291215 instance=ExtResource("8_wnpta")]
+[node name="Pickup" parent="." index="6" unique_id=1498291215 instance=ExtResource("8_wnpta")]
 position = Vector2(3392, 2792)
 
-[node name="WindPlant" parent="." index="6" unique_id=528316572 instance=ExtResource("8_n61ly")]
+[node name="WindPlant" parent="." index="7" unique_id=528316572 instance=ExtResource("8_n61ly")]
 position = Vector2(4038, 2818)
 
-[node name="Lizard" parent="." index="7" unique_id=43181616 instance=ExtResource("2_n61ly")]
+[node name="Lizard" parent="." index="8" unique_id=43181616 instance=ExtResource("2_n61ly")]
 position = Vector2(7144, 2560)
 
-[node name="HermitCrab" parent="." index="8" unique_id=1546083802 instance=ExtResource("4_ltgpm")]
+[node name="HermitCrab" parent="." index="9" unique_id=1546083802 instance=ExtResource("4_ltgpm")]
 position = Vector2(1576, 2816)
 
 [editable path="Player"]
