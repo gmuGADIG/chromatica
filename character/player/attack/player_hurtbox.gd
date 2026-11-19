@@ -83,10 +83,10 @@ func _on_area_entered(area: Area2D) -> void:
 #		return
 	if area is EnemyHitbox:
 		#enemy_hit.emit(area)
-		area.hit(DamageInfo.new(0, Paint.Hue.RED))
+		area.hit(DamageInfo.new(1, Paint.Hue.RED))
 		hit_things.append(area)
 	if area is ObjectHitbox:
-		area.hit(DamageInfo.new(0, Paint.Hue.RED))
+		area.hit(DamageInfo.new(1, Paint.Hue.RED))
 		hit_things.append(area)
 
 

@@ -16,6 +16,7 @@ func hit(damage_info: DamageInfo) -> void:
 	if damage_info.attack_color == Paint.Hue.NONE:
 		return
 	if health_component.hp:
+		print(damage_info.damage)
 		health_component.hurt(damage_info.damage)
 		colorable_component.apply(damage_info.attack_color)
 

@@ -11,6 +11,7 @@ func _ready() -> void:
 	hurtbox.enemy_hit.connect(func(enemy: EnemyHitbox) -> void:
 		enemy.hit(DamageInfo.new(brush_damage,player.paint_selector.current_color))
 	)
+	#hurtbox.
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("brush_swing"):
