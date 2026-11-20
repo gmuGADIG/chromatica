@@ -44,6 +44,8 @@ var _side : int = 1
 var _home : Vector2 = Vector2.ZERO
 var _home_set : bool = false
 
+var attack_cycles: int = 0
+
 func _ready() -> void:
 	super()
 	_home = global_position
@@ -51,6 +53,8 @@ func _ready() -> void:
 		push_warning("No Projectile for '%s' " % name)
 	
 func _think(delta: float) -> void:
+	if _timer > 0.0:
+		_timer -= delta
 	match state:
 		State.IDLE:
 			if _wander_timer <= 0.0:
@@ -66,7 +70,6 @@ func _think(delta: float) -> void:
 		State.APPROACH:
 			##We have to do this again because _think can enter straight into State.APPROACH.
 			if can_see_player():
-				_timer -= delta # only shoot with a clear view of the player
 				## Checks to see if the timer is done before moving to shooting state
 				if _timer <= 0.0:
 					_enter(State.SHOOT, aim_time)
@@ -85,14 +88,14 @@ func _think(delta: float) -> void:
 
 		State.SHOOT:
 			accelerate_toward(Vector2.ZERO, delta)
-			_timer -= delta
-
-			if (_timer <= 0.11 and _timer >= 0.09):
-				attack()
-			elif _timer <= 0.0:
-				attack()
-				_enter(State.APPROACH, shoot_interval)
-
+	
+			#if attack_cycles < 2:
+				#if _timer < 0:
+					#attack_cycles += 1
+					#attack()
+					#_timer = 0.1
+			#else:
+				#_enter(State.APPROACH, shoot_interval)
 
 ## Fires one projectile at the player's current position.
 func attack() -> void:
@@ -129,5 +132,16 @@ func _pick_wander_point() -> void:
 func _enter(new_state: State, duration: float) -> void:
 	state = new_state
 	_timer = duration
-	if state == State.IDLE:
+	if new_state == State.IDLE:
 		_wander_timer = 0.0
+	if new_state == State.SHOOT:
+		attack_cycles = 0
+
+		await get_tree().create_timer(duration, true).timeout
+		attack()
+		await get_tree().create_timer(0.1, true).timeout
+		attack()
+		_enter(State.APPROACH, shoot_interval)
+		# attack
+		# wait
+		# attack
