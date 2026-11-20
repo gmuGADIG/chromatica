@@ -9,6 +9,7 @@ enum State{
 	PARRY,
 	UPPERCUT,
 	DASH_SLASH,
+	DEAD
 }
 
 var state : State = State.NONE

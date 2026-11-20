@@ -23,10 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://c6van22sdy5fy" path="res://character/invuln_component.tscn" id="16_fkbv7"]
 [ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
 [ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
-[ext_resource type="AudioStream" uid="uid://dsnmrmsukhmhf" path="res://addons/splat.ogg" id="24_ygsv2"]
-[ext_resource type="Script" uid="uid://c5p2iccgev12h" path="res://character/player/player_sounds.gd" id="25_ecpu6"]
+[ext_resource type="Script" uid="uid://c5p2iccgev12h" path="res://character/player/player_sounds.gd" id="24_mkl32"]
+[ext_resource type="AudioStream" uid="uid://botdrj0eg1ae" path="res://temp/scream.mp3" id="25_ygsv2"]
+[ext_resource type="Script" uid="uid://cdb35ekubf0cq" path="res://character/player/death/player_death.gd" id="26_ecpu6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxmtl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nphxe"]
 size = Vector2(164, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -109,7 +110,7 @@ metadata/_custom_type_script = "uid://cg00jpsjgo1fo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=1886765406]
 position = Vector2(110, 0)
-shape = SubResource("RectangleShape2D_dxmtl")
+shape = SubResource("RectangleShape2D_nphxe")
 
 [node name="Sprite2D" type="Sprite2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=643035562]
 position = Vector2(112, -8)
@@ -140,6 +141,15 @@ swing_duration = 0.3
 
 [node name="SlashTimer" type="Timer" parent="Attacks/DashSlash" unique_id=505257000]
 wait_time = 0.3
+
+[node name="RangedAttack" type="Node2D" parent="Attacks" unique_id=1394425795 node_paths=PackedStringArray("player", "player_movement")]
+position = Vector2(0, -120)
+script = ExtResource("9_qh58e")
+player = NodePath("../..")
+player_movement = NodePath("../../PlayerMovement")
+projectile_packed = ExtResource("10_hr31g")
+launch_speed = 2000.0
+metadata/_custom_type_script = "uid://b2hybtygkkyei"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667189588]
 position = Vector2(0, -120)
@@ -202,25 +212,24 @@ debug_color = Color(0.5186686, 0.54240805, 0.5379915, 0.41960785)
 
 [node name="InvulnComponent" parent="." unique_id=1152976110 instance=ExtResource("16_fkbv7")]
 
-[node name="RangedAttack" type="Node2D" parent="." unique_id=1394425795 node_paths=PackedStringArray("player", "player_movement")]
-position = Vector2(0, -120)
-script = ExtResource("9_qh58e")
-player = NodePath("..")
-player_movement = NodePath("../PlayerMovement")
-projectile_packed = ExtResource("10_hr31g")
-launch_speed = 2000.0
-metadata/_custom_type_script = "uid://b2hybtygkkyei"
-
 [node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
 player_movement = NodePath("../PlayerMovement")
 player = NodePath("..")
 stationary_horizontal_offset = null
 camera_speed_vertical = null
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=382354422]
-stream = ExtResource("24_ygsv2")
-script = ExtResource("25_ecpu6")
+[node name="PlayerAudio" type="Node2D" parent="." unique_id=1216906758 node_paths=PackedStringArray("death_sound")]
+script = ExtResource("24_mkl32")
+death_sound = NodePath("AudioStreamPlayer2D")
+metadata/_custom_type_script = "uid://c5p2iccgev12h"
 
-[connection signal="health_depleted" from="PlayerHealthComponent" to="AudioStreamPlayer2D" method="_on_player_die"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="PlayerAudio" unique_id=54396242]
+stream = ExtResource("25_ygsv2")
+
+[node name="PlayerDeath" type="Node" parent="." unique_id=702886345 node_paths=PackedStringArray("player", "health_component")]
+script = ExtResource("26_ecpu6")
+player = NodePath("..")
+health_component = NodePath("../PlayerHealthComponent")
+metadata/_custom_type_script = "uid://cdb35ekubf0cq"
 
 [editable path="PlayerHitbox"]

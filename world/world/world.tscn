@@ -22,7 +22,7 @@ shape = SubResource("RectangleShape2D_1tbfg")
 [node name="CollisionShape2D" parent="Player/InteractRegion" parent_id_path=PackedInt32Array(1162272003, 1706310371) index="0" unique_id=2042581431]
 position = Vector2(-4, -120)
 
-[node name="Camera" parent="Player" index="11" unique_id=765522635]
+[node name="Camera" parent="Player" index="10" unique_id=765522635]
 stationary_horizontal_offset = 200.0
 camera_speed_vertical = 750.0
 
