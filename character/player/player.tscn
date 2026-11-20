@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b01g8xm68jf3v" path="res://character/player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://c46qdvbh0fpd7" path="res://character/player/movement/player_movement.gd" id="2_gtsfv"]
+[ext_resource type="Script" uid="uid://dhqny3jdqwmv7" path="res://character/player/paint/paint_selector_component.gd" id="2_mkl32"]
 [ext_resource type="PackedScene" uid="uid://bvmsytqm23rk2" path="res://character/player/attack/player_hurtbox.tscn" id="3_qh58e"]
 [ext_resource type="Script" uid="uid://drt58jn726c1u" path="res://character/player/player_health_component.gd" id="5_eu8pa"]
-[ext_resource type="Texture2D" uid="uid://uu0mo6d1pvx0" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
+[ext_resource type="Texture2D" uid="uid://b37va1grce71u" path="res://temp/temp_art/jessup.png" id="5_g20gq"]
 [ext_resource type="Curve" uid="uid://dhvfejbwfim38" path="res://character/player/attack/uppercut_vertical_velocity.tres" id="5_lqp71"]
 [ext_resource type="Script" uid="uid://blodtm8lm2wc3" path="res://character/player/attack/brush_swing.gd" id="6_eu8pa"]
 [ext_resource type="Script" uid="uid://k3hulcny4g7k" path="res://character/player/player_interact.gd" id="6_noxpy"]
@@ -23,11 +24,13 @@
 [ext_resource type="PackedScene" uid="uid://c6van22sdy5fy" path="res://character/invuln_component.tscn" id="16_fkbv7"]
 [ext_resource type="Script" uid="uid://bpcuvwmp3dj8p" path="res://character/player/attack/slam.gd" id="18_ywhvj"]
 [ext_resource type="Curve" uid="uid://rim65jagw1rd" path="res://character/player/attack/slam_curve.tres" id="19_7mvkq"]
-[ext_resource type="Script" uid="uid://c5p2iccgev12h" path="res://character/player/player_sounds.gd" id="24_mkl32"]
-[ext_resource type="AudioStream" uid="uid://botdrj0eg1ae" path="res://temp/scream.mp3" id="25_ygsv2"]
+[ext_resource type="Script" uid="uid://qlt4frhdub1y" path="res://character/player/heal/paint_bucket_storage.gd" id="24_mkl32"]
+[ext_resource type="Shader" uid="uid://bqvpky2pdi0a4" path="res://character/player/heal/rainbow_boost.gdshader" id="25_ygsv2"]
+[ext_resource type="Shader" uid="uid://b5q00radwkc3w" path="res://ui/screen_vignette/vignette.gdshader" id="26_dxmtl"]
 [ext_resource type="Script" uid="uid://cdb35ekubf0cq" path="res://character/player/death/player_death.gd" id="26_ecpu6"]
+[ext_resource type="Script" uid="uid://btvuer81245c0" path="res://ui/screen_vignette/vignette.gd" id="27_4u7af"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nphxe"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gte1"]
 size = Vector2(164, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
@@ -39,8 +42,47 @@ size = Vector2(133, 261)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3pmv"]
 size = Vector2(130, 259)
 
-[node name="Player" type="CharacterBody2D" unique_id=1162272003 groups=["player"]]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ygsv2"]
+shader = ExtResource("25_ygsv2")
+shader_parameter/time = 0.0
+shader_parameter/seed = 0.0
+shader_parameter/heal_duration = 0.0
+shader_parameter/speedScale = 3.0
+shader_parameter/clipPosition = 0.2
+
+[sub_resource type="Gradient" id="Gradient_ygsv2"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ygsv2"]
+gradient = SubResource("Gradient_ygsv2")
+width = 16
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_ecpu6"]
+offsets = PackedFloat32Array(0, 0.15522388, 0.5641791)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_dxmtl"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.6, 0, 1, 0.79999995, 1, 0, 1, 0.19999993, 1, 0, 1, 0, 1, 0.4000001, 1, 0, 1, 1, 1, 0, 0.39999986, 1, 1, 0.19999981, 0, 1, 1, 0.8000002, 0, 1, 1, 1, 0, 0.6000004, 1, 1, 0, 0.016666412, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gte1"]
+shader = ExtResource("26_dxmtl")
+shader_parameter/min_inner_radius = 0.7
+shader_parameter/inner_radius_bounce = 0.2
+shader_parameter/min_outer_radius = 1.3
+shader_parameter/outer_radius_bounce = 0.1
+shader_parameter/bounce_frequency = 1.2
+
+[node name="Player" type="CharacterBody2D" unique_id=1162272003 node_paths=PackedStringArray("paint_selector") groups=["player"]]
+collision_layer = 2
 script = ExtResource("1_oul6g")
+paint_selector = NodePath("ColorSelectionComponent")
+
+[node name="ColorSelectionComponent" type="Node" parent="." unique_id=674403541]
+script = ExtResource("2_mkl32")
 
 [node name="Attacks" type="Node2D" parent="." unique_id=171343013]
 
@@ -64,8 +106,7 @@ one_shot = true
 one_shot = true
 
 [node name="AttackArea" parent="Attacks/PlayerBrush" unique_id=379676843 node_paths=PackedStringArray("player", "attack_timer") instance=ExtResource("3_qh58e")]
-collision_layer = 0
-collision_mask = 8
+collision_mask = 40
 player = NodePath("../../..")
 attack_timer = NodePath("../SwingDuration")
 
@@ -98,7 +139,8 @@ one_shot = true
 visible = false
 position = Vector2(0, -248)
 collision_layer = 0
-collision_mask = 8
+collision_mask = 40
+monitoring = false
 script = ExtResource("7_jo6ux")
 player = NodePath("../../..")
 collision_shape = NodePath("CollisionShape2D")
@@ -110,7 +152,7 @@ metadata/_custom_type_script = "uid://cg00jpsjgo1fo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=1886765406]
 position = Vector2(110, 0)
-shape = SubResource("RectangleShape2D_nphxe")
+shape = SubResource("RectangleShape2D_7gte1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Attacks/Uppercut/PlayerHurtbox" unique_id=643035562]
 position = Vector2(112, -8)
@@ -131,8 +173,7 @@ one_shot = true
 
 [node name="SlashArea" parent="Attacks/DashSlash" unique_id=508201604 node_paths=PackedStringArray("player", "attack_timer") instance=ExtResource("3_qh58e")]
 position = Vector2(0, -120)
-collision_layer = 0
-collision_mask = 8
+collision_mask = 40
 player = NodePath("../../..")
 attack_timer = NodePath("../SlashTimer")
 hurtbox_shape = Vector2(140, 270)
@@ -161,10 +202,13 @@ script = ExtResource("2_gtsfv")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://c46qdvbh0fpd7"
 
+[node name="CoyoteWalljumpTimer" type="Timer" parent="PlayerMovement" unique_id=488365247]
+one_shot = true
+
 [node name="JumpBuffer" type="Timer" parent="PlayerMovement" unique_id=2434172]
 one_shot = true
 
-[node name="CoyoteTimer" type="Timer" parent="PlayerMovement" unique_id=944399741]
+[node name="CoyoteJumpTimer" type="Timer" parent="PlayerMovement" unique_id=944399741]
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945416757]
@@ -199,10 +243,11 @@ shape = SubResource("RectangleShape2D_oul6g")
 [node name="Paint Guard" parent="." unique_id=933931754 node_paths=PackedStringArray("invuln_component") instance=ExtResource("15_fkbv7")]
 invuln_component = NodePath("../InvulnComponent")
 
-[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375]
+[node name="PlayerPickupRegion" type="Area2D" parent="." unique_id=1652643375 node_paths=PackedStringArray("paint_bucket_storage")]
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("10_qh58e")
+paint_bucket_storage = NodePath("../PaintBucketStorage")
 metadata/_custom_type_script = "uid://qsjyr53tj0c1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupRegion" unique_id=1466356474]
@@ -210,7 +255,8 @@ position = Vector2(-2, -119.5)
 shape = SubResource("RectangleShape2D_q3pmv")
 debug_color = Color(0.5186686, 0.54240805, 0.5379915, 0.41960785)
 
-[node name="InvulnComponent" parent="." unique_id=1152976110 instance=ExtResource("16_fkbv7")]
+[node name="InvulnComponent" parent="." unique_id=1152976110 node_paths=PackedStringArray("sprite") instance=ExtResource("16_fkbv7")]
+sprite = NodePath("../Sprite2D")
 
 [node name="Camera" parent="." unique_id=765522635 node_paths=PackedStringArray("player_movement", "player") instance=ExtResource("7_noxpy")]
 player_movement = NodePath("../PlayerMovement")
@@ -218,18 +264,68 @@ player = NodePath("..")
 stationary_horizontal_offset = null
 camera_speed_vertical = null
 
-[node name="PlayerAudio" type="Node2D" parent="." unique_id=1216906758 node_paths=PackedStringArray("death_sound")]
+[node name="PlayerAudio" type="Node2D" parent="." unique_id=1216906758]
 script = ExtResource("24_mkl32")
-death_sound = NodePath("AudioStreamPlayer2D")
 metadata/_custom_type_script = "uid://c5p2iccgev12h"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="PlayerAudio" unique_id=54396242]
-stream = ExtResource("25_ygsv2")
 
 [node name="PlayerDeath" type="Node" parent="." unique_id=702886345 node_paths=PackedStringArray("player", "health_component")]
 script = ExtResource("26_ecpu6")
 player = NodePath("..")
 health_component = NodePath("../PlayerHealthComponent")
 metadata/_custom_type_script = "uid://cdb35ekubf0cq"
+
+[node name="PaintBucketStorage" type="Node2D" parent="." unique_id=1269419462 node_paths=PackedStringArray("player", "player_health", "heal_timer", "heal_shader", "heal_particles")]
+position = Vector2(0, -128)
+script = ExtResource("24_mkl32")
+player = NodePath("..")
+player_health = NodePath("../PlayerHealthComponent")
+heal_timer = NodePath("HealingTimer")
+heal_shader = NodePath("HealingShader")
+heal_particles = NodePath("CPUParticles2D")
+metadata/_custom_type_script = "uid://qlt4frhdub1y"
+
+[node name="HealingShader" type="Sprite2D" parent="PaintBucketStorage" unique_id=39700630]
+z_index = -1
+material = SubResource("ShaderMaterial_ygsv2")
+scale = Vector2(3, 3)
+texture = ExtResource("10_aph6w")
+
+[node name="HealingTimer" type="Timer" parent="PaintBucketStorage" unique_id=1690092584]
+one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="PaintBucketStorage" unique_id=2129027945]
+emitting = false
+amount = 20
+texture = SubResource("GradientTexture2D_ygsv2")
+one_shot = true
+explosiveness = 0.9
+emission_shape = 3
+emission_rect_extents = Vector2(64, 128)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -30)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+tangential_accel_min = -50.0
+tangential_accel_max = 50.0
+color_ramp = SubResource("Gradient_ecpu6")
+color_initial_ramp = SubResource("Gradient_dxmtl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=989477276]
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer" unique_id=750229576 node_paths=PackedStringArray("player_health")]
+visible = false
+material = SubResource("ShaderMaterial_7gte1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("27_4u7af")
+threshold_percentage = 34.0
+player_health = NodePath("../../PlayerHealthComponent")
+metadata/_custom_type_script = "uid://btvuer81245c0"
 
 [editable path="PlayerHitbox"]
