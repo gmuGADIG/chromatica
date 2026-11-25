@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cjkxgjg0o0fnu"]
 
 [ext_resource type="Script" uid="uid://dgx38k0ta3ngc" path="res://character/enemy/carpenter_bee/glob_projectile.gd" id="1_40ash"]
-[ext_resource type="Texture2D" uid="uid://b4q0w3to5hphq" path="res://character/enemy/carpenter_bee/paint_glob.png" id="2_n3xsf"]
+[ext_resource type="Texture2D" uid="uid://cehamswmkmyap" path="res://character/enemy/carpenter_bee/paint_glob.png" id="2_n3xsf"]
 [ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="3_vxexb"]
-[ext_resource type="Texture2D" uid="uid://btnomr554nbx1" path="res://temp/temp_art/thesun.png" id="4_8loof"]
+[ext_resource type="Texture2D" uid="uid://cre84o42wmevo" path="res://temp/temp_art/thesun.png" id="4_8loof"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ball"]
 radius = 20.0

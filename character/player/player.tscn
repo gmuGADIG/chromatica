@@ -270,6 +270,7 @@ player = NodePath("..")
 stationary_horizontal_offset = null
 camera_speed_vertical = null
 
+[connection signal="player_hit" from="PlayerHitbox" to="PlayerMovement" method="_on_player_hitbox_player_hit"]
 [node name="PaintBucketStorage" type="Node2D" parent="." unique_id=1269419462 node_paths=PackedStringArray("player", "player_health", "heal_timer", "heal_shader", "heal_particles")]
 position = Vector2(0, -128)
 script = ExtResource("24_mkl32")

@@ -5,6 +5,8 @@ class_name PlayerHitbox
 @export var invuln_component : InvulnComponent
 @export var paintguard_component : PaintGuardComponent
 
+signal player_hit(knockback: Vector2)
+
 # Handles the player taking damage
 func hit(damage_info : DamageInfo) -> void:
 	if not can_take_damage():
@@ -13,6 +15,7 @@ func hit(damage_info : DamageInfo) -> void:
 		return
 	health_component.hurt(damage_info.damage)
 	invuln_component.activate()
+	player_hit.emit(damage_info.knockback_direction * damage_info.knockback_force)
 
 func can_take_damage() -> bool:
 	if invuln_component.is_invuln():

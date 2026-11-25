@@ -103,6 +103,7 @@ func attack() -> void:
 	add_sibling(projectile)
 	projectile.global_position = origin
 	projectile.launch(origin.direction_to(get_player_center()))
+	projectile.hurtbox.knockback_force = hurtbox.knockback_force
 
 ## The spot the bee tries to hold: off to one side of the player and above them.
 func _ideal_location() -> Vector2:
