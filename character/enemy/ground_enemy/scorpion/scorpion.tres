@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bpvthwial8tbp"]
+
+[ext_resource type="Texture2D" uid="uid://bv5hbb4s8x6wh" path="res://temp/temp_art/garf_walk.png" id="1_x7rli"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6lru"]
+atlas = ExtResource("1_x7rli")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh13i"]
+atlas = ExtResource("1_x7rli")
+region = Rect2(256, 0, 256, 256)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6lru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh13i")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 10.0
+}]

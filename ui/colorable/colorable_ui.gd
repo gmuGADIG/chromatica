@@ -11,7 +11,7 @@ func _ready() -> void:
 	$Pip2.hide()
 	pass
 
-func color_updated() -> void:
+func color_updated(_new_color: Paint.Hue) -> void:
 	var num_colors : int = colorable_component.colors.size()
 	
 	for i in pips.size():

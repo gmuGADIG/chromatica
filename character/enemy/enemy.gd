@@ -1,4 +1,3 @@
-
 extends CharacterBody2D
 class_name Enemy
 
@@ -26,8 +25,6 @@ signal became_friendly
 
 @export_group("Combat")
 
-@export var is_friendly : bool
-
 @export var health_component : HealthComponent
 
 @export var hitbox : EnemyHitbox
@@ -35,14 +32,6 @@ signal became_friendly
 @export var health_bar : ProgressBar
 
 @export var colorable_component : Colorable
-
-@export var player_ray : RayCast2D
-
-@export var wall_ray : RayCast2D
-
-@export var platform_ray : RayCast2D
-
-@export var hurtbox : EnemyHurtbox
 
 @export var knockback_force : float
 
@@ -61,12 +50,15 @@ signal became_friendly
 @export var player_center_offset : Vector2 = Vector2(0, -120)
 
 
+@export_group("SFX & VFX")
 
+@export var sprite : AnimatedSprite2D
 
 @onready var player : Player = get_tree().get_first_node_in_group("player")
 
 
 func _ready() -> void:
+	sprite.play()
 	if player == null:
 		printerr("No player found!")
 	if health_component == null:
@@ -88,10 +80,6 @@ func get_player_center() -> Vector2:
 ## Called when HP runs out. Nobody dies: the enemy turns friendly.
 ## Override to add animation, dialogue, etc. (call super() to keep the base behavior).
 func become_friendly() -> void:
-	if is_friendly:
-		return
-	is_friendly = true
-
 	# Stop being a target and stop being a threat.
 	if hitbox:
 		hitbox.set_deferred("monitorable", false)
@@ -115,14 +103,14 @@ func _swap_to_friendly_scene() -> void:
 
 
 func can_see_player() -> bool:
-	printerr("Method Not Implemented!")
+	assert(false,"Not Implemented")
 	return false
 
 func set_target(_pos: Vector2) -> void:
-	printerr("Method Not Implemented!")
+	assert(false,"Not Implemented")
 
 func move(_delta: float) -> void:
-	printerr("Method Not Implemented!")
+	assert(false,"Not Implemented")
 
 func attack() -> void:
-	printerr("Not Implemented!")
+	assert(false,"Not Implemented")
