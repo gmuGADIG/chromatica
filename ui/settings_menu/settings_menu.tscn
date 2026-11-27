@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbux3nfnho5ss"]
 
 [ext_resource type="Script" uid="uid://dgh0sad4a33h4" path="res://ui/settings_menu/settings_menu.gd" id="1_cobfr"]
-[ext_resource type="Texture2D" uid="uid://ljssfsbrbpjx" path="res://ui/settings_menu/blank_settings.png" id="2_2adas"]
+[ext_resource type="Texture2D" uid="uid://ljssfsbrbpjx" path="res://temp/temp_art/ui/settings/blank_settings.png" id="2_2adas"]
 [ext_resource type="Theme" uid="uid://1de4owo4vojh" path="res://ui/chromatica_theme.tres" id="3_424ss"]
 [ext_resource type="Texture2D" uid="uid://3moowyfaru3n" path="res://temp/temp_art/brush.png" id="4_424ss"]
 

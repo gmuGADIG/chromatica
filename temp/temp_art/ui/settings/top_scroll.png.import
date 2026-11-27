@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvrccavmecrpl"
-path="res://.godot/imported/top_scroll.png-51d0983c65ab2c82536fa9cf5218b4f5.ctex"
+path="res://.godot/imported/top_scroll.png-a68080f31059704af3d1457d1ef3e169.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/settings_menu/top_scroll.png"
-dest_files=["res://.godot/imported/top_scroll.png-51d0983c65ab2c82536fa9cf5218b4f5.ctex"]
+source_file="res://temp/temp_art/ui/settings/top_scroll.png"
+dest_files=["res://.godot/imported/top_scroll.png-a68080f31059704af3d1457d1ef3e169.ctex"]
 
 [params]
 
