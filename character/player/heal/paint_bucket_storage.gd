@@ -19,6 +19,7 @@ var current_paint_buckets : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#await get_tree().process_frame
 	heal_shader.hide()
 	print(player_health)
 	max_paint_buckets = starting_max_paint_buckets

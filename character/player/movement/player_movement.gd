@@ -64,7 +64,7 @@ var last_horizontal_direction : float = 1.0
 
 func _input(event: InputEvent) -> void:
 
-	if not player.in_state([ Player.State.NONE, Player.State.BRUSH_SWING ]):
+	if not player.in_state([ Player.State.NONE, Player.State.BRUSH_SWING, Player.State.DEAD]):
 		return
 
 	##Jump Inputs
@@ -92,7 +92,7 @@ func _physics_process(delta: float) -> void:
 	var lock_input : bool = (
 			not player.in_state([
 					Player.State.NONE,
-					Player.State.BRUSH_SWING,
+					Player.State.BRUSH_SWING
 			])
 			or Dialogue.is_playing()
 	)
@@ -128,7 +128,8 @@ func _physics_process(delta: float) -> void:
 	if player.in_state([
 			Player.State.NONE,
 			Player.State.BRUSH_SWING,
-			Player.State.HEALING
+			Player.State.HEALING,
+			Player.State.DEAD
 	]):
 		player.move_and_slide()
 	

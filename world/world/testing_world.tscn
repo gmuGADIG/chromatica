@@ -11,13 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://celweuiliojoc" path="res://world/colorable/WindPlant/wind_plant.tscn" id="8_n61ly"]
 [ext_resource type="PackedScene" uid="uid://c6ob4a5w3riaf" path="res://pickup/paint_bucket/paint_bucket.tscn" id="8_wnpta"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n61ly"]
-size = Vector2(164, 256)
-
 [node name="World" unique_id=1762502460 instance=ExtResource("1_yd5ur")]
-
-[node name="CollisionShape2D" parent="Player/Attacks/Uppercut/PlayerHurtbox" parent_id_path=PackedInt32Array(1162272003, 2122688073) index="0" unique_id=1886765406]
-shape = SubResource("RectangleShape2D_n61ly")
 
 [node name="Npc" parent="." index="2" unique_id=1970945136 instance=ExtResource("2_dthq0")]
 position = Vector2(2824, 2720)
@@ -49,6 +43,4 @@ position = Vector2(7144, 2560)
 [node name="HermitCrab" parent="." index="9" unique_id=1546083802 instance=ExtResource("4_ltgpm")]
 position = Vector2(1576, 2816)
 
-[editable path="Player"]
-[editable path="Player/PlayerHitbox"]
 [editable path="CanvasLayer/Hud"]

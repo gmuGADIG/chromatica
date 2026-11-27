@@ -174,3 +174,22 @@ func locate_room(pos : Vector2, include_unloaded : bool) -> String:
 		
 		return iid
 	return ""
+
+
+func _on_player_health_component_death_complete() -> void:
+	set_current_room(current_room_iid)
+	print("did it")
+
+
+func _on_player_death() -> void:
+	for child in self.get_children():
+		if("use_parent_material" in child):
+			print(child)
+			child.use_parent_material = true
+
+
+func _on_player_revive() -> void:
+	for child in self.get_children():
+		print(child)
+		if("use_parent_material" in child):
+			child.use_parent_material = false

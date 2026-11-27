@@ -11,6 +11,7 @@ enum State{
 	PARRY,
 	UPPERCUT,
 	DASH_SLASH,
+	DEAD,
 	HEALING
 }	
 
