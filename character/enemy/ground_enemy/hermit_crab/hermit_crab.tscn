@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://b5tujrjhal74k"]
+
+[ext_resource type="PackedScene" uid="uid://cpd6f8tn8gge0" path="res://character/enemy/ground_enemy/ground_enemy.tscn" id="1_o7s8o"]
+[ext_resource type="Script" uid="uid://dpycpw5v7bvgb" path="res://character/enemy/ground_enemy/hermit_crab/hermit_crab.gd" id="2_de576"]
+[ext_resource type="SpriteFrames" uid="uid://plc0xnid67tt" path="res://character/enemy/ground_enemy/hermit_crab/hermit_crab.tres" id="3_5hdj6"]
+[ext_resource type="Script" uid="uid://d35a43ynho3td" path="res://character/enemy/ground_enemy/hermit_crab/special_enemy_hitbox.gd" id="4_eq7ns"]
+[ext_resource type="Script" uid="uid://cfpmjv5rbi8qo" path="res://character/enemy/enemy_hurtbox.gd" id="4_jy5oj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jy5oj"]
+size = Vector2(300, 162)
+
+[sub_resource type="Gradient" id="Gradient_jy5oj"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jy5oj"]
+gradient = SubResource("Gradient_jy5oj")
+width = 10
+height = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eq7ns"]
+size = Vector2(192, 64)
+
+[node name="HermitCrab" unique_id=43181616 node_paths=PackedStringArray("claw_hurtbox", "claw_particles") instance=ExtResource("1_o7s8o")]
+script = ExtResource("2_de576")
+claw_hurtbox = NodePath("ClawHurtbox")
+attention_span = 7.0
+attack_distance = 250.0
+windup_time = 0.5
+strike_time = 0.2
+recovery_time = 0.3
+claw_particles = NodePath("ClawParticles")
+clam_duration = 3.0
+arrive_distance = 400.0
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=1125582819]
+position = Vector2(0, -200)
+sprite_frames = ExtResource("3_5hdj6")
+animation = &"shove"
+frame = 4
+frame_progress = 1.0
+flip_h = false
+
+[node name="EnemyHitbox" parent="." index="2" unique_id=1147118622]
+script = ExtResource("4_eq7ns")
+
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0" unique_id=841445170]
+shape = SubResource("RectangleShape2D_jy5oj")
+
+[node name="CollisionShape2D" parent="." index="6" unique_id=1367315384]
+shape = SubResource("RectangleShape2D_jy5oj")
+
+[node name="EnemyHurtbox" type="Area2D" parent="." index="11" unique_id=127747995]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("4_jy5oj")
+metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" index="0" unique_id=2113707596]
+position = Vector2(0, -81)
+shape = SubResource("RectangleShape2D_jy5oj")
+
+[node name="ClawParticles" type="CPUParticles2D" parent="." index="12" unique_id=1825899575]
+position = Vector2(288, 0)
+emitting = false
+amount = 15
+texture = SubResource("GradientTexture2D_jy5oj")
+one_shot = true
+explosiveness = 0.9
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 600)
+initial_velocity_min = 300.0
+initial_velocity_max = 400.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+
+[node name="ClawHurtbox" type="Area2D" parent="." index="13" unique_id=346121401]
+position = Vector2(288, -32)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("4_jy5oj")
+damage = 2
+metadata/_custom_type_script = "uid://cfpmjv5rbi8qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClawHurtbox" index="0" unique_id=1960365544]
+shape = SubResource("RectangleShape2D_eq7ns")
+
+[connection signal="on_possible_hit" from="EnemyHitbox" to="." method="_on_possible_hit"]

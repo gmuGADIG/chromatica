@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://celweuiliojoc"]
+
+[ext_resource type="PackedScene" uid="uid://nkhkrmdh073y" path="res://world/colorable/object_base.tscn" id="1_ru40m"]
+[ext_resource type="Script" uid="uid://kv22ic220yx5" path="res://world/colorable/WindPlant/wind_plant.gd" id="2_un1cv"]
+[ext_resource type="Texture2D" uid="uid://cana5r677q28u" path="res://temp/temp_art/flower.png" id="2_v61dl"]
+[ext_resource type="PackedScene" uid="uid://c6vfh1ttiolw1" path="res://world/colorable/WindPlant/force_zone.tscn" id="3_l82y4"]
+
+[sub_resource type="Curve" id="Curve_l82y4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7781955, 0.46938777), -1.7142859, -1.7142859, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_l82y4"]
+curve = SubResource("Curve_l82y4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_frf6u"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 49.655, 1)
+spread = 5.0
+initial_velocity_min = 203.95
+initial_velocity_max = 217.11
+gravity = Vector3(0, 0, 0)
+scale_min = 8.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_l82y4")
+
+[node name="WindPlant" unique_id=528316572 node_paths=PackedStringArray("force_zone") instance=ExtResource("1_ru40m")]
+script = ExtResource("2_un1cv")
+force_zone = NodePath("ForceZone")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1737062087]
+scale = Vector2(1.71, 1.71)
+texture = ExtResource("2_v61dl")
+offset = Vector2(0, -74.87)
+
+[node name="ForceZone" parent="." index="4" unique_id=619087343 instance=ExtResource("3_l82y4")]
+position = Vector2(0, -179)
+rotation = -1.5707964
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ForceZone" index="2" unique_id=979969863]
+amount = 12
+lifetime = 1.45
+process_material = SubResource("ParticleProcessMaterial_frf6u")
