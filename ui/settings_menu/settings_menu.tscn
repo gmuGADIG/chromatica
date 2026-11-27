@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cbux3nfnho5ss"]
 
 [ext_resource type="Script" uid="uid://dgh0sad4a33h4" path="res://ui/settings_menu/settings_menu.gd" id="1_cobfr"]
+[ext_resource type="Texture2D" uid="uid://ljssfsbrbpjx" path="res://temp/temp_art/ui/settings/blank_settings.png" id="2_2adas"]
+[ext_resource type="Theme" uid="uid://1de4owo4vojh" path="res://ui/chromatica_theme.tres" id="3_424ss"]
+[ext_resource type="Texture2D" uid="uid://3moowyfaru3n" path="res://temp/temp_art/brush.png" id="4_424ss"]
 
 [node name="SettingsMenu" type="Control" unique_id=1456142874]
 layout_mode = 3
@@ -11,74 +14,159 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cobfr")
 
-[node name="Panel" type="Panel" parent="." unique_id=742860023]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1740695597]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -266.0
-offset_top = -216.0
-offset_right = 266.0
-offset_bottom = 216.0
+anchors_preset = -1
+anchor_left = 0.26822916
+anchor_top = 0.15895061
+anchor_right = 0.7282986
+anchor_bottom = 0.83179015
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_2adas")
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1140205085]
+[node name="Label" type="Label" parent="TextureRect" unique_id=1469303661]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -86.0
-offset_right = 100.0
-offset_bottom = 86.0
+anchors_preset = -1
+anchor_left = 0.36603773
+anchor_top = 0.17889908
+anchor_right = 0.51320755
+anchor_bottom = 0.24311927
+offset_left = 8.0
+offset_right = -8.0
+offset_bottom = -5.0
 grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=957399116]
-layout_mode = 2
+theme = ExtResource("3_424ss")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Settings"
 
-[node name="MasterVolumeLabel" type="Label" parent="Panel/VBoxContainer" unique_id=787635390]
+[node name="BackButton" type="Button" parent="TextureRect" unique_id=866340540]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.40754718
+anchor_top = 0.83715594
+anchor_right = 0.49245283
+anchor_bottom = 0.9082569
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1193773610]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2962264
+anchor_top = 0.31880733
+anchor_right = 0.57924527
+anchor_bottom = 0.51605505
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Volume" type="Label" parent="TextureRect/VBoxContainer" unique_id=1240173098]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Volume"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer" unique_id=592072824]
+custom_minimum_size = Vector2(150, 10)
+layout_mode = 2
+alignment = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer" unique_id=787635390]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
 text = "Master"
 
-[node name="MasterVolumeSlider" type="HSlider" parent="Panel/VBoxContainer" unique_id=1563713735]
+[node name="MasterVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer/HBoxContainer" unique_id=1563713735]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
 
-[node name="SFXVolumeLabel" type="Label" parent="Panel/VBoxContainer" unique_id=2110771480]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/VBoxContainer" unique_id=1604627938]
+custom_minimum_size = Vector2(150, 10)
 layout_mode = 2
+alignment = 2
+
+[node name="BGMVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer2" unique_id=1197516837]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Music"
+
+[node name="BGMVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer/HBoxContainer2" unique_id=1823484834]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/VBoxContainer" unique_id=610976568]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="SFXVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer3" unique_id=2110771480]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
 text = "SFX"
 
-[node name="SFXVolumeSlider" type="HSlider" parent="Panel/VBoxContainer" unique_id=853026901]
+[node name="SFXVolumeSlider" type="HSlider" parent="TextureRect/VBoxContainer/HBoxContainer3" unique_id=853026901]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
 
-[node name="BGMVolumeLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1197516837]
-layout_mode = 2
-text = "BGM"
+[node name="Panel" type="Panel" parent="." unique_id=2022076661]
+layout_mode = 0
+anchor_left = 0.3706597
+anchor_top = 0.5308642
+anchor_right = 0.45572916
+anchor_bottom = 0.6697531
+metadata/_edit_use_anchors_ = true
 
-[node name="BGMVolumeSlider" type="HSlider" parent="Panel/VBoxContainer" unique_id=1823484834]
-layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
+[node name="Label" type="Label" parent="Panel" unique_id=1856618128]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.045918368
+anchor_top = 0.37222221
+anchor_right = 0.95408165
+anchor_bottom = 0.62777776
+grow_horizontal = 2
+grow_vertical = 2
+text = "Control List"
+metadata/_edit_use_anchors_ = true
 
-[node name="BackButton" type="Button" parent="Panel/VBoxContainer" unique_id=866340540]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Back"
+[node name="Panel2" type="Panel" parent="." unique_id=176489242]
+layout_mode = 0
+anchor_left = 0.4652778
+anchor_top = 0.5339506
+anchor_right = 0.5789931
+anchor_bottom = 0.66358024
+metadata/_edit_use_anchors_ = true
 
-[connection signal="value_changed" from="Panel/VBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/BGMVolumeSlider" to="." method="_on_bgm_volume_changed"]
-[connection signal="pressed" from="Panel/VBoxContainer/BackButton" to="." method="_on_button_pressed"]
+[node name="Label" type="Label" parent="Panel2" unique_id=1644614071]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24809161
+anchor_top = 0.36309522
+anchor_right = 0.7519084
+anchor_bottom = 0.6369048
+grow_horizontal = 2
+grow_vertical = 2
+text = "Diagram"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1138715968]
+modulate = Color(8.775005, 0.17686729, 9.844719, 1)
+layout_mode = 0
+offset_left = 479.0
+offset_top = 238.0
+offset_right = 503.27002
+offset_bottom = 366.61
+rotation = -1.5707964
+texture = ExtResource("4_424ss")
+expand_mode = 1
+
+[connection signal="pressed" from="TextureRect/BackButton" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="TextureRect/VBoxContainer/HBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_changed"]
+[connection signal="value_changed" from="TextureRect/VBoxContainer/HBoxContainer2/BGMVolumeSlider" to="." method="_on_bgm_volume_changed"]
+[connection signal="value_changed" from="TextureRect/VBoxContainer/HBoxContainer3/SFXVolumeSlider" to="." method="_on_sfx_volume_changed"]
