@@ -36,7 +36,7 @@ func unpause() -> void:
 func show_pause_menu() -> void:
 	settings_menu.hide()
 	pause_panel.show()
-	$PausePanel/VBoxContainer/ResumeButton.grab_focus()
+	$PausePanel/MenuButton.grab_focus()
 	
 func show_settings() -> void:
 	settings_menu.open()
@@ -45,10 +45,12 @@ func show_settings() -> void:
 func _on_settings_button_pressed() -> void:
 	show_settings()
 	
-func _on_resume_button_pressed():
-	unpause()
-	
-func _on_quit_button_pressed():
+func _on_exit_button_pressed() -> void:
 	# Never forget to unpause the tree before changing scenes!
+	get_tree().paused = false
+	pause_panel.hide()
+	
+
+func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
