@@ -38,9 +38,9 @@ offset_right = -8.0
 offset_bottom = -5.0
 grow_horizontal = 2
 theme = ExtResource("3_424ss")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Settings"
-metadata/_edit_use_anchors_ = true
 
 [node name="BackButton" type="Button" parent="TextureRect" unique_id=866340540]
 unique_name_in_owner = true
@@ -65,6 +65,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Volume" type="Label" parent="TextureRect/VBoxContainer" unique_id=1240173098]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Volume"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -76,6 +77,7 @@ alignment = 2
 
 [node name="MasterVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer" unique_id=787635390]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "Master"
 
@@ -90,6 +92,7 @@ alignment = 2
 
 [node name="BGMVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer2" unique_id=1197516837]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "Music"
 
@@ -104,6 +107,7 @@ alignment = 2
 
 [node name="SFXVolumeLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer3" unique_id=2110771480]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "SFX"
 
